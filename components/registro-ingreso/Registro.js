@@ -2,7 +2,7 @@ import React from 'react'
 
 const Registro = (props) => {
     return (
-        <form onSubmit={e => {e.preventDefault()}}>
+        <div className="form">
             <div className="id">
                 <div className="colorRojo"></div>
                 <input type="text" placeholder="ID" value={props.user.identification ? props.user.identification : ''} name="identification" onChange={props.ChangeText} />
@@ -19,11 +19,11 @@ const Registro = (props) => {
             </button>
 
             <style jsx>{`
-                form {
+                .form {
                     display: grid;
                 }
 
-                div {
+                .form > div {
                     display: grid;
                     grid-template-columns: 5px 1fr;
                     border: 1px solid #33333322;
@@ -75,7 +75,7 @@ const Registro = (props) => {
                 }
                 
             `}</style>
-        </form>
+        </div>
     )
 }
 

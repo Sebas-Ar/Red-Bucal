@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 import Layout from '../components/layout/Layout'
 import Registro from '../components/registro-ingreso/Registro'
 import Ingreso from '../components/registro-ingreso/Ingreso'
@@ -6,11 +7,14 @@ import RegisterAll from '../components/registro-ingreso/RegisterAll'
 import axios from "axios";
 
 
+
 const Ingresar = () => {
 
+    
     const [register, setregister] = useState(false)
     const [user, setUser] = useState({})
     const [login, setLogin] = useState({});
+
     
     const changeRegister = () => {
         setregister(!register);
@@ -27,27 +31,28 @@ const Ingresar = () => {
 
     const onSubmitRegister = async e => {
         e.preventDefault()
-
         if (!user.name || !user.lastname || !user.adress || !user.phone || !user.email || !user.identification || !user.birthdate || !user.know || !user.password){
             alert('falta algun dato');
         } else {
             const url = '/api/users'
 
             try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(user)
-                })
-                
-                console.log(response);
+                const response = await axios.post(url,user)
+                console.log(response.data/* .status */);
+                if (response.data.status === 'ok') {
+                    sessionStorage.setItem('token', response.data.token)
+                    setregister(false)
+                }
             } catch (error) {
                 console.error(error)   
             }
         }
     }
-
+    
+    const router = useRouter()
+    
     const onSubmitLogin = async e => {
+
         e.preventDefault()
         if (!login.identification || !login.password) {
             console.log('falta algun dato');
@@ -59,6 +64,7 @@ const Ingresar = () => {
                 console.log(response);
                 if(response.data.status === 'ok') {
                     sessionStorage.setItem('token', response.data.id)
+                    router.push('/usuario')
                 }
             } catch (error) {
                 console.error(error)

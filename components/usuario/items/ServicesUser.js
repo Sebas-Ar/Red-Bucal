@@ -1,11 +1,11 @@
 import React from 'react'
 
-const ServicesUser = () => {
+const ServicesUser = (props) => {
     return (
         <section>
             <label>
                 LIMPIEZA DENTAL:
-                <p>REALIZADO / NO REALIZADO</p>
+                <p>{props.data.service ? 'REALIZADO' : 'NO REALIZADO'}</p>
             </label>
 
             <style jsx>{`

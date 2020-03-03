@@ -1,16 +1,16 @@
 import React from 'react'
 
-const BillingUser = () => {
+const BillingUser = (props) => {
     return (
         <section>
             <label className="type">
                 TIPO DE PLAN:
-                <p>TIPO DE PLAN #1</p>
+                <p>{props.data.plan ? 'PERSONAL' : 'EMPRESARIAL'}</p>
             </label>
             <div></div>
             <label>
                 FECHA DE INICIO:
-                <p>01 de Octubre de 2018</p>
+                <p>{props.data.date}</p>
             </label>
             <label>
                 FECHA DE FINALIZACIÓN:

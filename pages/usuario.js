@@ -8,55 +8,60 @@ import BillingUser from '../components/usuario/items/BillingUser'
 import ServicesUser from '../components/usuario/items/ServicesUser'
 import RecordUser from '../components/usuario/items/RecordUser'
 import Out from '../components/config/Out';
+/* import { UserContext } from "../components/usuario/context/UserContext"; */
 
-const usuario = () => {
+const usuario = (props) => {
 
     const [select, setSelect] = useState(0);
     const [data, setData] = useState({});
-    const [storage, setStorage] = useState('')
 
     const onClick = (selector) => {
         setSelect(selector)
     }
 
-    const gettingData =  async () => {
+    const get = async () => {
         const url = '/api/session'
         const result = await axios.get(url)
+        console.log(result);
         setData(result.data.data.user)
-        setStorage(sessionStorage.getItem('token'))
-    }
-
-    useEffect( () => {
-        gettingData()
-    }, [])
+    } 
 
     useEffect(() => {
-        setStorage(sessionStorage.getItem('token'))
-        console.log(storage);
-    }, [storage]);
+        console.log(props);
+        get()
+    }, [])
 
-    return (
+  /*   const { state: { isLoggedIn, user: { name } } } = useContext(UserContext); */
 
+    /* const handleLogout = (event) => {
+        event.preventDefault();
+        axioswal
+            .delete('/api/session')
+            .then((data) => {
+                if (data.status === 'ok') {
+                    dispatch({ type: 'clear' });
+                }
+            });
+    }; */
+    
+    /* if (true) { */
+        return (
+    
             <Layout>
-                <NavUsuario onClick={onClick} select={select}>
+                <NavUsuario onClick={onClick} select={select} data={data}>
                     {
-                        select === 0 ? <InformationUser data={data} storage={storage}/> : 
-                        select === 1 ? <BillingUser /> :
-                        select === 2 ? <ServicesUser /> :
+                        select === 0 ? <InformationUser data={data} /> : 
+                        select === 1 ? <BillingUser  data={data}/> :
+                        select === 2 ? <ServicesUser  data={data}/> :
                         select === 3 ? <RecordUser /> :
                         'cuatro' 
                     }
                 </NavUsuario>
             </Layout>
-        /* :
-            <Out /> */
-    )
+        )
+    /* } else {
+        <Out />
+    } */
 }
-
-/* usuario.getInitialProps = () => {
-
-} */
-
-
 
 export default usuario

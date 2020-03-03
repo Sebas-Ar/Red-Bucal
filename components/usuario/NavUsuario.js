@@ -23,7 +23,7 @@ const NavUsuario = (props) => {
             <nav>
                 <ul>
                     <li>
-                        <h2>NOMBRE DE USUARIO</h2>
+                        <h2>{props.data.name}</h2>
                     </li>
                     <li>
                         <button onClick={() => {props.onClick(0)}} style={selection(0)}>INFORMACIÓN DEL USUARIO</button>
@@ -97,6 +97,7 @@ const NavUsuario = (props) => {
                 }
 
                 h2 {
+                    text-transform: uppercase;
                     background-color: var(--colorSelect);
                     font-weight: 800;
                     margin: -2px 0 -3px 0;

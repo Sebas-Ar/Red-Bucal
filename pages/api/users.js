@@ -22,13 +22,15 @@ const handler = async (req, res) => {
 
                     res.send({
                         status: 'error',
-                        message: 'El mensaje ya ha sido registrado',
+                        message: 'El correo ya ha sido registrado',
                     });
 
                 } else {
 
                     const salt = await bcrypt.genSalt(10)
                     const hashedPassword = await bcrypt.hash(password, salt)
+                    const date = new Date;
+                    console.log(date.getDate);
                     const user = await req.db.collection('users').insertOne({
                         state: false,
                         name: name + ' ' + lastname,
@@ -38,13 +40,17 @@ const handler = async (req, res) => {
                         birthdate,
                         adress,
                         phone,
-                        know
+                        know,
+                        plan: false,
+                        date: '0'+date.getDate()+' / 0'+date.getMonth(),
+                        service: false
                     })
 
                     req.session.userId = await user.insertedId
                     res.status(201).json({
                         status: 'ok',
-                        message: 'Usuario agregado satisfactoriamente'
+                        message: 'Usuario agregado satisfactoriamente',
+                        token: user.insertedId
                     })
 
                 }
