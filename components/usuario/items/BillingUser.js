@@ -1,0 +1,66 @@
+import React from 'react'
+
+const BillingUser = () => {
+    return (
+        <section>
+            <label className="type">
+                TIPO DE PLAN:
+                <p>TIPO DE PLAN #1</p>
+            </label>
+            <div></div>
+            <label>
+                FECHA DE INICIO:
+                <p>01 de Octubre de 2018</p>
+            </label>
+            <label>
+                FECHA DE FINALIZACIÓN:
+                <p>01 de Octubre de 2019</p>
+            </label>
+            <label>
+                RENOVACIÓN: <br/> <br/>
+                <button>Web</button>
+                <button>Fisico</button>
+            </label>
+
+            <style jsx>{`
+                
+            section {
+                align-self: center;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                margin: 0 50px;
+            }    
+
+            label {
+                margin: 20px 0;
+                color: var(--mainColor);
+                font-weight: 600;
+            }
+
+            p {
+                color: var(--mainColorClaro);
+            }
+
+            button {
+                border: none;
+                outline: none; 
+                background-color: var(--mainColor);
+                padding: 10px;
+                cursor: pointer;
+                color: white;
+                border-radius: 4px;
+                margin-right: 10px;
+                width: 100px;
+            }
+
+            button:hover {
+                background: var(--colorSelect);
+                color: var(--botonesText);
+            }
+                
+            `}</style>
+        </section>
+    )
+}
+
+export default BillingUser
