@@ -56,11 +56,11 @@ const Nav = () => {
       </a>
     </Link>
     <ul>
-      <Link href="/">
-        <li>
+      <li>
+        <Link href="/">
             <a className="link" style={borde('/')}>INICIO</a>
-        </li>
-      </Link>
+        </Link>
+      </li>
         <li className="link" style={bordePlanes('/planes/personas-&-familias', '/planes/empresarial')}>
         PLANES
         <span>▼</span>
