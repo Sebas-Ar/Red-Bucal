@@ -10,11 +10,11 @@ const BillingUser = (props) => {
             <div></div>
             <label>
                 FECHA DE INICIO:
-                <p>{props.data.date}</p>
+                <p>>----------</p>
             </label>
             <label>
                 FECHA DE FINALIZACIÓN:
-                <p>01 de Octubre de 2019</p>
+                <p>----------</p>
             </label>
             <label>
                 RENOVACIÓN: <br/> <br/>
