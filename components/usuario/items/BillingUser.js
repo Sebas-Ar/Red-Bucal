@@ -44,6 +44,10 @@ const BillingUser = (props) => {
             </div>
 
             <style jsx>{`
+
+                form {
+                    display: inline-block;
+                }
                 
             section {
                 align-self: center;
