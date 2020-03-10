@@ -32,10 +32,10 @@ const NavUsuario = (props) => {
                                 <button onClick={() => { props.onClick(0) }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
                             </li>
                         </ul>
-                    :
+                        : props.user === 1 ?
                         <ul>
                             <li>
-                                <h2>ADMINISTRADOR</h2>
+                                <h2>USUARIO</h2>
                             </li>
                             <li>
                                 <button onClick={() => { props.onClick(0) }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
@@ -52,6 +52,30 @@ const NavUsuario = (props) => {
                             <li>
                                 <button onClick={() => { props.onClick(4) }} style={selection(4)}>HISTORIAL</button>
                             </li>
+                            <li>
+                                <button onClick={logout}>SALIR</button>
+                            </li>
+                        </ul>
+                        :
+                        <ul>
+                            <li>
+                                <h2>EMPRESA</h2>
+                            </li>
+                            <li>
+                                <button onClick={() => { props.onClick(0) }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
+                            </li>
+                            <li>
+                                <button onClick={() => { props.onClick(1) }} style={selection(1)}>INFORMACIÓN EMPRESARIAL</button>
+                            </li>
+                            <li>
+                                <button onClick={() => { props.onClick(2) }} style={selection(2)}>FACTURACIÓN</button>
+                            </li>{/* 
+                            <li>
+                                <button onClick={() => { props.onClick(3) }} style={selection(3)}>SERVICIOS</button>
+                            </li>
+                            <li>
+                                <button onClick={() => { props.onClick(4) }} style={selection(4)}>HISTORIAL</button>
+                            </li> */}
                             <li>
                                 <button onClick={logout}>SALIR</button>
                             </li>

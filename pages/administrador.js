@@ -6,12 +6,29 @@ import FindUserAdmin from '../components/administrador/items/FindUserAdmin';
 import ServicesAdmin from '../components/administrador/items/ServicesAdmin';
 import RecordAdmin from '../components/administrador/items/RecordAdmin';
 import InfoAdmin from '../components/administrador/items/InfoAdmin';
+import InforUserAdmin from '../components/administrador/items/user/InforUserAdmin'
+import BillingUserAdmin from '../components/administrador/items/user/BillingUserAdmin'
 
 const administrador = () => {
 
     const [select, setSelect] = useState(0);
     const [user, setUser] = useState(0);
     const [type, setType] = useState('');
+    const [id, setId] = useState({})
+    const [NIT, setNIT] = useState({})
+    const [data, setData] = useState({})
+
+    const changeId = (e) => {
+        setId({ [e.target.name]: e.target.value })
+    }
+
+    const changeNIT = (e) => {
+        setNIT({ [e.target.name]: e.target.value })
+    }
+
+    const changeData = (value) => {
+        setData(value)
+    }
 
     const onClick = (selector) => {
         setSelect(selector)
@@ -30,11 +47,39 @@ const administrador = () => {
             
             <NavAdministrador onClick={onClick} select={select} user={user}>
                 {
-                    select === 0 ? <FindUserAdmin ChangeUser={ChangeUser} ChangeType={ChangeType} type={type} /> :
-                    select === 1 ? <InfoAdmin /> :
-                    select === 2 ? <BillingAdmin /> :
-                    select === 3 ? <ServicesAdmin /> :
-                        <RecordAdmin />
+                    user == 1 ?
+                        select === 0 ? <FindUserAdmin 
+                                            ChangeUser={ChangeUser} 
+                                            ChangeType={ChangeType} 
+                                            type={type} 
+                                            changeId={changeId} 
+                                            changeNIT={changeNIT}
+                                            id={id}
+                                            NIT={NIT}
+                                            changeData={changeData}
+                                            data={data}
+                                        /> :
+                        select === 1 ? <InforUserAdmin data={data} /> :
+                                select === 2 ?  <BillingUserAdmin 
+                                                    data={data}
+                                                    changeData={changeData}
+                                                /> :
+                        select === 3 ? <ServicesAdmin /> :
+                            <RecordAdmin />
+                        :
+                        select === 0 ? <FindUserAdmin 
+                                            ChangeUser={ChangeUser} 
+                                            ChangeType={ChangeType} 
+                                            type={type} 
+                                            changeId={changeId} 
+                                            changeNIT={changeNIT}
+                                            id={id}
+                                            NIT={NIT}
+                                            changeData={changeData}
+                                            data={data}
+                                        /> :
+                        select === 1 ? <InfoAdmin data={data}/> :
+                            <BillingAdmin data={data}/> 
                 }
             </NavAdministrador>
         </Layout>

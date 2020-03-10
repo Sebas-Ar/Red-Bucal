@@ -1,28 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from "axios";
 
 const FindUserAdmin = (props) => {
 
-
-    const onSubmitID = e => {   
-        props.ChangeType('persona')
-        console.log(props.type);
+    const onSubmitID = async  e => {   
         e.preventDefault()
+        const url = '/api/getUser'
+        const result = await axios.post(url, props.id)
+        props.changeData(result.data.message)
+        props.ChangeType('persona')
     } 
 
-    const onSubmitNIT = e => {
-        props.ChangeType('empresa')
+    const onSubmitNIT = async e => {
         e.preventDefault()
+        const url = '/api/getBusiness'
+        const result = await axios.post(url, props.NIT)
+        props.changeData(result.data.message)
+        props.ChangeType('empresa')
     } 
 
     return (
         <section>
 
             <form>
-                <input type="number" name="id" placeholder="ID USUAIRO" />
+                <input type="number" name="identification" placeholder="ID USUARIO" onChange={(e) => {props.changeId(e)}}/>
                 <button className="buscar" type="submit" onClick={onSubmitID}>Buscar</button>
             </form>
             <form>
-                <input type="number" name="id" placeholder="NIT EMPRESA" />
+                <input type="number" name="NIT" placeholder="NIT EMPRESA" onChange={(e) => {props.changeNIT(e)}}/>
                 <button className="buscar" type="submit" onClick={onSubmitNIT}>Buscar</button>
             </form>
 
@@ -39,9 +44,9 @@ const FindUserAdmin = (props) => {
                                 <h5>OPCIÓN</h5>
                             </div>
                             <div className="content">
-                                <p>usuario #1</p>
-                                <p>123456789</p>
-                                <button className="selection" onClick={() => {props.ChangeUser(5)}}>Selecctionar</button>
+                                <p>{props.data.name}</p>
+                                <p>{props.data.identification}</p>
+                                <button className="selection" onClick={() => {props.ChangeUser(1)}}>Selecctionar</button>
                             </div>
                         </div>
                     </div>
@@ -56,9 +61,9 @@ const FindUserAdmin = (props) => {
                                     <h5>OPCIÓN</h5>
                                 </div>
                                 <div className="content">
-                                    <p>empresa #1</p>
-                                    <p>123456789</p>
-                                    <button className="selection" onClick={() => { props.ChangeUser(5) }}>Selecctionar</button>
+                                    <p>{props.data.name}</p>
+                                    <p>{props.data.NIT}</p>
+                                    <button className="selection" onClick={() => { props.ChangeUser(2) }}>Selecctionar</button>
                                 </div>
                             </div>
                         </div>

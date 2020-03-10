@@ -28,16 +28,13 @@ const NavUsuario = (props) => {
                         <h2>{props.data.name}</h2>
                     </li>
                     <li>
-                        <button onClick={() => {props.onClick(0)}} style={selection(0)}>INFORMACIÓN DEL USUARIO</button>
+                        <button onClick={() => { props.onClick(0) }} style={selection(0)}>INFORMACIÓN EMPRESARIAL</button>
                     </li>
                     <li>
-                        <button onClick={() => {props.onClick(1)}} style={selection(1)}>FACTURACIÓN</button>
+                        <button onClick={() => { props.onClick(1) }} style={selection(1)}>FACTURACIÓN</button>
                     </li>
                     <li>
-                        <button onClick={() => {props.onClick(2)}} style={selection(2)}>SERVICIOS</button>
-                    </li>
-                    <li>
-                        <button onClick={() => {props.onClick(3)}} style={selection(3)}>HISTORIAL</button>
+                        <button onClick={() => { props.onClick(2) }} style={selection(2)}>EMPLEADOS</button>
                     </li>
                     <li>
                         <button onClick={logout}>SALIR</button>
@@ -108,7 +105,7 @@ const NavUsuario = (props) => {
                 
                 
             `}</style>
-            
+
         </div>
     )
 }

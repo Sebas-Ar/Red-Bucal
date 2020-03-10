@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import axios from "axios";
-import { Redirect, Route } from "react-router-dom"
 import Layout from '../components/layout/Layout'
 import NavUsuario from '../components/usuario/NavUsuario'
 import InformationUser from '../components/usuario/items/InformationUser'
 import BillingUser from '../components/usuario/items/BillingUser'
 import ServicesUser from '../components/usuario/items/ServicesUser'
 import RecordUser from '../components/usuario/items/RecordUser'
-import Out from '../components/config/Out';
-/* import { UserContext } from "../components/usuario/context/UserContext"; */
 
-const usuario = (props) => {
+const usuario = () => {
+
+    const router = useRouter()
 
     const [select, setSelect] = useState(0);
     const [data, setData] = useState({});
@@ -20,14 +20,21 @@ const usuario = (props) => {
     }
 
     const get = async () => {
-        const url = '/api/session'
-        const result = await axios.get(url)
-        console.log(result);
-        setData(result.data.data.user)
+        if (sessionStorage.getItem('token')) {
+            const url = '/api/session'
+            const result = await axios.get(url)
+            console.log(result);
+            if (result.data.data.user._id === sessionStorage.getItem('token')) {
+                setData(result.data.data.user)
+            } else {
+                /* router.replace("/") */
+            }
+        } else {
+            /* router.replace("/") */
+        }
     } 
 
     useEffect(() => {
-        console.log(props);
         get()
     }, [])
 
@@ -51,7 +58,7 @@ const usuario = (props) => {
                 <NavUsuario onClick={onClick} select={select} data={data}>
                     {
                         select === 0 ? <InformationUser data={data} /> : 
-                        select === 1 ? <BillingUser  data={data}/> :
+                        select === 1 ? <BillingUser data={data}/> :
                         select === 2 ? <ServicesUser  data={data}/> :
                         select === 3 ? <RecordUser /> :
                         'cuatro' 

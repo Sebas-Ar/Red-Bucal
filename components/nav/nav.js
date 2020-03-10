@@ -87,7 +87,7 @@ const Nav = () => {
     </ul>
 
   {
-        ((url === '/registro-ingreso') || (url === '/usuario') || (url === '/administrador')) ? '' 
+        ((url === '/registro-ingreso') || (url === '/usuario') || (url === '/administrador') || (url === '/empresa')) ? '' 
           : <Link href="/registro-ingreso">
             <a className="ingresar">
               <svg className="user" viewBox="0 0 448 512">

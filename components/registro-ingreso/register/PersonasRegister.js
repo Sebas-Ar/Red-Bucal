@@ -3,7 +3,7 @@ import React from 'react'
 const PersonasRegister = (props) => {
 
     return (
-        <form onSubmit={props.onSubmitRegister}>
+        <form onSubmit={(e) => {props.onSubmitPersonalRegister(e)}}>
             <div className="nombre">
                 <div className="colorRojo"></div>
                 <input type="text" placeholder="NOMBRE*" value={props.user.name} name="name" onChange={props.ChangeText}/>
@@ -37,7 +37,7 @@ const PersonasRegister = (props) => {
             <div className="select">
                 <div className="colorRojo"></div>
                 <select value={props.user.know} name="know" onChange={props.ChangeText}>
-                    <option value="0">¿Como supo ne nosotoros1</option>
+                    <option value="0">¿Cómo supo de nosotoros?</option>
                     <option value="1">Página Web</option>
                     <option value="2">Recomendación</option>
                     <option value="3">Asesor Comercial</option>

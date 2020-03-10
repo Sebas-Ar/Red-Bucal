@@ -1,12 +1,6 @@
-import React, { useState } from 'react'
-import axios from "axios";
+import React from 'react'
 
 const BillingUser = (props) => {
-
-    const payWeb = async () => {
-        console.log(result)
-    }
-
     return (
         <section>
             <label className="type">
@@ -22,26 +16,11 @@ const BillingUser = (props) => {
                 FECHA DE FINALIZACIÓN:
                 <p>----------</p>
             </label>
-            <div>
-                RENOVACIÓN: <br/> <br/>
-                <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
-                    <input name="merchantId" type="hidden" value="508029" />
-                    <input name="accountId" type="hidden" value="512321" />
-                    <input name="description" type="hidden" value="Compra suscripcion mensual" />
-                    <input name="referenceCode" type="hidden" value="Pago003" />
-                    <input name="amount" type="hidden" value="20000" />
-                    <input name="tax" type="hidden" value="3193" />
-                    <input name="taxReturnBase" type="hidden" value="16806" />
-                    <input name="currency" type="hidden" value="COP" />
-                    <input name="signature" type="hidden" value="43542034270db764532701deae741157" />
-                    <input name="test" type="hidden" value="1" />
-                    <input name="buyerEmail" type="hidden" value="test@test.com" />
-                    <input name="responseUrl" type="hidden" value="http://157.230.6.176:3000/" />
-                    <input name="confirmationUrl" type="hidden" value="http://157.230.6.176:3000/" />
-                    <button type="submit">Web</button>
-                </form>
+            <label>
+                RENOVACIÓN: <br /> <br />
+                <button>Web</button>
                 <button>Fisico</button>
-            </div>
+            </label>
 
             <style jsx>{`
                 

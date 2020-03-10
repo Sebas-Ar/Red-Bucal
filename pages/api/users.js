@@ -1,6 +1,6 @@
 import validator from "email-validator";
 import withMiddleware from '../../middlewares/withMiddleware'
-import bcrypt from "bcryptjs";
+import bcrypt from "bcryptjs"
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {
@@ -63,7 +63,9 @@ const handler = async (req, res) => {
             }
         }
     } else {
+        
         res.status(405).end();
+
     }
 
 }

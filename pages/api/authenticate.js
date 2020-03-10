@@ -4,23 +4,26 @@ import withMiddleware from "../../middlewares/withMiddleware"
 const handler = async (req, res) => {
     if( req.method === 'POST' ) {
         const { identification, password } = req.body
-
+        const NIT = identification;
         try {
         
-        const user = await req.db.collection('users').findOne({identification})
+        const business = await req.db.collection('bussines').findOne({ NIT })
 
-        if ( user ) {
+        if (business) {
+            
+            const result = await bcrypt.compare(password, business.password)
 
-            const result = await bcrypt.compare(password, user.password)
+            if(result) {
 
-            if (result) {
-
-                req.session.userId = user._id
+                req.session.businessId = business._id
+                if (req.session.userId) {
+                    delete req.session.userId
+                }
 
                 res.send({
-                    status: 'ok',
-                    message: `Bienvenido de vuelta ${user.name}`,
-                    id: user._id
+                    status: 'ok_business',
+                    message: `Bienvenido de vuelta ${business.name}`,
+                    id: business._id
                 })
 
             } else {
@@ -29,11 +32,39 @@ const handler = async (req, res) => {
                     message: 'contraseña invalida'
                 })
             }
+
         } else {
-            res.send({
-                status: 'error',
-                message: 'El usuario no existe'
-            })
+
+            const user = await req.db.collection('users').findOne({ identification })
+
+            if ( user ) {
+    
+                const result = await bcrypt.compare(password, user.password)
+    
+                if (result) {
+    
+                    req.session.userId = user._id
+                    if (req.session.businessId) {
+                        delete req.session.businessId
+                    }
+                    res.send({
+                        status: 'ok_user',
+                        message: `Bienvenido de vuelta ${user.name}`,
+                        id: user._id
+                    })
+    
+                } else {
+                    res.send({
+                        status: 'error',
+                        message: 'contraseña invalida'
+                    })
+                }
+            } else {
+                res.send({
+                    status: 'error',
+                    message: 'El usuario no existe'
+                })
+            }
         }
 
         } catch (error) {

@@ -1,6 +1,7 @@
 import React from 'react'
 
-const InformationUser = (props) => {
+const InformationBusiness = (props) => {
+
     return (
         <section>
             <label>
@@ -9,23 +10,23 @@ const InformationUser = (props) => {
             </label>
             <label>
                 CEDULA:
-                <p>{props.data.identification}</p>
+                <p>{props.data.NIT}</p>
             </label>
             <label>
-                FECHA DE NACIMIENTO:
-                <p>{props.data.birthdate}</p>
+                EMPLEADOS:
+                <p>{props.data.identifications ? props.data.identifications.length : '---'}</p>
             </label>
             <label>
                 CELULAR:
-                <p>{props.data.phone}</p>
+                <p>{props.data.businessPhone}</p>
             </label>
             <label>
                 DIRECCIÓN:
-                <p>{props.data.adress}</p>
+                <p>{props.data.businessAdress}</p>
             </label>
             <label>
                 CORREO:
-                <p>{props.data.email}</p>
+                <p>{props.data.businessMail}</p>
             </label>
 
             <style jsx>{`
@@ -52,4 +53,4 @@ const InformationUser = (props) => {
     )
 }
 
-export default InformationUser
+export default InformationBusiness

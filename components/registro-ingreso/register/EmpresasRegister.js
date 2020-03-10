@@ -1,42 +1,52 @@
 import React from 'react'
 
-const EmpresasRegister = () => {
+const EmpresasRegister = (props) => {
+
+    
     return (
-        <form>
+        <form onSubmit={(e) => {props.onSubmitBusinessRegister(e)}}>
             <div className="nombre">
                 <div className="colorAzul"></div>
-                <input type="text" placeholder="NOMBRE DE LA EMPRESA*" />
+                <input type="text" onChange={props.onChangeBusiness} name="businessName" placeholder="NOMBRE DE LA EMPRESA*" />
             </div>
             <div className="id">
                 <div className="colorAzul"></div>
-                <input type="text" placeholder="ID*" />
+                <input type="text" onChange={props.onChangeBusiness} name="NIT" value={props.business.NIT} placeholder="NIT*" />
             </div>
             <div>
                 <div className="colorAzul"></div>
-                <input type="text" placeholder="DIRECCIÓN DE LA EMPRESA*" />
+                <input type="text" onChange={props.onChangeBusiness} name="businessAdress" placeholder="DIRECCIÓN DE LA EMPRESA*" />
             </div>
             <br/>
             <div>
                 <div className="colorAzul"></div>
-                <input type="text" placeholder="TELÉFONO DE EMPRESA" />
+                <input type="text" onChange={props.onChangeBusiness} name="businessPhone" placeholder="TELÉFONO DE EMPRESA" />
             </div>
             <div className="correo">
                 <div className="colorAzul"></div>
-                <input type="text" placeholder="CORREO ELECTRÓNICO" />
+                <input type="text" onChange={props.onChangeBusiness} name="businessMail" placeholder="CORREO ELECTRÓNICO" />
             </div>
-            <div className="download">
-                <div className="colorAzul"></div>
-                <p>DESCARGAR PLANTILLA DE REGISTRO PARA EMPLEADOS</p>
-            </div>
+            <a href="/PLANTILLA-DE-REGISTRO-PARA-EMPLEADOS.xlsx" download="PLANTILLA-DE-REGISTRO-PARA-EMPLEADOS.xlsx">
+                <div className="download">
+                    <div className="colorAzul"></div>
+                    <p>DESCARGAR PLANTILLA DE REGISTRO PARA EMPLEADOS</p>
+                </div>
+            </a>
             <br/>
             <div className="upload">
                 <div className="colorAzul"></div>
-                <p>SUBIR PLANTILLA DE REGISTRO PARA EMPLEADOS</p>
+                <label>{props.business.data ? 'PLANTILLA CARGADA' : 'SUBIR PLANTILLA DE REGISTRO PARA EMPLEADOS'}
+                    <input className="uploadInput" type="file" onChange={(e) => {props.readExcel(e)}}/>
+                </label>
             </div>
             <div className="select">
                 <div className="colorAzul"></div>
-                <select name="">
-                    <option value="">¿Como supo ne nosotoros?</option>
+                <select onChange={props.onChangeBusiness} name="know">
+                    <option value="0">¿Cómo supo de nosotoros?</option>
+                    <option value="1">Página Web</option>
+                    <option value="2">Recomendación</option>
+                    <option value="3">Asesor Comercial</option>
+                    <option value="4">Otro</option>
                 </select>
             </div>
 
@@ -58,9 +68,32 @@ const EmpresasRegister = () => {
                     grid-column: 1/4;
                 }
 
+                a {
+                    align-self: center;
+                    text-decoration: none;
+                }
+
                 .upload {
                     background-color: var(--puntoRojo);
                     cursor: pointer;
+                    position: relative;
+                }
+
+                label {
+                    position: relative;
+                    font-size: 12px;
+                    margin: 10px;
+                    text-align: center;
+                    color: white;
+                    cursor: pointer;
+                }
+
+                .uploadInput {
+                    position: absolute;
+                    top:0;
+                    height: 0px;
+                    width: 0px; 
+                    opacity: 0;
                 }
 
                 .download {

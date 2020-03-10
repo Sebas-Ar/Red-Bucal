@@ -41,9 +41,17 @@ const RegisterAll = (props) => {
                 {
                     type 
                     ?
-                        <EmpresasRegister />
+                        <EmpresasRegister 
+                            onChangeBusiness={props.onChangeBusiness} 
+                            onSubmitBusinessRegister={props.onSubmitBusinessRegister} 
+                            readExcel={props.readExcel} business={props.business}
+                        />
                     :
-                        <PersonasRegister ChangeText={props.ChangeText} onSubmitRegister={props.onSubmitRegister} user={props.user}/>
+                        <PersonasRegister 
+                            ChangeText={props.ChangeText} 
+                            onSubmitPersonalRegister={props.onSubmitPersonalRegister} 
+                            user={props.user}
+                        />
                 }
             </div>
             <div className="diente2"></div>

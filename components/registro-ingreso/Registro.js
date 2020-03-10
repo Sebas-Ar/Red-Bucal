@@ -5,7 +5,7 @@ const Registro = (props) => {
         <div className="form">
             <div className="id">
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="ID" value={props.user.identification ? props.user.identification : ''} name="identification" onChange={props.ChangeText} />
+                <input type="text" placeholder="ID / NIT" value={props.user.identification ? props.user.identification : ''} name="identification" onChange={props.ChangeText} />
             </div>
             <div className="password">
                 <div className="colorAzul"></div>

@@ -4,26 +4,29 @@ const InfoAdmin = (props) => {
     return (
         <section>
             <label>
-                ESTADO: <br/>
-                <input type="text" placeholder={props.data.state ? "ACTIVO" : "INACTIVO"}/>
+                ESTADO: <br />
+                <input type="text" value={props.data.state ? "ACTIVO" : "INACTIVO"} />
             </label>
             <label>
-                NIT: <br/>
-                <input type="number" name="" placeholder={props.data.NIT}/>
+                CEDULA: <br />
+                <input type="number" name="" value={props.data.identification} />
             </label>
             <label>
-                CELULAR: <br/>
-                <input type="number" name="" placeholder={props.data.businessPhone}/>
+                FECHA DE NACIMIENTO: <br />
+                <input type="text" name="" id="" value={props.data.birthdate} />
             </label>
             <label>
-                DIRECCIÓN: <br/>
-                <input type="text" name="" placeholder={props.data.businessAdress}/>
+                CELULAR: <br />
+                <input type="number" name="" value={props.data.phone} />
             </label>
             <label>
-                CORREO: <br/>
-                <input type="email" name="" placeholder={props.data.businessMail}/>
+                DIRECCIÓN: <br />
+                <input type="text" name="" value={props.data.adress} />
             </label>
-            <br/>
+            <label>
+                CORREO: <br />
+                <input type="email" name="" value={props.data.email} />
+            </label>
             <button>Actualizar</button>
 
             <style jsx>{`
@@ -63,7 +66,6 @@ const InfoAdmin = (props) => {
                 height: 30px;
                 color: white;
                 border-radius: 5px;
-                cursor: pointer;
             }
                 
             `}</style>
