@@ -39,6 +39,13 @@ const EmpresasRegister = (props) => {
                     <input className="uploadInput" type="file" onChange={(e) => {props.readExcel(e)}}/>
                 </label>
             </div>
+            <div className="terminos-box"> 
+                <br/>
+                <label className="terminos">
+                    <input type="checkbox" className="checkbox" name="" id=""/>
+                    Acepto terminos y condiciones
+                </label>
+            </div>
             <div className="select">
                 <div className="colorAzul"></div>
                 <select onChange={props.onChangeBusiness} name="know">
@@ -57,6 +64,20 @@ const EmpresasRegister = (props) => {
             </button>
 
             <style jsx>{`
+
+                .checkbox {
+                    transform: translateY(25%);
+                }
+
+                .terminos-box {
+                    grid-column: 1/4;
+                    border: none;
+                    justify-self: flex-start;
+                }
+
+                .terminos {
+                    color: black
+                }
 
                 form {
                     display: grid;

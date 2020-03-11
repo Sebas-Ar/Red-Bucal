@@ -22,13 +22,25 @@ const handler = (req, res) => {
                 })
 
             } else {
-                res.status(200).send({
-                    status: 'ok',
-                    data: {
-                        isLoggedIn: false,
-                        user: {}
-                    }
-                })
+                if (req.admin) {
+
+                    res.status(200).send({
+                        status: 'ok',
+                        data: {
+                            isLoggedIn: true,
+                            user: req.admin
+                        }
+                    })
+
+                } else {
+                    res.status(200).send({
+                        status: 'ok',
+                        data: {
+                            isLoggedIn: false,
+                            user: {}
+                        }
+                    })
+                }
             }
         }
     } else {

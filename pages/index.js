@@ -5,6 +5,7 @@ import LayoutPlanes from '../components/index/layout/LayoutPlanes'
 import InformationRight from '../components/index/InformationRight'
 import InformationLeft from '../components/index/InformationLeft'
 import LayoutForm from '../components/form/LayoutForm'
+import Footer from '../components/footer/Footer'
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <InformationRight />  
       <InformationLeft />
       <LayoutForm diente="/img/diente-form1.png" fondo="/img/doctora.png" />
+      <Footer />
 
 
     </Layout>

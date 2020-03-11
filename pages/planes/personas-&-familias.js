@@ -18,7 +18,7 @@ const personasfamilias = () => {
                 padding="padding-left: 80px;"
                 diente="/img/medio-diente2.png"
                 dienteDirect="center left"
-                imgBig="/img/doctor-max.png"
+                imgBig="/img/cambio.jpg"
                 margin="100px"
             />
             <Banner />

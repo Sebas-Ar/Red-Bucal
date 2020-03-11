@@ -3,53 +3,36 @@ import React from 'react'
 const PersonasRegister = (props) => {
 
     return (
-        <form onSubmit={(e) => {props.onSubmitPersonalRegister(e)}}>
+        <form onSubmit={(e) => { props.onSubmitPersonalRegister(e) }}>
             <div className="nombre">
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="NOMBRE*" value={props.user.name} name="name" onChange={props.ChangeText}/>
+                <input type="text" placeholder="NOMBRE*" value={props.user.name} name="name" onChange={props.ChangeText} />
             </div>
-            <br/>
+            <br />
             <div className="apellido">
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="APELLIDO*" value={props.user.lastname} name="lastname" onChange={props.ChangeText}/>
+                <input type="text" placeholder="APELLIDO*" value={props.user.lastname} name="lastname" onChange={props.ChangeText} />
             </div>
             <div className="id">
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="ID*" value={props.user.identification} name="identification" onChange={props.ChangeText}/>
+                <input type="text" placeholder="ID*" value={props.user.identification} name="identification" onChange={props.ChangeText} />
             </div>
             <div className="fecha">
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="FECHA DE NACIMIENTO*" value={props.user.date} name="birthdate" onChange={props.ChangeText}/>
+                <input type="text" placeholder="FECHA DE NACIMIENTO*" value={props.user.date} name="birthdate" onChange={props.ChangeText} />
             </div>
             <div>
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="DIRECCIÓN*" value={props.user.adress} name="adress" onChange={props.ChangeText}/>
+                <input type="text" placeholder="DIRECCIÓN*" value={props.user.adress} name="adress" onChange={props.ChangeText} />
             </div>
             <br />
             <div>
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="TELÉFONO" value={props.user.phone} name="phone" onChange={props.ChangeText}/>
+                <input type="text" placeholder="TELÉFONO" value={props.user.phone} name="phone" onChange={props.ChangeText} />
             </div>
             <div className="correo">
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="CORREO ELECTRÓNICO" value={props.user.email} name="email" onChange={props.ChangeText}/>
-            </div>
-            <div className="terminos-box">
-                <br />
-                <label className="terminos">
-                    <input type="checkbox" className="checkbox" name="" id="" />
-                    Acepto terminos y condiciones
-                </label>
-            </div>
-            <div className="select">
-                <div className="colorRojo"></div>
-                <select value={props.user.know} name="know" onChange={props.ChangeText}>
-                    <option value="0">¿Cómo supo de nosotoros?</option>
-                    <option value="1">Página Web</option>
-                    <option value="2">Recomendación</option>
-                    <option value="3">Asesor Comercial</option>
-                    <option value="4">Otro</option>
-                </select>
+                <input type="text" placeholder="CORREO ELECTRÓNICO" value={props.user.email} name="email" onChange={props.ChangeText} />
             </div>
 
             <button>ENTRAR
@@ -60,20 +43,6 @@ const PersonasRegister = (props) => {
 
             <style jsx>{`
 
-                .checkbox {
-                    transform: translateY(25%);
-                }
-
-                .terminos-box {
-                    grid-column: 1/4;
-                    border: none;
-                    justify-self: flex-start;
-                    font-size: 12px;
-                }
-
-                .terminos {
-                    color: black
-                }
 
                 form {
                     display: grid;

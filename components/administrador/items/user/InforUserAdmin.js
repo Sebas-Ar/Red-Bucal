@@ -5,7 +5,7 @@ const InfoAdmin = (props) => {
         <section>
             <label>
                 ESTADO: <br />
-                <input type="text" value={props.data.state ? "ACTIVO" : "INACTIVO"} />
+                <p>{props.data.state ? "ACTIVO" : "INACTIVO"}</p>
             </label>
             <label>
                 CEDULA: <br />

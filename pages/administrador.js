@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from "axios";
 import Layout from '../components/layout/Layout'
 import NavAdministrador from '../components/administrador/NavAdministrador'
 import BillingAdmin from '../components/administrador/items/BillingAdmin';
@@ -17,6 +18,26 @@ const administrador = () => {
     const [id, setId] = useState({})
     const [NIT, setNIT] = useState({})
     const [data, setData] = useState({})
+    const [adminData, setAdminData] = useState({});
+
+    const get = async () => {
+        if (sessionStorage.getItem('token')) {
+            const url = '/api/session'
+            const result = await axios.get(url)
+            console.log(result);
+            if (result.data.data.user._id === sessionStorage.getItem('token')) {
+                setAdminData(result.data.data.user)
+            } else {
+                /* router.replace("/") */
+            }
+        } else {
+            /*  router.replace("/") */
+        }
+    }
+
+    useEffect(() => {
+        get()
+    }, [])
 
     const changeId = (e) => {
         setId({ [e.target.name]: e.target.value })
@@ -45,7 +66,7 @@ const administrador = () => {
     return (
         <Layout>
             
-            <NavAdministrador onClick={onClick} select={select} user={user}>
+            <NavAdministrador onClick={onClick} select={select} user={user} adminData={adminData}>
                 {
                     user == 1 ?
                         select === 0 ? <FindUserAdmin 

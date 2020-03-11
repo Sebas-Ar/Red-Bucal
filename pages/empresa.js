@@ -12,11 +12,15 @@ const usuario = () => {
 
     const router = useRouter()
 
-    const [select, setSelect] = useState(0);
+    const [select, setSelect] = useState(2);
     const [data, setData] = useState({});
 
     const onClick = (selector) => {
         setSelect(selector)
+    }
+
+    const changeData = (dat) => {
+        setData(dat)
     }
 
     const get = async () => {
@@ -45,7 +49,7 @@ const usuario = () => {
                 {
                     select === 0 ? <InformationBusiness data={data} /> :
                         select === 1 ? <BillingBusiness data={data} /> :
-                            select === 2 ? <EmployeeList data={data} /> :
+                            select === 2 ? <EmployeeList data={data} changeData={changeData}/> :
                                 select === 3 ? <RecordUser /> :
                                     'cuatro'
                 }

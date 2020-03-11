@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-const BillingAdmin = () => {
+const BillingAdmin = (props) => {
 
     const [check, setCheck] = useState(false);
 

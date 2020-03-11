@@ -1,16 +1,61 @@
 import React, { useState, useEffect } from 'react'
+import InfoUser from './usuario/InfoUser';
+import axios from "axios";
+import AddUser from './usuario/AddUser';
 
 const EmployeeList = (props) => {
 
-    const [usuarios, setUsuarios] = useState([]);
+    const [usuarios, setUsuarios] = useState({});
+    const [info, setInfo] = useState(false)
+    const [addUser, setAddUser] = useState(false);
 
-    useEffect(() => {
-        setUsuarios(props.data.identification)
-        console.log(usuarios);
-    })
+    const changeAddUser = () => {
+        setAddUser(!addUser)
+    }
+    
+    const getData = async (identification) => {
+        const url = '/api/getUser'
+        const result = await axios.post(url, { identification })
+        setUsuarios(result.data.message)
+    }   
+
+    const deleteUser = async (identification) => {
+        const url = '/api/deleteUser'
+        const identifications = props.data.identifications
+        const NIT = props.data.NIT
+        const tamaño = props.data.identifications.length
+        console.log(identifications, identification, NIT, tamaño);
+        const datos = {
+            identification,
+            identifications,
+            NIT,
+            tamaño,
+        }
+        console.log(datos);
+        const result = await axios.post(url, datos)
+        props.changeData(result.data.message.value);
+    }
+
+    const activeInfo = () => {
+        setInfo(!info)
+    }
 
     return (
         <section>
+            {
+                info ?
+                    <InfoUser activeInfo={activeInfo} usuarios={usuarios}/>
+                :
+                ''
+
+            }
+
+            {
+                addUser ?
+                    <AddUser identifications={props.data.identifications} NIT={props.data.NIT} changeData={props.changeData} changeAddUser={changeAddUser}/>
+                :
+                ''
+            }
 
             <div className="user">
                 <div className="table">
@@ -20,14 +65,23 @@ const EmployeeList = (props) => {
                         <h5>OPCIÓN</h5>
                     </div>
                     {
-                        props.data.identifications ? props.data.identifications.map(user => (
-                            <div className="content">
+                        props.data.identifications ? 
+
+                        props.data.identifications.map(user => (
+                            <div key={user._id} className="content userID">
                                 <p>{user.name}</p>
                                 <p>{user.id}</p>
                                 <div className="btns">
-                                    <button className="selectionVer" >Ver</button>
+                                    <button className="selectionVer" onClick={() => {
+                                        activeInfo()
+                                        getData(user.id)
+                                    }}>Ver</button>
                                     <br/>
-                                    <button className="selectionEliminar" >Eliminar</button>
+                                    <button className="selectionEliminar" onClick={ () => {
+                                        deleteUser(user.id)
+                                        console.log(user.id);
+                                    }
+                                    } >Eliminar</button>
                                 </div>
                             </div>
                         ))
@@ -35,7 +89,7 @@ const EmployeeList = (props) => {
                         ''
                     }
                     <div className="content">
-                            <button className="agregar" >Agregar</button>
+                        <button className="agregar" onClick={changeAddUser}>Agregar</button>
                     </div>
                 </div>
             </div>
@@ -45,6 +99,10 @@ const EmployeeList = (props) => {
                 .btns {
                     display: grid;
                     grid-template-columns: 1fr 10px 1fr;
+                }
+
+                .userID:hover p {
+                    color: #091C47;
                 }
                 
                 section {

@@ -5,6 +5,7 @@ const handler = async (req, res) => {
     if( req.method === 'POST' ) {
         const { identification, password } = req.body
         const NIT = identification;
+        
         try {
         
         const business = await req.db.collection('bussines').findOne({ NIT })

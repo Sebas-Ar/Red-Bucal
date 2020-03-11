@@ -38,20 +38,6 @@ const usuario = () => {
         get()
     }, [])
 
-  /*   const { state: { isLoggedIn, user: { name } } } = useContext(UserContext); */
-
-    /* const handleLogout = (event) => {
-        event.preventDefault();
-        axioswal
-            .delete('/api/session')
-            .then((data) => {
-                if (data.status === 'ok') {
-                    dispatch({ type: 'clear' });
-                }
-            });
-    }; */
-    
-    /* if (true) { */
         return (
     
             <Layout>
@@ -66,9 +52,6 @@ const usuario = () => {
                 </NavUsuario>
             </Layout>
         )
-    /* } else {
-        <Out />
-    } */
 }
 
 export default usuario

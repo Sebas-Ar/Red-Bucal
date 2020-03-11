@@ -18,6 +18,16 @@ const withAuthentication = handler => async (req, res) => {
                 req.user = user
                 return handler(req, res)
             }
+        } else {
+            if (req.session.adminId) {
+                console.log(req.session.adminId)
+                const admin = await req.db.collection('admin').findOne(ObjectId(req.session.adminId))
+                console.log(admin)
+                if (admin) {
+                    req.admin = admin
+                    return handler(req, res)
+                }
+            }
         }
     }
     

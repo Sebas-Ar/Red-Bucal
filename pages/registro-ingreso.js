@@ -83,10 +83,10 @@ const Ingresar = () => {
             try {
                 const response = await axios.post(url,business)
                 console.log(response.data/* .status */);
-                /* if (response.data.status === 'ok') {
+                if (response.data.status === 'ok') {
                     sessionStorage.setItem('token', response.data.token)
                     setregister(false)
-                } */
+                }
             } catch (error) {
                 console.error(error)   
             }
