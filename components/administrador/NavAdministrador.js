@@ -31,6 +31,12 @@ const NavUsuario = (props) => {
                             <li>
                                 <button onClick={() => { props.onClick(0) }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
                             </li>
+                            <li>
+                                <button onClick={() => { router.push("/registro-administrador") }} style={selection(5)}>REGISTRAR ADMINISTRADOR</button>
+                            </li>
+                            <li>
+                                <button onClick={logout}>SALIR</button>
+                            </li>
                         </ul>
                         : props.user === 1 ?
                         <ul>
@@ -53,6 +59,9 @@ const NavUsuario = (props) => {
                                 <button onClick={() => { props.onClick(4) }} style={selection(4)}>HISTORIAL</button>
                             </li>
                             <li>
+                                    <button onClick={() => { router.push("/registro-administrador") }} style={selection(5)}>REGISTRAR ADMINISTRADOR</button>
+                            </li>
+                            <li>
                                 <button onClick={logout}>SALIR</button>
                             </li>
                         </ul>
@@ -69,7 +78,11 @@ const NavUsuario = (props) => {
                             </li>
                             <li>
                                 <button onClick={() => { props.onClick(2) }} style={selection(2)}>FACTURACIÓN</button>
-                            </li>{/* 
+                            </li>
+                            <li>
+                                <button onClick={() => { router.push("/registro-administrador") }} style={selection(5)}>REGISTRAR ADMINISTRADOR</button>
+                            </li>
+                            {/* 
                             <li>
                                 <button onClick={() => { props.onClick(3) }} style={selection(3)}>SERVICIOS</button>
                             </li>
