@@ -4,7 +4,7 @@ import EmpresasRegister from './register/EmpresasRegister'
 
 const RegisterAll = (props) => {
 
-    const [type, setType] = useState(true)
+    const [type, setType] = useState(false)
 
     const changeType = () => {
         setType(!type)

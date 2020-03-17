@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PersonasRegister = (props) => {
+const AdminRegister = (props) => {
 
     return (
         <form onSubmit={(e) => { props.onSubmitPersonalRegister(e) }}>
@@ -135,4 +135,4 @@ const PersonasRegister = (props) => {
     )
 }
 
-export default PersonasRegister
+export default AdminRegister

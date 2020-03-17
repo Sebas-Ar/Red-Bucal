@@ -53,7 +53,7 @@ const Ingresar = () => {
                 <div className="form">
                     <h2>INGRESO <br/> ADMINISTRADOR</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae perferendis</p>
-                    <Ingreso onSubmitLogin={onSubmitLogin} ChangeTextLogin={ChangeTextLogin} />
+                    <Ingreso onSubmitLogin={onSubmitLogin} ChangeTextLogin={ChangeTextLogin} login={login}/>
                 </div>
                 <div className="diente2"></div>
 

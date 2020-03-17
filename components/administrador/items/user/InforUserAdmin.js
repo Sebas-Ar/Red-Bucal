@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from "moment";
 
 const InfoAdmin = (props) => {
     return (
@@ -9,23 +10,23 @@ const InfoAdmin = (props) => {
             </label>
             <label>
                 CEDULA: <br />
-                <input type="number" name="" value={props.data.identification} />
+                <input type="text" name="" defaultValue={props.data.identification} />
             </label>
             <label>
                 FECHA DE NACIMIENTO: <br />
-                <input type="text" name="" id="" value={props.data.birthdate} />
+                <input type="text" name="" id="" defaultValue={moment(props.data.birthdate).locale("es").format('LL')} />
             </label>
             <label>
                 CELULAR: <br />
-                <input type="number" name="" value={props.data.phone} />
+                <input type="number" name="" defaultValue={props.data.phone} />
             </label>
             <label>
                 DIRECCIÓN: <br />
-                <input type="text" name="" value={props.data.adress} />
+                <input type="text" name="" defaultValue={props.data.adress} />
             </label>
             <label>
                 CORREO: <br />
-                <input type="email" name="" value={props.data.email} />
+                <input type="email" name="" defaultValue={props.data.email} />
             </label>
             <button>Actualizar</button>
 

@@ -10,7 +10,7 @@ const Ingreso = (props) => {
             </div>
             <div>
                 <div className="colorAzul"></div>
-                <input type="password" placeholder="CONTRASEÑA" name="password" value={props.login.password} onChange={props.ChangeTextLogin}/>
+                <input type="password" placeholder="CONTRASEÑA" name="password" value={props.login.password ? props.login.password : ''} onChange={props.ChangeTextLogin}/>
             </div>
 
             <button onClick={props.onSubmitLogin}>ENTRAR

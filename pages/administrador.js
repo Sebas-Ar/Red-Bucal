@@ -4,7 +4,7 @@ import Layout from '../components/layout/Layout'
 import NavAdministrador from '../components/administrador/NavAdministrador'
 import BillingAdmin from '../components/administrador/items/BillingAdmin';
 import FindUserAdmin from '../components/administrador/items/FindUserAdmin';
-import ServicesAdmin from '../components/administrador/items/ServicesAdmin';
+import ServicesAdmin from '../components/administrador/items/user/ServicesAdmin';
 import RecordAdmin from '../components/administrador/items/RecordAdmin';
 import InfoAdmin from '../components/administrador/items/InfoAdmin';
 import InforUserAdmin from '../components/administrador/items/user/InforUserAdmin'
@@ -68,7 +68,9 @@ const administrador = () => {
             
             <NavAdministrador onClick={onClick} select={select} user={user} adminData={adminData}>
                 {
-                    user == 1 ?
+                    user == 1 
+
+                    ?
                         select === 0 ? <FindUserAdmin 
                                             ChangeUser={ChangeUser} 
                                             ChangeType={ChangeType} 
@@ -79,15 +81,25 @@ const administrador = () => {
                                             NIT={NIT}
                                             changeData={changeData}
                                             data={data}
-                                        /> :
-                        select === 1 ? <InforUserAdmin data={data} /> :
+                                        /> 
+                                     :
+                            select === 1 ? <InforUserAdmin data={data} /> 
+                                         :
                                 select === 2 ?  <BillingUserAdmin 
                                                     data={data}
                                                     changeData={changeData}
-                                                /> :
-                        select === 3 ? <ServicesAdmin /> :
-                            <RecordAdmin />
-                        :
+                                                /> 
+                                             :
+                                    select === 3 ? <ServicesAdmin 
+                                                        data={data}
+                                                        changeData={changeData} 
+                                                   /> 
+                                                 :
+                                        <RecordAdmin 
+                                            data={data} 
+                                            changeData={changeData}
+                                        />
+                    :
                         select === 0 ? <FindUserAdmin 
                                             ChangeUser={ChangeUser} 
                                             ChangeType={ChangeType} 
@@ -98,12 +110,14 @@ const administrador = () => {
                                             NIT={NIT}
                                             changeData={changeData}
                                             data={data}
-                                        /> :
-                        select === 1 ? <InfoAdmin data={data}/> :
-                            <BillingAdmin 
-                                data={data}
-                                changeData={changeData}
-                            /> 
+                                        /> 
+                                     :
+                            select === 1 ? <InfoAdmin data={data}/> 
+                                         :
+                                <BillingAdmin 
+                                    data={data}
+                                    changeData={changeData}
+                                /> 
                 }
             </NavAdministrador>
         </Layout>

@@ -17,12 +17,14 @@ const Planes = (props) => {
         <div className="content">
 
             <h3>{ props.title }</h3>
-            <div className="img"></div>
+            <div className="img">
+                <p>VALOR</p>
+                <h5>{props.valor} USD / AÑO</h5>
+                <p>{props.colaborador}</p>
+            </div>
             <div className="text">
                 <h4>{ props.tit1 }</h4>
                 <p>{ props.text1 }</p>
-                <h4>{ props.tit2 }</h4>
-                <p>{ props.text2 }</p>
                 <button onClick={contacto} className="contacto">Contacto</button>
                 <button onClick={registro} className="registro">Registro</button>
             </div>
@@ -35,7 +37,7 @@ const Planes = (props) => {
                     grid-column: ${ props.position };
                     display: grid;
                     grid-template-columns: 50px 450px 50px;
-                    grid-template-rows: 35px 35px 300px 650px;
+                    grid-template-rows: 35px 35px 300px 300px;
                     justify-items: center;
                 }
 
@@ -61,18 +63,42 @@ const Planes = (props) => {
                     background-size: 100% 100%;
                     box-shadow: 5px 5px 10px 0px #333333aa;
                     z-index: 5;
+
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    justify-items: center;
+                    color: white;
+                }
+
+                .img > p:nth-child(1) {
+                    color: white;
+                    align-self: flex-end;
+                    font-size: 35px;
+                    font-weight: 400;
+                }
+
+                .img > p:nth-child(3) {
+                    color: white;
+                    align-self: flex-start;
+                    font-size: 20px;
+                }
+
+                .img > h5 {
+                    font-size: 60px;
+                    align-self: center;
+                    margin: -30px 0;
+                    font-weight: 500;
                 }
 
                 .text {
                     grid-column: 2/3;
                     grid-row: 4/5;
                     width: 100%;
-                    height: 100%;
                     background: var(--amarillo);
                     border-radius: 0 0 50px 50px;
                     display: grid;
                     grid-template-columns: 1fr 1fr;
-                    grid-template-rows: .5fr .7fr .5fr 1fr 1fr;
+                    grid-template-rows: .5fr .7fr .5fr;
                 }
 
                 h4 {

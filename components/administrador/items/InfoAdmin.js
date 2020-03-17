@@ -9,7 +9,7 @@ const InfoAdmin = (props) => {
             </label>
             <label>
                 NIT: <br/>
-                <input type="number" name="" placeholder={props.data.NIT}/>
+                <input type="number" name="" placeholder={props.data.RUC}/>
             </label>
             <label>
                 CELULAR: <br/>

@@ -18,11 +18,10 @@ const Personal = (props) => {
 
             <div className="img"></div>
             <div className="text">
-                <h3>LOREM</h3>
-                <h2>PERSONAL</h2>
+                <h3></h3>
+                <h2>PROFESIONALES</h2>
                 <ul>
                     <li>
-                        <h5>Profesionales</h5>
                         <p>Nuestra misión es facilitar las visitas al odontólogo y que estas a su vez sean más serviciales y amigables para ustedes.</p>
                     </li>
                     <li>
@@ -79,7 +78,7 @@ const Personal = (props) => {
                 }
 
                 h2 {
-                    font-size: 90px;
+                    font-size: 80px;
                 }
 
                 h3 {

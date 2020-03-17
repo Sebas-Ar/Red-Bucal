@@ -11,20 +11,21 @@ const LayoutPlanes = () => {
                 title="PERSONAS" 
                 img="/img/odontologo-izquierda.png" 
                 position="1/3" 
+                valor="12"
                 tit1="Plan red bucal para personas"
-                tit2="Nuestra Cobertura"
                 text1="Colocamos a su disposición un producto sencillo y al alcance de todos, ofreciéndoles servicios preventivos y correctivos para el cuidado de la salud oral de sus colaboradores. "
-                text2="Cubrimos consulta dental con diagnóstico, planes de tratamiento, profilaxis dental, topificación de Flúor, sellantes de sosas y fisuras, radiografías, colocación de resina simple o compuesta en dientes anteriores y posteriores, extracción simple, endodoncias monorradiculares, birradiculares, multirradiculares, pulpotomías y pulpectomía, cementado provisional de prótesis fija, y otros beneficios de descuentos en tratamientos dentales que van desde el 20% hasta el 60%."
             />
             <Planes 
                 title="EMPRESAS" 
                 img="/img/odontologo-derecha.png" 
                 position="3/5"
-                tit1="Plan red bucal para empresas" 
-                tit2="Nuestra Cobertura" 
+                valor="1"
+                colaborador="POR COLABORDOR*"
+                tit1="Plan red bucal para empresas"  
                 text1="Es un plan más completo diseñado especialmente para resguardar la salud bucal de aquellas personas que quieren darle tratamiento preventivo a su boca."
-                text2="Cubrimos consulta dental con diagnóstico, planes de tratamiento, profilaxis dental, topificación de Flúor, sellantes de sosas y fisuras, radiografías, colocación de resina simple o compuesta en dientes anteriores y posteriores, extracción simple, endodoncias monorradiculares, birradiculares, multirradiculares, pulpotomías y pulpectomía, cementado provisional de prótesis fija, y otros beneficios de descuentos en tratamientos dentales que van desde el 20% hasta el 60%."
             />
+            <div className="linea3"></div>
+            <div className="linea4"></div>
             
             <style jsx>{`
                 
@@ -32,7 +33,7 @@ const LayoutPlanes = () => {
                     margin-top: 50px;
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr 1fr;
-                    grid-template-rows: 50px 1fr;
+                    grid-template-rows: 50px 1fr 100px;
                     background-image: url("/img/puntos.png");
                     background-repeat: no-repeat;
                     background-position: right center;
@@ -76,12 +77,29 @@ const LayoutPlanes = () => {
                     align-self: flex-end;
                 }
 
+                .linea3, .linea4 {
+                    grid-row: 3/4;
+                    background: #33333399;
+                    height: 140%;
+                    width: 2px;
+                    align-self: flex-start;
+                }
+
                 .linea1 {
                     grid-column: 1/2;
                     justify-self: flex-end;
                 }
 
                 .linea2 {
+                    grid-column: 4/5;
+                }
+
+                .linea3 {
+                    grid-column: 1/2;
+                    justify-self: flex-end;
+                }
+
+                .linea4 {
                     grid-column: 4/5;
                 }
                 

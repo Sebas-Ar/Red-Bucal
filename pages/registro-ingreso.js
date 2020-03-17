@@ -13,7 +13,7 @@ import axios from "axios"
 const Ingresar = () => {
 
 
-    const [register, setregister] = useState(true)
+    const [register, setregister] = useState(false)
     const [user, setUser] = useState({})
     const [login, setLogin] = useState({});
     const [business, setBusiness] = useState({})

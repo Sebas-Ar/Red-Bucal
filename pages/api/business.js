@@ -101,7 +101,8 @@ const handler = async (req, res) => {
                                     know: 5,
                                     plan: false,
                                     service: false,
-                                    terminos: true
+                                    terminos: true,
+                                    historial: [],
                                 })
                             }
                         }

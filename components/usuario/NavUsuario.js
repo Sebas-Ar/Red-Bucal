@@ -34,7 +34,7 @@ const NavUsuario = (props) => {
                         <button onClick={() => {props.onClick(1)}} style={selection(1)}>FACTURACIÓN</button>
                     </li>
                     <li>
-                        <button onClick={() => {props.onClick(2)}} style={selection(2)}>SERVICIOS</button>
+                        <button onClick={() => { props.onClick(2) }} style={selection(2)}>LIMPIEZA DENTAL</button>
                     </li>
                     <li>
                         <button onClick={() => {props.onClick(3)}} style={selection(3)}>HISTORIAL</button>

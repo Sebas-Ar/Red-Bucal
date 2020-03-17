@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import readXlsxFile from 'read-excel-file'
 import Layout from '../components/layout/Layout'
 import Registro from '../components/registro-ingreso/Registro'
-import Ingreso from '../components/registro-ingreso/Ingreso'
 import RegisterAdmin from '../components/registro-ingreso/RegisterAdmin'
 import axios from "axios"
 
@@ -64,7 +62,7 @@ const Ingresar = () => {
                         <div className="form">
                             <h2>REGISTRO</h2>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae perferendis</p>
-                            <Registro changeRegister={changeRegister} ChangeText={ChangeText} user={user} />
+                            <Registro changeRegister={changeRegister} ChangeText={ChangeText} user={user} errorsBusiness={{}} errors={{}}/>
                         </div>
                         <div className="diente2"></div>
 

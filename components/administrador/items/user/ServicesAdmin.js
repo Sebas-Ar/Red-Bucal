@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import axios from "axios";
 
-const ServicesAdmin = () => {
+const ServicesAdmin = (props) => {
 
     const [check, setCheck] = useState(false);
 
@@ -8,25 +9,29 @@ const ServicesAdmin = () => {
         setCheck(e.target.checked)
     }
 
-    useEffect(() => {
-        console.log(check);
-    }, [check]);
+    const stateUpdate = async () => {
+        const url = '/api/editUserService'
+        let result = await axios.put(url, { state: check, identification: props.data.identification })
+        console.log(result.data.data);
+        props.changeData(result.data.data)
+    }
 
     return (
         <section>
             <div>
+                <h3>LIMPIEZA DENTAL</h3>
                 <br />
                 <label className="label">
-                    LIMPIEZA DENTAL:
-                    <p>Realizado / No Realizado</p>
-                </label>
+                    ESTADO:
+                    <p>{props.data.service ? 'REALIZADO' : 'NO REALIZADO'}</p>
+                </label>    
                 <br />
                 <label className="checkbox" >
                     <input type="checkbox" name="Vehiculo" onClick={onClick} />
                     <i></i>
                 </label>
                 <br />
-                <button>Actualizar</button>
+                <button onClick={stateUpdate}>Actualizar</button>
                 <span> - Cambiar a <strong>{check ? 'Realizado' : 'No Realizado'}</strong></span>
 
             </div>

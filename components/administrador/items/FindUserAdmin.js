@@ -31,11 +31,11 @@ const FindUserAdmin = (props) => {
         <section>
 
             <form>
-                <input type="number" name="identification" placeholder="ID USUARIO" onChange={(e) => {props.changeId(e)}}/>
+                <input type="text" name="identification" placeholder="CEDULA DE IDENTIDAD" onChange={(e) => {props.changeId(e)}}/>
                 <button className="buscar" type="submit" onClick={onSubmitID}>Buscar</button>
             </form>
             <form>
-                <input type="number" name="NIT" placeholder="NIT EMPRESA" onChange={(e) => {props.changeNIT(e)}}/>
+                <input type="number" name="RUC" placeholder="RUC EMPRESARIAL" onChange={(e) => {props.changeNIT(e)}}/>
                 <button className="buscar" type="submit" onClick={onSubmitNIT}>Buscar</button>
             </form>
 

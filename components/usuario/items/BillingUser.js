@@ -11,16 +11,16 @@ const BillingUser = (props) => {
         <section>
             <label className="type">
                 TIPO DE PLAN:
-                <p>{props.data.plan ? 'PERSONAL' : 'EMPRESARIAL'}</p>
+                <p>{props.data.plan ? 'EMPRESARIAL' : 'PERSONAL' }</p>
             </label>
             <div></div>
             <label>
                 FECHA DE INICIO:
-                <p>>----------</p>
+                <p>------------</p>
             </label>
             <label>
                 FECHA DE FINALIZACIÓN:
-                <p>----------</p>
+                <p>------------</p>
             </label>
             <div>
                 RENOVACIÓN: <br/> <br/>

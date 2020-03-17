@@ -55,7 +55,8 @@ const handler = async (req, res) => {
                             plan: false,
                             date: '0' + date.getDate() + ' / 0' + date.getMonth(),
                             service: false,
-                            terminos: true
+                            terminos: true,
+                            historial: [],
                         })
 
                         req.session.userId = await user.insertedId

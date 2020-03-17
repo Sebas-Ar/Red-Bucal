@@ -45,8 +45,8 @@ const usuario = () => {
                     {
                         select === 0 ? <InformationUser data={data} /> : 
                         select === 1 ? <BillingUser data={data}/> :
-                        select === 2 ? <ServicesUser  data={data}/> :
-                        select === 3 ? <RecordUser /> :
+                        select === 2 ? <ServicesUser data={data}/> :
+                        select === 3 ? <RecordUser  data={data}/> :
                         'cuatro' 
                     }
                 </NavUsuario>
