@@ -21,6 +21,7 @@
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-router-dom": "^5.1.2",
-    "read-excel-file": "^4.0.5"
+    "read-excel-file": "^4.0.5",
+    "sweetalert2": "^9.10.2"
   }
 }

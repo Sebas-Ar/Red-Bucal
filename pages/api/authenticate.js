@@ -4,11 +4,11 @@ import withMiddleware from "../../middlewares/withMiddleware"
 const handler = async (req, res) => {
     if( req.method === 'POST' ) {
         const { identification, password } = req.body
-        const NIT = identification;
+        const RUC = identification;
         
         try {
         
-        const business = await req.db.collection('bussines').findOne({ NIT })
+        const business = await req.db.collection('bussines').findOne({ RUC })
 
         if (business) {
             

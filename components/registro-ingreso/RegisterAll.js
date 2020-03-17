@@ -4,7 +4,7 @@ import EmpresasRegister from './register/EmpresasRegister'
 
 const RegisterAll = (props) => {
 
-    const [type, setType] = useState(false)
+    const [type, setType] = useState(true)
 
     const changeType = () => {
         setType(!type)
@@ -45,12 +45,16 @@ const RegisterAll = (props) => {
                             onChangeBusiness={props.onChangeBusiness} 
                             onSubmitBusinessRegister={props.onSubmitBusinessRegister} 
                             readExcel={props.readExcel} business={props.business}
+                            errorsBusiness={props.errorsBusiness}
+                            ChangeText={props.ChangeText}
+                            user={props.user}
                         />
                     :
                         <PersonasRegister 
                             ChangeText={props.ChangeText} 
                             onSubmitPersonalRegister={props.onSubmitPersonalRegister} 
                             user={props.user}
+                            errors={props.errors}
                         />
                 }
             </div>

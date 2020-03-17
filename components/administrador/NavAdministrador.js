@@ -68,7 +68,7 @@ const NavUsuario = (props) => {
                         :
                         <ul>
                             <li>
-                                <h2>EMPRESA</h2>
+                                <h2>{props.adminData.name}</h2>
                             </li>
                             <li>
                                 <button onClick={() => { props.onClick(0) }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>

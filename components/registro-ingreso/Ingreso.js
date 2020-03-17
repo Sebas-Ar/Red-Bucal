@@ -6,11 +6,11 @@ const Ingreso = (props) => {
         <form onSubmit={e => {e.preventDefault()}}>
             <div>
                 <div className="colorRojo"></div>
-                <input autoFocus type="text" placeholder="ID" name="identification" onChange={props.ChangeTextLogin} />
+                <input type="text" placeholder="CEDULA DE CIUDADANIA / RUC" name="identification" value={props.login.identification} onChange={props.ChangeTextLogin} />
             </div>
             <div>
                 <div className="colorAzul"></div>
-                <input type="password" placeholder="CONTRASEÑA" name="password" onChange={props.ChangeTextLogin}/>
+                <input type="password" placeholder="CONTRASEÑA" name="password" value={props.login.password} onChange={props.ChangeTextLogin}/>
             </div>
 
             <button onClick={props.onSubmitLogin}>ENTRAR

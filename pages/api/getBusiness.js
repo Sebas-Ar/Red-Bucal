@@ -3,10 +3,10 @@ import withMiddleware from '../../middlewares/withMiddleware'
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {
-        const { NIT } = req.body
+        const { RUC } = req.body
         try {
 
-            const user = await req.db.collection('bussines').findOne({ NIT })
+            const user = await req.db.collection('bussines').findOne({ RUC })
             res.send({ message: user })
 
         } catch (error) {

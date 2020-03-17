@@ -7,16 +7,24 @@ const FindUserAdmin = (props) => {
         e.preventDefault()
         const url = '/api/getUser'
         const result = await axios.post(url, props.id)
-        props.changeData(result.data.message)
-        props.ChangeType('persona')
+        if (result.data.message !== null) {
+            props.changeData(result.data.message)
+            props.ChangeType('persona')
+        } else {
+            alert('el usuario no está registrado')
+        }
     } 
 
     const onSubmitNIT = async e => {
         e.preventDefault()
         const url = '/api/getBusiness'
         const result = await axios.post(url, props.NIT)
-        props.changeData(result.data.message)
-        props.ChangeType('empresa')
+        if (result.data.message !== null) {
+            props.changeData(result.data.message)
+            props.ChangeType('empresa')
+        } else {
+            alert('la empresa no está registrada')
+        }
     } 
 
     return (

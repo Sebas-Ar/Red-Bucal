@@ -100,7 +100,10 @@ const administrador = () => {
                                             data={data}
                                         /> :
                         select === 1 ? <InfoAdmin data={data}/> :
-                            <BillingAdmin data={data}/> 
+                            <BillingAdmin 
+                                data={data}
+                                changeData={changeData}
+                            /> 
                 }
             </NavAdministrador>
         </Layout>

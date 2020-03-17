@@ -5,11 +5,13 @@ const Registro = (props) => {
         <div className="form">
             <div className="id">
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="ID / NIT" value={props.user.identification ? props.user.identification : ''} name="identification" onChange={props.ChangeText} />
+                <input type="text" placeholder="CEDULA DE CIUDADANIA / RUC" value={props.user.identification ? props.user.identification : ''} name="identification" onChange={props.ChangeText} />
             </div>
             <div className="password">
                 <div className="colorAzul"></div>
-                <input type="password" placeholder="CONTRASEÑA" name="password" onChange={props.ChangeText} />
+                <input type="password" placeholder="CONTRASEÑA" name="password" value={props.user.password} onChange={props.ChangeText} />
+                {props.errors.errorpassword ? <p>{props.errors.errorpassword}</p> : ''}
+                {props.errorsBusiness.errorPassword ? <p>{props.errorsBusiness.errorPassword}</p> : ''}
             </div>
 
             <button onClick={props.changeRegister}>REGISTRARSE
@@ -52,6 +54,19 @@ const Registro = (props) => {
 
                 input::-webkit-input-placeholder {
                     color: #33333399;
+                }
+
+                .password {
+                    position: relative;
+                }
+
+                p {
+                    bottom: -20px;
+                    position: absolute;
+                    font-size: 12px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    color: var(--puntoRojo);
                 }
 
                 button {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import axios from "axios";
 
 const BillingAdmin = (props) => {
 
@@ -8,26 +9,29 @@ const BillingAdmin = (props) => {
         setCheck(e.target.checked)
     }
 
-    useEffect(() => {
-        console.log(check);
-    }, [check]);
+    const stateUpdate = async () => {
+        const url = '/api/editBusiness'
+        let result = await axios.put(url, { state: check, identification: props.data.NIT })
+        console.log(result.data.data);
+        props.changeData(result.data.data)
+    }
 
     return (
         <section>
             <div>
                 <h3>PAGO FÍSICO</h3>
-                <br/>
+                <br />
                 <label className="label">
                     ESTADO:
                     <p>{props.data.state ? 'ACTIVO' : 'INACTIVO'}</p>
                 </label>
-                <br/>
+                <br />
                 <label className="checkbox" >
                     <input type="checkbox" name="Vehiculo" onClick={onClick} />
                     <i></i>
                 </label>
-                <br/>
-                <button>Actualizar</button>
+                <br />
+                <button onClick={stateUpdate}>Actualizar</button>
                 <span> - Cambiar a <strong>{check ? 'Activo' : 'Inactivo'}</strong></span>
 
             </div>

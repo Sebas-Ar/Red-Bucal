@@ -7,26 +7,37 @@ const EmpresasRegister = (props) => {
         <form onSubmit={(e) => {props.onSubmitBusinessRegister(e)}}>
             <div className="nombre">
                 <div className="colorAzul"></div>
-                <input type="text" onChange={props.onChangeBusiness} name="businessName" placeholder="NOMBRE DE LA EMPRESA*" />
+                <input type="text" onChange={props.onChangeBusiness} name="businessName" value={props.business.businessName} placeholder="NOMBRE DE LA EMPRESA*" />
             </div>
+            {props.errorsBusiness.errorName ? <p style={{ gridColumn: '1/4' }}>{props.errorsBusiness.errorName}</p> : ''}
             <div className="id">
                 <div className="colorAzul"></div>
-                <input type="text" onChange={props.onChangeBusiness} name="NIT" value={props.business.NIT} placeholder="NIT*" />
+                <input type="text" onChange={props.ChangeText} name="identification" value={props.user.identification} placeholder="RUC*" />
             </div>
+            {props.errorsBusiness.errorRUC ? <p style={{ gridColumn: '1/4' }}>{props.errorsBusiness.errorRUC}</p> : ''}
+            <div className="password">
+                <div className="colorAzul"></div>
+                <input type="password" onChange={props.onChangeBusiness} name="passwordRepeat" value={props.business.passwordRepeat} placeholder="REPITA LA CONTRASEÑA*" />
+            </div>
+            {props.errorsBusiness.errorPasswordRepeat ? <p style={{ gridColumn: '1/4' }}>{props.errorsBusiness.errorPasswordRepeat}</p> : ''}
             <div>
                 <div className="colorAzul"></div>
-                <input type="text" onChange={props.onChangeBusiness} name="businessAdress" placeholder="DIRECCIÓN DE LA EMPRESA*" />
+                <input type="text" onChange={props.onChangeBusiness} name="businessAdress" value={props.business.businessAdress} placeholder="DIRECCIÓN DE LA EMPRESA*" />
             </div>
             <br/>
             <div>
                 <div className="colorAzul"></div>
-                <input type="text" onChange={props.onChangeBusiness} name="businessPhone" placeholder="TELÉFONO DE EMPRESA" />
+                <input type="text" onChange={props.onChangeBusiness} name="businessPhone" value={props.business.businessPhone} placeholder="TELÉFONO DE EMPRESA" />
             </div>
+            {props.errorsBusiness.errorAdress ? <p style={{ gridColumn: '1/2' }}>{props.errorsBusiness.errorAdress}</p> : ''}
+            {props.errorsBusiness.errorAdress || props.errorsBusiness.errorPhone ? <br /> : ''}
+            {props.errorsBusiness.errorPhone ? <p style={{ gridColumn: '3/4' }}>{props.errorsBusiness.errorPhone}</p> : ''}
             <div className="correo">
                 <div className="colorAzul"></div>
-                <input type="text" onChange={props.onChangeBusiness} name="businessMail" placeholder="CORREO ELECTRÓNICO" />
+                <input type="text" onChange={props.onChangeBusiness} name="businessMail" value={props.business.businessMail} placeholder="CORREO ELECTRÓNICO" />
             </div>
-            <a href="/PLANTILLA-DE-REGISTRO-PARA-EMPLEADOS.xlsx" download="PLANTILLA-DE-REGISTRO-PARA-EMPLEADOS.xlsx">
+            {props.errorsBusiness.errorEmail ? <p style={{ gridColumn: '1/4' }}>{props.errorsBusiness.errorEmail}</p> : ''}
+            <a href="/archives/PLANTILLA-DE-REGISTRO-PARA-EMPLEADOS.xlsx" download="PLANTILLA-DE-REGISTRO-PARA-EMPLEADOS.xlsx">
                 <div className="download">
                     <div className="colorAzul"></div>
                     <p>DESCARGAR PLANTILLA DE REGISTRO PARA EMPLEADOS</p>
@@ -35,27 +46,31 @@ const EmpresasRegister = (props) => {
             <br/>
             <div className="upload">
                 <div className="colorAzul"></div>
-                <label>{props.business.data ? 'PLANTILLA CARGADA' : 'SUBIR PLANTILLA DE REGISTRO PARA EMPLEADOS'}
+                <label className="label">{props.business.data ? 'PLANTILLA CARGADA' : 'SUBIR PLANTILLA DE REGISTRO PARA EMPLEADOS'}
                     <input className="uploadInput" type="file" onChange={(e) => {props.readExcel(e)}}/>
                 </label>
             </div>
+            {props.errorsBusiness.errorData ? <p style={{ gridColumn: '3/4' }}>{props.errorsBusiness.errorData}</p> : ''}
             <div className="terminos-box"> 
                 <br/>
                 <label className="terminos">
-                    <input type="checkbox" className="checkbox" name="" id=""/>
                     Acepto terminos y condiciones
+                    <input type="checkbox" className="checkbox" name="checkbox" onChange={props.onChangeBusiness}/>
+                    <br/>
+                    {props.errorsBusiness.errorCheckbox ? <p style={{ gridColumn: '3/4' }}>{props.errorsBusiness.errorCheckbox}</p> : ''}
                 </label>
             </div>
             <div className="select">
                 <div className="colorAzul"></div>
                 <select onChange={props.onChangeBusiness} name="know">
-                    <option value="0">¿Cómo supo de nosotoros?</option>
+                    <option value="">¿Cómo supo de nosotoros?</option>
                     <option value="1">Página Web</option>
                     <option value="2">Recomendación</option>
                     <option value="3">Asesor Comercial</option>
                     <option value="4">Otro</option>
                 </select>
             </div>
+            {props.errorsBusiness.errorKnow ? <p style={{ gridColumn: '1/4' }}>{props.errorsBusiness.errorKnow}</p> : ''}
 
             <button>ENTRAR
                 <svg viewBox="0 0 512 512">
@@ -72,7 +87,9 @@ const EmpresasRegister = (props) => {
                 .terminos-box {
                     grid-column: 1/4;
                     border: none;
-                    justify-self: flex-start;
+                    justify-self: flex-end;
+                    padding-right: 20px;
+                    font-size: 12px;
                 }
 
                 .terminos {
@@ -85,7 +102,7 @@ const EmpresasRegister = (props) => {
                     margin-bottom: 100px;
                 }
 
-                .nombre, .id, .correo, .select {
+                .nombre, .id, .correo, .select, .password {
                     grid-column: 1/4;
                 }
 
@@ -124,6 +141,12 @@ const EmpresasRegister = (props) => {
 
                 p {
                     font-size: 12px;
+                    text-align: center;
+                    color: var(--puntoRojo);
+                }
+
+                .download > p {
+                    font-size: 12px;
                     margin: 10px;
                     text-align: center;
                     color: white;
@@ -145,6 +168,9 @@ const EmpresasRegister = (props) => {
                 }
 
                 select {
+                    height: 60px;
+                    border: none;
+                    outline: none;
                     color: #33333399;
                 }
 

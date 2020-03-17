@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {
-        const { businessName, NIT, businessAdress, businessPhone, businessMail, data, know, password } = req.body
+        const { businessName, RUC, businessAdress, businessPhone, businessMail, data, know, password } = req.body
 
         if (!validator.validate(businessMail)) {
 
@@ -16,9 +16,9 @@ const handler = async (req, res) => {
         } else {
             try {
 
-                const count = await req.db.collection('bussines').countDocuments({ businessMail })
+                const countEmail = await req.db.collection('bussines').countDocuments({ businessMail })
 
-                if (count) {
+                if (countEmail) {
 
                     res.send({
                         status: 'error',
@@ -27,63 +27,91 @@ const handler = async (req, res) => {
 
                 } else {
 
-                    const salt = await bcrypt.genSalt(10)
-                    const hashedPassword = await bcrypt.hash(password, salt)
+                    const countRUC = await req.db.collection('bussines').countDocuments({ RUC })
 
-                    let identifications = []
+                    if (countRUC) {
 
-                    for (let i = 0; i < data.length; i++) {
-                        identifications[i] = {
-                            id: data[i][1]+'',
-                            name: data[i][0]
+                        res.send({
+                            status: 'error',
+                            message: 'el RUC ya ha sido registrado',
+                        });
+
+                    } else {
+                        const salt = await bcrypt.genSalt(10)
+                        const hashedPassword = await bcrypt.hash(password, salt)
+
+                        let identifications = []
+
+                        for (let i = 6; i < data.length; i++) {
+
+                            let identification = data[i][2] + ''
+
+                            let countId = await req.db.collection('users').countDocuments({ identification })
+
+                            if (countId) {
+                                
+                            } else {
+                                identifications.push({
+                                    id: data[i][2] + '',
+                                    name: data[i][1]
+                                })
+                            }
                         }
-                    }
-                    console.log(identifications);
+                        console.log(identifications);
 
-                    const business = await req.db.collection('bussines').insertOne({
-                        state: false,
-                        name: businessName,
-                        NIT,
-                        businessAdress,
-                        password: hashedPassword,
-                        businessPhone,
-                        businessMail,
-                        know,
-                        identifications,
-                        plan: false,
-                        service: false
-                    })
-
-                    req.session.businessId = await business.insertedId
-
-                    for (let i = 0; i < data.length; i++) {
-
-                        const hashedPasswordUser = await bcrypt.hash(data[i][1]+'', salt)
-
-                        const date = new Date;
-                        await req.db.collection('users').insertOne({
-                            NIT,
+                        const business = await req.db.collection('bussines').insertOne({
                             state: false,
-                            name: data[i][0],
-                            identification: data[i][1]+'',
-                            email: data[i][5],
-                            password: hashedPasswordUser,
-                            birthdate: data[i][2],
-                            adress: data[i][3],
-                            phone: data[i][4],
-                            know: data[i][6],
+                            name: businessName,
+                            RUC,
+                            businessAdress,
+                            password: hashedPassword,
+                            businessPhone,
+                            businessMail,
+                            know,
+                            identifications,
                             plan: false,
-                            date: '0' + date.getDate() + ' / 0' + date.getMonth(),
-                            service: false
+                            service: false,
+                            terminos: true
+                        })
+
+                        req.session.businessId = await business.insertedId
+
+                        for (let i = 6; i < data.length; i++) {
+
+                            let identification = data[i][2]+''
+
+                            let countId = await req.db.collection('users').countDocuments({ identification })
+
+                            if (countId) {
+                                console.log(i + 'ya existe');
+                            } else {
+                                const hashedPasswordUser = await bcrypt.hash(data[i][2] + '', salt)
+
+                                await req.db.collection('users').insertOne({
+                                    RUC,
+                                    state: false,
+                                    date: data[i][0],
+                                    name: data[i][1],
+                                    identification: data[i][2] + '',
+                                    birthdate: data[i][3],
+                                    adress: data[i][4],
+                                    phone: data[i][5],
+                                    email: data[i][6],
+                                    password: hashedPasswordUser,
+                                    know: 5,
+                                    plan: false,
+                                    service: false,
+                                    terminos: true
+                                })
+                            }
+                        }
+                        res.status(201).json({
+                            status: 'ok',
+                            message: 'Empresa agregada satisfactoriamente',
+                            token: business.insertedId
                         })
 
                     }
-                    res.status(201).json({
-                        status: 'ok',
-                        message: 'Empresa agregada satisfactoriamente',
-                        token: business.insertedId
-                    })
-
                 }
                 
             } catch (error) {
