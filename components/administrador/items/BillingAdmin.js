@@ -11,7 +11,7 @@ const BillingAdmin = (props) => {
 
     const stateUpdate = async () => {
         const url = '/api/editBusiness'
-        let result = await axios.put(url, { state: check, identification: props.data.NIT })
+        let result = await axios.put(url, { state: check, identification: props.data.NIT, identifications: props.data.identifications })
         console.log(result.data.data);
         props.changeData(result.data.data)
     }

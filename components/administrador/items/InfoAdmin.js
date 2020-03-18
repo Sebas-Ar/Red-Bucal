@@ -8,6 +8,10 @@ const InfoAdmin = (props) => {
                 <p>{props.data.state ? "ACTIVO" : "INACTIVO"}</p>
             </label>
             <label>
+                EMPLEADOS: <br/>
+                <p>{props.data.identifications.length}</p>
+            </label>
+            <label>
                 NIT: <br/>
                 <input type="number" name="" placeholder={props.data.RUC}/>
             </label>

@@ -83,7 +83,10 @@ const administrador = () => {
                                             data={data}
                                         /> 
                                      :
-                            select === 1 ? <InforUserAdmin data={data} /> 
+                            select === 1 ? <InforUserAdmin 
+                                                data={data}
+                                                changeData={changeData} 
+                                            /> 
                                          :
                                 select === 2 ?  <BillingUserAdmin 
                                                     data={data}

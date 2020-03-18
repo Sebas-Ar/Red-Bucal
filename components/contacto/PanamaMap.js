@@ -1,57 +1,143 @@
 import React from 'react'
 
-const PanamaMap = (props) => {
-    return (
-        <div className="content">
-            
-            <div className="num1 num"onClick={() => {props.setLoc(0)}}></div>
-            <div className="num2 num"onClick={() => {props.setLoc(1)}}></div>
-            <div className="num3 num"onClick={() => {props.setLoc(2)}}></div>
-            <div className="num4 num"onClick={() => {props.setLoc(3)}}></div>
+export default class extends React.Component {
+    constructor() {
+        super()
+        this.state = { components: undefined }
+        this.markers = new WeakMap()
+    }
 
-            <style jsx>{`
-                
-                .content {
-                    position: relative;
-                    margin-top: 150px;
-                    height: 670px;
-                    width: 100%;
-                    background-image: url("/img/panama-map.png");
-                    background-position: center center;
-                    background-repeat: no-repeat;
-                    background-size: 90%;
-                }    
+    componentDidMount() {
+        let {
+            Map: LeafletMap,
+            Marker,
+            TileLayer,
+            Tooltip,
+            FeatureGroup
+        } = require('react-leaflet')
+        const { Marker: LeafletMarker } = require('leaflet')
+        this.setState({
+            leaflet: {
+                LeafletMarker
+            },
+            components: {
+                LeafletMap,
+                Marker,
+                TileLayer,
+                Tooltip,
+                FeatureGroup
+            }
+        })
+    }
 
-                .num {
-                    position: absolute;
-                    height: 110px;
-                    width: 110px;
-                    cursor: pointer;
+    componentDidUpdate(prevProps, prevState) {
+        this.onUpdateTimeout = setTimeout(() => {
+            if (
+                prevProps.selectedPlaceId &&
+                !this.props.selectedPlaceId &&
+                this.featureGroup &&
+                this.map
+            ) {
+                let bounds = this.featureGroup.leafletElement.getBounds()
+                this.map.leafletElement.fitBounds(bounds)
+            }
+
+            if (!prevState.components && this.state.components) {
+                this.map.leafletElement.on('zoomend', this.handleZoomEnd)
+            }
+        }, 100)
+    }
+
+    componentWillUnmount() {
+        if (this.map && this.map.leafletElement) {
+            this.map.leafletElement.off('zoomend', this.handleZoomEnd)
+        }
+
+        window.clearTimeout(this.onUpdateTimeout)
+    }
+
+    handleZoomEnd = ({ target }) => {
+        const contained = []
+        Object.keys(target._layers).forEach(id => {
+            let layer = target._layers[id]
+            if (layer instanceof this.state.leaflet.LeafletMarker) {
+                if (target.getBounds().contains(layer.getLatLng())) {
+                    contained.push(layer)
                 }
+            }
+        })
 
-                .num1 {
-                    top: 35%;
-                    left: 18%;
-                }
+        if (this.props.onZoomEnd) this.props.onZoomEnd(contained, target.getZoom())
+    }
 
-                .num2 {
-                    top: 22%;
-                    right: 39.5%;
-                }
+    render() {
+        if (!this.state.components) {
+            return null
+        }
 
-                .num3 {
-                    bottom: 29%;
-                    right: 21%;
-                }
+        const {
+            LeafletMap,
+            Marker,
+            TileLayer,
+            Tooltip,
+            FeatureGroup
+        } = this.state.components
+        const { center, data, selectedPlaceId, onMarkerClick } = this.props
 
-                .num4 {
-                    bottom: 18.5%;
-                    left: 36.5%;
-                }
-                
-            `}</style>
-        </div>
-    )
+        let zoom = 14
+        let mapCenter = center
+        let selectedPlace
+        if (selectedPlaceId) {
+            selectedPlace = data.find(d => d.id === selectedPlaceId)
+            const { longitude, latitude } = selectedPlace.coordinates
+            mapCenter = [latitude, longitude]
+            zoom = 18
+        }
+
+        const markers = (selectedPlace ? [selectedPlace] : data).map(d => {
+            const { latitude, longitude } = d.coordinates
+            return (
+                <Marker
+                    ref={node => {
+                        if (!node) return
+                        this.markers.set(node.leafletElement, d.id)
+                    }}
+                    key={d.id}
+                    position={[latitude, longitude]}
+                    onClick={() => {
+                        if (onMarkerClick) {
+                            onMarkerClick(d)
+                        }
+                    }}
+                >
+                    <Tooltip>
+                        <span>
+                            {d.name}
+                        </span>
+                    </Tooltip>
+                </Marker>
+            )
+        })
+
+        return (
+            <LeafletMap
+                ref={node => {
+                    this.map = node
+                }}
+                css={`height: 100%; width: 100%; z-index: 0;`}
+                center={mapCenter}
+                zoom={zoom}
+                maxZoom={18}
+            >
+                <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' />
+                <FeatureGroup
+                    ref={node => {
+                        this.featureGroup = node
+                    }}
+                >
+                    {markers}
+                </FeatureGroup>
+            </LeafletMap>
+        )
+    }
 }
-
-export default PanamaMap

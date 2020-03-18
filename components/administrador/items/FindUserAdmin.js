@@ -65,12 +65,12 @@ const FindUserAdmin = (props) => {
                             <div className="table">
                                 <div className="cabecera">
                                     <h5>EMPRESA</h5>
-                                    <h5>NIT</h5>
+                                    <h5>RUC</h5>
                                     <h5>OPCIÓN</h5>
                                 </div>
                                 <div className="content">
                                     <p>{props.data.name}</p>
-                                    <p>{props.data.NIT}</p>
+                                    <p>{props.data.RUC}</p>
                                     <button className="selection" onClick={() => { props.ChangeUser(2) }}>Selecctionar</button>
                                 </div>
                             </div>

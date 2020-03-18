@@ -15,9 +15,9 @@ const Red = () => {
 
     return (
         <Layout>
-            <PanamaMap setLoc={setLoc}/> 
+            {/* <PanamaMap setLoc={setLoc}/>  */}
             <LayoutFeatures location={location}/>
-            <SliderImg location={location}/>
+            {/* <SliderImg location={location}/> */}
         </Layout>
     )
 }
