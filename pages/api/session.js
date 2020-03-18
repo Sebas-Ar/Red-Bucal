@@ -33,13 +33,26 @@ const handler = (req, res) => {
                     })
 
                 } else {
-                    res.status(200).send({
-                        status: 'ok',
-                        data: {
-                            isLoggedIn: false,
-                            user: {}
-                        }
-                    })
+
+                    if (req.master) {
+
+                        res.status(200).send({
+                            status: 'ok',
+                            data: {
+                                isLoggedIn: true,
+                                user: req.master
+                            }
+                        })
+
+                    } else {
+                        res.status(200).send({
+                            status: 'ok',
+                            data: {
+                                isLoggedIn: false,
+                                user: {}
+                            }
+                        })
+                    }
                 }
             }
         }

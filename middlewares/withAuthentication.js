@@ -27,6 +27,16 @@ const withAuthentication = handler => async (req, res) => {
                     req.admin = admin
                     return handler(req, res)
                 }
+            } else {
+                if (req.session.masterId) {
+                    console.log(req.session.masterId)
+                    const master = await req.db.collection('master').findOne(ObjectId(req.session.masterId))
+                    console.log(master)
+                    if (master) {
+                        req.master = master
+                        return handler(req, res)
+                    }
+                }
             }
         }
     }

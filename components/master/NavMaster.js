@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 
-const NavUsuario = (props) => {
+const NavMaster = (props) => {
 
     const router = useRouter()
 
@@ -22,70 +22,79 @@ const NavUsuario = (props) => {
             <div className="diente1"></div>
             <nav>
                 {
-                    props.user === 0 
-                    ?
+                    props.user === 0
+                        ?
                         <ul>
                             <li>
                                 <h2>{props.adminData.name}</h2>
                             </li>
                             <li>
                                 <button onClick={() => { props.onClick(0) }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
+                            </li>
+                            <li>
+                                <button onClick={() => { router.push("/registro-administrador") }} style={selection(5)}>REGISTRAR ADMINISTRADOR</button>
                             </li>
                             <li>
                                 <button onClick={logout}>SALIR</button>
                             </li>
                         </ul>
                         : props.user === 1 ?
-                        <ul>
-                            <li>
-                                <h2>{props.adminData.name}</h2>
-                            </li>
-                            <li>
-                                <button onClick={() => { props.onClick(0) }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
-                            </li>
-                            <li>
-                                <button onClick={() => { props.onClick(1) }} style={selection(1)}>INFORMACIÓN DEL USUARIO</button>
-                            </li>
-                            <li>
-                                <button onClick={() => { props.onClick(2) }} style={selection(2)}>FACTURACIÓN</button>
-                            </li>
-                            <li>
-                                <button onClick={() => { props.onClick(3) }} style={selection(3)}>SERVICIOS</button>
-                            </li>
-                            <li>
-                                <button onClick={() => { props.onClick(4) }} style={selection(4)}>HISTORIAL</button>
-                            </li>
-                            <li>
-                                <button onClick={logout}>SALIR</button>
-                            </li>
-                        </ul>
-                        :
-                        <ul>
-                            <li>
-                                <h2>{props.adminData.name}</h2>
-                            </li>
-                            <li>
-                                <button onClick={() => { props.onClick(0) }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
-                            </li>
-                            <li>
-                                <button onClick={() => { props.onClick(1) }} style={selection(1)}>INFORMACIÓN EMPRESARIAL</button>
-                            </li>
-                            <li>
-                                <button onClick={() => { props.onClick(2) }} style={selection(2)}>FACTURACIÓN</button>
-                            </li>
-                            {/* 
+                            <ul>
+                                <li>
+                                    <h2>{props.adminData.name}</h2>
+                                </li>
+                                <li>
+                                    <button onClick={() => { props.onClick(0) }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
+                                </li>
+                                <li>
+                                    <button onClick={() => { props.onClick(1) }} style={selection(1)}>INFORMACIÓN DEL USUARIO</button>
+                                </li>
+                                <li>
+                                    <button onClick={() => { props.onClick(2) }} style={selection(2)}>FACTURACIÓN</button>
+                                </li>
+                                <li>
+                                    <button onClick={() => { props.onClick(3) }} style={selection(3)}>SERVICIOS</button>
+                                </li>
+                                <li>
+                                    <button onClick={() => { props.onClick(4) }} style={selection(4)}>HISTORIAL</button>
+                                </li>
+                                <li>
+                                    <button onClick={() => { router.push("/registro-administrador") }} style={selection(5)}>REGISTRAR ADMINISTRADOR</button>
+                                </li>
+                                <li>
+                                    <button onClick={logout}>SALIR</button>
+                                </li>
+                            </ul>
+                            :
+                            <ul>
+                                <li>
+                                    <h2>{props.adminData.name}</h2>
+                                </li>
+                                <li>
+                                    <button onClick={() => { props.onClick(0) }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
+                                </li>
+                                <li>
+                                    <button onClick={() => { props.onClick(1) }} style={selection(1)}>INFORMACIÓN EMPRESARIAL</button>
+                                </li>
+                                <li>
+                                    <button onClick={() => { props.onClick(2) }} style={selection(2)}>FACTURACIÓN</button>
+                                </li>
+                                <li>
+                                    <button onClick={() => { router.push("/registro-administrador") }} style={selection(5)}>REGISTRAR ADMINISTRADOR</button>
+                                </li>
+                                {/* 
                             <li>
                                 <button onClick={() => { props.onClick(3) }} style={selection(3)}>SERVICIOS</button>
                             </li>
                             <li>
                                 <button onClick={() => { props.onClick(4) }} style={selection(4)}>HISTORIAL</button>
                             </li> */}
-                            <li>
-                                <button onClick={logout}>SALIR</button>
-                            </li>
-                        </ul>
+                                <li>
+                                    <button onClick={logout}>SALIR</button>
+                                </li>
+                            </ul>
                 }
-                
+
             </nav>
 
             <div className="linea"></div>
@@ -164,5 +173,4 @@ const NavUsuario = (props) => {
         </div>
     )
 }
-
-export default NavUsuario
+export default NavMaster

@@ -41,10 +41,43 @@ const handler = async (req, res) => {
 
             } else {
 
-                res.send({
-                    status: 'error',
-                    message: 'El usuario no existe'
-                })
+                const master = await req.db.collection('master').findOne({ identification })
+
+                if (master) {
+
+                    const result = await bcrypt.compare(password, master.password)
+
+                    if (result) {
+
+                        req.session.masterId = master._id
+
+                        if (req.session.userId) {
+                            delete req.session.userId
+                        }
+
+                        if (req.session.businessId) {
+                            delete req.session.businessId
+                        }
+
+                        if (req.session.adminId) {
+                            delete req.session.adminId
+                        }
+
+                        res.send({
+                            status: 'ok_master',
+                            message: `Bienvenido de vuelta ${master.name}`,
+                            id: master._id
+                        })
+                    }
+
+                } else {
+
+                    res.send({
+                        status: 'error',
+                        message: 'El usuario no existe'
+                    })
+
+                }
 
             }
 
