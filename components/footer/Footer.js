@@ -49,6 +49,7 @@ const Footer = () => {
                     color: #bbbbbb; 
                     width: 40px;
                     cursor: pointer;
+                    transition: transform .5s;
                 }
 
                 svg:hover {

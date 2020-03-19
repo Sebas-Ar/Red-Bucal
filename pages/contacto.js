@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from '../components/layout/Layout'
 import LayoutForm from '../components/form/LayoutForm'
 import PanamaMap from '../components/contacto/PanamaMap'
+import Footer from '../components/footer/Footer'
 
 const contacto = () => {
     return (
@@ -10,6 +11,8 @@ const contacto = () => {
             {/* <PanamaMap /> */}
             <br/><br/><br/><br/>
             <LayoutForm diente="/img/diente-form1.png" />
+            <br/> <br/>
+            <Footer />
         
         </Layout>
     )

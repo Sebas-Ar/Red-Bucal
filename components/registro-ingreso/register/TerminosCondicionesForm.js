@@ -49,6 +49,7 @@ const TerminosCondicionesForm = (props) => {
             <style jsx>{`
 
                 .terminos {
+                    margin-top: 10px;
                     display: grid;
                     justify-items: center;
                     font-weight: 800;

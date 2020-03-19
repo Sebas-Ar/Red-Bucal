@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import axios from "axios";
 import Layout from '../components/layout/Layout'
 import NavMaster from '../components/master/NavMaster'
@@ -20,18 +21,20 @@ const master = () => {
     const [data, setData] = useState({})
     const [adminData, setAdminData] = useState({});
 
+    const router = useRouter()
+
     const get = async () => {
-        if (sessionStorage.getItem('token')) {
+        if (sessionStorage.getItem('tokenMaster')) {
             const url = '/api/session'
             const result = await axios.get(url)
             console.log(result);
-            if (result.data.data.user._id === sessionStorage.getItem('token')) {
+            if (result.data.data.user._id === sessionStorage.getItem('tokenMaster')) {
                 setAdminData(result.data.data.user)
             } else {
-                /* router.replace("/") */
+                router.replace("/")
             }
         } else {
-            /*  router.replace("/") */
+             router.replace("/")
         }
     }
 

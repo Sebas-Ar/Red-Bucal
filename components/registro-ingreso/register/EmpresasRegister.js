@@ -68,7 +68,7 @@ const EmpresasRegister = (props) => {
                     {props.errors.ckeckerror ? <p>{props.errors.ckeckerror}</p> : ''}
                 </label> */}
                 <button className="condiciones" onClick={(e) => { change(e) }}>terminos y condiciones</button>
-                <br />
+                {props.errorsBusiness.errorCheckbox ? <br /> : ''}
                 {props.errorsBusiness.errorCheckbox ? <p>{props.errorsBusiness.errorCheckbox}</p> : ''}
                 {
                     active ?
@@ -165,7 +165,7 @@ const EmpresasRegister = (props) => {
                 }
 
                 .download {
-                    background-color: var(--puntoAzul);
+                    background-color: var(--puntoRojo);
                     cursor: pointer;
                 }
 

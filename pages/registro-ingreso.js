@@ -13,7 +13,7 @@ import axios from "axios"
 const Ingresar = () => {
 
 
-    const [register, setregister] = useState(true)
+    const [register, setregister] = useState(false)
     const [user, setUser] = useState({})
     const [login, setLogin] = useState({});
     const [business, setBusiness] = useState({})
@@ -361,11 +361,11 @@ const Ingresar = () => {
                 const response = await axios.post(url, login)
                 console.log(response);
                 if (response.data.status === 'ok_user') {
-                    sessionStorage.setItem('token', response.data.id)
+                    sessionStorage.setItem('tokenUser', response.data.id)
                     router.push('/usuario')
                 } else {
                     if (response.data.status === 'ok_business') {
-                        sessionStorage.setItem('token', response.data.id)
+                        sessionStorage.setItem('tokenBusiness', response.data.id)
                         router.push('/empresa')
                     }
                 }

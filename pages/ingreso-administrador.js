@@ -29,13 +29,13 @@ const Ingresar = () => {
             try {
                 const response = await axios.post(url, login)
                 console.log(response);
-                if (response.data.status === 'ok_user') {
-                    sessionStorage.setItem('token', response.data.id)
-                    router.push('/usuario')
+                if (response.data.status === 'ok_admin') {
+                    sessionStorage.setItem('tokenAdmin', response.data.id)
+                    router.push('/administrador')
                 } else {
-                    if (response.data.status === 'ok_admin') {
-                        sessionStorage.setItem('token', response.data.id)
-                        router.push('/administrador')
+                    if (response.data.status === 'ok_master') {
+                        sessionStorage.setItem('tokenMaster', response.data.id)
+                        router.push('/master')
                     }
                 }
             } catch (error) {

@@ -256,7 +256,7 @@ const PersonasRegister = (props) => {
                     {props.errors.ckeckerror ? <p>{props.errors.ckeckerror}</p> : ''}
                 </label> */}
                 <button className="condiciones" onClick={(e) => {change(e)}}>terminos y condiciones</button>
-                <br/>
+                {props.errors.ckeckerror ? <br /> : ''}
                 {props.errors.ckeckerror ? <p>{props.errors.ckeckerror}</p> : ''}
                 {
                     active ?

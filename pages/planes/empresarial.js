@@ -4,6 +4,7 @@ import Personal from '../../components/planes/Personal'
 import LayoutForm from '../../components/form/LayoutForm'
 import Banner from '../../components/planes/Banner'
 import Empresas from '../../components/planes/empresarial/Empresas'
+import Footer from '../../components/footer/Footer'
 
 const empresarial = () => {
     return (
@@ -22,6 +23,7 @@ const empresarial = () => {
             />
             <Banner />
             <LayoutForm diente="/img/diente-form2.png" />
+            <Footer />
         </Layout>
     )
 }

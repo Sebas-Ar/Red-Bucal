@@ -13,8 +13,7 @@ const NavUsuario = (props) => {
     }
 
     const logout = () => {
-        sessionStorage.removeItem('token')
-        console.log('item eliminado');
+        sessionStorage.removeItem('tokenBusiness')
         router.replace("/")
     }
 

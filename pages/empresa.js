@@ -24,17 +24,17 @@ const usuario = () => {
     }
 
     const get = async () => {
-        if (sessionStorage.getItem('token')) {
+        if (sessionStorage.getItem('tokenBusiness')) {
             const url = '/api/session'
             const result = await axios.get(url)
             console.log(result);
-            if (result.data.data.user._id === sessionStorage.getItem('token')) {
+            if (result.data.data.user._id === sessionStorage.getItem('tokenBusiness')) {
                 setData(result.data.data.user)
             } else {
-                /* router.replace("/") */
+                router.replace("/")
             }
         } else {
-           /*  router.replace("/") */
+            router.replace("/")
         }
     }
 

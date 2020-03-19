@@ -13,6 +13,7 @@ const NavMaster = (props) => {
     }
 
     const logout = () => {
+        sessionStorage.removeItem('tokenMaster')
         router.replace("/")
     }
 

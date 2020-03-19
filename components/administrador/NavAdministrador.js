@@ -13,6 +13,7 @@ const NavUsuario = (props) => {
     }
 
     const logout = () => {
+        sessionStorage.removeItem('tokenAdmin')
         router.replace("/")
     }
 
