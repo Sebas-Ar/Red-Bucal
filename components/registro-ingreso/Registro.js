@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Registro = (props) => {
+
+    const [url, setUrl] = useState('')
+
+    useEffect(() => {
+        const path = window.location.pathname;
+        setUrl(path)
+    });
+
     return (
         <div className="form">
             <div className="id">
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="CEDULA DE CIUDADANIA / RUC" value={props.user.identification ? props.user.identification : ''} name="identification" onChange={props.ChangeText} />
+                <input type="text" placeholder={url === '/registro-administrador' ? 'CEDULA DE CIUDADANIA' : 'CEDULA DE CIUDADANIA / RUC'} value={props.user.identification ? props.user.identification : ''} name="identification" onChange={props.ChangeText} />
             </div>
             <div className="password">
                 <div className="colorAzul"></div>

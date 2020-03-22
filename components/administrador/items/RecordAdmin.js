@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Swal from 'sweetalert2'
 import moment from "moment";
 import axios from "axios";
 
@@ -25,7 +26,16 @@ const RecordAdmin = (props) => {
         try {
 
             const result = await axios.put(url, data)
-            props.changeData(result.data.data);
+            if (result.data.status) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Historial actualizado',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                props.changeData(result.data.data)
+            }
 
         } catch (error) {
             console.log(error);

@@ -22,7 +22,8 @@ const handler = async (req, res) => {
                 }
 
                 res.send({
-                    status: 'ok_business',
+                    status: 'ok',
+                    type: 'ok_business',
                     message: `Bienvenido de vuelta ${business.name}`,
                     id: business._id
                 })
@@ -30,7 +31,7 @@ const handler = async (req, res) => {
             } else {
                 res.send({
                     status: 'error',
-                    message: 'contraseña invalida'
+                    message: 'Contraseña invalida'
                 })
             }
 
@@ -49,7 +50,8 @@ const handler = async (req, res) => {
                         delete req.session.businessId
                     }
                     res.send({
-                        status: 'ok_user',
+                        status: 'ok',
+                        type: 'ok_user',
                         message: `Bienvenido de vuelta ${user.name}`,
                         id: user._id
                     })
@@ -57,7 +59,7 @@ const handler = async (req, res) => {
                 } else {
                     res.send({
                         status: 'error',
-                        message: 'contraseña invalida'
+                        message: 'Contraseña invalida'
                     })
                 }
             } else {

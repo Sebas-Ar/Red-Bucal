@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import Swal from 'sweetalert2'
 import axios from "axios";
 
 const BillingAdmin = (props) => {
@@ -12,9 +13,16 @@ const BillingAdmin = (props) => {
     const stateUpdate = async () => {
         const url = '/api/editUser'
         let result = await axios.put(url, { state: check, identification: props.data.identification})
-        /* result.data.data.status = !result.data.data.status */
-        console.log(result.data.data);
-        props.changeData(result.data.data)
+        if (result.data.status) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Estado actualizado',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            props.changeData(result.data.data)
+        }
     }
 
     return (

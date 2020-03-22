@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import Swal from "sweetalert2";
 import moment from "moment";
 import axios from "axios";
-import { set } from 'mongoose';
 
 const InfoAdmin = (props) => {
 
@@ -11,7 +11,11 @@ const InfoAdmin = (props) => {
     useEffect(() => {
         let inf = {}
         inf.identificationChange = props.data.identification
-        inf.birthdate = moment(props.data.birthdate).locale("es").format('LL')
+        if (moment(props.data.birthdate).locale("es").format('LL') === 'Invalid date') {
+            inf.birthdate = props.data.birthdate
+        } else {
+            inf.birthdate = moment(props.data.birthdate).locale("es").format('LL')
+        }
         inf.phone = props.data.phone
         inf.adress = props.data.adress
         inf.email = props.data.email
@@ -26,14 +30,21 @@ const InfoAdmin = (props) => {
     const onSubmit = async (e) => {
         e.preventDefault()
 
-        const birthdate = moment(info.birthdate).toISOString()
-        setInfo(Object.assign({}, info, { birthdate })) 
-
         const url = '/api/editUserData'
         try {
-            const result = await axios.put(url, info)
-            props.changeData(result.data.data);
 
+            const result = await axios.put(url, info)
+            if (result.data.status) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Información actualizada',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                props.changeData(result.data.data);
+            }
+            
         } catch (error) {
             console.log(error);
         }

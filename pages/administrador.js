@@ -17,7 +17,7 @@ const administrador = () => {
     const [user, setUser] = useState(0);
     const [type, setType] = useState('');
     const [id, setId] = useState({})
-    const [NIT, setNIT] = useState({})
+    const [RUC, setRUC] = useState({})
     const [data, setData] = useState({})
     const [adminData, setAdminData] = useState({});
     
@@ -46,8 +46,8 @@ const administrador = () => {
         setId({ [e.target.name]: e.target.value })
     }
 
-    const changeNIT = (e) => {
-        setNIT({ [e.target.name]: e.target.value })
+    const changeRUC = (e) => {
+        setRUC({ [e.target.name]: e.target.value })
     }
 
     const changeData = (value) => {
@@ -79,9 +79,9 @@ const administrador = () => {
                                             ChangeType={ChangeType} 
                                             type={type} 
                                             changeId={changeId} 
-                                            changeNIT={changeNIT}
+                                            changeRUC={changeRUC}
                                             id={id}
-                                            NIT={NIT}
+                                            RUC={RUC}
                                             changeData={changeData}
                                             data={data}
                                         /> 
@@ -111,9 +111,9 @@ const administrador = () => {
                                             ChangeType={ChangeType} 
                                             type={type} 
                                             changeId={changeId} 
-                                            changeNIT={changeNIT}
+                                            changeRUC={changeRUC}
                                             id={id}
-                                            NIT={NIT}
+                                            RUC={RUC}
                                             changeData={changeData}
                                             data={data}
                                         /> 

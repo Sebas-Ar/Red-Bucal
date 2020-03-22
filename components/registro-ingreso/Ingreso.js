@@ -1,16 +1,24 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Ingreso = (props) => {
+
+    const [url, setUrl] = useState('')
+    
+    useEffect(() => {
+        const path = window.location.pathname;
+        setUrl(path)
+    });
 
     return (
         <form onSubmit={e => {e.preventDefault()}}>
             <div>
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="CEDULA DE CIUDADANIA / RUC" name="identification" value={props.login.identification} onChange={props.ChangeTextLogin} />
+                <input type="text" placeholder={url === '/ingreso-administrador' ? 'CEDULA DE CIUDADANIA' : 'CEDULA DE CIUDADANIA / RUC'} name="identification" value={props.login.identification} onChange={props.ChangeTextLogin} />
             </div>
-            <div>
+            <div className="password">
                 <div className="colorAzul"></div>
                 <input type="password" placeholder="CONTRASEÑA" name="password" value={props.login.password ? props.login.password : ''} onChange={props.ChangeTextLogin}/>
+                {props.errorsLogin.error ? <p>{props.errorsLogin.error}</p> : ''}
             </div>
 
             <button onClick={props.onSubmitLogin}>ENTRAR
@@ -38,6 +46,19 @@ const Ingreso = (props) => {
 
                 .colorAzul {
                     background-color: var(--puntoAzul);
+                }
+
+                .password {
+                    position: relative;
+                }
+
+                p {
+                    bottom: -20px;
+                    position: absolute;
+                    font-size: 12px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    color: var(--puntoRojo);
                 }
 
                 input {

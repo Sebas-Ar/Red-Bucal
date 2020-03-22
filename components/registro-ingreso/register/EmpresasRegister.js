@@ -60,13 +60,6 @@ const EmpresasRegister = (props) => {
             </div>
             {props.errorsBusiness.errorData ? <p style={{ gridColumn: '3/4' }}>{props.errorsBusiness.errorData}</p> : ''}
             <div className="terminos-box">
-                {/*  <br />
-                <label className="terminos">
-                    Acepto terminos y condiciones
-                    <input type="checkbox" className="checkbox" name="checkbox" onChange={props.ChangeText} />
-                    <br/>
-                    {props.errors.ckeckerror ? <p>{props.errors.ckeckerror}</p> : ''}
-                </label> */}
                 <button className="condiciones" onClick={(e) => { change(e) }}>terminos y condiciones</button>
                 {props.errorsBusiness.errorCheckbox ? <br /> : ''}
                 {props.errorsBusiness.errorCheckbox ? <p>{props.errorsBusiness.errorCheckbox}</p> : ''}

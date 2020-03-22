@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Swal from 'sweetalert2'
 import axios from "axios";
 
 const AddUser = (props) => {
@@ -6,14 +7,24 @@ const AddUser = (props) => {
     const [data, setData] = useState({});
 
     const onChange = (e) => {
-        setData(Object.assign({}, data, { [e.target.name]: e.target.value, identifications: props.identifications, NIT: props.NIT}))
+        setData(Object.assign({}, data, { [e.target.name]: e.target.value, identifications: props.identifications, RUC: props.RUC}))
     }
 
     const onSubmit = async (e) => {
         e.preventDefault()
         const url = '/api/addUserBusiness'
         const result = await axios.post(url, data)
-        props.changeData(result.data.data.value)
+        if (result.data.status) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Historial actualizado',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            props.changeData(result.data.data.value)
+            props.changeAddUser()
+        }
 
     }
 
@@ -32,8 +43,8 @@ const AddUser = (props) => {
                     <input onChange={onChange} type="text" name="lastname" placeholder="" />
                 </label>
                 <label>
-                    ID: <br />
-                    <input onChange={onChange} type="number" name="identification" placeholder="" />
+                    CEDULA: <br />
+                    <input onChange={onChange} type="text" name="identification" placeholder="" />
                 </label>
                 <label>
                     TELEFÓNO: <br />

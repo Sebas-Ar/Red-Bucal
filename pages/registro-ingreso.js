@@ -19,6 +19,7 @@ const Ingresar = () => {
     const [business, setBusiness] = useState({})
     const [errors, setErrors] = useState({});
     const [errorsBusiness, setErrorsBusiness] = useState({})
+    const [errorsLogin, setErrorsLogin] = useState({})
 
 
     const changeRegister = () => {
@@ -105,7 +106,7 @@ const Ingresar = () => {
 
             const array = Array.from(user.identification)
 
-            if ((array[1] !== '-') && (array[5] !== '-')) {
+            if ((array[1] !== '-') || (array[5] !== '-')) {
                 objectErrors = Object.assign({}, objectErrors, { erroridentification: 'la cedula debe tener la forma 1-111-111' })
                 checked = false
             }
@@ -152,7 +153,6 @@ const Ingresar = () => {
                         showConfirmButton: false,
                         timer: 2000
                     })
-                    sessionStorage.setItem('token', response.data.token)
                     setLogin({
                         identification: user.identification,
                         password: user.password
@@ -352,23 +352,55 @@ const Ingresar = () => {
     const onSubmitLogin = async e => {
 
         e.preventDefault()
-        if (!login.identification || !login.password) {
-            console.log('falta algun dato');
-        } else {
+
+        let validate = true
+        let err = {} 
+
+        if (!login.password) {
+            err = Object.assign({}, err, { error: 'Falta la contraseña' })
+            validate = false
+        }
+
+        if (!login.identification) {
+            err = Object.assign({}, err, { error: 'Falta la cedula / RUC' })
+            validate = false
+        }
+
+        setErrorsLogin(err)
+
+        if (validate) {
             const url = '/api/authenticate'
 
             try {
                 const response = await axios.post(url, login)
                 console.log(response);
-                if (response.data.status === 'ok_user') {
-                    sessionStorage.setItem('tokenUser', response.data.id)
-                    router.push('/usuario')
-                } else {
-                    if (response.data.status === 'ok_business') {
-                        sessionStorage.setItem('tokenBusiness', response.data.id)
-                        router.push('/empresa')
+                if (response.data.status === 'ok') {
+                    if (response.data.type === 'ok_user') {
+                        sessionStorage.setItem('tokenUser', response.data.id)
+                        router.push('/usuario')
+                    } else {
+                        if (response.data.type === 'ok_business') {
+                            sessionStorage.setItem('tokenBusiness', response.data.id)
+                            router.push('/empresa')
+                        }
                     }
+
+                } else {
+
+                    if (response.data.message === 'El usuario no existe') {
+                        console.log(response.data.message);
+                        err = Object.assign({}, err, { error: response.data.message})
+                    } else if (response.data.message === 'Contraseña invalida') {
+                        console.log(response.data.message);
+                        err = Object.assign({}, err, { error: response.data.message})
+                    } else {
+                        console.log(response.data.message);
+                    }
+
+                    setErrorsLogin(err)
                 }
+
+
             } catch (error) {
                 console.error(error)
             }
@@ -416,6 +448,7 @@ const Ingresar = () => {
                                 onSubmitLogin={onSubmitLogin} 
                                 ChangeTextLogin={ChangeTextLogin} 
                                 login={login}
+                                errorsLogin={errorsLogin}
                             />
                         </div>
                         <div className="diente2"></div>

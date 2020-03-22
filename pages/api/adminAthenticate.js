@@ -27,7 +27,8 @@ const handler = async (req, res) => {
                     }
 
                     res.send({
-                        status: 'ok_admin',
+                        status: 'ok',
+                        type: 'ok_admin',
                         message: `Bienvenido de vuelta ${admin.name}`,
                         id: admin._id
                     })
@@ -35,7 +36,7 @@ const handler = async (req, res) => {
                 } else {
                     res.send({
                         status: 'error',
-                        message: 'contraseña invalida'
+                        message: 'Contraseña invalida'
                     })
                 }
 
@@ -64,9 +65,15 @@ const handler = async (req, res) => {
                         }
 
                         res.send({
-                            status: 'ok_master',
+                            status: 'ok',
+                            type: 'ok_master',
                             message: `Bienvenido de vuelta ${master.name}`,
                             id: master._id
+                        })
+                    } else {
+                        res.send({
+                            status: 'error',
+                            message: 'Contraseña invalida'
                         })
                     }
 

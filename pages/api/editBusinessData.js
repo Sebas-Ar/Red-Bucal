@@ -3,21 +3,18 @@ import { ObjectId } from "mongodb"
 
 const handler = async (req, res) => {
     if (req.method === 'PUT') {
-        const { identification, state, identifications} = req.body
-
-        for (let i = 0; i < identifications.length; i++) {
-            
-            await req.db.collection('users').findAndModify(
-                { "identification": identifications[i].id },
-                [['_id', 'asc']],
-                { "$set": { "state": state } },
-                { "new": true }
-            )
-        }
+        const { RUC, RUCRUCChange, businessPhone, businessAdress, businessMail } = req.body
         const count = await req.db.collection('bussines').findAndModify(
-            { "RUC": identification },
+            { "RUC": RUC },
             [['_id', 'asc']],
-            { "$set": { "state": state } },
+            {
+                "$set": {
+                    "RUC": RUCRUCChange,
+                    "businessPhone": businessPhone,
+                    "businessAdress": businessAdress,
+                    "businessMail": businessMail
+                }
+            },
             { "new": true }
         )
         res.send({

@@ -4,7 +4,8 @@ import Head from 'next/head'
 
 //Genera los Links
 const links = [
-  /* { href: '/red', label: 'RED' }, */
+  { href: '/red', label: 'RED' },
+  { href: '/servicios', label: 'SERVICIOS' },
   { href: '/nosotros', label: 'NOSOTROS' },
   { href: '/contacto', label: 'CONTACTO' },
 ].map(link => {

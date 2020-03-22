@@ -10,6 +10,8 @@ import RecordAdmin from '../components/administrador/items/RecordAdmin';
 import InfoAdmin from '../components/administrador/items/InfoAdmin';
 import InforUserAdmin from '../components/administrador/items/user/InforUserAdmin'
 import BillingUserAdmin from '../components/administrador/items/user/BillingUserAdmin'
+import EmployeeList from '../components/empresa/items/EmployeeList'
+import SetExcelList from '../components/master/items/SetExcelList'
 
 const master = () => {
 
@@ -17,7 +19,7 @@ const master = () => {
     const [user, setUser] = useState(0);
     const [type, setType] = useState('');
     const [id, setId] = useState({})
-    const [NIT, setNIT] = useState({})
+    const [RUC, setRUC] = useState({})
     const [data, setData] = useState({})
     const [adminData, setAdminData] = useState({});
 
@@ -46,8 +48,8 @@ const master = () => {
         setId({ [e.target.name]: e.target.value })
     }
 
-    const changeNIT = (e) => {
-        setNIT({ [e.target.name]: e.target.value })
+    const changeRUC = (e) => {
+        setRUC({ [e.target.name]: e.target.value })
     }
 
     const changeData = (value) => {
@@ -73,15 +75,15 @@ const master = () => {
                 {
                     user == 1
 
-                        ?
+                    ?
                         select === 0 ? <FindUserAdmin
                             ChangeUser={ChangeUser}
                             ChangeType={ChangeType}
                             type={type}
                             changeId={changeId}
-                            changeNIT={changeNIT}
+                            changeRUC={changeRUC}
                             id={id}
-                            NIT={NIT}
+                            RUC={RUC}
                             changeData={changeData}
                             data={data}
                         />
@@ -105,25 +107,36 @@ const master = () => {
                                             data={data}
                                             changeData={changeData}
                                         />
-                        :
+                    :
                         select === 0 ? <FindUserAdmin
                             ChangeUser={ChangeUser}
                             ChangeType={ChangeType}
                             type={type}
                             changeId={changeId}
-                            changeNIT={changeNIT}
+                            changeRUC={changeRUC}
                             id={id}
-                            NIT={NIT}
+                            RUC={RUC}
                             changeData={changeData}
                             data={data}
                         />
                             :
-                            select === 1 ? <InfoAdmin data={data} />
+                            select === 1 ?  <InfoAdmin 
+                                                data={data} 
+                                            />
                                 :
-                                <BillingAdmin
-                                    data={data}
-                                    changeData={changeData}
-                                />
+                                select === 2 ?  <BillingAdmin
+                                                    data={data}
+                                                    changeData={changeData}
+                                                />
+                                    : select === 3 ? <EmployeeList 
+                                                            data={data} 
+                                                            changeData={changeData}
+                                                    />
+                                        :
+                                        <SetExcelList 
+                                            data={data}
+                                            changeData={changeData}
+                                        />
                 }
             </NavMaster>
         </Layout>

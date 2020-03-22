@@ -12,7 +12,7 @@ const usuario = () => {
 
     const router = useRouter()
 
-    const [select, setSelect] = useState(2);
+    const [select, setSelect] = useState(0);
     const [data, setData] = useState({});
 
     const onClick = (selector) => {

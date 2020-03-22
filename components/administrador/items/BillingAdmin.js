@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import Swal from 'sweetalert2'
 import axios from "axios";
 
 const BillingAdmin = (props) => {
@@ -11,9 +12,17 @@ const BillingAdmin = (props) => {
 
     const stateUpdate = async () => {
         const url = '/api/editBusiness'
-        let result = await axios.put(url, { state: check, identification: props.data.NIT, identifications: props.data.identifications })
-        console.log(result.data.data);
-        props.changeData(result.data.data)
+        let result = await axios.put(url, { state: check, identification: props.data.RUC, identifications: props.data.identifications })
+        if (result.data.status) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Estado actualizado',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            props.changeData(result.data.data)
+        }
     }
 
     return (

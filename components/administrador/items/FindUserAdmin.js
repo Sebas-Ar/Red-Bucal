@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Swal from 'sweetalert2'
 import axios from "axios";
 
 const FindUserAdmin = (props) => {
@@ -11,19 +12,31 @@ const FindUserAdmin = (props) => {
             props.changeData(result.data.message)
             props.ChangeType('persona')
         } else {
-            alert('el usuario no está registrado')
+            Swal.fire({
+                position: 'center',
+                icon: 'warning',
+                title: 'El usuario no está registrado',
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     } 
 
-    const onSubmitNIT = async e => {
+    const onSubmitRUC = async e => {
         e.preventDefault()
         const url = '/api/getBusiness'
-        const result = await axios.post(url, props.NIT)
+        const result = await axios.post(url, props.RUC)
         if (result.data.message !== null) {
             props.changeData(result.data.message)
             props.ChangeType('empresa')
         } else {
-            alert('la empresa no está registrada')
+            Swal.fire({
+                position: 'center',
+                icon: 'warning',
+                title: 'La empresa no está registrada',
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     } 
 
@@ -35,8 +48,8 @@ const FindUserAdmin = (props) => {
                 <button className="buscar" type="submit" onClick={onSubmitID}>Buscar</button>
             </form>
             <form>
-                <input type="number" name="RUC" placeholder="RUC EMPRESARIAL" onChange={(e) => {props.changeNIT(e)}}/>
-                <button className="buscar" type="submit" onClick={onSubmitNIT}>Buscar</button>
+                <input type="number" name="RUC" placeholder="RUC EMPRESARIAL" onChange={(e) => {props.changeRUC(e)}}/>
+                <button className="buscar" type="submit" onClick={onSubmitRUC}>Buscar</button>
             </form>
 
             <div className="linea"></div>

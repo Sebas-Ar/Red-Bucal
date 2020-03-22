@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs"
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {
-        const { name, lastname, adress, password, phone, email, identification, birthdate, know } = req.body
+        const { name, lastname, adress, password, phone, email, identification, day, month, year } = req.body
 
         if (!validator.validate(email)) {
 
@@ -16,9 +16,9 @@ const handler = async (req, res) => {
         } else {
 
             try {
-                const count = await req.db.collection('admin').countDocuments({ email })
+                const countEmail = await req.db.collection('admin').countDocuments({ email })
 
-                if (count) {
+                if (countEmail) {
 
                     res.send({
                         status: 'error',
@@ -27,25 +27,36 @@ const handler = async (req, res) => {
 
                 } else {
 
-                    const salt = await bcrypt.genSalt(10)
-                    const hashedPassword = await bcrypt.hash(password, salt)
-                    const date = new Date;
-                    console.log(date.getDate);
-                    const user = await req.db.collection('admin').insertOne({
-                        name: name + ' ' + lastname,
-                        identification,
-                        email,
-                        password: hashedPassword,
-                        birthdate,
-                        adress,
-                        phone,
-                    })
+                    const countId = await req.db.collection('admin').countDocuments({ identification })
 
-                    res.status(201).json({
-                        status: 'ok',
-                        message: 'Administrador agregado satisfactoriamente',
-                        token: user.insertedId
-                    })
+                    if (countId) {
+                        res.send({
+                            status: 'error',
+                            message: 'La cedula de ciudadania ya ha sido registrada',
+                        });
+                    } else {
+
+                        const salt = await bcrypt.genSalt(10)
+                        const hashedPassword = await bcrypt.hash(password, salt)
+                        const date = new Date;
+                        console.log(date.getDate);
+                        const user = await req.db.collection('admin').insertOne({
+                            name: name + ' ' + lastname,
+                            identification,
+                            email,
+                            password: hashedPassword,
+                            birthdate: day + '/' + month + '/' + year,
+                            adress,
+                            phone,
+                        })
+
+                        res.status(201).json({
+                            status: 'ok',
+                            message: 'Administrador agregado satisfactoriamente',
+                            token: user.insertedId
+                        })
+
+                    }
 
                 }
 

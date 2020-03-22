@@ -10,7 +10,7 @@ const InformationBusiness = (props) => {
             </label>
             <label>
                 CEDULA:
-                <p>{props.data.NIT}</p>
+                <p>{props.data.RUC}</p>
             </label>
             <label>
                 EMPLEADOS:

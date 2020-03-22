@@ -81,6 +81,12 @@ const NavMaster = (props) => {
                                     <button onClick={() => { props.onClick(2) }} style={selection(2)}>FACTURACIÓN</button>
                                 </li>
                                 <li>
+                                    <button onClick={() => { props.onClick(3) }} style={selection(3)}>EMPLEADOS</button>
+                                </li>
+                                <li>
+                                    <button onClick={() => { props.onClick(4) }} style={selection(4)}>ACTUALIZAR EMPLEADOS</button>
+                                </li>
+                                <li>
                                     <button onClick={() => { router.push("/registro-administrador") }} style={selection(5)}>REGISTRAR ADMINISTRADOR</button>
                                 </li>
                                 {/* 

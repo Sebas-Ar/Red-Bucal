@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import InfoUser from './usuario/InfoUser';
+import Swal from 'sweetalert2'
 import axios from "axios";
+import InfoUser from './usuario/InfoUser';
 import AddUser from './usuario/AddUser';
 
 const EmployeeList = (props) => {
@@ -22,18 +23,27 @@ const EmployeeList = (props) => {
     const deleteUser = async (identification) => {
         const url = '/api/deleteUser'
         const identifications = props.data.identifications
-        const NIT = props.data.NIT
+        const RUC = props.data.RUC
         const tamaño = props.data.identifications.length
-        console.log(identifications, identification, NIT, tamaño);
+        console.log(identifications, identification, RUC, tamaño);
         const datos = {
             identification,
             identifications,
-            NIT,
+            RUC,
             tamaño,
         }
         console.log(datos);
         const result = await axios.post(url, datos)
-        props.changeData(result.data.message.value);
+        if (result.data.status) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Empleado eliminado',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            props.changeData(result.data.message.value);
+        }
     }
 
     const activeInfo = () => {
@@ -52,7 +62,7 @@ const EmployeeList = (props) => {
 
             {
                 addUser ?
-                    <AddUser identifications={props.data.identifications} NIT={props.data.NIT} changeData={props.changeData} changeAddUser={changeAddUser}/>
+                    <AddUser identifications={props.data.identifications} RUC={props.data.RUC} changeData={props.changeData} changeAddUser={changeAddUser}/>
                 :
                 ''
             }

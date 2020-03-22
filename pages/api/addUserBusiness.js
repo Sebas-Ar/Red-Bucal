@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs"
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {
-        const { name, lastname, adress, phone, email, identification, birthdate, identifications, NIT} = req.body
+        const { name, lastname, adress, phone, email, identification, birthdate, identifications, RUC} = req.body
         console.log(req.body)
         if (!validator.validate(email)) {
 
@@ -32,7 +32,7 @@ const handler = async (req, res) => {
                     const date = new Date;
                     const user = await req.db.collection('users').insertOne({
                         state: false,
-                        NIT,
+                        RUC,
                         name: name + ' ' + lastname,
                         identification,
                         email,
@@ -51,7 +51,7 @@ const handler = async (req, res) => {
                     })
                     
                     const encontrar = await req.db.collection('bussines').findAndModify(
-                        { "NIT": NIT },
+                        { "RUC": RUC },
                         [['_id', 'asc']],
                         { "$set": { "identifications": identifications } },
                         { "new": true }

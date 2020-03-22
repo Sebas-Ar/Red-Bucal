@@ -33,6 +33,7 @@ const RegisterAll = (props) => {
                     ChangeText={props.ChangeText}
                     onSubmitPersonalRegister={props.onSubmitPersonalRegister}
                     user={props.user}
+                    errors={props.errors}
                 />
             </div>
             <div className="diente2"></div>
