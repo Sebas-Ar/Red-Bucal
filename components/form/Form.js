@@ -1,24 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 
 const Form = () => {
 
-    const onSubmit = e => {
+    const [data, setData] = useState({});
+
+    const onSubmit = async e => {
         e.preventDefault()
+        const url = '/api/email/sendMail'
+        const result = await axios.post(url,data)
+        console.log(result)
     }
+
+    const onChangeData = (e) => {
+        setData(Object.assign({}, data, { [e.target.name]: e.target.value }))
+    }
+
     return (
         <form action="">
             <h4>Dejanos un mensaje</h4>
             <label className="nombre">Nombre
-                <input type="text"/>
+                <input type="text" name="name" onChange={onChangeData}/>
             </label>
             <label className="telefono">Telefono
-                <input type="text"/>
+                <input type="number" name="phone" onChange={onChangeData}/>
             </label>
             <label className="email">Email
-                <input type="text" />
+                <input type="text" name="email" onChange={onChangeData}/>
             </label>
             <label className="mensaje">Mensaje
-                <textarea></textarea>
+                <textarea name="message" onChange={onChangeData}></textarea>
             </label>
 
             <button type="submit" onClick={onSubmit}>Enviar</button>
