@@ -6,7 +6,7 @@ export default (req, res) => {
     if (req.method === 'POST') {
         const { name, phone, email, message } = req.body
 
-        sgMail.setApiKey('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')
+        sgMail.setApiKey('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')
         
         const contentHTML = `
             <!DOCTYPE html>
@@ -25,9 +25,9 @@ export default (req, res) => {
             </html>
         `
         const msg = {
-            to: 'juan_ariasd@hotmail.com',
-            /* from: 'xevaz.ariasd@gmail.com', */
-            from: 'sebas_ariasd@hotmail.com',
+            to: email,
+            from: 'info.redbucal@gmail.com',
+            /* from: 'sebas_ariasd@hotmail.com', */
             subject: 'CONTACTENOS - Red Bucal',
             text: 'esete es el texto de inicio',
             html: contentHTML
