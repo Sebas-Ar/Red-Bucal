@@ -23,7 +23,7 @@ const Red = ({data}) => {
 }
 
 export async function getServerSideProps() {
-    const url = 'http://localhost:3000/api/map/getToken'
+    const url = 'https://redbucal.com/api/map/getToken'
     const result = await fetch(url)
     const json = await result.json()
     return {
