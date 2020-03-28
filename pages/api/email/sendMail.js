@@ -6,7 +6,7 @@ export default (req, res) => {
     if (req.method === 'POST') {
         const { name, phone, email, message } = req.body
 
-        sgMail.setApiKey('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')
+        sgMail.setApiKey(process.env.TOKEN_SEND_GRID)
         
         const contentHTML = `
             <!DOCTYPE html>
@@ -26,16 +26,23 @@ export default (req, res) => {
         `
         const msg = {
             to: email,
-            from: 'info.redbucal@gmail.com',
-            /* from: 'sebas_ariasd@hotmail.com', */
+            /* from: 'xevaz.ariasd@gmail.com', */
+            from: 'redbucal.info@gmail.com',
             subject: 'CONTACTENOS - Red Bucal',
             text: 'esete es el texto de inicio',
             html: contentHTML
         }
 
-        const info = sgMail.send(msg);
+        try {
+            sgMail.send(msg);
+        } catch (error) {
+            console.log(error)
+        }
 
-        res.status(200).json({ info: info })
+        res.status(200).json({ 
+            status: 'ok',
+            message: 'correo enviado'
+         })
 
     } else {
         // Handle any other HTTP method
