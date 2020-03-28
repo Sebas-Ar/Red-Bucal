@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import ReactMapGl, { Marker, Popup } from "react-map-gl";
+import ReactMapGl, { Marker } from "react-map-gl";
 import location from './locations/location'
 
-const PanamaMap = () => {
+const PanamaMap = (props) => {
 
     const [viewPort, setViewPort] = useState({
         /* 8.748158, -79.897642 */
@@ -15,8 +15,8 @@ const PanamaMap = () => {
     const [TOKEN_MAP, setTOKEN_MAP] = useState(process.env.TOKEN_MAP)
 
     useEffect(() => {
-        console.log(viewPort.zoom)
-        console.log(process.env.TOKEN_MAP)
+        /* console.log(viewPort.zoom)
+        console.log(props.data) */
     }, [viewPort]);
 
     return (
@@ -110,5 +110,7 @@ const PanamaMap = () => {
         </div>
     )
 }
+
+
 
 export default PanamaMap
