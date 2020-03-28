@@ -16,6 +16,7 @@ const PanamaMap = () => {
 
     useEffect(() => {
         console.log(viewPort.zoom)
+        console.log(process.env.TOKEN_MAP)
     }, [viewPort]);
 
     return (
