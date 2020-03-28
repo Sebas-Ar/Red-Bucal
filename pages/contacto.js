@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '../components/layout/Layout'
 import LayoutForm from '../components/form/LayoutForm'
-import PanamaMap from '../components/contacto/PanamaMap'
+import PanamaMap from '../components/red/PanamaMap'
 import Footer from '../components/footer/Footer'
 
 const contacto = () => {
