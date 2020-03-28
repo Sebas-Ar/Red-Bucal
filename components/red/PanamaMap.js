@@ -12,17 +12,15 @@ const PanamaMap = (props) => {
         height: '500px',
         zoom: 8.5 
     });
-    const [TOKEN_MAP, setTOKEN_MAP] = useState(process.env.TOKEN_MAP)
 
     useEffect(() => {
-        /* console.log(viewPort.zoom)
-        console.log(props.data) */
+        console.log(props.TOKEN_MAP)
     }, [viewPort]);
 
     return (
         <div className="content">
             <ReactMapGl 
-                {...viewPort} mapboxApiAccessToken={TOKEN_MAP}
+                {...viewPort} mapboxApiAccessToken={props.TOKEN_MAP}
                     onViewportChange={viewPort => {
                     setViewPort(viewPort)
                 }}

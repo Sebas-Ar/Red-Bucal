@@ -1,5 +1,4 @@
 import withMiddleware from '../../middlewares/withMiddleware'
-import { ObjectId } from "mongodb"
 
 const handler = async (req, res) => {
     if (req.method === 'PUT') {

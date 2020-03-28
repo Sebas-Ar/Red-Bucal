@@ -4,18 +4,14 @@ import LayoutFeatures from '../components/red/layout/LayoutFeatures'
 import SliderImg from '../components/red/SliderImg'
 import PanamaMap from '../components/red/PanamaMap'
 import Footer from '../components/footer/Footer'
+import fetch from 'isomorphic-unfetch'
 
 
-const Red = ({ data }) => {
-
-    useEffect(() => {
-        console.log(data)
-    }, [])
-
+const Red = ({data}) => {
 
     return (
         <Layout>
-            <PanamaMap/> 
+            <PanamaMap TOKEN_MAP={data.message}/> 
             <LayoutFeatures/>
             <br/>
             <br/>
@@ -26,9 +22,12 @@ const Red = ({ data }) => {
     )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
+    const url = 'http://localhost:3000/api/map/getToken'
+    const result = await fetch(url)
+    const json = await result.json()
     return {
-        props: { data: process.env.TOKEN_MAP }
+        props: { data: json }
     }
 }
 
