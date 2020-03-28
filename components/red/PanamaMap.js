@@ -20,7 +20,7 @@ const PanamaMap = (props) => {
     return (
         <div className="content">
             <ReactMapGl 
-                {...viewPort} mapboxApiAccessToken={props.TOKEN_MAP}
+                {...viewPort} mapboxApiAccessToken={process.env.TOKEN_MAP}
                     onViewportChange={viewPort => {
                     setViewPort(viewPort)
                 }}
