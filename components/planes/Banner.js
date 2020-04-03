@@ -73,6 +73,49 @@ const Banner = () => {
                     width: 500px;
                 }
                 
+                @media screen and (max-width: 900px) {
+                    .clinicas {
+                        letter-spacing: 10px;
+                        font-size: 80px;
+                    }
+
+                    .profesionales {
+                        font-size: 50px;
+                    }   
+                }
+                @media screen and (max-width: 550px) {
+
+                    .content {
+                        height: 400px;
+                    }
+
+                    .content {
+                        grid-template-columns: 1fr;
+                    }
+
+                    .diente1, .diente2 {
+                        display: none;
+                    }
+
+                }
+                @media screen and (max-width: 400px) {
+
+                    .content {
+                        height: 300px;
+                    }
+
+                    .clinicas {
+                        letter-spacing: 5px;
+                        font-size: 65px;
+                    }
+
+                    .profesionales {
+                        font-size: 38px;
+                        margin-top: -10px;
+                    }   
+
+                }
+                
             `}</style>
         </section>
     )

@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import ReactMapGl, { Marker } from "react-map-gl";
-import location from './locations/location'
+
 
 const PanamaMap = (props) => {
 
     const [viewPort, setViewPort] = useState({
-        /* 8.748158, -79.897642 */
-        latitude: 8.748158,
-        longitude: -79.727642,
-        width: '600px',
-        height: '500px',
-        zoom: 8.5 
+        latitude: 8.708158,
+        longitude: -79.757642,
+        width: '100%',
+        height: '80vh',
+        zoom: 8.7                                  
     });
 
     useEffect(() => {
-        console.log(props.TOKEN_MAP)
-    }, [viewPort]);
+        const width = screen.width
+
+        if (width < 460) {
+            setViewPort(Object.assign({}, viewPort, { width: undefined + 'px', zoom: 8}))
+        } else {
+            setViewPort(Object.assign({}, viewPort, { width: undefined + 'px'}))
+        }
+    }, []);
+
 
     return (
         <div className="content">
@@ -27,19 +33,20 @@ const PanamaMap = (props) => {
                 mapStyle="mapbox://styles/sebas-ar/ck82lxiwb1a581iqwvh1ab3m3"
             >
                 {
-                    location.map(loc => (
+                    props.location.map(loc => (
                         <Marker
-                            key={loc.latitude}
+                            key={loc.id}
                             latitude={loc.latitude}
                             longitude={loc.longitude}
                         >
                             <button 
-                            style={{
-                                backgroundColor: loc.color
-                            }} 
-                            onClick={(e) => {
-                                e.preventDefault()
-                            }}>
+                                style={{ 
+                                    backgroundColor: loc.color,
+                                    height: loc.id === props.clinic ? '50px' : '',
+                                    width: loc.id === props.clinic ? '50px' : '',
+                                    transform: loc.id === props.clinic ? 'translate(-40%, -40%)' : ''
+                                }} 
+                                onClick={() => {props.changeClinic(loc.id)}}>
                                 <img src="/img/diente-form.png" alt="diente"/>
                             </button>
 
@@ -55,30 +62,39 @@ const PanamaMap = (props) => {
                     width: 100%;
                     display: grid;
                     justify-items: center;
-                    margin-top: 160px;
                 }
 
                 button {
                     z-index: 1;
-                    ${viewPort.zoom < 11.315332227113439
+                    ${
+                    viewPort.zoom > 7.5
+                    ?
+                    viewPort.zoom < 11.315332227113439
                         ?
                         'height:' + viewPort.zoom * (viewPort.zoom - 7.5) + 'px;'
                         :
                         viewPort.zoom < 14.130664454226876
-                        ?
-                        'height:' + (viewPort.zoom * (viewPort.zoom - 7.5) - ((viewPort.zoom * (viewPort.zoom - 7.5))/2)) + 'px;'
-                        :
-                        'height:' + (viewPort.zoom * (viewPort.zoom - 7.5) - ((viewPort.zoom * (viewPort.zoom - 7.5))/1.5)) + 'px;'
+                            ?
+                            'height:' + (viewPort.zoom * (viewPort.zoom - 7.5) - ((viewPort.zoom * (viewPort.zoom - 7.5))/2)) + 'px;'
+                            :
+                            'height:' + (viewPort.zoom * (viewPort.zoom - 7.5) - ((viewPort.zoom * (viewPort.zoom - 7.5))/1.5)) + 'px;'
+                    :
+                    'height: 10px;'
                     }
-                    ${viewPort.zoom < 11.315332227113439
+                    ${
+                    viewPort.zoom > 7.5
+                    ?
+                    viewPort.zoom < 11.315332227113439
                         ?
                         'width:' + viewPort.zoom * (viewPort.zoom - 7.5) + 'px;'
                         :
                         viewPort.zoom < 14.130664454226876
-                        ?
-                        'width:' + (viewPort.zoom * (viewPort.zoom - 7.5) - ((viewPort.zoom * (viewPort.zoom - 7.5)) / 2)) + 'px;'
-                        :
-                        'width:' + (viewPort.zoom * (viewPort.zoom - 7.5) - ((viewPort.zoom * (viewPort.zoom - 7.5)) / 1.5)) + 'px;'
+                            ?
+                            'width:' + (viewPort.zoom * (viewPort.zoom - 7.5) - ((viewPort.zoom * (viewPort.zoom - 7.5)) / 2)) + 'px;'
+                            :
+                            'width:' + (viewPort.zoom * (viewPort.zoom - 7.5) - ((viewPort.zoom * (viewPort.zoom - 7.5)) / 1.5)) + 'px;'
+                    :
+                    'width: 10px;'
                     }
                     border: none;
                     cursor: pointer;

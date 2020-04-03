@@ -17,6 +17,10 @@ const InformationLeft = () => {
             <div className="img"></div>
 
             <style jsx>{`
+
+                :global(:root) {
+                    --sizeInfo1 : 1;
+                }
                 
                 .content {
                     height: 500px;
@@ -42,6 +46,7 @@ const InformationLeft = () => {
                     background-image: url("/img/medio-diente.png");
                     background-size: 100% auto;
                     background-position: center;
+                    background-repeat: no-repeat;
                     grid-column: 2/3;
                     grid-row: 1/3;
                 }
@@ -60,20 +65,36 @@ const InformationLeft = () => {
                 }
 
                 .sonrisas {
-                    font-size: 30px;
+                    font-size: calc(30px * var(--sizeInfo1));
                     font-weight: 400;
-                    letter-spacing: 6px;
+                    letter-spacing: calc(6px * var(--sizeInfo1));
                 }
 
                 .todos {
-                    font-size: 90px;
-                    margin-top: -30px;
+                    font-size: calc(90px * var(--sizeInfo1));
+                    margin-top: calc(-30px * var(--sizeInfo1));
                 }
 
                 p {
                     color: var(--mainColorClaro);
                     margin: 70px 40px 30px 60px;
                     text-align: justify;
+                }
+
+                @media screen and (max-width: 1090px) {
+                    
+                    :global(:root) {
+                        --sizeInfo1 : .78;
+                    }
+
+                }
+
+                @media screen and (max-width: 850px) {
+
+                    .content {
+                        display: none;
+                    }
+
                 }
                 
                 

@@ -6,11 +6,11 @@ const Familias = () => {
     const router = useRouter()
 
     const contacto = () => {
-        router.replace("/contacto")
+        router.push("/contacto")
     }
 
     const registro = () => {
-        router.replace("/registro-ingreso")
+        router.push("/registro-ingreso")
     }
 
 
@@ -159,6 +159,12 @@ const Familias = () => {
                     transform: translate(-50%);
                     top: 50px;
                     z-index: -1;
+                }
+
+                @media screen and (max-width: 850px) {
+                    .content {
+                        display: none;
+                    }
                 }
                 
             `}</style>

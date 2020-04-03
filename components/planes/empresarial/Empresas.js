@@ -6,11 +6,11 @@ const Empresas = () => {
     const router = useRouter()
 
     const contacto = () => {
-        router.replace("/contacto")
+        router.push("/contacto")
     }
 
     const registro = () => {
-        router.replace("/registro-ingreso")
+        router.push("/registro-ingreso")
     }
 
     return (
@@ -150,6 +150,12 @@ const Empresas = () => {
                     border-radius: 50%;
                     right: -50%;
                     z-index: -1;
+                }
+
+                @media screen and (max-width: 850px) {
+                    .content {
+                        display: none;
+                    }
                 }
                 
                 

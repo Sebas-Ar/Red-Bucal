@@ -7,6 +7,8 @@ import InformationLeft from '../components/index/InformationLeft'
 import LayoutForm from '../components/form/LayoutForm'
 import Footer from '../components/footer/Footer'
 import Cobertura from '../components/index/Cobertura'
+import InformationRightResponsive from '../components/index/InformationRightResponsive'
+import InformationLeftResponsive from '../components/index/InformationLeftResponsive'
 
 const Home = () => {
   return (
@@ -16,8 +18,13 @@ const Home = () => {
       <LayoutPlanes />
       <Cobertura />
       <InformationRight />  
+      <InformationRightResponsive />
       <InformationLeft />
-      <LayoutForm diente="/img/diente-form1.png" fondo="/img/doctora.png" />
+      <InformationLeftResponsive />
+      <LayoutForm 
+        diente="/img/diente-form1.png"
+        fondo="/img/doctora.png" 
+      />
       <Footer />
 
 

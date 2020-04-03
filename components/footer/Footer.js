@@ -67,6 +67,23 @@ const Footer = () => {
                     justify-itmes: center;
                 }
                 
+                @media screen and (max-width: 700px){
+                    footer {
+                        grid-template-columns: 1fr;
+                        justify-items: center;
+                        height: 120px
+                    }
+
+                    div {
+                        display: grid;
+                        justify-items: center;
+                    }
+
+                    p, span {
+                        margin: 5px 0;
+                    }
+                }
+                
             `}</style>
         </footer>
     )

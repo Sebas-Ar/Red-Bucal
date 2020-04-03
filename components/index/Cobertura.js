@@ -47,6 +47,7 @@ const Cobertura = () => {
                 }
 
                 h2 {
+                    text-align: center;
                     z-index: 10;
                     grid-row: 1/2;
                     grid-column: 2/4;
@@ -66,6 +67,14 @@ const Cobertura = () => {
                     grid-column: 2/4;
                     line-height: 25px;
                     color: var(--mainColor);
+                }
+
+                @media screen and (max-width: 640px) {
+
+                    .content {
+                        grid-template-columns: .5fr 2.25fr 2.25fr .5fr;
+                    }
+
                 }
                 
             `}</style>

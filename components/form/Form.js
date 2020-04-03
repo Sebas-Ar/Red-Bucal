@@ -17,7 +17,7 @@ const Form = () => {
     }
 
     return (
-        <form action="">
+        <form>
             <h4>Dejanos un mensaje</h4>
             <label className="nombre">Nombre
                 <input type="text" name="name" onChange={onChangeData}/>
@@ -71,11 +71,8 @@ const Form = () => {
                     display: block;
                     border: 1px solid #33333333;
                     border-radius: 4px;
+                    width: 100%;
                 }   
-
-                textarea {
-                    
-                }
 
                 button {
                     color: white;
@@ -96,6 +93,14 @@ const Form = () => {
 
                 .email {
                     grid-column: 1/3;
+                }
+
+
+                @media screen and (max-width: 800px) {
+
+                    form {
+                        height: 100%;
+                    }
                 }
             
             `}</style>

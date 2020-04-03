@@ -5,11 +5,14 @@ import LayoutForm from '../../components/form/LayoutForm'
 import Banner from '../../components/planes/Banner'
 import Empresas from '../../components/planes/empresarial/Empresas'
 import Footer from '../../components/footer/Footer'
+import EmpresasResponsive from '../../components/planes/empresarial/EmpresasResponsive'
+import PersonalResponsive from '../../components/planes/PersonalResponsive'
 
 const empresarial = () => {
     return (
         <Layout>
             <Empresas />
+            <EmpresasResponsive />
             <Personal 
                 ubicacion=".5fr 5.5fr 6fr" 
                 img="3/4" 
@@ -21,8 +24,9 @@ const empresarial = () => {
                 dienteDirect="center right"
                 imgBig="/img/operacion.png"
             />
+            <PersonalResponsive imgBig="/img/operacion.png"/>
             <Banner />
-            <LayoutForm diente="/img/diente-form2.png" />
+            <LayoutForm diente="/img/diente-form2.png" fondo="/img/doctora.png" />
             <Footer />
         </Layout>
     )

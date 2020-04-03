@@ -17,14 +17,13 @@ const LayoutForm = (props) => {
             <style jsx>{`
                 
                 .content {
-                    margin-top: 50px;
                     height: 450px;
                     widdth: 100%;
                     background-image: url(${props.fondo});
                     background-size: auto 120%;
                     background-repeat: no-repeat;
                     display: grid;
-                    grid-template-columns: 1fr 4fr 3.5fr 1.5fr;
+                    grid-template-columns: 135px 4fr 3.5fr 1.5fr;
                 }    
 
                 .amarillo {
@@ -48,7 +47,8 @@ const LayoutForm = (props) => {
 
                 .diente {
                     background-image: url(${props.diente});
-                    background-size: 100% auto;
+                    background-repeat: no-repeat;
+                    background-size: 100% auto ;
                     grid-column: 4/5;
                     grid-row: 1/2;  
                 }
@@ -72,8 +72,101 @@ const LayoutForm = (props) => {
                     color: var(--mainColorClaro);
                 }
 
-                
-                
+                @media screen and (max-width: 1070px) {
+
+                    .content {
+                        grid-template-columns: 4fr 3.5fr 1.5fr;
+                    }
+
+                    .amarillo {
+                        display: none;
+                    }
+
+                    .fondoAzul {
+                        grid-column: 3/4;
+                    }
+                    .diente {
+                        grid-column: 3/4;
+                        background-size: auto 100% ;
+                    }
+
+                }
+
+                @media screen and (max-width: 950px) {
+                    .content {
+                        grid-template-columns: 4fr 3.5fr;
+                    }
+
+                    .fondoAzul {
+                        grid-column: 1/3;
+                        grid-row: 2/3;
+                        height: 100%;
+                    }
+                    .diente {
+                        grid-column: 1/3;
+                        grid-row: 2/3;
+                        background-image: url('/img/diente-form-responsive.png');
+                        background-size: 80% ;
+                        background-position: center top;
+                    }
+                }
+
+                @media screen and (max-width: 800px) {
+                    .content {
+                        grid-template-columns: 1fr;
+                        grid-template-rows: 300px 390px 50px;
+                        background-image: none;
+                        height: 740px;
+                    }
+
+                    h3 {
+                        background-color: var(--puntoAzul);
+                        color: white;
+                        width: 100%;
+                        height: 100%;
+                        text-align: center;
+                        display: grid;
+                        align-items: center;
+                    }
+
+                    p {
+                        display: grid;
+                        align-items: center;
+                        justify-items: center;
+                        margin-top: 0;
+                        background-image: url(${props.fondo});
+                        background-position: center top;
+                        width: 100%;
+                        height: 100%;
+                    }
+
+                    .text {
+                        grid-row: 1/2;
+                    }
+
+                    .fondoAzul {
+                        grid-column: 1/2;
+                        grid-row: 3/4;
+                        height: 50px;
+                        
+                    }
+                    .diente {
+                        grid-column: 1/2;
+                        grid-row: 3/4;
+                        height: 50px;
+                    }
+
+                }
+
+                @media screen and (max-width: 425px) {
+
+                    h3 {
+                        font-size: 42px;
+                    }
+
+                }
+
+
             `}</style>
         </div>
     )

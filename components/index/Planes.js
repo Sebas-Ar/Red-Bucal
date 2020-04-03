@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 const Planes = (props) => {
@@ -6,11 +6,11 @@ const Planes = (props) => {
     const router = useRouter()
 
     const contacto = () => {
-        router.replace("/contacto")
+        router.push("/contacto")
     }
 
     const registro = () => {
-        router.replace("/registro-ingreso")
+        router.push("/registro-ingreso")
     }
 
     return (
@@ -19,7 +19,7 @@ const Planes = (props) => {
             <h3>{ props.title }</h3>
             <div className="img">
                 <p>VALOR</p>
-                <h5>{props.valor} USD / AÑO</h5>
+                <h5>{props.valor} USD / {props.fecha}</h5>
                 <p>{props.colaborador}</p>
             </div>
             <div className="text">
@@ -36,7 +36,8 @@ const Planes = (props) => {
                     justify-self: center;
                     grid-column: ${ props.position };
                     display: grid;
-                    grid-template-columns: 50px 450px 50px;
+                    width: 550px;
+                    grid-template-columns: .5fr 4.5fr .5fr;
                     grid-template-rows: 35px 35px 300px 300px;
                     justify-items: center;
                 }
@@ -153,6 +154,36 @@ const Planes = (props) => {
 
                 .registro:hover {
                      background: var(--botonesRegistro);
+                }
+
+                @media screen and (max-width: 1150px) {
+                    .content {
+                        grid-row: auto;
+                        margin-bottom: 50px;
+                        grid-column: 1/2;
+                    }
+                }
+
+                @media screen and (max-width: 640px) {
+                    .content {
+                        width: 100%;
+                    }
+
+                    h3 {
+                        grid-column: 1/4
+                    }
+                }
+                @media screen and (max-width: 420px) {
+
+                    .content {
+                        grid-template-rows: 35px 35px 300px 370px;
+                    }
+
+                    .img h5 {
+                        font-size: 45px;
+                    }
+
+
                 }
 
             `}</style>

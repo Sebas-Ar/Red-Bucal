@@ -14,8 +14,8 @@ const InformationRight = () => {
                         <span className="red">RED</span>
                     </h3>
                     <p>Somos quienes te conectan a una red robusta de servicios odontológicos que ofrece excelencia dental con una amplia cobertura a un precio muy accesible.
-Contamos con centros listos para brindar la mejor solución de salud dental. Nuestros especialistas garantizan servicios de calidad, y nuestras locaciones y horarios facilitan flexibilidad al paciente. 
-</p>
+                    Contamos con centros listos para brindar la mejor solución de salud dental. Nuestros especialistas garantizan servicios de calidad, y nuestras locaciones y horarios facilitan flexibilidad al paciente. 
+                    </p>
                 </div>
                 <div className="img2"></div>
                 <div className="img3"></div>
@@ -130,6 +130,11 @@ Contamos con centros listos para brindar la mejor solución de salud dental. Nue
                     margin-top: -30px;
                 }
                 
+                @media screen and (max-width: 850px) {
+                    .content {
+                        display: none;
+                    }
+                }
                 
                 
             `}</style>

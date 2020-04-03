@@ -3,175 +3,413 @@ import Porcentajes from './Porcentajes'
 
 const DescuentosBox = () => {
     return (
+        
         <div className="content">
-            <div className="linea1">
-                <div className="punto1"></div>
+            <div className="horizontal1 horizontal"></div>
+            <div className="horizontal2 horizontal">
+                <div className="circulo"></div>
             </div>
-            <div className="linea2">
+            <div className="horizontal3 horizontal">
+                <div className="circulos"></div>
             </div>
-            <div className="linea3">
-                <div className="punto4"></div>
-                <div className="punto2"></div>
-            </div>
-            <div className="linea4">
-                <div className="punto5"></div>
-                <div className="punto3"></div>
-            </div>
-            <section className="cincuenta">
-                <Porcentajes 
-                    backgroundColor="#ffffffbb" 
-                    numero="50" 
-                    color="#444444" 
-                    sizeNum="220px"
+            <div className="vertical1 horizontal"></div>
+            <div className="vertical2 horizontal"></div>
+            <div className="vertical3 horizontal"></div>
+            <section className="cien">
+                <Porcentajes
+                    backgroundColor="rgba(255, 255, 255, 0.733)"
+                    numero="100"
+                    color="#333333dd"
+                    grados="-90deg"
+                    sizeNum="200px"
                     arriba="-30px"
-                    derecha="40px"
+                    derecha="35px"
                     sizeText="35px"
                 />
             </section>
-            <section className="cuarenta">
-                <Porcentajes 
-                    backgroundColor="#1188cc99" 
-                    numero="40" 
-                    color="white" 
-                    sizeNum="160px"
-                    arriba="-25px"
-                    derecha="20px"
+            <section className="ochenta">
+                <Porcentajes
+                    backgroundColor="rgba(17, 136, 204, 0.6)"
+                    numero="80"
+                    color="white"
+                    grados="0deg"
+                    sizeNum="150px"
+                    arriba="-30px"
+                    derecha="25px"
+                    sizeText="30px"
+                />
+            </section>
+            <section className="sesenta">
+                <Porcentajes
+                    backgroundColor="rgba(255, 34, 17, 0.6)"
+                    numero="60"
+                    color="white"
+                    grados="-90deg"
+                    sizeNum="120px"
+                    arriba="-20px"
+                    derecha="25px"
                     sizeText="25px"
                 />
             </section>
-            <section className="treinta">
-                <Porcentajes 
-                    backgroundColor="#bb444499" 
-                    numero="30" 
-                    color="white" 
-                    sizeNum="130px"
+            <section className="ciencuetaYCinco">
+                <Porcentajes
+                    backgroundColor="rgba(255, 153, 0, 0.8)"
+                    numero="55"
+                    color="white"
+                    grados="0deg"
+                    sizeNum="120px"
                     arriba="-20px"
                     derecha="15px"
                     sizeText="20px"
                 />
             </section>
-            <section className="veinte">
-                <Porcentajes 
-                    backgroundColor="#ffaa1188" 
-                    numero="20" 
-                    color="white" 
-                    grados="-90deg"
+            <section className="cincuenta">
+                <Porcentajes
+                    backgroundColor="rgba(255, 255, 255, 0.733)"
+                    numero="50"
+                    color="#333333dd"
+                    grados="0deg"
                     sizeNum="80px"
                     arriba="-10px"
                     derecha="15px"
                     sizeText="15px"
                 />
-                    
             </section>
+            <section className="cuarenta">
+                <Porcentajes
+                    backgroundColor="rgba(255, 153, 0, 0.8)"
+                    numero="40"
+                    color="white"
+                    grados="-90deg"
+                    sizeNum="100px"
+                    arriba="-10px"
+                    derecha="15px"
+                    sizeText="20px"
+                />
+            </section>
+            <section className="treinta">
+                <Porcentajes
+                    backgroundColor="rgba(255, 34, 17, 0.6)"
+                    numero="30"
+                    color="white"
+                    grados="0deg"
+                    sizeNum="90px"
+                    arriba="-20px"
+                    derecha="15px"
+                    sizeText="20px"
+                />
+            </section>
+            <section className="Veinticinco">
+                <Porcentajes
+                    backgroundColor="rgba(17, 136, 204, 0.6)"
+                    numero="25"
+                    color="white"
+                    grados="0deg"
+                    sizeNum="110px"
+                    arriba="-20px"
+                    derecha="15px"
+                    sizeText="25px"
+                />
+            </section>
+            <section className="veinte">
+                <Porcentajes
+                    backgroundColor="rgba(255, 34, 17, 0.6)"
+                    numero="20"
+                    color="white"
+                    grados="-90deg"
+                    sizeNum="110px"
+                    arriba="-20px"
+                    derecha="15px"
+                    sizeText="20px"
+                />
+            </section>
+
             <style jsx>{`
                 
                 .content {
-                    height: 100vh;
+                    height: calc(900px * var(--sizeP) * 1.2);
                     width: 100%;
                     display: grid;
-                    grid-template-columns: 2fr 2px 1.2fr 3px .8fr;
-                    grid-template-rows: 4px 1fr 5px 1fr;
+                    grid-template-columns: 2fr 3px 1fr 3px 1fr 3px 1fr;
+                    grid-template-rows: 3px 1.3fr 3px 1fr 3px 1fr;
                     margin-top: 150px;
                 }
 
-                .punto1 {
-                    height: 25px;
-                    width: 25px;
-                    border-radius: 50%;
+                .horizontal {
                     background-color: var(--mainColor);
-                    transform: translate(-45%, -45%);
+                    position: relative;
                 }
 
-                .punto2 {
-                    height: 30px;
-                    width: 30px;
-                    border-radius: 50%;
-                    background-color: var(--mainColor);
-                    align-self: flex-end;
-                    transform: translate(-40%, 50%);
-                }
-
-                .punto3 {
-                    height: 36px;
-                    width: 18px;
-                    position: absolute;
-                    border-top-left-radius: 100% 50%;
-                    border-bottom-left-radius: 100% 50%;
-                    background-color: var(--mainColor);
-                    justify-self: flex-end;
-                    transform: translate(0%, -40%);
-                }
-
-                .punto4 {
-                    height: 20px;
-                    width: 20px;
-                    border-radius: 50%;
-                    background-color: var(--mainColor);
-                    transform: translate(-40%, -40%);
-                }
-
-                .punto5 {
-                    height: 30px;
-                    width: 30px;
-                    border-radius: 50%;
-                    background-color: var(--mainColor);
-                    transform: translate(-45%, -45%);
-                }
-
-                .linea1 {
-                    background: var(--mainColor);
-                    grid-column: 2/3;
-                    grid-row: 1/5;
-                    displya: grid;
-                }
-
-                .linea2 {
-                    background: var(--mainColor);
-                    grid-column: 1/6;
+                .horizontal1 {
+                    grid-column: 1/8;
                     grid-row: 1/2;
                 }
 
-                .linea3 {
-                    display: grid;
-                    background: var(--mainColor);
-                    grid-column: 4/5;
-                    grid-row: 3/5;
+                .horizontal1:before {
+                    content: '';
+                    position: absolute;
+                    border-radius: 50%;
+                    width: calc(35px * var(--sizeP) * 1.2);
+                    height: calc(35px * var(--sizeP) * 1.2);
+                    background-color: var(--mainColor);
+                    left: 0;
+                    bottom: 0;
+                    transform: translate(-40%, 40%);
                 }
 
-                .linea4 {
-                    position: relative;
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    background: var(--mainColor);
-                    grid-column: 2/6;
+                .horizontal1:after {
+                    content: '';
+                    position: absolute;
+                    border-top-left-radius: 100% 50%;
+                    border-bottom-left-radius: 100% 50%;
+                    width: calc(15px * var(--sizeP) * 1.2);
+                    height: calc(30px * var(--sizeP) * 1.2);
+                    background-color: var(--mainColor);
+                    right: 0;
+                    bottom: 0;
+                    transform: translateY(40%);
+                }
+
+                .horizontal2 {
+                    grid-column: 2/8;
                     grid-row: 3/4;
                 }
 
-                .cincuenta {
-                    grid-row: 2/5;
+                .horizontal2:before {
+                    content: '';
+                    position: absolute;
+                    border-radius: 50%;
+                    width: calc(35px * var(--sizeP) * 1.2);
+                    height: calc(35px * var(--sizeP) * 1.2);
+                    background-color: var(--mainColor);
+                    left: 0;
+                    bottom: 0;
+                    transform: translate(-40%, 40%);
+                }
+
+                .horizontal2:after {
+                    content: '';
+                    position: absolute;
+                    border-top-left-radius: 100% 50%;
+                    border-bottom-left-radius: 100% 50%;
+                    width: calc(15px * var(--sizeP) * 1.2);
+                    height: calc(30px * var(--sizeP) * 1.2);
+                    background-color: var(--mainColor);
+                    right: 0;
+                    bottom: 0;
+                    transform: translateY(40%);
+                }
+
+                .horizontal3 {
+                    grid-column: 2/8;
+                    grid-row: 5/6;
+                }
+
+                .horizontal3:before {
+                    content: '';
+                    position: absolute;
+                    border-radius: 50%;
+                    width: calc(20px * var(--sizeP) * 1.2);
+                    height: calc(20px * var(--sizeP) * 1.2);
+                    background-color: var(--mainColor);
+                    left: 0;
+                    bottom: 0;
+                    transform: translate(-40%, 40%);
+                }
+
+                .horizontal3:after {
+                    content: '';
+                    position: absolute;
+                    border-top-left-radius: 100% 50%;
+                    border-bottom-left-radius: 100% 50%;
+                    width: calc(25px * var(--sizeP) * 1.2);
+                    height: calc(50px * var(--sizeP) * 1.2);
+                    background-color: var(--mainColor);
+                    right: 0;
+                    bottom: 0;
+                    transform: translateY(40%);
+                }
+
+                
+                .circulos:before {
+                    content: '';
+                    position: absolute;
+                    border-radius: 50%;
+                    width: calc(25px * var(--sizeP) * 1.2);
+                    height: calc(25px * var(--sizeP) * 1.2);
+                    background-color: var(--mainColor);
+                    right: 33.3%;
+                    bottom: 0;
+                    transform: translate(50%, 40%);
+                }
+                
+                .circulos:after {
+                    content: '';
+                    position: absolute;
+                    border-radius: 50%;
+                    width: calc(30px * var(--sizeP) * 1.2);
+                    height: calc(30px * var(--sizeP) * 1.2);
+                    background-color: var(--mainColor);
+                    right: 66.6%;
+                    bottom: 0;
+                    transform: translate(50%, 40%);
+                }
+
+                .vertical1 {
+                    grid-column: 2/3;
+                    grid-row: 1/7;
+                }
+
+                .vertical1:before {
+                    content: '';
+                    position: absolute;
+                    border-radius: 50%;
+                    width: calc(25px * var(--sizeP) * 1.2);
+                    height: calc(25px * var(--sizeP) * 1.2);
+                    background-color: var(--mainColor);
+                    left: 0;
+                    top: 0;
+                    transform: translate(-40%, -40%);
+                }
+
+                .vertical1:after {
+                    content: '';
+                    position: absolute;
+                    border-top-left-radius: 50% 100%;
+                    border-top-right-radius: 50% 100%;
+                    width: calc(40px * var(--sizeP) * 1.2);
+                    height: calc(20px * var(--sizeP) * 1.2);
+                    background-color: var(--mainColor);
+                    right: 0;
+                    bottom: 0;
+                    transform: translateX(40%);
+                }
+
+                .vertical2 {
+                    grid-column: 4/5;
+                    grid-row: 3/7;
+                }
+
+                .vertical2:before {
+                    content: '';
+                    position: absolute;
+                    border-radius: 50%;
+                    width: calc(15px * var(--sizeP) * 1.2);
+                    height: calc(15px * var(--sizeP) * 1.2);
+                    background-color: var(--mainColor);
+                    left: 0;
+                    top: 0;
+                    transform: translate(-40%, -40%);
+                }
+
+                .vertical2:after {
+                    content: '';
+                    position: absolute;
+                    border-top-left-radius: 50% 100%;
+                    border-top-right-radius: 50% 100%;
+                    width: calc(25px * var(--sizeP) * 1.2);
+                    height: calc(12 * var(--sizeP) * 1.2).5px;
+                    background-color: var(--mainColor);
+                    right: 0;
+                    bottom: 0;
+                    transform: translateX(40%);
+                }
+
+                .vertical3 {
+                    grid-column: 6/7;
+                    grid-row: 1/7;   
+                }
+
+                .vertical3:before {
+                    content: '';
+                    position: absolute;
+                    border-radius: 50%;
+                    width: calc(35px * var(--sizeP) * 1.2);
+                    height: calc(35px * var(--sizeP) * 1.2);
+                    background-color: var(--mainColor);
+                    left: 0;
+                    top: 0;
+                    transform: translate(-40%, -40%);
+                }
+
+                .vertical3:after {
+                    content: '';
+                    position: absolute;
+                    border-top-left-radius: 50% 100%;
+                    border-top-right-radius: 50% 100%;
+                    width: calc(40px * var(--sizeP) * 1.2);
+                    height: calc(20px * var(--sizeP) * 1.2);
+                    background-color: var(--mainColor);
+                    right: 0;
+                    bottom: 0;
+                    transform: translateX(40%);
+                }
+
+                .circulo:before {
+                    content: '';
+                    position: absolute;
+                    border-radius: 50%;
+                    width: calc(20px * var(--sizeP) * 1.2);
+                    height: calc(20px * var(--sizeP) * 1.2);
+                    background-color: var(--mainColor);
+                    right: 33.3%;
+                    bottom: 0;
+                    transform: translate(50%, 40%);
+                }
+
+                .cien {
                     grid-column: 1/2;
+                    grid-row: 2/7;
+                    background-image: url("/img/descuentos30.jpg");
+                    background-size: auto 100%;
+                    background-position: center;
+                }
+
+                .ochenta {
+                    grid-column: 3/6;
+                    background-image: url("/img/descuentos40.jpg");
+                    background-size: 100% auto;
+                    background-position: center;
+                }
+
+                .sesenta {
+                    background-image: url("/img/descuentos30.jpg");
+                    background-size: auto 100%;
+                    background-position: center;
+                }
+
+                .ciencuetaYCinco {
+                    background-image: url("/img/descuentos40.jpg");
+                    background-size: auto 100%;
+                    background-position: center;
+                }
+
+                .cincuenta {
                     background-image: url("/img/descuentos50.jpg");
                     background-size: auto 100%;
                     background-position: center;
                 }
 
                 .cuarenta {
-                    grid-row: 2/3;
-                    grid-column: 3/6;
-                    background-image: url("/img/descuentos40.jpg");
-                    background-size: 100% auto;
+                    background-image: url("/img/descuentos20.jpg");
+                    background-size: auto 100%;
+                    background-position: center;
                 }
 
                 .treinta {
-                    background-color: #ff221199;
+                    background-image: url("/img/descuentos20.jpg");
+                    background-size: auto 100%;
+                    background-position: center;
+                }
+
+                .Veinticinco {
                     background-image: url("/img/descuentos30.jpg");
                     background-size: auto 100%;
                     background-position: center;
                 }
 
                 .veinte {
-                    background-color: #ff9900cc;
-                    background-image: url("/img/descuentos20.jpg");
+                    background-image: url("/img/descuentos40.jpg");
                     background-size: auto 100%;
                     background-position: center;
                 }

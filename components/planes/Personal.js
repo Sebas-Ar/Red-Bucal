@@ -79,6 +79,7 @@ const Personal = (props) => {
 
                 h2 {
                     font-size: 80px;
+                    color: var(--mainColor);
                 }
 
                 h3 {
@@ -150,6 +151,12 @@ const Personal = (props) => {
 
                 .registro:hover {
                      background: var(--botonesRegistro);
+                }
+
+                @media screen and (max-width: 850px) {
+                    .content {
+                        display: none;
+                    }
                 }
                 
             `}</style>

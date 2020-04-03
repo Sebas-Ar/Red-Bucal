@@ -37,11 +37,9 @@ const Nav = () => {
   //Obtiene la url
   useEffect(() => {
     const path = window.location.pathname;
-    if (path === '/ambiente/2' || path === '/ambiente/3') {
-      setUrl('/ambiente/1')
-    } else {
+    
       setUrl(path)
-    }
+      
   });
   
   return (
@@ -49,7 +47,6 @@ const Nav = () => {
     <Head>
       <title>Red Bucal</title>
       <link rel="icon" href="/favicon.ico" />
-      
     </Head> 
     <Link href="/">
       <a className="img">
@@ -66,9 +63,9 @@ const Nav = () => {
         PLANES
         <span>▼</span>
         <ul>
-            <Link href="/planes/personas-&-familias">
+            <Link href="/planes/personas-familias">
               <a>
-                <li className="link" style={borde('/planes/personas-&-familias')}>PERSONAS & FAMILIAS</li>
+                <li className="link" style={borde('/planes/personas-familias')}>PERSONAS & FAMILIAS</li>
               </a>
             </Link>
             <Link href="/planes/empresarial">
