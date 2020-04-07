@@ -39,9 +39,11 @@ const NavPhone = () => {
                     <img src="/img/Capa-2.png" alt="Logo"/>
                 </a>
             </Link>
-            <svg onClick={changeActive} viewBox="0 0 448 512">
-                <path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
-            </svg>
+            <button>
+                <svg onClick={changeActive} viewBox="0 0 448 512">
+                    <path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
+                </svg>
+            </button>
             <nav>
                 <svg onClick={changeActive} viewBox="0 0 352 512">
                     <path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z" />
@@ -78,9 +80,9 @@ const NavPhone = () => {
                         </a>
                     </Link>
                     <div className="linea"></div>
-                    <Link href="/servicios">
+                    <Link href="/beneficios">
                         <a>
-                            <li style={validateUrl('/servicios')}>SERVICIOS</li>
+                            <li style={validateUrl('/beneficios')}>BENEFICIOS</li>
                         </a>
                     </Link>
                     <div className="linea"></div>
@@ -123,15 +125,26 @@ const NavPhone = () => {
                     height: 100px;
                 }
 
-                header > svg {
+                header > button {
                     position: absolute;
                     right: 0;
                     top: 0;
-                    width: 40px;
+                    width: 60px;
+                    height: 60px;
                     color: var(--mainColor);
                     margin-top: 20px;
                     margin-right: 20px;
                     cursor: pointer;
+                    background: white;
+                    border: none;
+                    border-radius: 50%;
+                    box-shadow: -2px 2px 10px 0px #333333bb;
+                    outline: none;
+
+                }
+
+                button > svg {
+                    width: 30px;
                 }
 
                 header > a {
@@ -275,25 +288,14 @@ const NavPhone = () => {
 
                 @media screen and (max-width: 426px) {
                     header > a {
-                        width: 200px;
+                        width: 150px;
                     }
 
-
                     img {
-                        width: 200px;
+                        width: 150px;
                     }
                     nav > ul {
                         padding: 0;
-                    }
-                }
-
-                @media screen and (max-width: 340px) {
-                    header > a {
-                        width: 150px;
-                    }
-
-                    img {
-                        width: 150px;
                     }
                 }
 

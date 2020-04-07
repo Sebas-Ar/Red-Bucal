@@ -5,7 +5,7 @@ import DescuentosBox from '../components/descuentos/DescuentosBox'
 import DescuentosList from '../components/descuentos/DescuentosList'
 import DescuentosBoxResponsive from '../components/descuentos/DescuentosBoxResponsive'
 
-const servicios = () => {
+const beneficios = () => {
 
     const [list, setList] = useState(0);
     const [active, setActive] = useState(false);
@@ -29,4 +29,4 @@ const servicios = () => {
     )
 }
 
-export default servicios
+export default beneficios
