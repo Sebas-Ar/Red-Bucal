@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Swal from 'sweetalert2'
 import axios from 'axios'
 
 const Form = () => {
@@ -9,6 +10,13 @@ const Form = () => {
         e.preventDefault()
         const url = '/api/email/sendMail'
         const result = await axios.post(url,data)
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Correo enviado',
+            showConfirmButton: false,
+            timer: 2000
+        })
         console.log(result)
     }
 
