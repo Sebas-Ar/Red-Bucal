@@ -40,7 +40,7 @@ const handler = async (req, res) => {
                         const hashedPassword = await bcrypt.hash(password, salt)
                         const date = new Date;
                         console.log(date.getDate);
-                        const user = await req.db.collection('master').insertOne({
+                        const user = await req.db.collection('admin').insertOne({
                             name: name + ' ' + lastname,
                             identification,
                             email,
