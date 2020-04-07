@@ -30,7 +30,10 @@ const NavUsuario = (props) => {
                                 <h2>{props.adminData.name}</h2>
                             </li>
                             <li>
-                                <button onClick={() => { props.onClick(0) }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
+                                <button onClick={() => { 
+                                    props.onClick(0)
+                                    props.changeActivate()
+                                }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
                             </li>
                             <li>
                                 <button onClick={logout}>SALIR</button>
@@ -42,19 +45,34 @@ const NavUsuario = (props) => {
                                 <h2>{props.adminData.name}</h2>
                             </li>
                             <li>
-                                <button onClick={() => { props.onClick(0) }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
+                                <button onClick={() => { 
+                                   props.onClick(0)
+                                   props.changeActivate()
+                                }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
                             </li>
                             <li>
-                                <button onClick={() => { props.onClick(1) }} style={selection(1)}>INFORMACIÓN DEL USUARIO</button>
+                                <button onClick={() => { 
+                                   props.onClick(1)
+                                   props.changeActivate()
+                                }} style={selection(1)}>INFORMACIÓN DEL USUARIO</button>
                             </li>
                             <li>
-                                <button onClick={() => { props.onClick(2) }} style={selection(2)}>FACTURACIÓN</button>
+                                <button onClick={() => { 
+                                   props.onClick(2)
+                                   props.changeActivate()
+                                }} style={selection(2)}>FACTURACIÓN</button>
                             </li>
                             <li>
-                                <button onClick={() => { props.onClick(3) }} style={selection(3)}>SERVICIOS</button>
+                                <button onClick={() => { 
+                                   props.onClick(3)
+                                   props.changeActivate()
+                                }} style={selection(3)}>SERVICIOS</button>
                             </li>
                             <li>
-                                <button onClick={() => { props.onClick(4) }} style={selection(4)}>HISTORIAL</button>
+                                <button onClick={() => { 
+                                   props.onClick(4)
+                                   props.changeActivate()
+                                }} style={selection(4)}>HISTORIAL</button>
                             </li>
                             <li>
                                 <button onClick={logout}>SALIR</button>
@@ -66,13 +84,22 @@ const NavUsuario = (props) => {
                                 <h2>{props.adminData.name}</h2>
                             </li>
                             <li>
-                                <button onClick={() => { props.onClick(0) }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
+                                <button onClick={() => {
+                                    props.onClick(0)
+                                    props.changeActivate()
+                                }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
                             </li>
                             <li>
-                                <button onClick={() => { props.onClick(1) }} style={selection(1)}>INFORMACIÓN EMPRESARIAL</button>
+                                <button onClick={() => {
+                                    props.onClick(1)
+                                    props.changeActivate()
+                                }} style={selection(1)}>INFORMACIÓN EMPRESARIAL</button>
                             </li>
                             <li>
-                                <button onClick={() => { props.onClick(2) }} style={selection(2)}>FACTURACIÓN</button>
+                                <button onClick={() => {
+                                    props.onClick(2)
+                                    props.changeActivate()
+                                }} style={selection(2)}>FACTURACIÓN</button>
                             </li>
                             {/* 
                             <li>
@@ -86,6 +113,12 @@ const NavUsuario = (props) => {
                             </li>
                         </ul>
                 }
+
+                <div className="activate">
+                    <svg viewBox="0 0 512 512" onClick={() => {props.changeActivate()}}>
+                        <path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248 248-111 248-248zm-448 0c0-110.5 89.5-200 200-200s200 89.5 200 200-89.5 200-200 200S56 366.5 56 256zm72 20v-40c0-6.6 5.4-12 12-12h116v-67c0-10.7 12.9-16 20.5-8.5l99 99c4.7 4.7 4.7 12.3 0 17l-99 99c-7.6 7.6-20.5 2.2-20.5-8.5v-67H140c-6.6 0-12-5.4-12-12z" />
+                    </svg>
+                </div>
                 
             </nav>
 
@@ -103,6 +136,10 @@ const NavUsuario = (props) => {
                     display: grid;
                     grid-template-columns: 1fr 6fr 2px 9.5fr 1fr;
                 }    
+
+                .activate {
+                    display: none;
+                }
 
                 .diente1 {
                     background-image: url("/img/medio-diente4.png");
@@ -157,6 +194,90 @@ const NavUsuario = (props) => {
                     font-weight: 800;
                     margin: -2px 0 -3px 0;
                     cursor: auto;
+                }
+
+                @media screen and (max-width: 900px) {
+
+                    .content {
+                        grid-template-columns: 11fr 1fr;
+                    }
+
+                    h2 {
+                        border-radius: 0 15px 0 0;
+                    }
+
+                    nav {
+                        z-index: 1000;
+                        grid-column: 1/2;
+                        grid-row: 1/2;
+                        z-idex: 1000;
+                        position: fixed;
+                        top: 50%;
+                        left: 0;
+                        margin: 0 30px 0 0;
+                        transition: transform .5s, box-shadow 1s;
+                        transform: ${props.activate ? 'translate(0, -50%)' : 'translate(-100%, -50%)'};
+                        background-color: white;
+                        border-radius: 0 30px 30px 0;
+                        box-shadow: ${props.activate ? '5px 5px 20px 0px #33333366' : '0px 0px 0px 0px #33333322'};
+                    }
+
+                    .diente1 {
+                        display: none;
+                    }
+
+                    .puntos {
+                        grid-column: 2/3;
+                        grid-row: 1/2;
+                    }
+
+                    .activate {
+                        display: grid;
+                        align-items: center;
+                        justify-items: center;
+                        z-index: 1001;
+                        position: absolute;
+                        right: 0px;
+                        top: 50%;
+                        transform: translate(100%, -50%);
+                        height: 100px;
+                        width: 30px;
+                        border-radius: 0 20px 20px 0;
+                        box-shadow: 5px 5px 10px 0px #33333355;
+                        background: var(--amarillo);
+                        color: white;
+
+                    }
+
+                    svg {
+                        width: 20px;
+                        transition: transform 2s;
+                        transform: ${props.activate ? 'rotate(180deg)' : 'rotate(0deg)' };      
+                    }
+
+                    .linea {
+                        display: none;
+                    }
+                }
+
+                @media screen and (max-width: 600px) {
+
+                    .content {
+                        grid-template-columns: 1fr;
+                    }
+
+                    .diente2 {
+                        z-index: -1;
+                        position: fixed;
+                        right: 0;
+                        top: 50%;
+                        height: 300px;
+                        width: 100px;
+                        transform: translateY(-50%);
+                        background-size: auto 100%;
+                        background-position: right center;
+                        padding: 0;
+                    }
                 }
                 
                 

@@ -64,8 +64,17 @@ const RecordUser = (props) => {
                     width: 100%;
                 }
 
+                @media screen and (max-width: 660px) {
+                    .table {
+                        box-sizing: border-box;
+                        width: 100%;
+                    }
 
-                
+                    section {
+                        margin: 0 30px;
+                    }
+                }
+
             `}</style>
         </section>
     )

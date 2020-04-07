@@ -22,6 +22,7 @@ const master = () => {
     const [RUC, setRUC] = useState({})
     const [data, setData] = useState({})
     const [adminData, setAdminData] = useState({});
+    const [activate, setactivate] = useState(false);
 
     const router = useRouter()
 
@@ -68,10 +69,14 @@ const master = () => {
         setUser(user)
     }
 
+    const changeActivate = () => {
+        setactivate(!activate)
+    }
+
     return (
         <Layout>
 
-            <NavMaster onClick={onClick} select={select} user={user} adminData={adminData}>
+            <NavMaster onClick={onClick} select={select} user={user} adminData={adminData} changeActivate={changeActivate} activate={activate}>
                 {
                     user == 1
 
@@ -86,6 +91,7 @@ const master = () => {
                             RUC={RUC}
                             changeData={changeData}
                             data={data}
+                            changeActivate={changeActivate}
                         />
                             :
                             select === 1 ? <InforUserAdmin
@@ -118,6 +124,7 @@ const master = () => {
                             RUC={RUC}
                             changeData={changeData}
                             data={data}
+                            changeActivate={changeActivate}
                         />
                             :
                             select === 1 ?  <InfoAdmin 

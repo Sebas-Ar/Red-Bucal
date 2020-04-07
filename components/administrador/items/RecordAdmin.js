@@ -62,7 +62,7 @@ const RecordAdmin = (props) => {
                 }
                 <form onSubmit={onSubmit}>
                     <input type="text" name="fecha" onChange={onchange} value={data.fecha} />
-                    <input type="text" name="hora" onChange={onchange} value={data.hora} />
+                    <input className="hora" type="text" name="hora" onChange={onchange} value={data.hora} />
                     <select name="tratamiento" onChange={onchange}>
                         <option value="">--------</option>
                         <option value="1">Lorem, ipsum dolor 1%</option>
@@ -94,6 +94,7 @@ const RecordAdmin = (props) => {
                 }
 
                 p {
+                    justify-self: center;
                     text-align: center;
                     color: var(--mainColor);
                     font-size: 16px;
@@ -128,6 +129,35 @@ const RecordAdmin = (props) => {
                     border-radius: 5px;
                     cursor: pointer;
                     outline: none;
+                }
+
+                @media screen and (max-width: 750px) {
+
+                    input, select {
+                        width: 120px;
+                        justify-self: center;
+                        margin: 10px 5px;
+                    }
+
+                    .hora {
+                        width: 50px;
+                    }
+
+                    section {
+                        margin: 0 20px;
+                    }
+                }
+
+                @media screen and (max-width: 380px) {
+
+                    p {
+                        font-size: 14px;
+                    }
+
+                    input::placeholder, select::placeholder {
+                        font-size: 14px;
+                    }
+
                 }
                 
             `}</style>

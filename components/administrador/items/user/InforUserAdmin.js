@@ -82,44 +82,53 @@ const InfoAdmin = (props) => {
 
             <style jsx>{`
                 
-            form {
-                align-self: center;
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                margin: 0 50px;
-            }    
+                form {
+                    align-self: center;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    margin: 0 50px;
+                }    
 
-            label {
-                margin: 10px 0;
-                color: var(--mainColor);
-                font-weight: 600;
-            }
+                label {
+                    margin: 10px 0;
+                    color: var(--mainColor);
+                    font-weight: 600;
+                }
 
-            p {
-                color: var(--mainColorClaro);
-            }
+                p {
+                    color: var(--mainColorClaro);
+                }
 
-            input {
-                border: 1px solid #33333322;
-                border-radius: 4px;
-                padding: 5px;
-            }
+                input {
+                    border: 1px solid #33333322;
+                    border-radius: 4px;
+                    padding: 5px;
+                }
 
-            input::placeholder {
-                color: var(--mainColorClaro);
-            }
+                input::placeholder {
+                    color: var(--mainColorClaro);
+                }
 
-            button {
-                align-self: center;
-                margin-top: 10px;
-                border: none;
-                background: var(--mainColor);
-                width: 100px;
-                height: 30px;
-                color: white;
-                border-radius: 5px;
-                cursor: pointer;
-            }
+                button {
+                    align-self: center;
+                    margin-top: 10px;
+                    border: none;
+                    background: var(--mainColor);
+                    width: 100px;
+                    height: 30px;
+                    color: white;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+
+                @media screen and (max-width: 500px) {
+
+                    form {
+                        grid-template-columns: 1fr;
+                        margin: 50px 0 0 100px;
+                    }
+
+                }
                 
             `}</style>
         </form>

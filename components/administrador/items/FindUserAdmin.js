@@ -67,7 +67,10 @@ const FindUserAdmin = (props) => {
                             <div className="content">
                                 <p>{props.data.name}</p>
                                 <p>{props.data.identification}</p>
-                                <button className="selection" onClick={() => {props.ChangeUser(1)}}>Selecctionar</button>
+                                <button className="selection" onClick={() => {
+                                    props.ChangeUser(1)
+                                    props.changeActivate()
+                                }}>Selecctionar</button>
                             </div>
                         </div>
                     </div>
@@ -84,7 +87,10 @@ const FindUserAdmin = (props) => {
                                 <div className="content">
                                     <p>{props.data.name}</p>
                                     <p>{props.data.RUC}</p>
-                                    <button className="selection" onClick={() => { props.ChangeUser(2) }}>Selecctionar</button>
+                                    <button className="selection" onClick={() => {
+                                        props.ChangeUser(2)
+                                        props.changeActivate()
+                                    }}>Selecctionar</button>
                                 </div>
                             </div>
                         </div>
@@ -177,6 +183,27 @@ const FindUserAdmin = (props) => {
 
                 .selection:hover {
                     background-color: var(--mainColor);
+                }
+
+                @media screen and (max-width: 700px) {
+
+                    section {
+                        grid-template-rows: 1fr 1fr 2px 1fr;
+                        margin: 0;
+                    }
+
+                    .linea {
+                        margin: 0 50px;
+                    }
+
+                    form {
+                        grid-column: 1/3;
+                    }
+
+                }
+
+                @media screen and (max-width: 460px) {
+
                 }
                 
             `}</style>

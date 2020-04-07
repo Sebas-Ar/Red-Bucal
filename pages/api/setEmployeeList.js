@@ -5,6 +5,7 @@ import bcrypt from "bcryptjs"
 const handler = async (req, res) => {
     if (req.method === 'POST') {
         const { excel, RUC, identifications} = req.body  
+        let encontrar
 
         for (let i = 6; i < excel.length; i++) {
             try {
@@ -50,12 +51,14 @@ const handler = async (req, res) => {
                         })
                     }
 
-                    const encontrar = await req.db.collection('bussines').findAndModify(
+                    encontrar = await req.db.collection('bussines').findAndModify(
                         { "RUC": RUC },
                         [['_id', 'asc']],
                         { "$set": { "identifications": identifications } },
                         { "new": true }
                     )
+
+                    console.log(encontrar)
 
                 }
                 
@@ -97,6 +100,8 @@ const handler = async (req, res) => {
                     { "new": true }
                 )
 
+                console.log(business)
+
             }
 
         }
@@ -104,7 +109,7 @@ const handler = async (req, res) => {
         res.status(201).json({
             status: 'ok',
             message: 'Empresa actualizada satisfactoriamente',
-            data: business
+            data: encontrar
         })
 
     } else {

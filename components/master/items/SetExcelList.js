@@ -38,6 +38,7 @@ const SetExcelList = (props) => {
                 timer: 1000
             })
             props.changeData(result.data.data.value)
+            console.log(result.data.data.value)
         }
     }
 

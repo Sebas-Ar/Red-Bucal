@@ -116,6 +116,15 @@ const InfoAdmin = (props) => {
                     cursor: pointer;
                 }
                 
+                @media screen and (max-width: 500px) {
+
+                    form {
+                        grid-template-columns: 1fr;
+                        margin: 50px 0 0 100px; 
+                    }
+
+                }
+
             `}</style>
         </form>
     )

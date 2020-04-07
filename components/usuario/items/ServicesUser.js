@@ -10,22 +10,22 @@ const ServicesUser = (props) => {
 
             <style jsx>{`
                 
-            section {
-                align-self: center;
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                margin: 0 50px;
-            }    
+                section {
+                    align-self: center;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    margin: 0 50px;
+                }    
 
-            label {
-                margin: 20px 0;
-                color: var(--mainColor);
-                font-weight: 600;
-            }
+                label {
+                    margin: 20px 0;
+                    color: var(--mainColor);
+                    font-weight: 600;
+                }
 
-            p {
-                color: var(--mainColorClaro);
-            }
+                p {
+                    color: var(--mainColorClaro);
+                }
                 
             `}</style>
         </section>
