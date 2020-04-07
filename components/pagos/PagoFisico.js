@@ -19,7 +19,7 @@ const PagoFisico = (props) => {
                     <br/>
                     <br/>
                     <br/>
-                    <Link href="/">
+                    <Link href="/red">
                         <a>
                             RED
                         </a>

@@ -2,7 +2,10 @@ import React from 'react'
 
 const Porcentajes = (props) => {
     return (
-        <div className="content">
+        <div className="content" onClick={() => {
+            props.changeActive()
+            props.changeList()
+            }}>
 
             <hgroup>
                 <h5>{props.numero}%</h5>
@@ -21,8 +24,14 @@ const Porcentajes = (props) => {
                     justify-items: center;
                     height: 100%;
                     width: 100%;
-                    background: ${props.backgroundColor}
+                    background-color: ${props.backgroundColor};
+                    transition: background-color .5s;
                 }    
+
+                .content:hover {
+                    background-color: ${props.hover};
+                    cursor: pointer;
+                }
 
                 hgroup {
                     transform: rotate(${props.grados});
@@ -64,22 +73,22 @@ const Porcentajes = (props) => {
                     }
                 }
 
-                @media screen and (max-width: 760px) {
+                @media screen and (max-width: 606px) {
                     :global(:root) {
                         --sizeP: .5;
                     }
                 }
 
-                @media screen and (max-width: 650px) {
-                    :global(:root) {
-                        --sizeP: .4;
-                    }
-                }
+                @media screen and (max-width: 500px) {
 
-                @media screen and (max-width: 520px) {
                     :global(:root) {
-                        
+                        --sizeP: .6;
                     }
+
+                    .content {
+                        padding: 30px 0;
+                    }
+
                 }
                 
             `}</style>

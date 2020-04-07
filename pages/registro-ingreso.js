@@ -26,7 +26,6 @@ const Ingresar = () => {
         setregister(!register);
     }
 
-
     const ChangeText = e => {
         setUser(Object.assign({}, user, { [e.target.name]: e.target.value }))
     }
@@ -429,7 +428,7 @@ const Ingresar = () => {
                     <div className="content">
 
                         <div className="diente1"></div>
-                        <div className="form">
+                        <div className="form reg">
                             <h2>REGISTRO</h2>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae perferendis</p>
                             <Registro 
@@ -503,6 +502,92 @@ const Ingresar = () => {
                 p {
                     color: #333333aa;
                     font-size: 14px;
+                }
+
+                @media screen and (max-width: 1200px) {
+                    
+                    .content {
+                        grid-template-columns: .5fr 2fr 2px 2fr .5fr;
+                    }
+
+                }
+
+                @media screen and (max-width: 1000px) {
+
+                    .content {
+                        margin-top: 100px;
+                        grid-template-columns: 1fr 4fr 1fr;
+                        grid-template-rows: 1fr 2px 1fr;
+                        height: 800px;
+                    }
+
+                    .linea {
+                        grid-column: 2/3;
+                        grid-row: 2/3;
+                        width: 60%;
+                        justify-self: center;
+                    }
+
+                    .diente1 {
+                        grid-column: 1/2;
+                        grid-row: 1/4
+                    }
+
+                    .diente2 {
+                        grid-column: 3/4;
+                        grid-row: 1/4
+                    }
+
+                    .reg {
+                        grid-row: 3/4;
+                    }
+
+                }
+
+                @media screen and (max-width: 600px) {
+
+                    .content {
+                        margin-top: 100px;
+                        grid-template-columns: 1fr;
+                        grid-template-rows: 1fr 2px 1fr;
+                        height: 800px;
+                        position: relative;
+                    }
+
+                    .diente1 {
+                        z-index: -1;
+                        position: absolute;
+                        left: 0;
+                        top: 35%;
+                        width: 100px;
+                        height: 200px;
+                    }
+
+                    .diente2 {
+                        z-index: -1;
+                        position: absolute;
+                        right: 0;
+                        top: 40%;
+                        width: 100px;
+                        height: 200px;
+                    }
+
+                }
+
+                @media screen and (max-width: 400px) {
+
+                    .form {
+                        width: 300px;
+                    }
+
+                }
+
+                @media screen and (max-width: 340px) {
+
+                    .content {
+                        margin-top: 50px;
+                    }
+
                 }
                 
                 

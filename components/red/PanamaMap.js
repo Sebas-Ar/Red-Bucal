@@ -14,8 +14,6 @@ const PanamaMap = (props) => {
 
     useEffect(() => {
         const width = screen.width
-        console.log(process.env.TOKEN_MAP)
-        console.log(process.env.TOKEN_SEND_GRID)
 
         if (width < 460) {
             setViewPort(Object.assign({}, viewPort, { width: undefined + 'px', zoom: 8}))

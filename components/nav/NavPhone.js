@@ -161,7 +161,7 @@ const NavPhone = () => {
                     right: 0;
                     transition: transform .5s ease;
                     transform: ${active ? 'translateX(0)' : 'translateX(100%)'};
-                    box-shadow: -6px 6px 16px 0px #33333399;
+                    box-shadow: ${ active ? '-6px 6px 16px 0px #33333399' : ''};
                 }
 
                 nav > ul {

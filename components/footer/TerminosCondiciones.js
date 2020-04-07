@@ -95,6 +95,19 @@ const TerminosCondiciones = (props) => {
                     overflow: auto;
                     padding: 0 10px;
                 }
+
+                @media screen and (max-width: 450px) {
+
+                    h3 {
+                        font-size: 25px;
+                        margin: 0 20px;
+                    }
+
+                    section {
+                        width: calc(100% - 100px );
+                        height: 520px;
+                    }
+                }
                 
             `}</style>
         </div>

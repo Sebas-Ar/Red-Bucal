@@ -16,7 +16,7 @@ const Layout = (props) => {
     return (
         <React.Fragment>
             {
-                width > 820
+                width > 850
                 ?
                 <Nav />
                 :

@@ -1,7 +1,7 @@
 import React from 'react'
 import Porcentajes from './Porcentajes'
 
-const DescuentosBox = () => {
+const DescuentosBox = (props) => {
     return (
         
         <div className="content">
@@ -13,11 +13,13 @@ const DescuentosBox = () => {
                 <div className="circulos"></div>
             </div>
             <div className="vertical1 horizontal"></div>
-            <div className="vertical2 horizontal"></div>
+            <div className="vertical2 horizontal">
+                <div className="circulosResponsive"></div>
+            </div>
             <div className="vertical3 horizontal"></div>
             <section className="cien">
                 <Porcentajes
-                    backgroundColor="rgba(255, 255, 255, 0.733)"
+                    backgroundColor="rgba(255, 255, 255, 0.7)"
                     numero="100"
                     color="#333333dd"
                     grados="-90deg"
@@ -25,6 +27,9 @@ const DescuentosBox = () => {
                     arriba="-30px"
                     derecha="35px"
                     sizeText="35px"
+                    hover="rgba(255, 255, 255, 0.8)"
+                    changeActive={props.changeActive}
+                    changeList={() => {props.changeList(0)}}
                 />
             </section>
             <section className="ochenta">
@@ -37,6 +42,9 @@ const DescuentosBox = () => {
                     arriba="-30px"
                     derecha="25px"
                     sizeText="30px"
+                    hover="rgba(17, 136, 204, 0.75)"
+                    changeActive={props.changeActive}
+                    changeList={() => {props.changeList(1)}}
                 />
             </section>
             <section className="sesenta">
@@ -49,11 +57,14 @@ const DescuentosBox = () => {
                     arriba="-20px"
                     derecha="25px"
                     sizeText="25px"
+                    hover="rgba(255, 34, 17, 0.75)"
+                    changeActive={props.changeActive}
+                    changeList={() => {props.changeList(2)}}
                 />
             </section>
             <section className="ciencuetaYCinco">
                 <Porcentajes
-                    backgroundColor="rgba(255, 153, 0, 0.8)"
+                    backgroundColor="rgba(255, 153, 0, 0.7)"
                     numero="55"
                     color="white"
                     grados="0deg"
@@ -61,6 +72,9 @@ const DescuentosBox = () => {
                     arriba="-20px"
                     derecha="15px"
                     sizeText="20px"
+                    hover="rgba(255, 153, 0, 0.85)"
+                    changeActive={props.changeActive}
+                    changeList={() => {props.changeList(3)}}
                 />
             </section>
             <section className="cincuenta">
@@ -73,11 +87,14 @@ const DescuentosBox = () => {
                     arriba="-10px"
                     derecha="15px"
                     sizeText="15px"
+                    hover="rgba(255, 255, 255, 0.8)"
+                    changeActive={props.changeActive}
+                    changeList={() => {props.changeList(4)}}
                 />
             </section>
             <section className="cuarenta">
                 <Porcentajes
-                    backgroundColor="rgba(255, 153, 0, 0.8)"
+                    backgroundColor="rgba(255, 153, 0, 0.7)"
                     numero="40"
                     color="white"
                     grados="-90deg"
@@ -85,6 +102,9 @@ const DescuentosBox = () => {
                     arriba="-10px"
                     derecha="15px"
                     sizeText="20px"
+                    hover="rgba(255, 153, 0, 0.85)"
+                    changeActive={props.changeActive}
+                    changeList={() => {props.changeList(5)}}
                 />
             </section>
             <section className="treinta">
@@ -97,6 +117,9 @@ const DescuentosBox = () => {
                     arriba="-20px"
                     derecha="15px"
                     sizeText="20px"
+                    hover="rgba(255, 34, 17, 0.75)"
+                    changeActive={props.changeActive}
+                    changeList={() => {props.changeList(6)}}
                 />
             </section>
             <section className="Veinticinco">
@@ -109,6 +132,9 @@ const DescuentosBox = () => {
                     arriba="-20px"
                     derecha="15px"
                     sizeText="25px"
+                    hover="rgba(17, 136, 204, 0.75)"
+                    changeActive={props.changeActive}
+                    changeList={() => {props.changeList(7)}}
                 />
             </section>
             <section className="veinte">
@@ -121,6 +147,9 @@ const DescuentosBox = () => {
                     arriba="-20px"
                     derecha="15px"
                     sizeText="20px"
+                    hover="rgba(255, 34, 17, 0.75)"
+                    changeActive={props.changeActive}
+                    changeList={() => {props.changeList(8)}}
                 />
             </section>
 
@@ -308,11 +337,39 @@ const DescuentosBox = () => {
                     border-top-left-radius: 50% 100%;
                     border-top-right-radius: 50% 100%;
                     width: calc(25px * var(--sizeP) * 1.2);
-                    height: calc(12 * var(--sizeP) * 1.2).5px;
+                    height: calc(12.5px * var(--sizeP) * 1.2);
                     background-color: var(--mainColor);
                     right: 0;
                     bottom: 0;
                     transform: translateX(40%);
+                }
+
+                .circulosResponsive {
+                    display: none;
+                }
+
+                .circulosResponsive:before {
+                    content: '';
+                    position: absolute;
+                    border-radius: 50%;
+                    width: calc(20px * var(--sizeP) * 1.2);
+                    height: calc(20px * var(--sizeP) * 1.2);
+                    background-color: var(--mainColor);
+                    left: 0;
+                    top: 33.3%;
+                    transform: translate(-40%, -40%);
+                }
+
+                .circulosResponsive:after {
+                    content: '';
+                    position: absolute;
+                    border-radius: 50%;
+                    width: calc(25px * var(--sizeP) * 1.2);
+                    height: calc(25px * var(--sizeP) * 1.2);
+                    background-color: var(--mainColor);
+                    right: 0;
+                    bottom: 33.3%;
+                    transform: translate(40%, 50%);
                 }
 
                 .vertical3 {
@@ -368,7 +425,7 @@ const DescuentosBox = () => {
                 .ochenta {
                     grid-column: 3/6;
                     background-image: url("/img/descuentos40.jpg");
-                    background-size: 100% auto;
+                    background-size: auto 100%;
                     background-position: center;
                 }
 
@@ -412,6 +469,67 @@ const DescuentosBox = () => {
                     background-image: url("/img/descuentos40.jpg");
                     background-size: auto 100%;
                     background-position: center;
+                }
+
+                @media screen and (max-width: 850px) {
+                    .content {
+                        grid-template-columns: 2fr 3px 1fr 3px 1fr;
+                        grid-template-rows: 3px 1.3fr 3px 1fr 3px 1fr 3px 1fr;
+                    }
+                    .sesenta {
+                        grid-column: 1/2;
+                        grid-row: 8/9;
+                    }
+                    .cuarenta {
+                        grid-column: 3/4;
+                        grid-row: 8/9;
+                    }
+                    .veinte {
+                        grid-column: 5/6;
+                        grid-row: 8/9;
+                    }
+                    .horizontal1 {
+                        grid-column: 1/6;
+                    }
+                    .horizontal2, .horizontal3 {
+                        grid-column: 2/6;
+                    }
+
+                    .vertical1 {
+                        grid-row: 1/9;
+                    }
+
+                    .vertical2 {
+                        grid-row: 3/9;
+                    }
+
+                    .vertical3 {
+                        grid-row: 7/8;
+                        grid-column: 1/6;
+                    }
+
+                    .vertical3:after {
+                        border-top-left-radius: 100% 50%;
+                        border-bottom-left-radius: 100% 50%;
+                        border-top-right-radius: 0;
+                        width: calc(20px * var(--sizeP) * 1.2);
+                        height: calc(40px * var(--sizeP) * 1.2);
+                        transform: translateY(40%);
+                    }
+
+                    .circulo, .circulos {
+                        display: none;
+                    }
+
+                    .circulosResponsive {
+                        display: inline-block;
+                    }
+                }
+
+                @media screen and (max-width: 500px) {
+                    .content {
+                        display: none;
+                    }
                 }
                  
             `}</style>
