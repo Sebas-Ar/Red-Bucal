@@ -12,6 +12,8 @@ const PanamaMap = (props) => {
         zoom: 8.7                                  
     });
 
+    const [myPosition, setMyPosition] = useState({});
+
     useEffect(() => {
         const width = screen.width
 
@@ -20,11 +22,36 @@ const PanamaMap = (props) => {
         } else {
             setViewPort(Object.assign({}, viewPort, { width: undefined + 'px'}))
         }
+
+        const succeed = (pos) => {
+            setMyPosition({
+                latitude: pos.coords.latitude,
+                longitude: pos.coords.longitude
+            })
+            console.log('mi latitud' + pos.coords.latitude)
+            console.log('mi longitud' + pos.coords.longitude)
+        } 
+
+        const failure = (err) => {
+            console.log(err)
+        }
+
+        const options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maxinumAge: 0
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            succeed, failure, options
+        )
+
     }, []);
 
 
     return (
         <div className="content">
+            <p>{myPosition.latitude}, {myPosition.longitude}</p>
             <ReactMapGl 
                 {...viewPort} mapboxApiAccessToken={process.env.TOKEN_MAP}
                     onViewportChange={viewPort => {

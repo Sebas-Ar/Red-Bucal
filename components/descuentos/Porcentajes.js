@@ -9,13 +9,17 @@ const Porcentajes = (props) => {
 
             <hgroup>
                 <h5>{props.numero}%</h5>
-                <h6>Lorem ipsum</h6>
+                <h6>Ver más</h6>
             </hgroup>
 
             <style jsx>{`
 
                 :global(:root) {
                     --sizeP: 1;
+                }
+
+                .content:hover h6 {
+                    border-bottom: 3px solid ${props.color};
                 }
 
                 .content {
@@ -34,6 +38,7 @@ const Porcentajes = (props) => {
                 }
 
                 hgroup {
+                    display: grid;
                     transform: rotate(${props.grados});
                     color: ${props.color};
                 }
@@ -43,10 +48,12 @@ const Porcentajes = (props) => {
                 }
 
                 h6 {
-                    text-align: right;
+                    border-bottom: 0px solid ${props.color};
+                    justify-self: flex-end;
                     margin: calc(${props.arriba} * var(--sizeP)) calc(${props.derecha} * var(--sizeP)) 0 0;
                     font-size: calc(${props.sizeText} * var(--sizeP));
                     font-weight: 400;
+                    transition: border-bottom .4s;
                 }
 
                 @media screen and (max-width: 1230px) {

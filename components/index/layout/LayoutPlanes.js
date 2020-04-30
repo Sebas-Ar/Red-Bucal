@@ -15,7 +15,7 @@ const LayoutPlanes = () => {
                 fecha="AÑO"
                 colaborador="UN SOLO PAGO ANUAL*"
                 tit1="Plan red bucal para personas"
-                text1="Colocamos a su disposición un producto sencillo y al alcance de todos, ofreciéndoles servicios preventivos y correctivos para el cuidado de la salud oral de sus colaboradores. "
+                text1="Es un plan más completo diseñado especialmente para resguardar la salud bucal de aquellas personas que quieren darle tratamiento preventivo a su boca."
             />
             <Planes 
                 title="EMPRESAS" 
@@ -25,7 +25,7 @@ const LayoutPlanes = () => {
                 fecha="MES"
                 colaborador="POR COLABORDOR*"
                 tit1="Plan red bucal para empresas"  
-                text1="Es un plan más completo diseñado especialmente para resguardar la salud bucal de aquellas personas que quieren darle tratamiento preventivo a su boca."
+                text1="Colocamos a su disposición un producto sencillo y al alcance de todos, ofreciéndoles servicios preventivos y correctivos para el cuidado de la salud oral de sus colaboradores."
             />
             <div className="linea3"></div>
             <div className="linea4"></div>

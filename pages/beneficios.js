@@ -4,6 +4,7 @@ import Footer from '../components/footer/Footer'
 import DescuentosBox from '../components/descuentos/DescuentosBox'
 import DescuentosList from '../components/descuentos/DescuentosList'
 import DescuentosBoxResponsive from '../components/descuentos/DescuentosBoxResponsive'
+import TitleDescuentos from '../components/descuentos/TitleDescuentos'
 
 const beneficios = () => {
 
@@ -21,6 +22,7 @@ const beneficios = () => {
 
     return (
         <Layout>
+            <TitleDescuentos />
             <DescuentosList active={active} changeActive={changeActive} list={list}/>
             <DescuentosBox changeActive={changeActive} changeList={changeList}/>
             <DescuentosBoxResponsive changeActive={changeActive} changeList={changeList}/>

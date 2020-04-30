@@ -161,7 +161,6 @@ const DescuentosBox = (props) => {
                     display: grid;
                     grid-template-columns: 2fr 3px 1fr 3px 1fr 3px 1fr;
                     grid-template-rows: 3px 1.3fr 3px 1fr 3px 1fr;
-                    margin-top: 150px;
                 }
 
                 .horizontal {

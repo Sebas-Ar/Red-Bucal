@@ -40,7 +40,7 @@ const TerminosCondicionesForm = (props) => {
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At sit doloremque quidem! Nobis eius laboriosam voluptatum alias obcaecati dolor cumque. Quia laborum veniam obcaecati quasi! Consequatur ab nihil sit, totam non sed. Cumque, dolorem ducimus! Atque ratione possimus ullam cum blanditiis quod cupiditate illum at qui eos numquam id nihil consectetur ducimus aspernatur tenetur aut, quasi dolor similique. Id, iste?</p>
                 </div>
                 <label className="terminos">
-                    Acepto terminos y condiciones
+                    Declaro aceptar Términos y Condiciones
                     <input type="checkbox" className="checkbox" name="checkbox" onChange={props.ChangeText} />
                     <br />
                 </label>
