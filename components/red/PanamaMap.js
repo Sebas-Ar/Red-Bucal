@@ -12,7 +12,13 @@ const PanamaMap = (props) => {
         zoom: 8.7                                  
     });
 
-    const [myPosition, setMyPosition] = useState({});
+    const [myPosition, setMyPosition] = useState({
+        /* 8.587050, -79.319817 */
+        latitude: 8.587050,
+        longitude: -79.319817
+    });
+
+    const [dentro, setDentro] = useState(false);
 
     useEffect(() => {
         const width = screen.width
@@ -24,10 +30,22 @@ const PanamaMap = (props) => {
         }
 
         const succeed = (pos) => {
-            setMyPosition({
-                latitude: pos.coords.latitude,
-                longitude: pos.coords.longitude
-            })
+
+            let latitude = pos.coords.latitude
+            let longitude = pos.coords.longitude
+
+            /* izquierda -> -83.034849 */
+            /* derecha -> -77.158126 */
+            /* arriba -> 9.638075 */
+            /* abajo -> 7.172350 */
+
+            if (latitude > -83.034849 && latitude < -77.158126 && longitude < 9.638075 && longitude > 7.172350) {
+                setMyPosition({
+                    latitude,
+                    longitude
+                })
+                setDentro(true)
+            }
             console.log('mi latitud' + pos.coords.latitude)
             console.log('mi longitud' + pos.coords.longitude)
         } 
@@ -80,15 +98,69 @@ const PanamaMap = (props) => {
                         </Marker>
                     ))
                 }
+
+                <Marker
+                    latitude={myPosition.latitude}
+                    longitude={myPosition.longitude}
+                >
+                    <button className="userBtn" /* onClick={} */>
+                        <svg className="user" viewBox="0 0 448 512">
+                            <path fill="currentColor" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z" />
+                        </svg>
+                        <div className="text">
+                            <p>{dentro ? 'Usted está aquí' : 'Usted no se encuentra en panamá'}</p>
+                        </div>
+                    </button>
+
+                </Marker>
                 
             </ReactMapGl>
 
             <style jsx>{`
 
+                .userBtn {
+                    background: #777777;
+                    position: relative;
+                    height: 25px;
+                    width: 25px;
+                    transform: translate(-40%, -40%);
+                }
+
+                .userBtn:hover .text {
+                    opacity: 1;
+                }
+
+                @keyframes ocultar {
+                    0% {
+                        opacity: 1
+                    }
+
+                    100% {
+                        opacity: 0
+                        height: 0;
+                        width: 0;
+                        font-size: 0;
+                    }
+                }
+
+                .text {
+                    position: absolute;
+                    top: ${dentro ? '-20px' : '-30px'};
+                    left: ${dentro ? '-110px' : '-220px'};
+                    background: #777777;
+                    padding: 6px 6px;
+                    border-radius: 15px;
+                    animation: ocultar 1.5s 7s forwards;
+                }
+
                 .content {
                     width: 100%;
                     display: grid;
                     justify-items: center;
+                }
+
+                .user {
+                    width: 50%;
                 }
 
                 button {
