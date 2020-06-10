@@ -10,26 +10,27 @@ const Portada = () => {
                     <span className="conectando">CONECTANDO</span>
                     <span className="sonrisas">SONRISAS</span>
                 </h1>
-                <h2>CONFIANZA <span className="andpersand">&</span> SALUD</h2>
+                <h2>
+                    CONFIANZA <span className="andpersand">&</span> SALUD
+                </h2>
             </div>
             <div className="abajo"></div>
-            
 
             <style jsx>{`
-
                 :global(:root) {
                     --sizeLetter: 1;
-                } 
-                
+                }
+
                 .content {
                     background-image: url("/img/doctor-fondo.jpg");
-                    background-size: auto 100%; 
+                    background-size: auto 100%;
                     background-position: center;
                     height: 100vh;
                     width: 100%;
                     display: grid;
                     grid-template-rows: 1fr calc(250px * var(--sizeLetter)) 1fr;
-                }    
+                    max-height: 630px;
+                }
 
                 .arriba {
                     grid-column: 1/2;
@@ -112,16 +113,12 @@ const Portada = () => {
                     }
 
                     :global(:root) {
-                        --sizeLetter: .8;
-                    } 
-
+                        --sizeLetter: 0.8;
+                    }
                 }
 
                 @media screen and (max-width: 1040px) {
-
                     .color {
-                        width: 100%;
-                        border-radius: 0 0 0 0;
                     }
 
                     .img {
@@ -131,9 +128,8 @@ const Portada = () => {
                     }
 
                     :global(:root) {
-                        --sizeLetter: .7;
-                    } 
-
+                        --sizeLetter: 0.7;
+                    }
                 }
 
                 @media screen and (max-width: 915px) {
@@ -142,12 +138,11 @@ const Portada = () => {
                     }
 
                     :global(:root) {
-                        --sizeLetter: .5;
-                    } 
+                        --sizeLetter: 0.5;
+                    }
                 }
 
                 @media screen and (max-width: 690px) {
-
                     .img {
                         margin-left: -20px;
                         background-image: url("/img/doctor3.png");
@@ -155,48 +150,45 @@ const Portada = () => {
                     }
 
                     :global(:root) {
-                        --sizeLetter: .4;
-                    } 
-
+                        --sizeLetter: 0.4;
+                    }
                 }
 
                 @media screen and (max-width: 500px) {
-
                     .img {
                         margin-left: -60px;
                     }
 
-                    h1, h2 {
+                    h1,
+                    h2 {
                         margin-right: 20px;
                     }
-
                 }
 
                 @media screen and (max-width: 415px) {
-
-                    h1, h2 {
+                    h1,
+                    h2 {
                         margin-right: 10px;
                     }
 
                     :global(:root) {
-                        --sizeLetter: .3;
-                    } 
+                        --sizeLetter: 0.3;
+                    }
                 }
 
                 @media screen and (max-width: 340px) {
-
-                    h1, h2 {
+                    h1,
+                    h2 {
                         margin-right: 5px;
                     }
 
                     :global(:root) {
-                        --sizeLetter: .28;
-                    } 
+                        --sizeLetter: 0.28;
+                    }
                 }
-                
             `}</style>
         </div>
-    )
+    );
 }
 
 export default Portada

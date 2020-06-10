@@ -26,3 +26,5 @@ yarn-error.log*
 
 #API sendGrid
 sendgrid.env
+
+.vercel
