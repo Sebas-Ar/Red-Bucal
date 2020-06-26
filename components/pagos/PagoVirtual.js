@@ -13,10 +13,8 @@ const PagoVirtual = (props) => {
         e.preventDefault()
 
         const url = "https://sandbox.paguelofacil.com/rest/ccprocessing";
-
         try {
-            const result = await axios.post(url, { 
-                form : {
+            const result = await axios.post(url, {
                     CCLW: 'D17B05A095489D1176560B4666A283454185F353F401D0201CC5C16F92535DF6B1DEBA18E79442CC0D6F75FD024207680AFBDFD6CF015478BF30CBEF9160A08D',
                     txType: 'SALE',
                     CMTN: '10',
@@ -32,10 +30,15 @@ const PagoVirtual = (props) => {
                     Tel: '2323232323',
                     Ip: '192.168.0.1',
                     SecretHash: '0337f80c8a19dee560a5d3dc291c472c4e9be3e35becbff2847537c9f5e44989'
-                }}
+                }, {
+                    headers: {
+                        'cache-control': 'no-cache', 
+                        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                    },
+                }
             );
 
-            alert(JSON.stringify(result.data))
+            console.log(result.data)
 
         } catch (error) {
             console.log(error)
