@@ -63,6 +63,8 @@ const handler = async (req, res) => {
                             state: false,
                             name: businessName,
                             RUC,
+                            start: '',
+                            end: '',
                             businessAdress,
                             password: hashedPassword,
                             businessPhone,
@@ -90,7 +92,8 @@ const handler = async (req, res) => {
                                 await req.db.collection('users').insertOne({
                                     RUC,
                                     state: false,
-                                    date: data[i][0],
+                                    start: '',
+                                    end: '',
                                     name: data[i][1],
                                     identification: data[i][2] + '',
                                     birthdate: data[i][3],
@@ -99,10 +102,15 @@ const handler = async (req, res) => {
                                     email: data[i][6],
                                     password: hashedPasswordUser,
                                     know: 5,
-                                    plan: false,
+                                    plan: true,
                                     service: false,
                                     terminos: true,
                                     historial: [],
+                                    mustChangePass: true,
+                                    alerts: {
+                                        week: false,
+                                        month: false
+                                    }
                                 })
                             }
                         }

@@ -1,10 +1,10 @@
-const { parsed: localEnv } = require('dotenv').config()
-const webpack = require('webpack')
+require('dotenv').config()
 
 module.exports = {
-    webpack(config) {
-        config.plugins.push(new webpack.EnvironmentPlugin(localEnv))
-
-        return config
+    env: {
+        RED_BUCAL_MONGODB_HOTS: process.env.RED_BUCAL_MONGODB_HOTS,
+        RED_BUCAL_MONGODB_DATABASE: process.env.RED_BUCAL_MONGODB_DATABASE,
+        TOKEN_MAP: process.env.TOKEN_MAP,
+        TOKEN_SEND_GRID: process.env.TOKEN_SEND_GRID
     }
 }

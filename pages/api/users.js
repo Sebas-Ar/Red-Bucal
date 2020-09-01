@@ -1,6 +1,7 @@
 import validator from "email-validator";
 import withMiddleware from '../../middlewares/withMiddleware'
 import bcrypt from "bcryptjs"
+import {ObjectId} from 'mongodb'
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {
@@ -40,8 +41,7 @@ const handler = async (req, res) => {
 
                         const salt = await bcrypt.genSalt(10)
                         const hashedPassword = await bcrypt.hash(password, salt)
-                        const date = new Date;
-                        console.log(date.getDate);
+                        
                         const user = await req.db.collection('users').insertOne({
                             state: false,
                             name: name + ' ' + lastname,/* ya */
@@ -53,10 +53,15 @@ const handler = async (req, res) => {
                             phone,/* ya */
                             know,
                             plan: false,
-                            date: '0' + date.getDate() + ' / 0' + date.getMonth(),
+                            start: '',
+                            end: '',
                             service: false,
                             terminos: true,
                             historial: [],
+                            alerts: {
+                                week: false,
+                                month: false
+                            }
                         })
 
                         req.session.userId = await user.insertedId
@@ -76,6 +81,28 @@ const handler = async (req, res) => {
                     message: error.toString()
                 })
             }
+        }
+    } else if (req.method === 'PUT') {
+        
+        const { _id, password } = req.body
+        
+        try {
+
+            const salt = await bcrypt.genSalt(10)
+            const hashedPassword = await bcrypt.hash(password, salt)
+
+            req.db.collection('users').update({_id: ObjectId(_id)}, {$set: {password: hashedPassword, mustChangePass: false}})
+
+            res.status(200).json({
+                status: 'ok',
+                message: 'Cambio de contraseña exitoso'
+            })
+            
+        } catch (error) {
+            res.json({
+                status: 'error',
+                message: error.toString()
+            })
         }
     } else {
         

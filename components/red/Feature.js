@@ -19,13 +19,12 @@ const Feature = (props) => {
                 <p>Especialista en periodoncia</p>
                 <p>Implantes dentales</p>
             </div>
-            <div className="amarilloLine"></div>
 
             <style jsx>{`
                 
                 .content {
                     display: grid;
-                    grid-template-rows: 2fr 1fr 4fr 10px;
+                    grid-template-rows: 2fr 1fr 4fr;
                     justify-items: center;
                     align-items: center;
                 }

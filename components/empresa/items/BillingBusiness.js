@@ -1,22 +1,54 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PagoFisico from '../../pagos/PagoFisico';
+import PagoVirtual from '../../pagos/PagoVirtual';
 
 const BillingUser = (props) => {
 
-    const [active, setActive] = useState(false)
+    const [activeFisico, setActiveFisico] = useState(false)
+    const [activeVirtual, setActiveVirtual] = useState(false)
+    const [dates, setDates] = useState({})
 
-    const change = () => {
-        setActive(!active)
+    useEffect(() => {
+
+        if (props.data.start && props.data.end) {
+            const {start, end} = props.data
+
+            const startDate = new Date(start)
+            const endDate = new Date(end)
+            console.log(startDate)
+            console.log(endDate)
+    
+            setDates({
+                start: `${startDate.getDate()}-${startDate.getMonth() + 1}-${startDate.getFullYear()}`,
+                end: `${endDate.getDate()}-${endDate.getMonth() + 1}-${endDate.getFullYear()}`
+            })
+        }
+
+    }, [props.data])
+
+    const changeFisico = () => {
+        setActiveFisico(!activeFisico)
+    }
+
+    const changeVirtual = () => {
+        setActiveVirtual(!activeVirtual)
     }
 
     return (
         <section>
             {
-                active
-                    ?
-                    <PagoFisico change={change} />
-                    :
-                    ''
+                activeFisico
+                ?
+                    <PagoFisico changeFisico={changeFisico} />
+                :
+                ''
+            }
+            {
+                activeVirtual
+                ?
+                    <PagoVirtual changeVirtual={changeVirtual} data={props.data} setData={props.setData} type={'empresa'}/>
+                :
+                ''
             }
             <label className="type">
                 TIPO DE PLAN:
@@ -25,16 +57,16 @@ const BillingUser = (props) => {
             <div></div>
             <label>
                 FECHA DE INICIO:
-                <p>-----------</p>
+                <p>{props.data.start ? dates.start : '------------'}</p>
             </label>
             <label>
                 FECHA DE FINALIZACIÓN:
-                <p>----------</p>
+                <p>{props.data.start ? dates.end : '------------'}</p>
             </label>
             <div>
                 <span>RENOVACIÓN:</span> <br /> <br />
-                <button onClick={() => { alert('Estamos en proceso de vinculación con el pago online, perdone las molestias') }}>Web</button>
-                <button onClick={change}>Fisico</button>
+                <button onClick={changeVirtual}>Virtual</button>
+                <button onClick={changeFisico}>Físico</button>
             </div>
 
             <style jsx>{`

@@ -12,7 +12,6 @@ const FeatureUno = (props) => {
                 <img className="marker" src="/img/phone.svg" alt=""/>
                 <p>{props.phone}</p>
             </div>
-            <div className="amarilloLine"></div>
 
             <style jsx>{`
                 

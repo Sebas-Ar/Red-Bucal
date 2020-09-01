@@ -48,7 +48,7 @@ const usuario = () => {
             <NavEmpresa onClick={onClick} select={select} data={data}>
                 {
                     select === 0 ? <InformationBusiness data={data} /> :
-                        select === 1 ? <BillingBusiness data={data} /> :
+                        select === 1 ? <BillingBusiness data={data} setData={changeData}/> :
                             select === 2 ? <EmployeeList data={data} changeData={changeData}/> :
                                 select === 3 ? <RecordUser /> :
                                     'cuatro'
