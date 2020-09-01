@@ -69,7 +69,6 @@ const PanamaMap = (props) => {
 
     return (
         <div className="content">
-            <p>{myPosition.latitude}, {myPosition.longitude}</p>
             <ReactMapGl 
                 {...viewPort} mapboxApiAccessToken={process.env.TOKEN_MAP}
                     onViewportChange={viewPort => {
