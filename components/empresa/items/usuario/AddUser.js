@@ -89,11 +89,7 @@ const AddUser = (props) => {
                     TELEFÓNO: <br />
                     <input onChange={onChange} type="number" name="phone" placeholder="" />
                 </label>
-                <label>
-                    DIRECCIÓN: <br />
-                    <input onChange={onChange} type="text" name="adress" placeholder="" />
-                </label>
-                <label>
+                <label className="date">
                     FECHA DE NACIMIENTO: <br />
                     <select name="day" onChange={props.ChangeText}>
                         <option value="">DÍA</option>
@@ -319,6 +315,10 @@ const AddUser = (props) => {
                     margin: 15px 0;
                     color: var(--mainColor);
                     font-weight: 600;
+                }
+
+                .date {
+                    
                 }
 
                 p {

@@ -23,6 +23,7 @@ const administrador = () => {
         RUC: ""
     })
     const [data, setData] = useState({})
+    const [listData, setListData] = useState([])
     const [adminData, setAdminData] = useState({});
     const [activate, setactivate] = useState(false);
     
