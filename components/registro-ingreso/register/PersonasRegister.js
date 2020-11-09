@@ -24,12 +24,23 @@ const PersonasRegister = (props) => {
             {props.errors.errorName ? <p style={{ gridColumn: '1/2' }}>{props.errors.errorName}</p> : ''}
             {props.errors.errorName || props.errors.errorlastname ? <br/> : ''}
             {props.errors.errorlastname ? <p style={{ gridColumn: '3/4' }}>{props.errors.errorlastname}</p> : ''}
-            <h4>CEDULA DE CIUDADANIA</h4>
-            <div className="id">
+            <h4>DOCUMENTO</h4>
+            <div>
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="ej. 1-111-111" value={props.user.identification} name="identification" onChange={props.ChangeText}/>
+                <select name="typeDoc" onChange={props.ChangeText}>
+                    <option value="-">TIPO</option>
+                    <option value="C.C. Panameña">CEDULA PANAMEÑA</option>
+                    <option value="Pasaporte">PASAPORTE</option>
+                    <option value="Cedula de extranjería">CEDULA DE EXTRANJERÍA</option>
+                </select>
             </div>
-            {props.errors.erroridentification ? <p style={{ gridColumn: '1/4' }}>{props.errors.erroridentification}</p> : ''}
+            <br/>
+            <div>
+                <div className="colorRojo"></div>
+                <input type="text" placeholder="IDENTIFICACIÓN" value={props.user.identification} name="identification" onChange={props.ChangeText}/>
+            </div>
+            {props.errors.errorTypeDoc ? <p style={{ gridColumn: '1/2' }}>{props.errors.errorTypeDoc}</p> : ''}
+            {props.errors.erroridentification ? <p style={{ gridColumn: '3/4' }}>{props.errors.erroridentification}</p> : ''}
             <div className="password">
                 <div className="colorRojo"></div>
                 <input type="password" placeholder="REPITA LA CONTRASEÑA*" value={props.user.passwordRepeat} name="passwordRepeat" onChange={props.ChangeText} />
@@ -343,6 +354,10 @@ const PersonasRegister = (props) => {
                 }
 
                 .id, .correo, .select, .fecha {
+                    grid-column: 1/4;
+                }
+
+                .docuemnt{
                     grid-column: 1/4;
                 }
 

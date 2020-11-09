@@ -286,6 +286,12 @@ const NavPhone = () => {
                     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 }
 
+                @media screen and (min-width: 851px) {
+                    header {
+                        display: none
+                    }
+                }
+
                 @media screen and (max-width: 426px) {
                     header > a {
                         width: 150px;

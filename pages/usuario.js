@@ -8,6 +8,7 @@ import BillingUser from '../components/usuario/items/BillingUser'
 import ServicesUser from '../components/usuario/items/ServicesUser'
 import RecordUser from '../components/usuario/items/RecordUser'
 import ChangePass from '../components/usuario/ChangePass';
+import Swal from 'sweetalert2'
 
 const usuario = () => {
 
@@ -47,6 +48,31 @@ const usuario = () => {
     useEffect(() => {
         get()
     }, [])
+
+    const changeTour = async (email) => {
+        try {
+            const url= '/api/tour'
+            const result = await axios.post(url, {email})
+            console.log(result)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        
+        if(data.tour) {
+            Swal.fire({
+                position: 'center',
+                icon: 'question',
+                title: 'Facturación',
+                text: 'Puedes realizar la activación de tu cuenta de forma fisica o virtual',
+                showConfirmButton: true
+            })
+            changeTour(data.email)
+        }
+
+    }, [data]);
 
         return (
     

@@ -30,7 +30,7 @@ const Ingresar = () => {
             validate = false
         }
 
-        if (!login.identification) {
+        if (!login.email) {
             err = Object.assign({}, err, { error: 'Falta la cedula' })
             validate = false
         }

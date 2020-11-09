@@ -13,7 +13,7 @@ const Registro = (props) => {
         <div className="form">
             <div className="id">
                 <div className="colorRojo"></div>
-                <input type="text" placeholder={url === '/registro-administrador' ? 'CEDULA DE CIUDADANIA' : 'CEDULA DE CIUDADANIA / RUC'} value={props.user.identification ? props.user.identification : ''} name="identification" onChange={props.ChangeText} />
+                <input type="text" placeholder="EMAIL" value={props.user.email ? props.user.email : ''} name="email" onChange={props.ChangeText} />
             </div>
             <div className="password">
                 <div className="colorAzul"></div>

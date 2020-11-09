@@ -38,6 +38,9 @@ const Ingresar = () => {
         if (user.password) {
             object = Object.assign({}, object, { password: user.password })
         }
+        if (user.email) {
+            object = Object.assign({}, object, { businessMail: user.email })
+        }
         setBusiness(Object.assign({}, business, object))
     }, [user]);
 
@@ -101,17 +104,13 @@ const Ingresar = () => {
             checked = false
         }
 
-        if (user.identification) {/* ya */
+        if (!user.typeDoc) {
+            objectErrors = Object.assign({}, objectErrors, { errorTypeDoc: 'falta el tipo' })
+            checked = false
+        }
 
-            const array = Array.from(user.identification)
-
-            if ((array[1] !== '-') || (array[5] !== '-')) {
-                objectErrors = Object.assign({}, objectErrors, { erroridentification: 'la cedula debe tener la forma 1-111-111' })
-                checked = false
-            }
-
-        } else {
-            objectErrors = Object.assign( {}, objectErrors,  { erroridentification: 'falta la cedula de ciudadania' })
+        if (!user.identification) {/* ya */
+            objectErrors = Object.assign( {}, objectErrors,  { erroridentification: 'falta el documento' })
             checked = false
         }
 
@@ -149,11 +148,11 @@ const Ingresar = () => {
                         position: 'center',
                         icon: 'success',
                         title: 'Usuario registrado satisfactoriamente',
-                        showConfirmButton: false,
-                        timer: 2000
+                        text: 'Ingresa a tu cuenta para poder activarla!',
+                        showConfirmButton: true
                     })
                     setLogin({
-                        identification: user.identification,
+                        email: user.email,
                         password: user.password
                     })
                     setUser({})
@@ -360,8 +359,8 @@ const Ingresar = () => {
             validate = false
         }
 
-        if (!login.identification) {
-            err = Object.assign({}, err, { error: 'Falta la cedula / RUC' })
+        if (!login.email) {
+            err = Object.assign({}, err, { error: 'Falta el email' })
             validate = false
         }
 

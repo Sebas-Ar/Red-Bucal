@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import RememberPass from './RememberPass';
 
 const Ingreso = (props) => {
 
@@ -11,9 +12,10 @@ const Ingreso = (props) => {
 
     return (
         <form onSubmit={e => {e.preventDefault()}}>
+{/*             <RememberPass /> */}
             <div>
                 <div className="colorRojo"></div>
-                <input type="text" placeholder={url === '/ingreso-administrador' ? 'CEDULA DE CIUDADANIA' : 'CEDULA DE CIUDADANIA / RUC'} name="identification" value={props.login.identification} onChange={props.ChangeTextLogin} />
+                <input type="text" placeholder="EMAIL" name="email" value={props.login.email} onChange={props.ChangeTextLogin} />
             </div>
             <div className="password">
                 <div className="colorAzul"></div>

@@ -36,6 +36,14 @@ const TitleDescuentos = () => {
                     font-size: calc(90px * var(--sizeTitlebenef));
                 }
                 
+                @media screen and (max-width: 930px) {
+                    --sizeTitlebenef: .5; 
+                }
+
+                @media screen and (max-width: 690px) {
+                    --sizeTitlebenef: .3; 
+                }
+
             `}</style>
         </div>
     )

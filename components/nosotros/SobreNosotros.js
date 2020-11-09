@@ -5,7 +5,7 @@ const SobreNosotros = () => {
         <div className="content">
             <div className="puntos"></div>
             <div className="text">
-                <h1>
+                <h1 className="main-title">
                     <span className="sobre">SOBRE</span>
                     <span className="nosotros">NOSOTROS</span>
                 </h1>
@@ -18,6 +18,11 @@ Nuestra red es una red amigable, respetable y confiable, lo que nos permite ser 
 </p>
             </div>
             <div className="imagenes">
+                <h1 className="second-title">
+                    <span className="nosotros">SOBRE</span>
+                    <br/>
+                    <span className="nosotros">NOSOTROS</span>
+                </h1>
                 <div className="color"></div>
                 <div className="img"></div>
             </div>
@@ -26,6 +31,9 @@ Nuestra red es una red amigable, respetable y confiable, lo que nos permite ser 
             <style jsx>{`
                 
                 .content {
+                    box-sizing: border-box;
+                    height: calc(100vh - 60px);
+                    min-height: 720px;
                     padding-top: 150px;
                     display: grid;
                     grid-template-columns: 1fr 4fr 4fr;
@@ -52,12 +60,17 @@ Nuestra red es una red amigable, respetable y confiable, lo que nos permite ser 
                     background: var(--secondColor);
                 }
 
+                .second-title {
+                    display: none;
+                }
+
                 .img {
                     grid-column: 2/3;
                     grid-row: 1/4;
+                    
                     background-image: url("/img/dentist-1.png");
-                    background-size: auto 100%;
                     background-position: center;
+                    background-size: auto 100%;
                 }
 
                 .text {
@@ -86,6 +99,88 @@ Nuestra red es una red amigable, respetable y confiable, lo que nos permite ser 
                     font-weight: 500;
                     font-size: .9rem;
                     color: var(--mainColorClaro);
+                }
+
+                @media screen and (max-width: 1340px) {
+                    .content {
+                        grid-template-columns: 1fr 4fr 3fr;
+                    }
+
+                    .imagenes {
+                        grid-template-columns: 1fr 12fr;
+                        grid-template-rows: 2.2fr 7fr 2fr;
+                    }
+
+                    .img {
+                        grid-row: 2/3;
+                    }
+
+                    .color {
+                        height: 80%;
+                        align-self: center;
+                    }
+                }
+
+                @media screen and (max-width: 1000px) {
+                    .content {
+                        padding-top: 100px;
+                        grid-template-columns: 4fr 4fr;
+                    }
+
+                    .puntos {
+                        display: none;
+                    }
+                }
+
+                @media screen and (max-width: 850px) {
+                    .content {
+                        grid-template-columns: 1fr;
+                        height: auto;
+                    }
+
+                    .color {
+                        display: none;
+                    }
+
+                    .imagenes {
+                        grid-row: 1/2;
+                        width: 100%;
+                        height: 560px;
+                        grid-template-columns: 1fr;
+                        grid-template-rows: 1fr;
+                        position: relative;
+                    }
+
+                    .img {
+                        grid-column: 1/2;
+                        grid-row: 1/2;
+                    }
+                    
+                    .main-title {
+                        display: none;
+                    }
+
+                    .second-title {
+                        display: block;
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        text-align: center;
+                        color: white;
+                        background-color: #091C4799;
+                        width: 100%;
+                    }
+
+                }
+
+                @media screen and (max-width: 450px) {
+                    .nosotros {
+                        font-size: 50px;
+                    }
+
+                    .img {
+                        background-position: center right;
+                    }
                 }
 
             `}</style>

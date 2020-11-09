@@ -7,8 +7,8 @@ const InformationUser = (props) => {
                 ESTADO:
                 <p>{props.data.state ? 'ACTIVO' : 'INACTIVO'}</p>
             </label>
-            <label>
-                CEDULA:
+            <label className="type">
+                {props.data.typeDoc}:
                 <p>{props.data.identification}</p>
             </label>
             <label>
@@ -45,6 +45,10 @@ const InformationUser = (props) => {
 
             p {
                 color: var(--mainColorClaro);
+            }
+
+            .type {
+                text-transform: uppercase;
             }
                 
             `}</style>
