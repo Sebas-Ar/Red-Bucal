@@ -5,23 +5,12 @@ import NavPhone from '../nav/NavPhone'
 
 const Layout = (props) => {
 
-    const [width, setWidth] = useState(0);
-
-    useEffect(() => {
-        const size = screen.width
-        setWidth(size)
-        console.log(size)
-    })
-
     return (
         <React.Fragment>
-            {
-                width > 850
-                ?
-                <Nav />
-                :
-                <NavPhone />
-            }
+            
+            <Nav />
+            <NavPhone />
+            
             {props.children}
 
         </React.Fragment>

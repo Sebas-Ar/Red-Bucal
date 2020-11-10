@@ -228,9 +228,16 @@ const Nav = () => {
         border-bottom: 4px solid ;
       }
 
-      @media screen and (max-width: 970px) {
+      @media screen and (max-width: 990px) {
         :global(:root) {
           --sizeNav: .75;
+        }
+      }
+
+
+      @media screen and (max-width: 850px) {
+        nav {
+          display: none
         }
       }
 

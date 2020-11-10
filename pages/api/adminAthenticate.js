@@ -4,11 +4,11 @@ import withMiddleware from "../../middlewares/withMiddleware"
 const handler = async (req, res) => {
     if (req.method === 'POST') {
 
-        const { identification, password } = req.body
+        const { email, password } = req.body
 
         try {
 
-            const admin = await req.db.collection('admin').findOne({ identification })
+            const admin = await req.db.collection('admin').findOne({ email })
 
             if (admin) {
 
@@ -42,7 +42,7 @@ const handler = async (req, res) => {
 
             } else {
 
-                const master = await req.db.collection('master').findOne({ identification })
+                const master = await req.db.collection('master').findOne({ email })
 
                 if (master) {
 

@@ -3,12 +3,11 @@ import withMiddleware from "../../middlewares/withMiddleware"
 
 const handler = async (req, res) => {
     if( req.method === 'POST' ) {
-        const { identification, password } = req.body
-        const RUC = identification;
+        const { email, password } = req.body
         
         try {
         
-        const business = await req.db.collection('bussines').findOne({ RUC })
+        const business = await req.db.collection('bussines').findOne({ businessMail: email })
 
         if (business) {
             
@@ -37,7 +36,7 @@ const handler = async (req, res) => {
 
         } else {
 
-            const user = await req.db.collection('users').findOne({ identification })
+            const user = await req.db.collection('users').findOne({ email })
 
             if ( user ) {
     

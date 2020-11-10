@@ -18,9 +18,14 @@ const master = () => {
     const [select, setSelect] = useState(0);
     const [user, setUser] = useState(0);
     const [type, setType] = useState('');
-    const [id, setId] = useState({})
-    const [RUC, setRUC] = useState({})
+    const [id, setId] = useState({
+        identification: ""
+    })
+    const [RUC, setRUC] = useState({
+        RUC: ""
+    })
     const [data, setData] = useState({})
+    const [listData, setListData] = useState([])
     const [adminData, setAdminData] = useState({});
     const [activate, setactivate] = useState(false);
 
@@ -57,6 +62,10 @@ const master = () => {
         setData(value)
     }
 
+    const changeListData = (list) => {
+        setListData(list)
+    }
+
     const onClick = (selector) => {
         setSelect(selector)
     }
@@ -91,7 +100,9 @@ const master = () => {
                             RUC={RUC}
                             changeData={changeData}
                             data={data}
+                            listData={listData}
                             changeActivate={changeActivate}
+                            changeListData={changeListData}
                         />
                             :
                             select === 1 ? <InforUserAdmin
@@ -124,7 +135,9 @@ const master = () => {
                             RUC={RUC}
                             changeData={changeData}
                             data={data}
+                            listData={listData}
                             changeActivate={changeActivate}
+                            changeListData={changeListData}
                         />
                             :
                             select === 1 ?  <InfoAdmin 

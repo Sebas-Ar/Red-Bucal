@@ -5,7 +5,7 @@ import {ObjectId} from 'mongodb'
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {
-        const { name, lastname, adress, password, phone, email, identification, know, day, month, year } = req.body
+        const { name, lastname, adress, password, phone, email, typeDoc, identification, know, day, month, year } = req.body
 
         if (!validator.validate(email)) {
 
@@ -45,6 +45,7 @@ const handler = async (req, res) => {
                         const user = await req.db.collection('users').insertOne({
                             state: false,
                             name: name + ' ' + lastname,/* ya */
+                            typeDoc,
                             identification,/* ya */
                             email,/* ya */
                             password: hashedPassword,/* ya */
@@ -58,6 +59,7 @@ const handler = async (req, res) => {
                             service: false,
                             terminos: true,
                             historial: [],
+                            tour: true,
                             alerts: {
                                 week: false,
                                 month: false

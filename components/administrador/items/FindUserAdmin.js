@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Swal from 'sweetalert2'
 import axios from "axios";
 
@@ -8,17 +8,19 @@ const FindUserAdmin = (props) => {
         e.preventDefault()
         const url = '/api/getUser'
         const result = await axios.post(url, props.id)
-        if (result.data.message !== null) {
-            props.changeData(result.data.message)
+        if (result.data.message.length !== 0) {
+            console.log(result.data.message)
+            props.changeListData(result.data.message)
             props.ChangeType('persona')
         } else {
             Swal.fire({
                 position: 'center',
                 icon: 'warning',
-                title: 'El usuario no está registrado',
+                title: 'No hay ninuga coincidencia!',
                 showConfirmButton: false,
                 timer: 1500
             })
+            props.changeListData([])
         }
     } 
 
@@ -26,8 +28,8 @@ const FindUserAdmin = (props) => {
         e.preventDefault()
         const url = '/api/getBusiness'
         const result = await axios.post(url, props.RUC)
-        if (result.data.message !== null) {
-            props.changeData(result.data.message)
+        if (result.data.message.length !== 0) {
+            props.changeListData(result.data.message)
             props.ChangeType('empresa')
         } else {
             Swal.fire({
@@ -40,6 +42,18 @@ const FindUserAdmin = (props) => {
         }
     } 
 
+    const getDataUser = async (id) => {
+        const url = `/api/getUser?id=${id}`
+        const result = await axios.get(url, id)
+        props.changeData(result.data.message)
+    }
+
+    const getDataBusiness = async (id) => {
+        const url = `/api/getBusiness?id=${id}`
+        const result = await axios.get(url, id)
+        props.changeData(result.data.message)
+    }
+
     return (
         <section>
 
@@ -48,7 +62,7 @@ const FindUserAdmin = (props) => {
                 <button className="buscar" type="submit" onClick={onSubmitID}>Buscar</button>
             </form>
             <form>
-                <input type="number" name="RUC" placeholder="RUC EMPRESARIAL" onChange={(e) => {props.changeRUC(e)}}/>
+                <input type="text" name="RUC" placeholder="RUC EMPRESARIAL" onChange={(e) => {props.changeRUC(e)}}/>
                 <button className="buscar" type="submit" onClick={onSubmitRUC}>Buscar</button>
             </form>
 
@@ -64,13 +78,20 @@ const FindUserAdmin = (props) => {
                                 <h5>ID</h5>
                                 <h5>OPCIÓN</h5>
                             </div>
-                            <div className="content">
-                                <p>{props.data.name}</p>
-                                <p>{props.data.identification}</p>
-                                <button className="selection" onClick={() => {
-                                    props.ChangeUser(1)
-                                    props.changeActivate()
-                                }}>Selecctionar</button>
+                            <div className="overflow">
+                            {
+                                props.listData.map(data => (
+                                    <div className="content">
+                                        <p>{data.name}</p>
+                                        <p>{data.identification}</p>
+                                        <button className="selection" onClick={() => {
+                                            getDataUser(data["_id"])
+                                            props.ChangeUser(1)
+                                            props.changeActivate()
+                                        }}>Selecctionar</button>
+                                    </div>
+                                ))
+                            }
                             </div>
                         </div>
                     </div>
@@ -84,14 +105,19 @@ const FindUserAdmin = (props) => {
                                     <h5>RUC</h5>
                                     <h5>OPCIÓN</h5>
                                 </div>
-                                <div className="content">
-                                    <p>{props.data.name}</p>
-                                    <p>{props.data.RUC}</p>
-                                    <button className="selection" onClick={() => {
-                                        props.ChangeUser(2)
-                                        props.changeActivate()
-                                    }}>Selecctionar</button>
-                                </div>
+                                {
+                                    props.listData.map(data => (
+                                        <div className="content">
+                                            <p>{data.name}</p>
+                                            <p>{data.RUC}</p>
+                                            <button className="selection" onClick={() => {
+                                                getDataBusiness(data["_id"])
+                                                props.ChangeUser(2)
+                                                props.changeActivate()
+                                            }}>Selecctionar</button>
+                                        </div>
+                                    ))
+                                }
                             </div>
                         </div>
                         : ''
@@ -103,7 +129,7 @@ const FindUserAdmin = (props) => {
                     align-self: center;
                     margin: 0 50px;
                     display: grid;
-                    grid-template-rows: 1fr 2px 1fr;
+                    grid-template-rows: 100px 2px 1fr;
                     grid-template-columns: 1fr 1fr;
                 }
 
@@ -152,7 +178,12 @@ const FindUserAdmin = (props) => {
 
                 .table {
                     display: grid;
-                    grid-template-rows: 1fr 1fr;
+                    grid-template-rows: 30px 1fr;
+                }
+
+                .overflow {
+                    max-height: 200px;
+                    overflow: auto;
                 }
 
                 .cabecera, .content {
@@ -170,6 +201,7 @@ const FindUserAdmin = (props) => {
 
                 .content {
                     color: var(--mainColorClaro);
+                    margin: 4px 0;
                 }
 
                 .selection {
