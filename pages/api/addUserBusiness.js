@@ -40,7 +40,7 @@ const handler = async (req, res) => {
                         birthdate,
                         adress,
                         phone,
-                        plan: false,
+                        plan: true,
                         date: '0' + date.getDate() + ' / 0' + date.getMonth(),
                         service: false
                     })
