@@ -12,17 +12,11 @@ const RecordAdmin = (props) => {
         let time = {}
         time.identification = props.data.identification
         time.historial = props.data.historial
-        
-        const interval = setInterval(() => {
 
-            time.hora = moment().locale("es").format('LT')
-            time.fecha = moment().locale("es").format('LL')            
+        time.hora = moment().locale("es").format('LT')
+        time.fecha = moment().locale("es").format('LL')            
+        setData(time)
 
-        }, 1000);
-
-        return () => {
-            clearInterval(interval)
-        }
     }, [])
 
     const onchange = (e) => {
