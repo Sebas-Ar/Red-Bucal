@@ -437,7 +437,7 @@ const Ingresar = () => {
                             ?
                                 <div className="form reg">
                                     <h2>REGISTRO</h2>
-                                    <p>Ingrese su email y contraseña para iniciar el proceso de registro.</p>
+                                    <p>Ingrese un email y contraseña para iniciar el proceso de registro.</p>
                                     <Registro 
                                         changeRegister={changeRegister} 
                                         ChangeText={ChangeText} 
