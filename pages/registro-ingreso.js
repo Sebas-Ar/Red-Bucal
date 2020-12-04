@@ -20,6 +20,7 @@ const Ingresar = () => {
     const [errors, setErrors] = useState({});
     const [errorsBusiness, setErrorsBusiness] = useState({})
     const [errorsLogin, setErrorsLogin] = useState({})
+    const [regLog, setRegLog] = useState(false)
 
 
     const changeRegister = () => {
@@ -405,6 +406,10 @@ const Ingresar = () => {
         }
     }
 
+    const ChangeRegLog = () => {
+        setRegLog(!regLog)
+    }
+
     return (
         <Layout>
 
@@ -427,28 +432,35 @@ const Ingresar = () => {
                     <div className="content">
 
                         <div className="diente1"></div>
-                        <div className="form reg">
-                            <h2>REGISTRO</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae perferendis</p>
-                            <Registro 
-                                changeRegister={changeRegister} 
-                                ChangeText={ChangeText} 
-                                user={user} 
-                                errors={errors}
-                                errorsBusiness={errorsBusiness}
-                            />
-                        </div>
-                        <div className="linea"></div>
-                        <div className="form">
-                            <h2>INGRESO</h2>
-                            <p>Identifiquese con su email y contraseña y podrá acceder a los contenidos del portal.</p>
-                            <Ingreso 
-                                onSubmitLogin={onSubmitLogin} 
-                                ChangeTextLogin={ChangeTextLogin} 
-                                login={login}
-                                errorsLogin={errorsLogin}
-                            />
-                        </div>
+                        {
+                            regLog 
+                            ?
+                                <div className="form reg">
+                                    <h2>REGISTRO</h2>
+                                    <p>Ingrese su email y contraseña para iniciar el proceso de registro.</p>
+                                    <Registro 
+                                        changeRegister={changeRegister} 
+                                        ChangeText={ChangeText} 
+                                        user={user} 
+                                        errors={errors}
+                                        errorsBusiness={errorsBusiness}
+                                        ChangeRegLog={ChangeRegLog}
+                                    />
+                                </div>
+
+                            :
+                                <div className="form">
+                                    <h2>INGRESO</h2>
+                                    <p>Identifiquese con su email y contraseña y podrá acceder a los contenidos del portal.</p>
+                                    <Ingreso 
+                                        onSubmitLogin={onSubmitLogin} 
+                                        ChangeTextLogin={ChangeTextLogin} 
+                                        login={login}
+                                        errorsLogin={errorsLogin}
+                                        ChangeRegLog={ChangeRegLog}
+                                    />
+                                </div>
+                        }
                         <div className="diente2"></div>
 
                     </div>
@@ -460,7 +472,7 @@ const Ingresar = () => {
                     height: 100vh;
                     width: 100vw;
                     display: grid;
-                    grid-template-columns: 1fr 2fr 2px 2fr 1fr;
+                    grid-template-columns: 1fr 4fr 1fr;
                 }    
 
                 .diente1, .diente2 {

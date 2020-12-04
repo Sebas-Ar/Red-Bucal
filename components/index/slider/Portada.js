@@ -22,13 +22,13 @@ const Portada = () => {
                 }
 
                 .content {
-                    background-image: url("/img/doctor-fondo.jpg");
-                    background-size: auto 100%;
+                    background-image: url("/img/doctor-fondo1.jpg");
+                    background-size: 100% auto;
                     background-position: center;
                     height: 100vh;
                     width: 100%;
                     display: grid;
-                    grid-template-rows: 1fr calc(250px * var(--sizeLetter)) 1fr;
+                    grid-template-rows: 1fr calc(250px * var(--sizeLetter)) 2fr;
                     max-height: 630px;
                 }
 
@@ -38,15 +38,13 @@ const Portada = () => {
                 }
 
                 .img {
-                    grid-row: 1/4;
-                    grid-column: 1/2;
                     background-image: url("/img/doctor1.png");
-                    background-size: auto 120%;
-                    background-position: top;
+                    background-size: 100% auto;
+                    background-position: center;
                     background-repeat: no-repeat;
-                    margin-left: 116px;
                     z-index: 10;
-                    width: 560px;
+                    grid-row: 1/4;
+                    grid-column: 1/4;
                 }
 
                 .abajo {
@@ -60,7 +58,7 @@ const Portada = () => {
                     width: 90%;
                     border-radius: 0 30px 30px 0;
                     grid-row: 2/3;
-                    grid-column: 1/2;
+                    grid-column: 1/4;
                     display: grid;
                     justify-items: flex-end;
                 }
@@ -103,13 +101,14 @@ const Portada = () => {
                     margin-top: calc(-50px * var(--sizeLetter));
                 }
 
+                @media screen and (max-width: 1370px) {
+                    .content, .img {
+                        background-size: auto 100%;
+                    }
+                }
                 @media screen and (max-width: 1300px) {
                     .color {
                         width: 95%;
-                    }
-
-                    .img {
-                        margin-left: 60px;
                     }
 
                     :global(:root) {
@@ -118,14 +117,6 @@ const Portada = () => {
                 }
 
                 @media screen and (max-width: 1040px) {
-                    .color {
-                    }
-
-                    .img {
-                        margin-left: 0px;
-                        background-image: url("/img/doctor.png");
-                        background-size: auto 100%;
-                    }
 
                     :global(:root) {
                         --sizeLetter: 0.7;
@@ -133,20 +124,23 @@ const Portada = () => {
                 }
 
                 @media screen and (max-width: 915px) {
-                    .img {
-                        margin-left: -100px;
-                    }
 
                     :global(:root) {
                         --sizeLetter: 0.5;
                     }
+
+                    h2 {
+                        color: white
+                    }
+
+                    .img, .content {
+                        background-position-x: 20%;
+                    }
                 }
 
                 @media screen and (max-width: 690px) {
-                    .img {
-                        margin-left: -20px;
-                        background-image: url("/img/doctor3.png");
-                        width: 330px;
+                    .img, .content {
+                        background-position-x: 25%;
                     }
 
                     :global(:root) {
@@ -154,20 +148,15 @@ const Portada = () => {
                     }
                 }
 
-                @media screen and (max-width: 500px) {
-                    .img {
-                        margin-left: -60px;
-                    }
+                @media screen and (max-width: 560px) {
 
-                    h1,
-                    h2 {
+                    h1, h2 {
                         margin-right: 20px;
                     }
                 }
 
-                @media screen and (max-width: 415px) {
-                    h1,
-                    h2 {
+                @media screen and (max-width: 475px) {
+                    h1, h2 {
                         margin-right: 10px;
                     }
 
@@ -177,8 +166,7 @@ const Portada = () => {
                 }
 
                 @media screen and (max-width: 340px) {
-                    h1,
-                    h2 {
+                    h1, h2 {
                         margin-right: 5px;
                     }
 

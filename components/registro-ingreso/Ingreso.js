@@ -29,10 +29,13 @@ const Ingreso = (props) => {
                 </svg>
             </button>
 
+            <span onClick={() => props.ChangeRegLog()}>¿No tienes cuenta? Registrate</span>
+
             <style jsx>{`
 
                 form {
                     display: grid;
+                    position: relative;
                 }
                 
                 div {
@@ -85,7 +88,7 @@ const Ingreso = (props) => {
                     height: 30px;
                     width: 140px;
                     outline: none;
-                    justify-self: flex-end;
+                    justify-self: center;
                     align-self: center;
                     color: #333333aa;
                     font-weight: 900;
@@ -97,6 +100,23 @@ const Ingreso = (props) => {
                     transform: translateY(20%);
                     margin-left: 10px;
                     fill: var(--puntoRojo)
+                }
+
+                span {
+                    position: absolute;
+                    bottom: -15px;
+                    color: #60A9CAAA;
+                    text-decoration: underline;
+                    width: 350px;
+                    text-align: center;
+                    font-size: 15px;
+                    cursor: pointer;
+                    transition: color .5s;
+                }
+
+                span:hover {
+                    color: #60A9CA;
+
                 }
                 
             `}</style>
