@@ -4,9 +4,15 @@ import {ObjectId} from 'mongodb';
 
 const handler = async (req, res) => {
     if (req.method === 'GET') {
+        
         const {query} = req
+        let data
 
-        const data = await req.db.collection('users').findOne({_id: ObjectId(query.id)})
+        if (query.identification) {
+            data = await req.db.collection('users').findOne({identification: query.identification})
+        } else {
+            data = await req.db.collection('users').findOne({_id: ObjectId(query.id)})
+        }
 
         res.send({message: data})
 

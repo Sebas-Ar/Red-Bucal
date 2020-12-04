@@ -441,7 +441,7 @@ const Ingresar = () => {
                         <div className="linea"></div>
                         <div className="form">
                             <h2>INGRESO</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae perferendis</p>
+                            <p>Identifiquese con su email y contraseña y podrá acceder a los contenidos del portal.</p>
                             <Ingreso 
                                 onSubmitLogin={onSubmitLogin} 
                                 ChangeTextLogin={ChangeTextLogin} 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { scroller } from 'react-scroll';
 import Layout from '../components/layout/Layout'
+import MapWrapper from '../components/red/MapWrapper';
+
 /* import SliderImg from '../components/red/SliderImg' */
 import PanamaMap from '../components/red/PanamaMap'
 import Footer from '../components/footer/Footer'
@@ -22,6 +24,7 @@ const setupScroll = {
 const Red = () => {
 
     const [clinic, setClinic] = useState(0);
+    const [activate, setActivate] = useState(false)
     
 
     const changeClinic = (num) => {
@@ -34,9 +37,11 @@ const Red = () => {
     return (
         <Layout>
             {<TitleRed />}
-            <PanamaMap changeClinic={changeClinic} location={location} clinic={clinic}/> 
-            <LayoutInfoClinics name="info" clinic={clinic} location={location}/>
-            <br/>
+            <MapWrapper>
+                <LayoutInfoClinics name="info" clinic={clinic} location={location} activate={activate} setActivate={setActivate} changeClinic={changeClinic}/>
+                <PanamaMap changeClinic={changeClinic} location={location} clinic={clinic}/>
+
+            </MapWrapper>
             <br/>
             <br/>
             {/* <SliderImg location={location}/> */}
@@ -44,5 +49,6 @@ const Red = () => {
         </Layout>
     )
 }
+
 
 export default Red

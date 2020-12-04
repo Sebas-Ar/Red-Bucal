@@ -149,7 +149,7 @@ const PanamaMap = (props) => {
                     background: #777777;
                     padding: 6px 6px;
                     border-radius: 15px;
-                    animation: ocultar 1.5s 7s forwards;
+                    
                 }
 
                 .content {

@@ -7,7 +7,7 @@ const LayoutForm = (props) => {
             
             <div className="amarillo"></div>
             <div className="text">
-                <h3>CONTACTENOS</h3>
+                <h3>CONTÁCTENOS</h3>
                 <p>¿Por qué esperar a tener un problema para ir al odontólogo? <br/> <br/> ¡Es mejor prevenirlo! <br/> <br/> Red Bucal te ofrece diferentes alternativas para mantenerte en comunicación directa con nosotros y con nuestras Clínicas afiliadas.</p>
             </div>
             <Form />

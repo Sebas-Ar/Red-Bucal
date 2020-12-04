@@ -27,32 +27,53 @@ const AddUser = (props) => {
             validate = false
         }
         
+        if (!data.typeDoc) {
+            errors = Object.assign({}, errors, {errortypeDoc: 'Falta el tipo'})
+            validate = false            
+        }
+        
         if (!data.identification) {
-            errors = Object.assign({}, errors, {errorIdentification: 'Falta la cedula'})
+            errors = Object.assign({}, errors, {erroridentification: 'Falta la identifiación'})
+            validate = false            
+        }
+        
+        if (!data.day) {
+            errors = Object.assign({}, errors, {errorday: 'Falta el día'})
+            validate = false            
+        }
+        
+        if (!data.month) {
+            errors = Object.assign({}, errors, {errormonth: 'Falta el mes'})
+            validate = false            
+        }
+        
+        if (!data.year) {
+            errors = Object.assign({}, errors, {erroryear: 'Falta el año'})
             validate = false            
         }
         
         if (!data.phone) {
-            errors = Object.assign({}, errors, {errorPhone: 'Falta el telefono'})
+            errors = Object.assign({}, errors, {errorphone: 'Falta el telefono'})
             validate = false            
         }
         
-        if (!data.adress) {
-            errors = Object.assign({}, errors, {errorAdres: 'Falta el telefono'})
+        if (!data.addres) {
+            errors = Object.assign({}, errors, {erroraddres: 'Falta la dirección'})
             validate = false            
         }
 
-        if (!data.adress) {
-            errors = Object.assign({}, errors, {errorAdres: 'Falta el telefono'})
+        if (!data.email) {
+            errors = Object.assign({}, errors, {erroremail: 'Falta el email'})
             validate = false            
         }
-
-        console.log(errors)
 
         if (validate) {
+
             const url = '/api/addUserBusiness'
             const result = await axios.post(url, data)
-            /* if (result.data.status) {
+
+            if (result.data.status == 'ok') {
+
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
@@ -62,8 +83,24 @@ const AddUser = (props) => {
                 })
                 props.changeData(result.data.data.value)
                 props.changeAddUser()
-            } */
+
+            } else {
+
+                if (result.data.message === 'el correo es invalido') {
+
+                    errors = Object.assign({}, errors, {erroremail: result.data.message})
+
+                } else if (result.data.message === 'El correo ya ha sido registrado') {
+                    
+                    errors = Object.assign({}, errors, {erroremail: result.data.message})
+
+                }
+
+            }
+
         }
+
+        setErrors(errors)
 
     }
 
@@ -81,17 +118,31 @@ const AddUser = (props) => {
                     APELLIDO: <br />
                     <input onChange={onChange} type="text" name="lastname" placeholder="" />
                 </label>
+                {errors.errorName ? <p style={{ gridColumn: '1/2' }}>{errors.errorName}</p> : ''}
+                {errors.errorName && !errors.errorLastname ? <br/> : ''}
+                {errors.errorLastname && !errors.errorName ? <br/> : ''}
+                {errors.errorLastname ? <p style={{ gridColumn: '2/3' }}>{errors.errorLastname}</p> : ''}
                 <label>
-                    CEDULA: <br />
+                    DOCUMENTO: <br />
+                    <select name="typeDoc" onChange={onChange}>
+                        <option value="-">TIPO</option>
+                        <option value="C.C. Panameña">CEDULA PANAMEÑA</option>
+                        <option value="Pasaporte">PASAPORTE</option>
+                        <option value="Cedula de extranjería">CEDULA DE EXTRANJERÍA</option>
+                    </select>
+                </label>
+                <label>
+                    IDENTIFICACIÓN: <br />
                     <input onChange={onChange} type="text" name="identification" placeholder="" />
                 </label>
-                <label>
-                    TELEFÓNO: <br />
-                    <input onChange={onChange} type="number" name="phone" placeholder="" />
-                </label>
+                {errors.errortypeDoc ? <p style={{ gridColumn: '1/2' }}>{errors.errortypeDoc}</p> : ''}
+                {errors.errortypeDoc && !errors.erroridentification ? <br/> : ''}
+                {errors.erroridentification && !errors.errortypeDoc ? <br/> : ''}
+                {errors.erroridentification ? <p style={{ gridColumn: '2/3' }}>{errors.erroridentification}</p> : ''}
                 <label className="date">
                     FECHA DE NACIMIENTO: <br />
-                    <select name="day" onChange={props.ChangeText}>
+                    <div className="date-grid">
+                        <select name="day" onChange={onChange}>
                         <option value="">DÍA</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -125,7 +176,7 @@ const AddUser = (props) => {
                         <option value="30">30</option>
                         <option value="31">31</option>
                     </select>
-                    <select name="month" onChange={props.ChangeText}>
+                        <select name="month" onChange={onChange}>
                         <option value="">MES</option>
                         <option value="1">ENERO</option>
                         <option value="2">FEBRERO</option>
@@ -140,7 +191,7 @@ const AddUser = (props) => {
                         <option value="11">NOVIEMBRE</option>
                         <option value="12">DICIEMBRE</option>
                     </select>
-                    <select name="year" onChange={props.ChangeText}>
+                        <select name="year" onChange={onChange}>
                         <option value="">AÑO</option>
                         <option value="1921">1921</option>
                         <option value="1922">1922</option>
@@ -263,16 +314,29 @@ const AddUser = (props) => {
                         <option value="2039">2039</option>
                         <option value="2040">2040</option>
                     </select>
+                    {errors.errorday ? <p style={{ gridColumn: '1/2' }}>{errors.errorday}</p> : ''}
+                    {errors.errormonth ? <p style={{ gridColumn: '2/3' }}>{errors.errormonth}</p> : ''}
+                    {errors.erroryear ? <p style={{ gridColumn: '3/4' }}>{errors.erroryear}</p> : ''}
+                    </div>
+                </label>
+                <label>
+                    TELEFÓNO: <br />
+                    <input onChange={onChange} type="number" name="phone" placeholder="" />
                 </label>
                 <label>
                     DIRECCIÓN: <br />
-                    <input onChange={onChange} type="text" name="adress" placeholder="" />
+                    <input onChange={onChange} type="text" name="addres" placeholder="" />
                 </label>
+                {errors.errorphone ? <p style={{ gridColumn: '1/2' }}>{errors.errorphone}</p> : ''}
+                {errors.errorphone && !errors.erroraddres ? <br/> : ''}
+                {errors.erroraddres && !errors.errorphone ? <br/> : ''}
+                {errors.erroraddres ? <p style={{ gridColumn: '2/3' }}>{errors.erroraddres}</p> : ''}
                 <label>
                     CORREO: <br />
                     <input onChange={onChange} type="email" name="email" placeholder="" />
                 </label>
                 <br />
+                {errors.erroremail ? <p style={{ gridColumn: '1/2' }}>{errors.erroremail}</p> : ''}
                 <button >Agregar</button>
             </form>
 
@@ -305,6 +369,7 @@ const AddUser = (props) => {
                     align-self: center;
                     display: grid;
                     grid-template-columns: 1fr 1fr;
+                    grid-column-gap: 10px;
                     margin: 0 50px;
                     background: white;
                     padding: 30px;
@@ -318,7 +383,13 @@ const AddUser = (props) => {
                 }
 
                 .date {
-                    
+                    grid-column: 1/3;
+                }
+
+                .date-grid {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    grid-column-gap: 10px;                    
                 }
 
                 p {
@@ -326,7 +397,8 @@ const AddUser = (props) => {
                 }
 
                 input {
-                    width: 80%;
+                    box-sizing: border-box;
+                    width: 100%;
                 }
 
                 input, select {
@@ -338,7 +410,12 @@ const AddUser = (props) => {
                 input::placeholder {
                     color: var(--mainColorClaro);
                 }
-
+                
+                p {
+                    font-size: 12px;
+                    text-align: center;
+                    color: var(--puntoRojo);
+                }
                 button {
                     margin-top: 10px;
                     border: none;

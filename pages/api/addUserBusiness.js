@@ -4,10 +4,9 @@ import bcrypt from "bcryptjs"
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {
-        const { name, lastname, adress, phone, email, identification, birthdate, identifications, RUC} = req.body
+        const { name, lastname, addres, phone, email, typeDoc, identification, day, month, year, identifications, RUC} = req.body
         console.log(req.body)
         if (!validator.validate(email)) {
-
             res.json({
                 status: 'error',
                 message: 'el correo es invalido'
@@ -19,6 +18,7 @@ const handler = async (req, res) => {
                 const count = await req.db.collection('users').countDocuments({ email })
 
                 if (count) {
+                    console.log('ya existe')
 
                     res.send({
                         status: 'error',
@@ -34,11 +34,12 @@ const handler = async (req, res) => {
                         state: false,
                         RUC,
                         name: name + ' ' + lastname,
+                        typeDoc,
                         identification,
                         email,
                         password: hashedPassword,
-                        birthdate,
-                        adress,
+                        birthdate: `${day}/${month}/${year}`,
+                        addres,
                         phone,
                         plan: true,
                         date: '0' + date.getDate() + ' / 0' + date.getMonth(),

@@ -8,12 +8,21 @@ const RecordAdmin = (props) => {
     const [data, setData] = useState({});
 
     useEffect(() => {
+
         let time = {}
-        time.fecha = moment().locale("es").format('LL')
-        time.hora = moment().locale("es").format('LT')
-        time.historial = props.data.historial
         time.identification = props.data.identification
-        setData(time)
+        time.historial = props.data.historial
+        
+        const interval = setInterval(() => {
+
+            time.hora = moment().locale("es").format('LT')
+            time.fecha = moment().locale("es").format('LL')            
+
+        }, 1000);
+
+        return () => {
+            clearInterval(interval)
+        }
     }, [])
 
     const onchange = (e) => {
@@ -26,6 +35,7 @@ const RecordAdmin = (props) => {
         try {
 
             const result = await axios.put(url, data)
+            console.log(result.data)
             if (result.data.status) {
                 Swal.fire({
                     position: 'center',
@@ -35,6 +45,7 @@ const RecordAdmin = (props) => {
                     timer: 1000
                 })
                 props.changeData(result.data.data)
+                setData(Object.assign({}, data, {historial: result.data.data.historial}))
             }
 
         } catch (error) {
@@ -50,26 +61,22 @@ const RecordAdmin = (props) => {
                 <p>HORA</p>
                 <p>TRATAMIENTO</p>
                 <div className="linea"></div>
-                {
-                    props.data.historial.map(historial => (
-                        <div className="form">
-                            <p>{historial.fecha}</p>
-                            <p>{historial.hora}</p>
-                            <p>{historial.tratamiento}</p>
-                        </div>
-                    ))
+                <div className="wrapper-form">
+                    {
+                        props.data.historial.map(historial => (
+                            <div className="form">
+                                <p>{historial.fecha}</p>
+                                <p>{historial.hora}</p>
+                                <p>{historial.tratamiento}</p>
+                            </div>
+                        ))
 
-                }
+                    }
+                </div>
                 <form onSubmit={onSubmit}>
-                    <input type="text" name="fecha" onChange={onchange} value={data.fecha} />
-                    <input className="hora" type="text" name="hora" onChange={onchange} value={data.hora} />
-                    <select name="tratamiento" onChange={onchange}>
-                        <option value="">--------</option>
-                        <option value="1">Lorem, ipsum dolor 1%</option>
-                        <option value="2">Lorem, ipsum dolor 1%</option>
-                        <option value="3">Lorem, ipsum dolor 1%</option>
-                        <option value="4">Lorem, ipsum dolor 1%</option>
-                    </select>
+                    <input type="text" name="fecha" onChange={onchange} value={data.fecha} disabled/>
+                    <input className="hora" type="text" name="hora" onChange={onchange} value={data.hora} disabled/>
+                    <input type="text" name="tratamiento" onChange={onchange} />
                     <button>Agregar</button>
                 </form>
             </div>
@@ -91,6 +98,25 @@ const RecordAdmin = (props) => {
                     grid-column: 1/4;
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr;
+                }
+
+                .wrapper-form {
+                    grid-column: 1/4;
+                    max-height: 200px;
+                    overflow: auto;
+                }
+
+                .wrapper-form::-webkit-scrollbar {
+                    width: 7px;
+                }
+
+                .wrapper-form::-webkit-scrollbar-thumb {
+                    background-color: var(--mainColor);
+                    border-radius: 5px;
+                }
+
+                .wrapper-form::-webkit-scrollbar-track {
+                    background-color: #33333322;
                 }
 
                 p {

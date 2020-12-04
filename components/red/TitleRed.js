@@ -28,9 +28,11 @@ const TitleRed = () => {
                     font-size: calc(90px * var(--sizeTitle));
                 }
 
+                
                 .content {
-                    margin: 120px 0 4px;
+                    margin-top: 120px;
                 }
+                
 
                 @media screen and (max-width: 500px) {
                     :global(:root) {

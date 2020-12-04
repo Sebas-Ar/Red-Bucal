@@ -15,8 +15,8 @@ const EmployeeList = (props) => {
     }
     
     const getData = async (identification) => {
-        const url = '/api/getUser'
-        const result = await axios.post(url, { identification })
+        const url = `/api/getUser?identification=${identification}`
+        const result = await axios.get(url)
         setUsuarios(result.data.message)
     }   
 
