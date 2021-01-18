@@ -9,10 +9,12 @@ import Cobertura from '../components/index/Cobertura'
 import InformationRightResponsive from '../components/index/InformationRightResponsive'
 import InformationLeftResponsive from '../components/index/InformationLeftResponsive'
 import SliderMain from '../components/index/slider/SliderMain'
+import Social from '../components/social/Social'
 
 const Home = () => {
   return (
     <Layout>
+      <Social />
       <SliderMain />
       <LayoutPlanes />
       <Cobertura />

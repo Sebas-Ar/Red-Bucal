@@ -87,6 +87,8 @@ const handler = async (req, res) => {
                             if (countId) {
                                 console.log(i + 'ya existe');
                             } else {
+
+                                const date = new Date()
                                 const hashedPasswordUser = await bcrypt.hash(data[i][2] + '', salt)
 
                                 await req.db.collection('users').insertOne({
@@ -96,10 +98,10 @@ const handler = async (req, res) => {
                                     end: '',
                                     name: data[i][1],
                                     identification: data[i][2] + '',
-                                    birthdate: data[i][3],
-                                    adress: data[i][4],
-                                    phone: data[i][5],
-                                    email: data[i][6],
+                                    birthdate: data[i][4],
+                                    adress: `${data[i][5]}, ${data[i][6]}, ${data[i][7]}`,
+                                    phone: data[i][8],
+                                    email: data[i][9],
                                     password: hashedPasswordUser,
                                     know: 5,
                                     plan: true,
@@ -110,8 +112,18 @@ const handler = async (req, res) => {
                                     alerts: {
                                         week: false,
                                         month: false
-                                    }
+                                    },
+                                    date,
+                                    dependeOf: data[i][3] !== '-' ? data[i][3] : '',
+                                    dependientes: []
                                 })
+
+                                if (data[i][3] !== '-') {
+                                    await req.db.collection('users').findOneAndUpdate(
+                                        {identification: data[i][3] + ''}, 
+                                        {$push: {dependientes: data[i][2] + ''}}
+                                    )
+                                }
                             }
                         }
                         res.status(201).json({

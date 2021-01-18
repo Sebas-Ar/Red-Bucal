@@ -7,10 +7,12 @@ import Banner from '../../components/planes/Banner'
 import Footer from '../../components/footer/Footer'
 import FamiliasResponsive from '../../components/planes/personas/FamiliasResponsive'
 import PersonalResponsive from '../../components/planes/PersonalResponsive'
+import Social from '../../components/social/Social'
 
 const personas = () => {
     return (
         <Layout>
+            <Social />
             <Familias />
             <FamiliasResponsive />
             <Personal

@@ -7,7 +7,7 @@ const handler = async (req, res) => {
 
         const startDate = new Date()
         let endDate = new Date()
-        endDate.setFullYear(endDate.getFullYear() + 1)
+        endDate.setMonth(endDate.getMonth() + 1)
         endDate.setHours(23,59,59)
 
         for (let i = 0; i < identifications.length; i++) {

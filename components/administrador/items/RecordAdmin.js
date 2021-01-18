@@ -5,30 +5,43 @@ import axios from "axios";
 
 const RecordAdmin = (props) => {
 
-    const [data, setData] = useState({});
+    const [data, setData] = useState({
+        identification: props.data.identification,
+        historial: props.data.historial,
+        hora: moment().locale("es").format('LT'),
+        fecha: moment().locale("es").format('LL')            
+    });
+    const [tratamiento, setTratamiento] = useState('')
 
-    useEffect(() => {
+    useEffect(() => { 
+        const timer = setInterval(() => {
+            let time = {}
+            time.hora = moment().locale("es").format('LT')
+            time.fecha = moment().locale("es").format('LL')            
+            setData(Object.assign({}, data, time))
+            console.log(data)
+        }, 3000);
 
-        let time = {}
-        time.identification = props.data.identification
-        time.historial = props.data.historial
-
-        time.hora = moment().locale("es").format('LT')
-        time.fecha = moment().locale("es").format('LL')            
-        setData(time)
-
+        return () => {clearInterval(timer)}
     }, [])
 
     const onchange = (e) => {
-        setData(Object.assign({}, data, { [e.target.name]: e.target.value }))
+        setTratamiento(e.target.value)
     }
 
     const onSubmit = async (e) => {
         e.preventDefault()
+        if (!tratamiento) return Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'El campo "tratamiento" está vacío',
+            showConfirmButton: false,
+            timer: 1500
+        })
         const url = '/api/addHistorial'
         try {
 
-            const result = await axios.put(url, data)
+            const result = await axios.put(url, {...data, tratamiento})
             console.log(result.data)
             if (result.data.status) {
                 Swal.fire({

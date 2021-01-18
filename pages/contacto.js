@@ -4,6 +4,7 @@ import LayoutForm from '../components/form/LayoutForm'
 import PanamaMap from '../components/red/PanamaMap'
 import Footer from '../components/footer/Footer'
 import location from '../components/red/locations/location'
+import Social from '../components/social/Social'
 
 const contacto = () => {
 
@@ -16,6 +17,7 @@ const contacto = () => {
 
     return (
         <Layout>
+            <Social />
             <br/>
             <br/>
             <br/>

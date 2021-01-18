@@ -90,7 +90,10 @@ const PanamaMap = (props) => {
                                     width: loc.id === props.clinic ? '50px' : '',
                                     transform: loc.id === props.clinic ? 'translate(-40%, -40%)' : ''
                                 }} 
-                                onClick={() => {props.changeClinic(loc.id)}}>
+                                onClick={() => {
+                                    props.changeClinic(loc.id)
+                                    window.open(loc.url, '_blank');
+                                }}>
                                 <img src="/img/diente-form.png" alt="diente"/>
                             </button>
 

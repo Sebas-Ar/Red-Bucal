@@ -1,5 +1,4 @@
 import ClinicList from '../ClinicList'
-import Feature from '../Feature'
 import FeatureUno from '../FeatureUno'
 
 const LayoutInfoClinics = (props) => {
@@ -9,7 +8,7 @@ const LayoutInfoClinics = (props) => {
 
             <div className="barraAmarilla"><h3>{props.activate ? props.location[props.clinic].name : "Selecciona una Clinica"}</h3></div>
             <div className="info">
-                <FeatureUno titulo="INFORMACIÓN" img="/img/info.svg" location={props.location[props.clinic].location} phone={props.location[props.clinic].contact} activate={props.activate}/>
+                <FeatureUno titulo="INFORMACIÓN" img="/img/info.svg" location={props.location[props.clinic].location} phone={props.location[props.clinic].contact} activate={props.activate} url={props.location[props.clinic].url}/>
                 <div className="list">
                     <ul>
                         {

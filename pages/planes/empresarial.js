@@ -7,10 +7,12 @@ import Empresas from '../../components/planes/empresarial/Empresas'
 import Footer from '../../components/footer/Footer'
 import EmpresasResponsive from '../../components/planes/empresarial/EmpresasResponsive'
 import PersonalResponsive from '../../components/planes/PersonalResponsive'
+import Social from '../../components/social/Social'
 
 const empresarial = () => {
     return (
         <Layout>
+            <Social />
             <Empresas />
             <EmpresasResponsive />
             <Personal 

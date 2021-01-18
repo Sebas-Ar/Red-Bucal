@@ -25,6 +25,21 @@ const BillingAdmin = (props) => {
         }
     }
 
+    const getDate = (typeDate = '') => {
+
+        let date = new Date(props.data.start)
+
+        if (typeDate === 'day') {
+            return date.getDate()
+        } else if (typeDate === 'month') {
+            return date.getMonth() + 1
+        } else if (typeDate === 'year'){            
+            return date.getFullYear()
+        } else {
+            return date
+        }
+    }
+
     return (
         <section>
             <div>
@@ -32,7 +47,7 @@ const BillingAdmin = (props) => {
                 <br />
                 <label className="label">
                     ESTADO:
-                    <p>{props.data.state ? 'ACTIVO' : 'INACTIVO'}</p>
+                    <p>{props.data.state ? `ACTIVO desde el ${getDate('day')}/${getDate('month')}/${getDate('year')}` : 'INACTIVO'}</p>
                 </label>        
                 <br />
                 <label className="checkbox" >

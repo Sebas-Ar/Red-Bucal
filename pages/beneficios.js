@@ -6,6 +6,7 @@ import DescuentosList from '../components/descuentos/DescuentosList'
 import DescuentosBoxResponsive from '../components/descuentos/DescuentosBoxResponsive'
 import TitleDescuentos from '../components/descuentos/TitleDescuentos'
 import DescuentosCard from '../components/descuentos/cards/DescuentosCard'
+import Social from '../components/social/Social'
 
 const beneficios = () => {
 
@@ -23,6 +24,7 @@ const beneficios = () => {
 
     return (
         <Layout>
+            <Social />
             <TitleDescuentos />
             <DescuentosList active={active} changeActive={changeActive} list={list}/>
             <DescuentosCard changeActive={changeActive} changeList={changeList}/>

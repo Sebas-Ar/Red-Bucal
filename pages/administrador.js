@@ -101,6 +101,7 @@ const administrador = () => {
                                             listData={listData}
                                             changeActivate={changeActivate}
                                             changeListData={changeListData}
+                                            onClick={onClick}
                                             
                                         /> 
                                      :
@@ -137,6 +138,7 @@ const administrador = () => {
                                             listData={listData}
                                             changeActivate={changeActivate}
                                             changeListData={changeListData}
+                                            onClick={onClick}
                                         /> 
                                      :
                             select === 1 ? <InfoAdmin data={data}/> 

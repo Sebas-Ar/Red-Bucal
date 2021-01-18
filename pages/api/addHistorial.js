@@ -5,6 +5,8 @@ const handler = async (req, res) => {
 
         const { identification, historial, fecha, hora, tratamiento } = req.body
 
+        console.log(req.body)
+
         let newHistorial = historial
         
         newHistorial.unshift({

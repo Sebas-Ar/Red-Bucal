@@ -14,6 +14,7 @@ const FeatureUno = (props) => {
                 <p>{props.location}</p>
                 <img className="marker" src="/img/phone.svg" alt=""/>
                 <p>{props.phone}</p>
+                <a href={props.url} target="_blank" rel="noopener noreferrer"></a>
             </div>
 
             <div className="amarillo right"></div>
@@ -31,6 +32,7 @@ const FeatureUno = (props) => {
                 }
 
                 .data {
+                    position: relative;
                     height: 100px;
                     display: grid;
                     grid-template-columns: 50px 1fr;
@@ -78,6 +80,14 @@ const FeatureUno = (props) => {
 
                 .right {
                     grid-column: 3/4;
+                }
+
+                a {
+                    transform: translateX(-50%);
+                    color: white;
+                    position: absolute;
+                    top: -15px;
+                    left: 50%;
                 }
 
                 @media screen and (max-width: 1200px) and (min-width: 1000px) {

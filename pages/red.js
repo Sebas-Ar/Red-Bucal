@@ -12,6 +12,7 @@ import TitleRed from '../components/red/TitleRed';
 
 /* DATOS DE LAS CLINICAS */
 import location from '../components/red/locations/location'
+import Social from '../components/social/Social';
 
 //configuraciones del autoScroll
 const setupScroll = {
@@ -36,7 +37,8 @@ const Red = () => {
 
     return (
         <Layout>
-            {<TitleRed />}
+            <Social />
+            <TitleRed />
             <MapWrapper>
                 <LayoutInfoClinics name="info" clinic={clinic} location={location} activate={activate} setActivate={setActivate} changeClinic={changeClinic}/>
                 <PanamaMap changeClinic={changeClinic} location={location} clinic={clinic}/>

@@ -103,6 +103,7 @@ const master = () => {
                             listData={listData}
                             changeActivate={changeActivate}
                             changeListData={changeListData}
+                            onClick={onClick}
                         />
                             :
                             select === 1 ? <InforUserAdmin
@@ -138,6 +139,7 @@ const master = () => {
                             listData={listData}
                             changeActivate={changeActivate}
                             changeListData={changeListData}
+                            onClick={onClick}
                         />
                             :
                             select === 1 ?  <InfoAdmin 

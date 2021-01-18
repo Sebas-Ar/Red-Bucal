@@ -55,6 +55,24 @@ const InfoAdmin = (props) => {
     return (
         <form onSubmit={onSubmit}>
             <label>
+
+                {props.data.dependeOf ? 'DEPENDIENTE DE:' : 'LISTA DE DEPENDIENTES:'} <br/>
+                {
+                    props.data.dependeOf
+                    ?
+                        <p>{props.data.dependeOf}</p>
+                    :
+                        props.data.dependientes.length !== 0
+                        ?                        
+                            props.data.dependientes.map(item => (
+                                <p className="list">{item}</p>
+                            ))
+                        :
+                            <p>No existen dependientes</p>
+
+                }
+            </label>
+            <label>
                 ESTADO: <br />
                 <p>{props.data.state ? "ACTIVO" : "INACTIVO"}</p>
             </label>
@@ -119,6 +137,23 @@ const InfoAdmin = (props) => {
                     color: white;
                     border-radius: 5px;
                     cursor: pointer;
+                }
+
+                .list {
+                    position: relative;
+                    padding-left: 15px;
+                }
+
+                .list:before {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 5px;
+                    transform: translateY(-50%);
+                    height: 5px;
+                    width: 5px;
+                    background-color: var(--mainColor);
+                    border-radius: 50%;
                 }
 
                 @media screen and (max-width: 500px) {

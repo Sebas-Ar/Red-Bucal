@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import axios from "axios";
 
 const FindUserAdmin = (props) => {
+
+    const [validateInfoUser, setValidateInfoUser] = useState(false)
+
+    useEffect(() => {
+        if (validateInfoUser) props.onClick(1)
+    }, [validateInfoUser])
 
     const onSubmitID = async  e => {   
         e.preventDefault()
@@ -46,6 +52,7 @@ const FindUserAdmin = (props) => {
         const url = `/api/getUser?id=${id}`
         const result = await axios.get(url, id)
         props.changeData(result.data.message)
+        setValidateInfoUser(true)
     }
 
     const getDataBusiness = async (id) => {
