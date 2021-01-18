@@ -5,7 +5,7 @@ import Portada2 from './Portada2'
 const SliderMain = () => {
     const [slide, setSlide] = useState(0);
 
-    /* useEffect(() => {
+    useEffect(() => {
         const time = setTimeout(() => {
             if (slide <= 0) {
                 setSlide(slide + 1);
@@ -16,7 +16,7 @@ const SliderMain = () => {
         return () => {
             clearTimeout(time);
         };
-    }, [slide]); */
+    }, [slide]);
 
     const selectSlide = (num) => {
         setSlide(num)
