@@ -14,7 +14,7 @@ const FeatureUno = (props) => {
                 <p>{props.location}</p>
                 <img className="marker" src="/img/phone.svg" alt=""/>
                 <p>{props.phone}</p>
-                <a href={props.url} target="_blank" rel="noopener noreferrer"></a>
+                <a href={props.url} target="_blank" rel="noopener noreferrer">¿Cómo llegar?</a>
             </div>
 
             <div className="amarillo right"></div>
