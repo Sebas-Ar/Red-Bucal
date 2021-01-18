@@ -29,16 +29,12 @@ const PanamaMap = (props) => {
             setViewPort(Object.assign({}, viewPort, { width: undefined + 'px'}))
         }
 
-        const succeed = (pos) => {
+        /* const succeed = (pos) => {
 
             let latitude = pos.coords.latitude
             let longitude = pos.coords.longitude
 
-            /* izquierda -> -83.034849 */
-            /* derecha -> -77.158126 */
-            /* arriba -> 9.638075 */
-            /* abajo -> 7.172350 */
-
+            
             if (latitude > -83.034849 && latitude < -77.158126 && longitude < 9.638075 && longitude > 7.172350) {
                 setMyPosition({
                     latitude,
@@ -49,23 +45,27 @@ const PanamaMap = (props) => {
             console.log('mi latitud' + pos.coords.latitude)
             console.log('mi longitud' + pos.coords.longitude)
         } 
-
+        
         const failure = (err) => {
             console.log(err)
         }
-
+        
         const options = {
             enableHighAccuracy: true,
             timeout: 5000,
             maxinumAge: 0
         }
-
+        
         navigator.geolocation.getCurrentPosition(
             succeed, failure, options
-        )
+        ) */
+            /* izquierda -> -83.034849 */
+            /* derecha -> -77.158126 */
+            /* arriba -> 9.638075 */
+            /* abajo -> 7.172350 */
 
-    }, []);
-
+        }, []);
+        
 
     return (
         <div className="content">
@@ -101,11 +101,11 @@ const PanamaMap = (props) => {
                     ))
                 }
 
-                <Marker
+                {/* <Marker
                     latitude={myPosition.latitude}
                     longitude={myPosition.longitude}
                 >
-                    <button className="userBtn" /* onClick={} */>
+                    <button className="userBtn">
                         <svg className="user" viewBox="0 0 448 512">
                             <path fill="currentColor" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z" />
                         </svg>
@@ -114,7 +114,7 @@ const PanamaMap = (props) => {
                         </div>
                     </button>
 
-                </Marker>
+                </Marker> */}
                 
             </ReactMapGl>
 

@@ -8,7 +8,7 @@ const location = [
         color: '#D97C6E',
         contact: '908-8364/ 65',
         location: 'Carr. Panamericana, Río Hato',
-        url: 'https://goo.gl/maps/h1fPqWnVRLYRqCrs9'
+        url: 'https://goo.gl/maps/58wpZ535Ckjj2Vqv8'
     },
     {
         /* 8.877172, -79.760975 */
@@ -19,7 +19,7 @@ const location = [
         color: '#F1CD5F',
         contact: '342-2002 / 342-2092',
         location: 'La Chorrera',
-        url: 'https://goo.gl/maps/h1fPqWnVRLYRqCrs9'
+        url: 'https://goo.gl/maps/X2WsAM2G9hZBcTiN7'
     },
     {
         /* 8.889181, -79.749204 */
@@ -30,7 +30,7 @@ const location = [
         color: '#60A9CA',
         contact: '344-5830 /31',
         location: 'Urbanización Costa Verde, La Chorrera ',
-        url: 'https://goo.gl/maps/h1fPqWnVRLYRqCrs9'
+        url: 'https://goo.gl/maps/ZL77VWb5SUvXYG7x7'
     },
     {
         /* 8.921982, -79.704878 */
@@ -41,7 +41,7 @@ const location = [
         color: '#D97C6E',
         contact: '344-4866/67 ',
         location: 'Westland mall, Vista Alegre',
-        url: 'https://goo.gl/maps/h1fPqWnVRLYRqCrs9'
+        url: 'https://goo.gl/maps/urfkNFYiN6pXaPbd9'
     },
     {
         /* 8.972661, -79.552953 */
@@ -52,7 +52,7 @@ const location = [
         color: '#60A9CA',
         contact: '396-2494/95',
         location: 'Avenida Marginal, Panamá',
-        url: 'https://goo.gl/maps/h1fPqWnVRLYRqCrs9'
+        url: 'https://goo.gl/maps/AKsBQuYNMSyfEdJs7'
     },
     {
         /* 8.972867, -79.551822 */
@@ -63,7 +63,7 @@ const location = [
         color: '#60A9CA',
         contact: '203-5887',
         location: 'Avenida Marginal, Panamá ',
-        url: 'https://goo.gl/maps/h1fPqWnVRLYRqCrs9'
+        url: 'https://goo.gl/maps/B6w8aNSVmBSFpuob8'
     },
     {
         /* 8.985901, -79.522712 */
@@ -74,7 +74,7 @@ const location = [
         color: '#D97C6E',
         contact: '2698219',
         location: '----------',
-        url: 'https://goo.gl/maps/h1fPqWnVRLYRqCrs9'
+        url: 'https://goo.gl/maps/cGrT9d7XwBmoekZX9'
     },
     {
         /* 9.003472, -79.516607 */
@@ -85,7 +85,7 @@ const location = [
         color: '#F1CD5F',
         contact: '229-6668/6669',
         location: 'Clinica Hospital San Fernando Vía España, Panamá',
-        url: 'https://goo.gl/maps/h1fPqWnVRLYRqCrs9'
+        url: 'https://goo.gl/maps/cDg33erzGug21hqJ6'
     },
     {
         /* 9.029054, -79.534513 */
@@ -96,7 +96,7 @@ const location = [
         color: '#F1CD5F',
         contact: '200-2286',
         location: '------------',
-        url: 'https://goo.gl/maps/h1fPqWnVRLYRqCrs9'
+        url: 'https://goo.gl/maps/JHaEKvYtgakwxazw5'
     },
     {
         /* 9.029225, -79.530707 */
@@ -107,7 +107,7 @@ const location = [
         color: '#60A9CA',
         contact: '203-0792/93',
         location: 'Centennial Plaza Panamá',
-        url: 'https://goo.gl/maps/h1fPqWnVRLYRqCrs9'
+        url: 'https://goo.gl/maps/CMJw6sphyDT1CNoHA'
     },
     {
         /* 9.037799, -79.482980 */
@@ -118,7 +118,7 @@ const location = [
         color: '#60A9CA',
         contact: '277-5020',
         location: '------------',
-        url: 'https://goo.gl/maps/h1fPqWnVRLYRqCrs9'
+        url: 'https://goo.gl/maps/R7rK7oRMcsYFbqvC6'
     },
     {
         /* 9.041202, -79.479046 */
@@ -129,7 +129,7 @@ const location = [
         color: '#D97C6E',
         contact: '394-6337',
         location: 'Villa Lucre Mall, Av Rafael E. Alemán, San Miguelito    ',
-        url: 'https://goo.gl/maps/h1fPqWnVRLYRqCrs9'
+        url: 'https://goo.gl/maps/TvobCirdmusm5NsF8'
     },
     {
         /* 9.052244, -79.451740 */
@@ -140,7 +140,7 @@ const location = [
         color: '#F1CD5F',
         contact: '385-9533',
         location: 'Avenida Domingo Díaz, Panamá',
-        url: 'https://goo.gl/maps/h1fPqWnVRLYRqCrs9'
+        url: 'https://goo.gl/maps/2eYBCFXj9HJk6mYn7'
     },
     {
         /* 9.069618, -79.460344 */
@@ -151,7 +151,7 @@ const location = [
         color: '#60A9CA',
         contact: '6264-6082',
         location: 'Av M. Zarate, San Miguelito',
-        url: 'https://goo.gl/maps/h1fPqWnVRLYRqCrs9'
+        url: 'https://goo.gl/maps/dUw9goJnTeK33XD87'
     },
     {
         /* 9.068931, -79.452001 */
@@ -162,7 +162,7 @@ const location = [
         color: '#D97C6E',
         contact: '2203686',
         location: '---------',
-        url: 'https://goo.gl/maps/h1fPqWnVRLYRqCrs9'
+        url: 'https://goo.gl/maps/MDFS5i5vmTP2jNHk6'
     },
     {
         /* 9.098390, -79.351771 */
@@ -173,7 +173,7 @@ const location = [
         color: '#F1CD5F',
         contact: '389-6765 / 388-2657',
         location: 'Carr. Panamericana, Panamá',
-        url: 'https://goo.gl/maps/h1fPqWnVRLYRqCrs9'
+        url: 'https://goo.gl/maps/2kaJ68Pnn1xtnJW79'
     },
     
 ]
