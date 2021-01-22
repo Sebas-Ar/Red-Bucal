@@ -128,6 +128,7 @@ const AfiliadosList = ({name, setToggleAfiliados}) => {
                 display: grid;
                 align-items: center;
                 justify-items: center;
+                z-index: 1100;
             }
 
             section {
