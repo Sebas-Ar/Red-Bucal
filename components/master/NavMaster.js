@@ -24,7 +24,7 @@ const NavMaster = (props) => {
             <nav>
                 {
                     props.user === 0
-                        ?
+                    ?
                         <ul>
                             <li>
                                 <h2>{props.adminData.name}</h2>
@@ -35,14 +35,21 @@ const NavMaster = (props) => {
                                     props.changeActivate()
                                 }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
                             </li>
-                            <li>
+                            {/* <li>
                                 <button onClick={() => { router.push("/registro-administrador") }} style={selection(5)}>REGISTRAR ADMINISTRADOR</button>
+                            </li> */}
+                            <li>
+                                <button onClick={() => {
+                                    props.onClick(5)
+                                    props.changeActivate()
+                                }} style={selection(5)}>GESTIONAR CLINICAS</button>
                             </li>
                             <li>
                                 <button onClick={logout}>SALIR</button>
                             </li>
                         </ul>
-                        : props.user === 1 ?
+                    :
+                        props.user === 1 ?
                             <ul>
                                 <li>
                                     <h2>{props.adminData.name}</h2>
@@ -77,8 +84,14 @@ const NavMaster = (props) => {
                                         props.changeActivate()
                                     }} style={selection(4)}>HISTORIAL</button>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <button onClick={() => { router.push("/registro-administrador") }} style={selection(5)}>REGISTRAR ADMINISTRADOR</button>
+                                </li> */}
+                                <li>
+                                    <button onClick={() => {
+                                        props.onClick(5)
+                                        props.changeActivate()
+                                    }} style={selection(5)}>GESTIONAR CLINICAS</button>
                                 </li>
                                 <li>
                                     <button onClick={logout}>SALIR</button>
@@ -119,16 +132,15 @@ const NavMaster = (props) => {
                                         props.changeActivate()
                                     }} style={selection(4)}>ACTUALIZAR EMPLEADOS</button>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <button onClick={() => { router.push("/registro-administrador") }} style={selection(5)}>REGISTRAR ADMINISTRADOR</button>
+                                </li> */}
+                                <li>
+                                    <button onClick={() => {
+                                        props.onClick(5)
+                                        props.changeActivate()
+                                    }} style={selection(5)}>GESTIONAR CLINICAS</button>
                                 </li>
-                                {/* 
-                            <li>
-                                <button onClick={() => { props.onClick(3) }} style={selection(3)}>SERVICIOS</button>
-                            </li>
-                            <li>
-                                <button onClick={() => { props.onClick(4) }} style={selection(4)}>HISTORIAL</button>
-                            </li> */}
                                 <li>
                                     <button onClick={logout}>SALIR</button>
                                 </li>

@@ -5,7 +5,7 @@ import {ObjectId} from 'mongodb'
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {
-        const { name, lastname, adress, password, phone, email, typeDoc, identification, know, day, month, year } = req.body
+        const { name, lastname, adress, password, phone, email, typeDoc, identification, know, day, month, year, afiliacion } = req.body
 
         if (!validator.validate(email)) {
 
@@ -41,6 +41,7 @@ const handler = async (req, res) => {
 
                         const salt = await bcrypt.genSalt(10)
                         const hashedPassword = await bcrypt.hash(password, salt)
+                        const date = new Date()
                         
                         const user = await req.db.collection('users').insertOne({
                             state: false,
@@ -63,7 +64,9 @@ const handler = async (req, res) => {
                             alerts: {
                                 week: false,
                                 month: false
-                            }
+                            },
+                            date,
+                            afiliacion: afiliacion ? afiliacion : ''
                         })
 
                         req.session.userId = await user.insertedId

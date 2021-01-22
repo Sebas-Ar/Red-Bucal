@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {
-        const { businessName, RUC, businessAdress, businessPhone, businessMail, data, know, password } = req.body
+        const { businessName, RUC, businessAdress, businessPhone, businessMail, data, know, password, afiliacion } = req.body
 
         if (!validator.validate(businessMail)) {
 
@@ -57,7 +57,8 @@ const handler = async (req, res) => {
                                 })
                             }
                         }
-                        console.log(identifications);
+
+                        const date = new Date()
 
                         const business = await req.db.collection('bussines').insertOne({
                             state: false,
@@ -73,9 +74,11 @@ const handler = async (req, res) => {
                             identifications,
                             plan: false,
                             service: false,
-                            terminos: true
+                            terminos: true,
+                            date,
+                            afiliacion: afiliacion ? afiliacion : ''
                         })
-
+                        
                         req.session.businessId = await business.insertedId
 
                         for (let i = 6; i < data.length; i++) {
@@ -88,9 +91,8 @@ const handler = async (req, res) => {
                                 console.log(i + 'ya existe');
                             } else {
 
-                                const date = new Date()
                                 const hashedPasswordUser = await bcrypt.hash(data[i][2] + '', salt)
-
+                                
                                 await req.db.collection('users').insertOne({
                                     RUC,
                                     state: false,
@@ -114,6 +116,7 @@ const handler = async (req, res) => {
                                         month: false
                                     },
                                     date,
+                                    afiliacion: afiliacion ? afiliacion : '',
                                     dependeOf: data[i][3] !== '-' ? data[i][3] : '',
                                     dependientes: []
                                 })

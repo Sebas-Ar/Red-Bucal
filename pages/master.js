@@ -12,6 +12,7 @@ import InforUserAdmin from '../components/administrador/items/user/InforUserAdmi
 import BillingUserAdmin from '../components/administrador/items/user/BillingUserAdmin'
 import EmployeeList from '../components/empresa/items/EmployeeList'
 import SetExcelList from '../components/master/items/SetExcelList'
+import Clinics from '../components/master/items/Clinics';
 
 const master = () => {
 
@@ -121,10 +122,13 @@ const master = () => {
                                         changeData={changeData}
                                     />
                                         :
-                                        <RecordAdmin
+                                        select === 4 ? <RecordAdmin
                                             data={data}
                                             changeData={changeData}
                                         />
+                                            :
+                                            <Clinics />
+
                     :
                         select === 0 ? <FindUserAdmin
                             ChangeUser={ChangeUser}
@@ -154,11 +158,11 @@ const master = () => {
                                                             data={data} 
                                                             changeData={changeData}
                                                     />
-                                        :
-                                        <SetExcelList 
-                                            data={data}
-                                            changeData={changeData}
-                                        />
+                                        : select === 4 ? <SetExcelList 
+                                                            data={data}
+                                                            changeData={changeData}
+                                                        /> 
+                                            : <Clinics />
                 }
             </NavMaster>
         </Layout>

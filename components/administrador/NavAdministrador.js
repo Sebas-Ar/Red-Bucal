@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 
 const NavUsuario = (props) => {
+
+    const [copy, setCopy] = useState(false)
 
     const router = useRouter()
 
@@ -17,11 +19,29 @@ const NavUsuario = (props) => {
         router.replace("/")
     }
 
+    const copyText = () => {
+
+        var aux = document.createElement("input");
+
+        aux.setAttribute("value", `https://redbucal.com/registro-ingreso?afiliacion=${props.adminData.name.replaceAll(' ', '-')}`);
+
+        document.body.appendChild(aux);
+
+        aux.select();
+
+        document.execCommand("copy");
+
+        document.body.removeChild(aux);
+        setCopy(true)
+
+    }
+
     return (
         <div className="content">
 
             <div className="diente1"></div>
             <nav>
+                <button onClick={copyText} className='copy'>{ copy ? 'link de registro afiliado copiado' : 'Copiar link de registro afiliado'}</button>
                 {
                     props.user === 0 
                     ?
@@ -165,6 +185,7 @@ const NavUsuario = (props) => {
                 nav {
                     align-self: center;
                     margin: 0 50px;
+                    position: relative;
                 }
 
                 li {
@@ -172,7 +193,7 @@ const NavUsuario = (props) => {
                     margin: 10px 0;
                 }
 
-                button, h2 {
+                ul button, h2 {
                     text-align: left;
                     border: none;
                     background-color: white;
@@ -184,7 +205,7 @@ const NavUsuario = (props) => {
                     cursor: pointer;
                 }
 
-                button:hover {
+                ul button:hover {
                     font-weight: 800;
                     margin: -2px 0 -3px 0;
                 }
@@ -194,6 +215,21 @@ const NavUsuario = (props) => {
                     font-weight: 800;
                     margin: -2px 0 -3px 0;
                     cursor: auto;
+                }
+
+                .copy {
+                    border: none;
+                    background-color: ${copy ? '#E36B59' : 'var(--puntoRojo)'};
+                    color: white;
+                    padding: 10px;
+                    cursor: pointer;
+                    border-radius: 10px;
+                    outline: none;
+                    transition: background-color .5s;
+                }
+
+                .copy:hover {
+                    background-color: #E36B59
                 }
 
                 @media screen and (max-width: 900px) {

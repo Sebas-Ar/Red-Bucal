@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs"
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {
-        const { name, lastname, adress, password, phone, email, identification, day, month, year } = req.body
+        const { name, phone, password, addres, provincia, corregimiento, email } = req.body
 
         if (!validator.validate(email)) {
 
@@ -27,12 +27,12 @@ const handler = async (req, res) => {
 
                 } else {
 
-                    const countId = await req.db.collection('admin').countDocuments({ identification })
+                    const countId = await req.db.collection('admin').countDocuments({ name })
 
                     if (countId) {
                         res.send({
                             status: 'error',
-                            message: 'La cedula de ciudadania ya ha sido registrada',
+                            message: 'nombre ya registrado',
                         });
                     } else {
 
@@ -40,20 +40,18 @@ const handler = async (req, res) => {
                         const hashedPassword = await bcrypt.hash(password, salt)
                         const date = new Date;
                         console.log(date.getDate);
-                        const user = await req.db.collection('admin').insertOne({
-                            name: name + ' ' + lastname,
-                            identification,
+                        const clinic = await req.db.collection('admin').insertOne({
+                            name: name,
                             email,
                             password: hashedPassword,
-                            birthdate: day + '/' + month + '/' + year,
-                            adress,
+                            adress: `${provincia}, ${corregimiento}, ${addres}`,
                             phone,
                         })
 
                         res.status(201).json({
                             status: 'ok',
-                            message: 'Administrador agregado satisfactoriamente',
-                            token: user.insertedId
+                            message: 'Clinica agregada',
+                            clinic: clinic.ops[0]
                         })
 
                     }

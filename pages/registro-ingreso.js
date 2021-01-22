@@ -12,6 +12,7 @@ import axios from "axios"
 
 const Ingresar = () => {
 
+    const router = useRouter()
 
     const [register, setregister] = useState(false)
     const [user, setUser] = useState({})
@@ -22,7 +23,25 @@ const Ingresar = () => {
     const [errorsLogin, setErrorsLogin] = useState({})
     const [regLog, setRegLog] = useState(false)
 
+    const afi = () => {
+        if (router.query.afiliacion) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    useEffect(() => {
+        if (router.query.afiliacion) {
+            setUser(Object.assign({}, user, {afiliacion: router.query.afiliacion.replaceAll('-', ' ')}))
+            setBusiness(Object.assign({}, business, {afiliacion: router.query.afiliacion.replaceAll('-', ' ')}))
+        }
+    }, [regLog])
 
+    useEffect(() => {
+        setRegLog(afi())
+    }, [router.query.afiliacion])
+    
     const changeRegister = () => {
         setregister(!register);
     }
@@ -30,7 +49,7 @@ const Ingresar = () => {
     const ChangeText = e => {
         setUser(Object.assign({}, user, { [e.target.name]: e.target.value }))
     }
-
+    
     useEffect(() => {
         let object = {}
         if (user.identification) {
@@ -346,7 +365,7 @@ const Ingresar = () => {
         }
     }
 
-    const router = useRouter()
+    
 
     const onSubmitLogin = async e => {
 
@@ -436,7 +455,15 @@ const Ingresar = () => {
                             regLog 
                             ?
                                 <div className="form reg">
-                                    <h2>REGISTRO</h2>
+                                    <h2>REGISTRO 
+                                        {
+                                        router.query.afiliacion 
+                                        ? 
+                                        <><br/> {router.query.afiliacion.replaceAll('-', ' ').toUpperCase()}</>
+                                        :
+                                        null
+                                        }
+                                    </h2>
                                     <p>Ingrese un email y contraseña para iniciar el proceso de registro.</p>
                                     <Registro 
                                         changeRegister={changeRegister} 
