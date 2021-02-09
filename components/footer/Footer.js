@@ -4,7 +4,7 @@ import TerminosCondiciones from './TerminosCondiciones'
 
 const Footer = () => {
 
-    const [active, setActive] = useState(false);
+    const [active, setActive] = useState(true);
 
     const change = () => {
         setActive(!active)
