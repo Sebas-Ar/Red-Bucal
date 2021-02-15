@@ -21,7 +21,7 @@ const Planes = (props) => {
                 <p>VALOR</p>
                 <h5>{props.valor} USD / {props.fecha}</h5>
                 <p>{props.colaborador}</p>
-                <img className="pagos" src="/img/pagos.png" alt="metodos de pago"/>
+                <img className="pagos" src="/img/pagos-blanco.png" alt="metodos de pago"/>
             </div>
             <div className="text">
                 <h4>{ props.tit1 }</h4>

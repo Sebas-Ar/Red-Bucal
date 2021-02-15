@@ -35,7 +35,7 @@ const location = [
     /* 8.921982, -79.704878 */
     {
         name: 'Westland Mall Clínica de Ortodoncia y Estética Dental',
-        id: 3,
+        id: 2,
         latitude: 8.921982,
         longitude: -79.704878,
         color: '#D97C6E',
@@ -46,7 +46,7 @@ const location = [
     /* 8.972661, -79.552953 */
     {
         name: 'Albrook Mall Clínica de Ortodoncia y Estética Dental',
-        id: 4,
+        id: 3,
         latitude: 8.972661,
         longitude: -79.552953,
         color: '#60A9CA',
@@ -101,7 +101,7 @@ const location = [
     /* 9.029225, -79.530707 */
     {
         name: 'Centennial Plaza Clínica de Ortodoncia y Estética Dental',
-        id: 9,
+        id: 4,
         latitude: 9.029225,
         longitude: -79.530707,
         color: '#60A9CA',
@@ -123,7 +123,7 @@ const location = [
     /* 9.041202, -79.479046 */
     {
         name: 'Villa Lucre  Clínica de Ortodoncia y Estética Dental',
-        id: 11,
+        id: 5,
         latitude: 9.041202,
         longitude: -79.479046,
         color: '#D97C6E',
@@ -134,7 +134,7 @@ const location = [
     /* 9.052244, -79.451740 */
     {
         name: 'MetroMall Clínica de Ortodoncia y Estética Dental',
-        id: 12,
+        id: 6,
         latitude: 9.052244,
         longitude: -79.451740,
         color: '#F1CD5F',

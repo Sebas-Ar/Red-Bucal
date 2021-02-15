@@ -55,7 +55,6 @@ const FeatureUno = (props) => {
                     align-self: center;
                     color: white;
                     font-size: 20px;
-                    margin: 0 30px;
                     justify-self: flex-start;
                 }
 
@@ -83,21 +82,23 @@ const FeatureUno = (props) => {
                 }
 
                 a {
-                    transform: translateX(-50%);
+                    display: block;
+                    width: 100%;
+                    text-align: center;
                     color: white;
                     position: absolute;
-                    top: -15px;
-                    left: 50%;
+                    top: -25px;
+                    left: 0;
                 }
 
-                @media screen and (max-width: 1200px) and (min-width: 1000px) {
+                @media screen and (max-width: 1320px) and (min-width: 1000px) {
 
                     h2, p {
                         font-size: 16px;
                     }
 
                 }
-                @media screen and (max-width: 1000px) and (min-width: 800px) {
+                @media screen and (max-width: 1100px) and (min-width: 800px) {
                     
                     h2, p {
                         font-size: 14px;
