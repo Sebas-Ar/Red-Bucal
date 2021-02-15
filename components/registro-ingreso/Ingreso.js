@@ -29,7 +29,13 @@ const Ingreso = (props) => {
                 </svg>
             </button>
 
-            <span onClick={() => props.ChangeRegLog()}>¿No tienes cuenta? Registrate</span>
+            {
+                props.type === 'admin'
+                ?
+                    null
+                :
+                    <span onClick={() => props.ChangeRegLog()}>¿No tienes cuenta? Registrate</span>
+            }
 
             <style jsx>{`
 

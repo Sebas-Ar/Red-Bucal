@@ -82,8 +82,8 @@ const Ingresar = () => {
                 <div className="diente1"></div>
                 <div className="form">
                     <h2>INGRESO <br/> ADMINISTRADOR</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae perferendis</p>
-                    <Ingreso onSubmitLogin={onSubmitLogin} ChangeTextLogin={ChangeTextLogin} login={login} errorsLogin={errorsLogin}/>
+                    <p>Identifiquese con su email y contraseña.</p>
+                    <Ingreso type="admin" onSubmitLogin={onSubmitLogin} ChangeTextLogin={ChangeTextLogin} login={login} errorsLogin={errorsLogin}/>
                 </div>
                 <div className="diente2"></div>
 
