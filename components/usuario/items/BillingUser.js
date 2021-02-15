@@ -47,7 +47,7 @@ const BillingUser = (props) => {
             {
                 activeVirtual
                 ?
-                    <PagoVirtual changeVirtual={changeVirtual} data={props.data} setData={props.setData} type={'user'} pago={12}/>
+                    <PagoVirtual changeVirtual={changeVirtual} data={props.data} setData={props.setData} type={'user'} pago={12.84}/>
                 :
                 ''
             }
