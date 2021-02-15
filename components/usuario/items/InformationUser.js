@@ -18,13 +18,18 @@ const InformationUser = (props) => {
                     ?
                         <p>{props.data.dependeOf}</p>
                     :
-                        props.data.dependientes.length !== 0
-                        ?                        
-                            props.data.dependientes.map(item => (
-                                <p className="list">{item}</p>
-                            ))
+                        props.data.dependientes 
+                        ?
+
+                            props.data.dependientes.length !== 0
+                            ?                        
+                                props.data.dependientes.map((item, i) => (
+                                    <p key={i} className="list">{item}</p>
+                                ))
+                            :
+                                <p>No existen dependientes</p>
                         :
-                            <p>No existen dependientes</p>
+                            null
 
                 }
             </label>
