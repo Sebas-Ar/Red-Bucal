@@ -113,6 +113,7 @@ const master = () => {
                             />
                                 :
                                 select === 2 ? <BillingUserAdmin
+                                    type='master'
                                     data={data}
                                     changeData={changeData}
                                 />
@@ -151,6 +152,7 @@ const master = () => {
                                             />
                                 :
                                 select === 2 ?  <BillingAdmin
+                                                    type='master'
                                                     data={data}
                                                     changeData={changeData}
                                                 />

@@ -84,48 +84,58 @@ const handler = async (req, res) => {
                         for (let i = 6; i < data.length; i++) {
 
                             let identification = data[i][2]+''
+                            let userEmail = data[i][9]
 
                             let countId = await req.db.collection('users').countDocuments({ identification })
 
-                            if (countId) {
-                                console.log(i + 'ya existe');
+                            const userCountEmail = await req.db.collection('users').countDocuments({ userEmail })
+
+                            if (userCountEmail) {
+                                console.log(`ya existe un usuario registrado con el email: ${userEmail}`);
                             } else {
 
-                                const hashedPasswordUser = await bcrypt.hash(data[i][2] + '', salt)
-                                
-                                await req.db.collection('users').insertOne({
-                                    RUC,
-                                    state: false,
-                                    start: '',
-                                    end: '',
-                                    name: data[i][1],
-                                    identification: data[i][2] + '',
-                                    birthdate: data[i][4],
-                                    adress: `${data[i][5]}, ${data[i][6]}, ${data[i][7]}`,
-                                    phone: data[i][8],
-                                    email: data[i][9],
-                                    password: hashedPasswordUser,
-                                    know: 5,
-                                    plan: true,
-                                    service: false,
-                                    terminos: true,
-                                    historial: [],
-                                    mustChangePass: true,
-                                    alerts: {
-                                        week: false,
-                                        month: false
-                                    },
-                                    date,
-                                    afiliacion: afiliacion ? afiliacion : '',
-                                    dependeOf: data[i][3] !== '-' ? data[i][3] : '',
-                                    dependientes: []
-                                })
+                                if (countId) {
 
-                                if (data[i][3] !== '-') {
-                                    await req.db.collection('users').findOneAndUpdate(
-                                        {identification: data[i][3] + ''}, 
-                                        {$push: {dependientes: data[i][2] + ''}}
-                                    )
+                                    console.log(`ya existe un usuario registrado con la cedula: ${identification}`);
+
+                                } else {
+
+                                    const hashedPasswordUser = await bcrypt.hash(data[i][2] + '', salt)
+                                    
+                                    await req.db.collection('users').insertOne({
+                                        RUC,
+                                        state: false,
+                                        start: '',
+                                        end: '',
+                                        name: data[i][1],
+                                        identification: data[i][2] + '',
+                                        birthdate: data[i][4],
+                                        adress: `${data[i][5]}, ${data[i][6]}, ${data[i][7]}`,
+                                        phone: data[i][8],
+                                        email: data[i][9],
+                                        password: hashedPasswordUser,
+                                        know: 5,
+                                        plan: true,
+                                        service: false,
+                                        terminos: true,
+                                        historial: [],
+                                        mustChangePass: true,
+                                        alerts: {
+                                            week: false,
+                                            month: false
+                                        },
+                                        date,
+                                        afiliacion: afiliacion ? afiliacion : '',
+                                        dependeOf: data[i][3] ? data[i][3] : '',
+                                        dependientes: []
+                                    })
+
+                                    if (data[i][3]) {
+                                        await req.db.collection('users').findOneAndUpdate(
+                                            {identification: data[i][3] + ''}, 
+                                            {$push: {dependientes: data[i][2] + ''}}
+                                        )
+                                    }
                                 }
                             }
                         }

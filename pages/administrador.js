@@ -111,6 +111,7 @@ const administrador = () => {
                                             /> 
                                          :
                                 select === 2 ?  <BillingUserAdmin 
+                                                    type='admin'
                                                     data={data}
                                                     changeData={changeData}
                                                 /> 
@@ -144,6 +145,7 @@ const administrador = () => {
                             select === 1 ? <InfoAdmin data={data}/> 
                                          :
                                 <BillingAdmin 
+                                    type='admin'
                                     data={data}
                                     changeData={changeData}
                                 /> 

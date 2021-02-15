@@ -8,8 +8,25 @@ const InformationUser = (props) => {
                 <p>{props.data.state ? 'ACTIVO' : 'INACTIVO'}</p>
             </label>
             <label className="type">
-                {props.data.typeDoc}:
+                CEDULA:
                 <p>{props.data.identification}</p>
+            </label>
+            <label>
+                {props.data.dependeOf ? 'DEPENDIENTE DE:' : 'LISTA DE DEPENDIENTES:'} <br/>
+                {
+                    props.data.dependeOf
+                    ?
+                        <p>{props.data.dependeOf}</p>
+                    :
+                        props.data.dependientes.length !== 0
+                        ?                        
+                            props.data.dependientes.map(item => (
+                                <p className="list">{item}</p>
+                            ))
+                        :
+                            <p>No existen dependientes</p>
+
+                }
             </label>
             <label>
                 FECHA DE NACIMIENTO:

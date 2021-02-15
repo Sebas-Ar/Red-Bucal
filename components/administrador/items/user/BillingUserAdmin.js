@@ -11,17 +11,43 @@ const BillingAdmin = (props) => {
     }
 
     const stateUpdate = async () => {
-        const url = '/api/editUser'
-        let result = await axios.put(url, { state: check, identification: props.data.identification})
-        if (result.data.status) {
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Estado actualizado',
-                showConfirmButton: false,
-                timer: 1000
-            })
-            props.changeData(result.data.data)
+        if (props.type === 'admin') {
+            if (check === true) {
+                const url = '/api/editUser'
+                let result = await axios.put(url, { state: check, identification: props.data.identification})
+                if (result.data.status) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Estado actualizado',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                    props.changeData(result.data.data)
+                }
+            } else {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'warning',
+                    title: 'No tienes los permiso para desactivar al usuario',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+
+            }
+        } else if (props.type === 'master') {
+            const url = '/api/editUser'
+                let result = await axios.put(url, { state: check, identification: props.data.identification})
+                if (result.data.status) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Estado actualizado',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                    props.changeData(result.data.data)
+                }
         }
     }
 

@@ -47,7 +47,7 @@ const BillingUser = (props) => {
             {
                 activeVirtual
                 ?
-                    <PagoVirtual changeVirtual={changeVirtual} data={props.data} setData={props.setData} type={'user'}/>
+                    <PagoVirtual changeVirtual={changeVirtual} data={props.data} setData={props.setData} type={'user'} pago={12}/>
                 :
                 ''
             }
@@ -55,7 +55,10 @@ const BillingUser = (props) => {
                 TIPO DE PLAN:
                 <p>{props.data.plan ? 'EMPRESARIAL' : 'PERSONAL' }</p>
             </label>
-            <div></div>
+            <label className="type">
+                VALOR A PAGAR:
+                <p>12 USD</p>
+            </label>
             <label>
                 FECHA DE INICIO:
                 <p>{props.data.start ? dates.start : '------------'}</p>
@@ -68,6 +71,7 @@ const BillingUser = (props) => {
                 <span>RENOVACIÓN:</span> <br/> <br/>
                 <button onClick={changeVirtual}>Virtual</button>
                 <button onClick={changeFisico}>Físico</button>
+                <img className="pagos" src="/img/pagos.png" alt="metodos de pago"/>
             </div>
 
             <style jsx>{`
@@ -108,6 +112,10 @@ const BillingUser = (props) => {
                 button:hover {
                     background: var(--colorSelect);
                     color: var(--botonesText);
+                }
+                .pagos {
+                    margin-top: 10px;
+                    height: 30px;
                 }
                 
             `}</style>

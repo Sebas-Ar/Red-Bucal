@@ -12,7 +12,17 @@ const PagoVirtual = (props) => {
     const [load, setLoad] = useState(false)
 
     const onChange = (e) => {
-        setData(Object.assign({}, data, {[e.target.name]: e.target.value}))
+        if (e.target.name === 'expMonth') {
+            if (e.target.value.length <= 2) setData(Object.assign({}, data, {[e.target.name]: e.target.value}))
+        } else if (e.target.name === 'expYear') {
+            if (e.target.value.length <= 2) setData(Object.assign({}, data, {[e.target.name]: e.target.value}))
+        } else if (e.target.name === 'cvv') {
+            if (e.target.value.length <= 3) setData(Object.assign({}, data, {[e.target.name]: e.target.value}))
+        } else if (e.target.name === 'phone') {
+            setData(Object.assign({}, data, {[e.target.name]: Number(e.target.value)}))
+        } else {
+            setData(Object.assign({}, data, {[e.target.name]: e.target.value}))
+        }
     }
 
     const onSubmit = async (e) => {
@@ -20,18 +30,24 @@ const PagoVirtual = (props) => {
         setLoad(true)
         let enable = true
 
-        const url = "https://secure.paguelofacil.com//rest/processTx/AUTH_CAPTURE/";
+        /* pruebas */
+        /* const url = "https://sandbox.paguelofacil.com/rest/processTx/AUTH_CAPTURE/" */
+        /* Produccion */
+        const url = "https://secure.paguelofacil.com/rest/processTx/AUTH_CAPTURE/"
 
         const { email, phone, address, cardNumber, expMonth, expYear, cvv, firstName, lastName, cardType } = data
 
         let payload = {
+            /* produccion */
             cclw: '8322FDB3B17351C9B9C8EA8FE01874AA7F31F3BAC4695E9996FFC88912AB0E6D8938B03CA4935DCE3D4EAE90D67E09C43D76B583318C2872C62D03D87A8A7B60',
-            amount: 3.50,//El monto o valor total de la transacción a realizar. NO PONER
-            taxAmount: 1.0,
+            /* pruebas */
+            /* cclw: 'D17B05A095489D1176560B4666A283454185F353F401D0201CC5C16F92535DF6B1DEBA18E79442CC0D6F75FD024207680AFBDFD6CF015478BF30CBEF9160A08D', */
+            amount: props.pago,//El monto o valor total de la transacción a realizar. NO PONER
+            taxAmount: (props.pago * 0.07),
             email,//String MaxLength:100 Email del
             phone,//Numeric MaxLength:16 Teléfono del Tarjeta habiente,
             address,//String MaxLength:100 Dirección del Tarjeta,
-            concept: '-52',//MaxLength:150 ;Es la descripción o el motivo de la transacción en proceso
+            concept: '-52',//MaxLength:100 ;concepto de la transacción en proceso
             description: '52',//MaxLength:150 ;Es la descripción o el motivo de la transacción en proceso
             lang: 'ES', //EN
             customFieldValues:[ 
@@ -62,6 +78,7 @@ const PagoVirtual = (props) => {
                 const result = await axios.post(
                     url, 
                     payload, 
+                    /* produccion */
                     {
                         headers: {
                             "authorization": 'QgVVaUukMlhuk1XtEGlLqbOtHhoQu349',
@@ -71,6 +88,8 @@ const PagoVirtual = (props) => {
                 );
 
                 if(result.data.success) {
+
+                    console.log(result.data)
 
                     let response
 
@@ -133,13 +152,27 @@ const PagoVirtual = (props) => {
             if (cardType === '-') errFields = Object.assign({}, errFields, {type: 'Campo vacio*'})
             if (!firstName) errFields = Object.assign({}, errFields, {firstName: 'Campo vacio*'})
             if (!lastName) errFields = Object.assign({}, errFields, {lastName: 'Campo vacio*'})
-            if (!phone) errFields = Object.assign({}, errFields, {phone: 'Campo vacio*'})
+            if (!phone) {
+                errFields = Object.assign({}, errFields, {phone: 'Campo vacio*'})
+            } else if (String(phone).length > 16) {
+                errFields = Object.assign({}, errFields, {phone: 'Maximo 16 digitos*'})
+            }
             if (!address) errFields = Object.assign({}, errFields, {address: 'Campo vacio*'})
             if (!email) errFields = Object.assign({}, errFields, {email: 'Campo vacio*'})
             if (!cardNumber) errFields = Object.assign({}, errFields, {numberCard: 'Campo vacio*'})
-            if (!expMonth) errFields = Object.assign({}, errFields, {month: 'Campo vacio*'})
+            if (!expMonth) {
+                errFields = Object.assign({}, errFields, {month: 'Campo vacio*'})
+            } else if (expMonth <= 0 || expMonth >= 13) {
+                errFields = Object.assign({}, errFields, {month: 'Mes invalido*'})
+            } else if (expMonth.length < 2) {
+                errFields = Object.assign({}, errFields, {month: 'Mes invalido deben ser dos digitos*'})
+            }
+            if (!expYear) {
+                errFields = Object.assign({}, errFields, {year: 'Campo vacio*'})
+            } else if (expYear.length < 2) {
+                errFields = Object.assign({}, errFields, {year: 'Año invalido deben ser dos digitos*'})
+            }
             if (!cvv) errFields = Object.assign({}, errFields, {securityCode: 'Campo vacio*'})
-            if (!expYear) errFields = Object.assign({}, errFields, {year: 'Campo vacio*'})
 
             setErr(errFields)
         }
@@ -168,7 +201,7 @@ const PagoVirtual = (props) => {
                     </label>
                     <label>
                         Celular: <br />
-                        <input type="text" name="phone" onChange={onChange}/>
+                        <input type="number" name="phone" onChange={onChange}/>
                         {err.phone ? <p>{err.phone}</p> : ''}
                     </label>
                     <label>
@@ -197,19 +230,20 @@ const PagoVirtual = (props) => {
                     </label>
                     <label>
                         Año de expiración: <br />
-                        <input type="text" name="expYear" onChange={onChange} placeholder="ej. 25"/>
+                        <input type="text" name="expYear" onChange={onChange} placeholder="ej. 25" value={data.expYear ? data.expYear : ''}/>
                         {err.year ? <p>{err.year}</p> : ''}
                     </label>
                     <label>
                         Mes de expiración: <br />
-                        <input type="text" name="expMonth" onChange={onChange} placeholder="ej. 02"/>
+                        <input type="text" name="expMonth" onChange={onChange} placeholder="ej. 02" value={data.expMonth ? data.expMonth : ''}/>
                         {err.month ? <p>{err.month}</p> : ''}
                     </label>
                     <label>
                         CVV: <br />
-                        <input type="text" name="cvv" onChange={onChange} placeholder="ej. 003"/>
+                        <input type="text" name="cvv" onChange={onChange} placeholder="ej. 003" value={data.cvv ? data.cvv : ''}/>
                         {err.securityCode ? <p>{err.securityCode}</p> : ''}
                     </label>
+    
 
                     <button type="submit" disabled={load}>
                         {

@@ -343,6 +343,7 @@ const AddUser = (props) => {
             <style jsx>{`
 
                 .content {
+                    z-index: 1000;
                     top: 0;
                     left: 0;
                     position: fixed;
