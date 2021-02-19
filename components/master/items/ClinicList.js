@@ -16,6 +16,12 @@ const ClinicList = ({clinicList}) => {
         <div className="linea"></div>
         <div className="content">
 
+            <span style={{fontWeight: '900'}}>RED BUCAL</span>
+            <span style={{textAlign: 'center'}}>-</span>
+            <button onClick={() => {
+                setName('')
+                setToggleAfiliados(!toggleAfiliados)
+            }}>Ver afiliados</button>
         {
             clinicList.map(item => (
                 <>

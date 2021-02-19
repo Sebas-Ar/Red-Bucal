@@ -1,6 +1,4 @@
 import withMiddleware from '../../middlewares/withMiddleware'
-import {ObjectId} from 'mongodb';
-
 
 const handler = async (req, res) => {
 
@@ -32,34 +30,61 @@ const handler = async (req, res) => {
         data = await req.db.collection('admin').find({}, {projection: {_id: true, name: true, email: true}}).toArray()
 
         
-    } else if (type && name && start && end) {
+    } else if (type && start && end) {
         const startArray = start.split('-')
         const endArray = end.split('-')
 
-        data = await req.db.collection(type).find(
-            {
-                date: {
-                    $gte: new Date(startArray[0], startArray[1] - 1, startArray[2], 0),
-                    $lte: new Date(endArray[0], endArray[1] - 1, endArray[2], 23)
-                }
-            },
-            {
-                projection
-            }
-        ).toArray()
+        if (name == '') {
 
-    } else if (type && name) {
+            data = await req.db.collection(type).find(
+                {
+                    date: {
+                        $gte: new Date(startArray[0], startArray[1] - 1, startArray[2], 0),
+                        $lte: new Date(endArray[0], endArray[1] - 1, endArray[2], 23)
+                    }
+                },
+                {
+                    projection
+                }
+            ).toArray()
+        }else {
+            
+            data = await req.db.collection(type).find(
+                {
+                    afiliacion: name,
+                    date: {
+                        $gte: new Date(startArray[0], startArray[1] - 1, startArray[2], 0),
+                        $lte: new Date(endArray[0], endArray[1] - 1, endArray[2], 23)
+                    }
+                },
+                {
+                    projection
+                }
+            ).toArray()
+        }
+
+        console.log(data)
+
+    } else if (type) {
+
+        if (name === '') {
+
+            data = await req.db.collection(type).aggregate([
+                { $project: projection }
+            ]).toArray()
+        } else {
+            data = await req.db.collection(type).aggregate([
+                { $match: { afiliacion: name } },
+                { $project: projection }
+            ]).toArray()
+        }
         
-        data = await req.db.collection(type).aggregate([
-            { $match: { afiliacion: name } },
-            { $project: projection }
-        ]).toArray()
         
 
     } else { 
         return res.status(200).send({message: 'error en la consulta'})
     }
-
+    
     res.status(200).send({
         message: data
     })

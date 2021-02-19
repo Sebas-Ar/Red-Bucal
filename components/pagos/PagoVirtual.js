@@ -246,15 +246,15 @@ const PagoVirtual = (props) => {
                         <input type="text" name="cardNumber" onChange={onChange} placeholder="ej. 4916000000000000"/>
                         {err.numberCard ? <p>{err.numberCard}</p> : ''}
                     </label>
+                        <label>
+                            Mes de expiración: <br />
+                            <input type="text" name="expMonth" onChange={onChange} placeholder="ej. 02" value={data.expMonth ? data.expMonth : ''}/>
+                            {err.month ? <p>{err.month}</p> : ''}
+                        </label>
                     <label>
                         Año de expiración: <br />
                         <input type="text" name="expYear" onChange={onChange} placeholder="ej. 25" value={data.expYear ? data.expYear : ''}/>
                         {err.year ? <p>{err.year}</p> : ''}
-                    </label>
-                    <label>
-                        Mes de expiración: <br />
-                        <input type="text" name="expMonth" onChange={onChange} placeholder="ej. 02" value={data.expMonth ? data.expMonth : ''}/>
-                        {err.month ? <p>{err.month}</p> : ''}
                     </label>
                     <label>
                         CVV: <br />
