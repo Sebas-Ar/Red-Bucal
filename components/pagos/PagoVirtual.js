@@ -88,43 +88,53 @@ const PagoVirtual = (props) => {
                 );
 
                 if(result.data.success) {
+                    console.log(Number(result.data.data.totalPay))
+                    if (Number(result.data.data.totalPay)) {
 
-                    console.log(result.data)
+                        let response
 
-                    let response
+                        if (props.type === 'user') {
 
-                    if (props.type === 'user') {
+                            const URL_EDIT_USER_SERVICE = '/api/editUser'
+                            response = await axios.put(URL_EDIT_USER_SERVICE, {
+                                identification: props.data.identification || props.data.RUC,
+                                state: true,
+                            })
+                            
+                        } else if (props.type === 'empresa') {
+                            
+                            const URL_EDIT_BUSSINES_SERVICE = '/api/editBusiness'
+                            response = await axios.put(URL_EDIT_BUSSINES_SERVICE, {
+                                identification: props.data.RUC,
+                                state: true,
+                                identifications: props.data.identifications
+                            })
 
-                        const URL_EDIT_USER_SERVICE = '/api/editUser'
-                        response = await axios.put(URL_EDIT_USER_SERVICE, {
-                            identification: props.data.identification || props.data.RUC,
-                            state: true,
-                        })
+                        }
                         
-                    } else if (props.type === 'empresa') {
-                        
-                        const URL_EDIT_BUSSINES_SERVICE = '/api/editBusiness'
-                        response = await axios.put(URL_EDIT_BUSSINES_SERVICE, {
-                            identification: props.data.RUC,
-                            state: true,
-                            identifications: props.data.identifications
+
+                        props.setData(response.data.data)
+
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Pago realizado Satisfactoriamente',
+                            showConfirmButton: false,
+                            timer: 2000
                         })
 
+                        props.changeVirtual()
+                        enable = false
+
+                    } else {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Pago Fallido, no tienes fondos suficientes.',
+                            showConfirmButton: false,
+                            timer: 2500
+                        })
                     }
-                    
-
-                    props.setData(response.data.data)
-
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Pago realizado Satisfactoriamente',
-                        showConfirmButton: false,
-                        timer: 2000
-                    })
-
-                    props.changeVirtual()
-                    enable = false
 
                 } else {
                     console.log(result.data)
@@ -138,6 +148,14 @@ const PagoVirtual = (props) => {
                     if (code === 609) errCode = Object.assign({}, errCode, {firstName: 'nombre invalido*'})//INVALID NAM
                     if (code === 610) errCode = Object.assign({}, errCode, {lastName: 'apellido invalido*'})//INVALID LAST NAM
                     if (code === 611) errCode = Object.assign({}, errCode, {phone: 'celular invalido*'})//INVALID PHONE NUMBE
+                    if (code === 612) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Al realizar 3 transacciones con la misma tarjeta y datos de procesamiento el sistema detecta que es posiblemente una transacción duplicada y solo permite hasta 3 intentos.\nPor favor vuelve a intentar en unos minutos.',
+                            showConfirmButton: true
+                        })
+                    }
 
                     setErr(errCode)
                 }
