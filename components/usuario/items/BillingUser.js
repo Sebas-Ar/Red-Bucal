@@ -47,7 +47,7 @@ const BillingUser = (props) => {
             {
                 activeVirtual
                 ?
-                    <PagoVirtual changeVirtual={changeVirtual} data={props.data} setData={props.setData} type={'user'} pago={12}/>
+                    <PagoVirtual changeVirtual={changeVirtual} data={props.data} setData={props.setData} type={'user'} pago={12.84}/>
                 :
                 ''
             }
@@ -57,7 +57,7 @@ const BillingUser = (props) => {
             </label>
             <label className="type">
                 VALOR A PAGAR:
-                <p>12 USD</p>
+                <p>12.84 USD</p>
             </label>
             <label>
                 FECHA DE INICIO:
