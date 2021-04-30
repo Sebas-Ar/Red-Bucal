@@ -34,7 +34,7 @@ const whats = () => {
 
     return (
         <div>
-            <button onClick={}>Send Message</button>
+            <button>Send Message</button>
         </div>
     );
 };
