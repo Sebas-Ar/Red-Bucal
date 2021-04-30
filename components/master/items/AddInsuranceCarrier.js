@@ -232,8 +232,8 @@ const AddInsuranceCarrier = (props) => {
                     ) : null}
                 </label>
                 <a
-                    href="/archives/PLANTILLA-DE-REGISTRO-PARA-EMPLEADOS.xlsx"
-                    download="PLANTILLA-DE-REGISTRO-PARA-EMPLEADOS.xlsx"
+                    href="/archives/PLANTILLA-DE-REGISTRO-PARA-ASEGURADOS.xslx"
+                    download="PLANTILLA-DE-REGISTRO-PARA-ASEGURADOS.xlsx"
                 >
                     <span>DESCARGAR PLANTILLA DE REGISTRO PARA ASEGURADOS</span>
                 </a>
