@@ -24,7 +24,7 @@ const Familias = () => {
                     <span className="familias">& FAMILIAS</span>
                 </h2>
                 <h3>CONFIANZA & AYUDA</h3>
-                <p>Con el objetivo de brindarle apoyo para elegir la opción que más se ajusta a sus necesidades le ofrecemos nuestro plan PLUS INDIVIDUAL O FAMILIAR para así protegerlo de gastos dentales inesperados y ayudarlo a mantener su salud oral y la de su familia en óptimas condiciones.</p>
+                <p>Con el objetivo de brindarle seguridad al mantener su salud bucal y la de su familia, le ofrecemos nuestro plan PERSONAL O FAMILIAR, para así apoyarlo con tratamientos preventivos y/o gastos dentales inesperados.</p>
                 <div className="botones">
                     <button onClick={contacto} className="contacto">Contacto</button>
                     <button onClick={registro} className="registro">Registro</button>
@@ -114,6 +114,7 @@ const Familias = () => {
                 }
 
                 p {
+                    text-align: justify;
                     color: var(--mainColorClaro);
                     font-weight: 500;
                 }

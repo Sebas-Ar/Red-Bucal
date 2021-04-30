@@ -7,10 +7,10 @@ const InformationLeft = () => {
                 <div className="puntos"></div>
                 <div className="text">
                     <h3>
-                        <span className="sonrisas">SONRISAS AL ALCANCE</span>
-                        <span className="todos">DE TODOS</span>
+                        <span className="sonrisas">#CONECTANDO</span>
+                        <span className="todos">SONRISAS</span>
                     </h3>
-                    <p>Contamos con un plan dental a la medida de cada persona y de cada empresa, que además de procurar la salud oral de sus empleados y sus familias, generan en ellos vínculos de lealtad que se traducen en su desempeño.  A un bajo costo lo que les permite tener importantes ahorros y la excelencia de la atención de odontólogos generales y especialistas capacitados.</p>
+                    
                 </div>
                 <div className="dientes"></div>
             </div>
@@ -26,6 +26,11 @@ const InformationLeft = () => {
                     height: 500px;
                     display: grid;
                     grid-template-columns: 2.1fr 2fr;
+                }
+
+                .text {
+                    display: grid;
+                    align-items: center;
                 }
 
                 .img {
@@ -58,20 +63,19 @@ const InformationLeft = () => {
                 }
 
                 h3 {
-                    margin-top: 30px;
                     color: var(--mainColor);
                     display: grid;
                     justify-items: center;
                 }
 
                 .sonrisas {
-                    font-size: calc(30px * var(--sizeInfo1));
+                    font-size: calc(45px * var(--sizeInfo1));
                     font-weight: 400;
                     letter-spacing: calc(6px * var(--sizeInfo1));
                 }
 
                 .todos {
-                    font-size: calc(90px * var(--sizeInfo1));
+                    font-size: calc(80px * var(--sizeInfo1));
                     margin-top: calc(-30px * var(--sizeInfo1));
                 }
 

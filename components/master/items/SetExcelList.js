@@ -17,11 +17,13 @@ const SetExcelList = (props) => {
 
     const readExcel = async (e) => {
         try {
-            const xmls = await readXlsxFile(e.target.files[0])
-            setData(Object.assign({}, data, { excel: xmls }));
+            console.log("cargando archivo");
+            const xmls = await readXlsxFile(e.target.files[0]);
+            setData(Object.assign({}, data, { data: xmls }));
         } catch (error) {
-            console.log(error);
-            alert('archivo equivocado, por favor suba el archvo Excel')
+            const file = document.getElementById("file");
+            file.value = null;
+            setData(Object.assign({}, data, { data: undefined }));
         }
     }
 
@@ -46,7 +48,7 @@ const SetExcelList = (props) => {
         <form className="content" onSubmit={onSubmit}>
             <div className="upload">
                 <label className="label">{data.excel ? 'PLANTILLA CARGADA' : 'SUBIR PLANTILLA DE REGISTRO PARA EMPLEADOS'}
-                    <input className="uploadInput" type="file" onChange={(e) => { readExcel(e) }} />
+                    <input id="file" className="uploadInput" type="file" onChange={(e) => { readExcel(e) }} />
                 </label>
             </div>
             <button>Actualizar</button>
@@ -60,6 +62,9 @@ const SetExcelList = (props) => {
                 }
 
                 .upload {
+                    position: relative;
+                    z-index: -1;
+                    opacity: 0.5;
                     background-color: var(--puntoRojo);
                     cursor: pointer;
                     position: relative;
@@ -88,6 +93,9 @@ const SetExcelList = (props) => {
                 }
                 
                 button {
+                    position: relative;
+                    z-index: -1;
+                    opacity: 0.5;
                     margin: 10px;
                     border: none;
                     outline: none; 

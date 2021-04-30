@@ -1,158 +1,263 @@
-import React from 'react'
-import { useRouter } from 'next/router'
+import React from "react";
+import { useRouter } from "next/router";
 
 const NavMaster = (props) => {
-
-    const router = useRouter()
+    const router = useRouter();
 
     const selection = (selector) => {
         return {
-            fontWeight: selector === props.select ? '800' : '',
-            margin: selector === props.select ? '-2px 0 -3px 0' : ''
-        }
-    }
+            fontWeight: selector === props.select ? "800" : "",
+            margin: selector === props.select ? "-2px 0 -3px 0" : "",
+        };
+    };
 
     const logout = () => {
-        sessionStorage.removeItem('tokenMaster')
-        router.replace("/")
-    }
+        sessionStorage.removeItem("tokenMaster");
+        router.replace("/");
+    };
 
     return (
         <div className="content">
-
             <div className="diente1"></div>
             <nav>
-                {
-                    props.user === 0
-                    ?
-                        <ul>
-                            <li>
-                                <h2>{props.adminData.name}</h2>
-                            </li>
-                            <li>
-                                <button onClick={() => {
-                                    props.onClick(0)
-                                    props.changeActivate()
-                                }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
-                            </li>
-                            {/* <li>
+                {props.user === 0 ? (
+                    <ul>
+                        <li>
+                            <h2>{props.adminData.name}</h2>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => {
+                                    props.onClick(0);
+                                    props.changeActivate();
+                                }}
+                                style={selection(0)}
+                            >
+                                BUSCAR USUARIO / EMPRESA
+                            </button>
+                        </li>
+                        {/* <li>
                                 <button onClick={() => { router.push("/registro-administrador") }} style={selection(5)}>REGISTRAR ADMINISTRADOR</button>
                             </li> */}
-                            <li>
-                                <button onClick={() => {
-                                    props.onClick(5)
-                                    props.changeActivate()
-                                }} style={selection(5)}>GESTIONAR CLINICAS</button>
-                            </li>
-                            <li>
-                                <button onClick={logout}>SALIR</button>
-                            </li>
-                        </ul>
-                    :
-                        props.user === 1 ?
-                            <ul>
-                                <li>
-                                    <h2>{props.adminData.name}</h2>
-                                </li>
-                                <li>
-                                    <button onClick={() => {
-                                        props.onClick(0)
-                                        props.changeActivate()
-                                    }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
-                                </li>
-                                <li>
-                                    <button onClick={() => {
-                                        props.onClick(1)
-                                        props.changeActivate()
-                                    }} style={selection(1)}>INFORMACIÓN DEL USUARIO</button>
-                                </li>
-                                <li>
-                                    <button onClick={() => {
-                                        props.onClick(2)
-                                        props.changeActivate()
-                                    }} style={selection(2)}>FACTURACIÓN</button>
-                                </li>
-                                <li>
-                                    <button onClick={() => {
-                                        props.onClick(3)
-                                        props.changeActivate()
-                                    }} style={selection(3)}>SERVICIOS</button>
-                                </li>
-                                <li>
-                                    <button onClick={() => {
-                                        props.onClick(4)
-                                        props.changeActivate()
-                                    }} style={selection(4)}>HISTORIAL</button>
-                                </li>
-                                {/* <li>
+                        <li>
+                            <button
+                                onClick={() => {
+                                    props.onClick(5);
+                                    props.changeActivate();
+                                }}
+                                style={selection(5)}
+                            >
+                                GESTIONAR CLINICAS
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => {
+                                    props.onClick(6);
+                                    props.changeActivate();
+                                }}
+                                style={selection(6)}
+                            >
+                                GESTIONAR ASEGURADORAS
+                            </button>
+                        </li>
+                        <li>
+                            <button onClick={logout}>SALIR</button>
+                        </li>
+                    </ul>
+                ) : props.user === 1 ? (
+                    <ul>
+                        <li>
+                            <h2>{props.adminData.name}</h2>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => {
+                                    props.onClick(0);
+                                    props.changeActivate();
+                                }}
+                                style={selection(0)}
+                            >
+                                BUSCAR USUARIO / EMPRESA
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => {
+                                    props.onClick(1);
+                                    props.changeActivate();
+                                }}
+                                style={selection(1)}
+                            >
+                                INFORMACIÓN DEL USUARIO
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => {
+                                    props.onClick(2);
+                                    props.changeActivate();
+                                }}
+                                style={selection(2)}
+                            >
+                                FACTURACIÓN
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => {
+                                    props.onClick(3);
+                                    props.changeActivate();
+                                }}
+                                style={selection(3)}
+                            >
+                                SERVICIOS
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => {
+                                    props.onClick(4);
+                                    props.changeActivate();
+                                }}
+                                style={selection(4)}
+                            >
+                                HISTORIAL
+                            </button>
+                        </li>
+                        {/* <li>
                                     <button onClick={() => { router.push("/registro-administrador") }} style={selection(5)}>REGISTRAR ADMINISTRADOR</button>
                                 </li> */}
-                                <li>
-                                    <button onClick={() => {
-                                        props.onClick(5)
-                                        props.changeActivate()
-                                    }} style={selection(5)}>GESTIONAR CLINICAS</button>
-                                </li>
-                                <li>
-                                    <button onClick={logout}>SALIR</button>
-                                </li>
-                            </ul>
-                            :
-                            <ul>
-                                <li>
-                                    <h2>{props.adminData.name}</h2>
-                                </li>
-                                <li>
-                                    <button onClick={() => {
-                                        props.onClick(0)
-                                        props.changeActivate()
-                                    }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
-                                </li>
-                                <li>
-                                    <button onClick={() => {
-                                        props.onClick(1)
-                                        props.changeActivate()
-                                    }} style={selection(1)}>INFORMACIÓN EMPRESARIAL</button>
-                                </li>
-                                <li>
-                                    <button onClick={() => {
-                                        props.onClick(2)
-                                        props.changeActivate()
-                                    }} style={selection(2)}>FACTURACIÓN</button>
-                                </li>
-                                <li>
-                                    <button onClick={() => {
-                                        props.onClick(3)
-                                        props.changeActivate()
-                                    }} style={selection(3)}>EMPLEADOS</button>
-                                </li>
-                                <li>
-                                    <button onClick={() => {
-                                        props.onClick(4)
-                                        props.changeActivate()
-                                    }} style={selection(4)}>ACTUALIZAR EMPLEADOS</button>
-                                </li>
-                                {/* <li>
+                        <li>
+                            <button
+                                onClick={() => {
+                                    props.onClick(5);
+                                    props.changeActivate();
+                                }}
+                                style={selection(5)}
+                            >
+                                GESTIONAR CLINICAS
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => {
+                                    props.onClick(6);
+                                    props.changeActivate();
+                                }}
+                                style={selection(6)}
+                            >
+                                GESTIONAR ASEGURADORAS
+                            </button>
+                        </li>
+                        <li>
+                            <button onClick={logout}>SALIR</button>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul>
+                        <li>
+                            <h2>{props.adminData.name}</h2>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => {
+                                    props.onClick(0);
+                                    props.changeActivate();
+                                }}
+                                style={selection(0)}
+                            >
+                                BUSCAR USUARIO / EMPRESA
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => {
+                                    props.onClick(1);
+                                    props.changeActivate();
+                                }}
+                                style={selection(1)}
+                            >
+                                INFORMACIÓN EMPRESARIAL
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => {
+                                    props.onClick(2);
+                                    props.changeActivate();
+                                }}
+                                style={selection(2)}
+                            >
+                                FACTURACIÓN
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => {
+                                    props.onClick(3);
+                                    props.changeActivate();
+                                }}
+                                style={selection(3)}
+                            >
+                                EMPLEADOS
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => {
+                                    props.onClick(4);
+                                    props.changeActivate();
+                                }}
+                                style={selection(4)}
+                            >
+                                ACTUALIZAR EMPLEADOS
+                            </button>
+                        </li>
+                        {/* <li>
                                     <button onClick={() => { router.push("/registro-administrador") }} style={selection(5)}>REGISTRAR ADMINISTRADOR</button>
                                 </li> */}
-                                <li>
-                                    <button onClick={() => {
-                                        props.onClick(5)
-                                        props.changeActivate()
-                                    }} style={selection(5)}>GESTIONAR CLINICAS</button>
-                                </li>
-                                <li>
-                                    <button onClick={logout}>SALIR</button>
-                                </li>
-                            </ul>
-                }
+                        <li>
+                            <button
+                                onClick={() => {
+                                    props.onClick(5);
+                                    props.changeActivate();
+                                }}
+                                style={selection(5)}
+                            >
+                                GESTIONAR CLINICAS
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => {
+                                    props.onClick(6);
+                                    props.changeActivate();
+                                }}
+                                style={selection(6)}
+                            >
+                                GESTIONAR ASEGURADORAS
+                            </button>
+                        </li>
+                        <li>
+                            <button onClick={logout}>SALIR</button>
+                        </li>
+                    </ul>
+                )}
 
                 <div className="activate">
-                    <svg viewBox="0 0 512 512" onClick={() => { props.changeActivate() }}>
-                        <path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248 248-111 248-248zm-448 0c0-110.5 89.5-200 200-200s200 89.5 200 200-89.5 200-200 200S56 366.5 56 256zm72 20v-40c0-6.6 5.4-12 12-12h116v-67c0-10.7 12.9-16 20.5-8.5l99 99c4.7 4.7 4.7 12.3 0 17l-99 99c-7.6 7.6-20.5 2.2-20.5-8.5v-67H140c-6.6 0-12-5.4-12-12z" />
+                    <svg
+                        viewBox="0 0 512 512"
+                        onClick={() => {
+                            props.changeActivate();
+                        }}
+                    >
+                        <path
+                            fill="currentColor"
+                            d="M504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248 248-111 248-248zm-448 0c0-110.5 89.5-200 200-200s200 89.5 200 200-89.5 200-200 200S56 366.5 56 256zm72 20v-40c0-6.6 5.4-12 12-12h116v-67c0-10.7 12.9-16 20.5-8.5l99 99c4.7 4.7 4.7 12.3 0 17l-99 99c-7.6 7.6-20.5 2.2-20.5-8.5v-67H140c-6.6 0-12-5.4-12-12z"
+                        />
                     </svg>
                 </div>
-
             </nav>
 
             <div className="linea"></div>
@@ -162,13 +267,12 @@ const NavMaster = (props) => {
             <div className="diente2"></div>
 
             <style jsx>{`
-                
                 .content {
                     height: 100vh;
                     width: 100vw;
                     display: grid;
                     grid-template-columns: 1fr 6fr 2px 9.5fr 1fr;
-                }    
+                }
 
                 .activate {
                     display: none;
@@ -205,14 +309,15 @@ const NavMaster = (props) => {
                     margin: 10px 0;
                 }
 
-                button, h2 {
+                button,
+                h2 {
                     text-align: left;
                     border: none;
                     background-color: white;
                     color: var(--mainColor);
                     font-size: 18px;
                     padding: 10px 20px;
-                    transition: background-color .3s;
+                    transition: background-color 0.3s;
                     outline: none;
                     cursor: pointer;
                 }
@@ -228,9 +333,8 @@ const NavMaster = (props) => {
                     margin: -2px 0 -3px 0;
                     cursor: auto;
                 }
-                
-                @media screen and (max-width: 900px) {
 
+                @media screen and (max-width: 900px) {
                     .content {
                         grid-template-columns: 11fr 1fr;
                     }
@@ -248,11 +352,15 @@ const NavMaster = (props) => {
                         top: 50%;
                         left: 0;
                         margin: 0 30px 0 0;
-                        transition: transform .5s, box-shadow 1s;
-                        transform: ${props.activate ? 'translate(0, -50%)' : 'translate(-100%, -50%)'};
+                        transition: transform 0.5s, box-shadow 1s;
+                        transform: ${props.activate
+                            ? "translate(0, -50%)"
+                            : "translate(-100%, -50%)"};
                         background-color: white;
                         border-radius: 0 30px 30px 0;
-                        box-shadow: ${props.activate ? '5px 5px 20px 0px #33333366' : '0px 0px 0px 0px #33333322'};
+                        box-shadow: ${props.activate
+                            ? "5px 5px 20px 0px #33333366"
+                            : "0px 0px 0px 0px #33333322"};
                     }
 
                     .diente1 {
@@ -279,13 +387,14 @@ const NavMaster = (props) => {
                         box-shadow: 5px 5px 10px 0px #33333355;
                         background: var(--amarillo);
                         color: white;
-
                     }
 
                     svg {
                         width: 20px;
                         transition: transform 2s;
-                        transform: ${props.activate ? 'rotate(180deg)' : 'rotate(0deg)' };  
+                        transform: ${props.activate
+                            ? "rotate(180deg)"
+                            : "rotate(0deg)"};
                     }
 
                     .linea {
@@ -294,7 +403,6 @@ const NavMaster = (props) => {
                 }
 
                 @media screen and (max-width: 600px) {
-
                     .content {
                         grid-template-columns: 1fr;
                     }
@@ -312,10 +420,8 @@ const NavMaster = (props) => {
                         padding: 0;
                     }
                 }
-                
             `}</style>
-
         </div>
-    )
-}
-export default NavMaster
+    );
+};
+export default NavMaster;

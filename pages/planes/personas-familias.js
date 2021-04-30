@@ -16,6 +16,7 @@ const personas = () => {
             <Familias />
             <FamiliasResponsive />
             <Personal
+                title="USD 12.00 + ITBMS"
                 ubicacion="6fr 5fr 1fr"
                 img="1/2"
                 text="2/3"

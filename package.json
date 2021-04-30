@@ -31,6 +31,7 @@
     "read-excel-file": "^4.0.5",
     "request": "^2.88.2",
     "sweetalert2": "^9.10.2",
+    "whatsapp-web.js": "^1.12.5",
     "xlsx": "^0.16.9",
     "yarn": "^1.22.10"
   }

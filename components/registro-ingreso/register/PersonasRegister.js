@@ -1,29 +1,54 @@
-import React, { useState } from 'react'
-import TerminosCondicionesForm from './TerminosCondicionesForm'
+import React, { useState } from "react";
+import TerminosCondicionesForm from "./TerminosCondicionesForm";
 
 const PersonasRegister = (props) => {
-
     const [active, setActive] = useState(false);
 
     const change = (e) => {
-        e.preventDefault()
-        setActive(!active)
-    }
+        e.preventDefault();
+        setActive(!active);
+    };
 
     return (
-        <form onSubmit={(e) => {props.onSubmitPersonalRegister(e)}}>
+        <form
+            onSubmit={(e) => {
+                props.onSubmitPersonalRegister(e);
+            }}
+        >
             <div className="nombre">
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="NOMBRE*" value={props.user.name} name="name" onChange={props.ChangeText}/>
+                <input
+                    type="text"
+                    placeholder="NOMBRE*"
+                    value={props.user.name}
+                    name="name"
+                    onChange={props.ChangeText}
+                />
             </div>
-            <br/>
+            <br />
             <div className="apellido">
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="APELLIDO*" value={props.user.lastname} name="lastname" onChange={props.ChangeText}/>
+                <input
+                    type="text"
+                    placeholder="APELLIDO*"
+                    value={props.user.lastname}
+                    name="lastname"
+                    onChange={props.ChangeText}
+                />
             </div>
-            {props.errors.errorName ? <p style={{ gridColumn: '1/2' }}>{props.errors.errorName}</p> : ''}
-            {props.errors.errorName || props.errors.errorlastname ? <br/> : ''}
-            {props.errors.errorlastname ? <p style={{ gridColumn: '3/4' }}>{props.errors.errorlastname}</p> : ''}
+            {props.errors.errorName ? (
+                <p style={{ gridColumn: "1/2" }}>{props.errors.errorName}</p>
+            ) : (
+                ""
+            )}
+            {props.errors.errorName || props.errors.errorlastname ? <br /> : ""}
+            {props.errors.errorlastname ? (
+                <p style={{ gridColumn: "3/4" }}>
+                    {props.errors.errorlastname}
+                </p>
+            ) : (
+                ""
+            )}
             <h4>DOCUMENTO</h4>
             <div>
                 <div className="colorRojo"></div>
@@ -31,21 +56,68 @@ const PersonasRegister = (props) => {
                     <option value="-">TIPO</option>
                     <option value="C.C. Panameña">CEDULA PANAMEÑA</option>
                     <option value="Pasaporte">PASAPORTE</option>
-                    <option value="Cedula de extranjería">CEDULA DE EXTRANJERÍA</option>
+                    <option value="Cedula de extranjería">
+                        CEDULA DE EXTRANJERÍA
+                    </option>
                 </select>
             </div>
-            <br/>
+            <br />
             <div>
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="IDENTIFICACIÓN" value={props.user.identification} name="identification" onChange={props.ChangeText}/>
+                <input
+                    type="text"
+                    placeholder="IDENTIFICACIÓN"
+                    value={props.user.identification}
+                    name="identification"
+                    onChange={props.ChangeText}
+                />
             </div>
-            {props.errors.errorTypeDoc ? <p style={{ gridColumn: '1/2' }}>{props.errors.errorTypeDoc}</p> : ''}
-            {props.errors.erroridentification ? <p style={{ gridColumn: '3/4' }}>{props.errors.erroridentification}</p> : ''}
+            {props.errors.errorTypeDoc ? (
+                <p style={{ gridColumn: "1/2" }}>{props.errors.errorTypeDoc}</p>
+            ) : (
+                ""
+            )}
+            {props.errors.erroridentification ? (
+                <p style={{ gridColumn: "3/4" }}>
+                    {props.errors.erroridentification}
+                </p>
+            ) : (
+                ""
+            )}
             <div className="password">
                 <div className="colorRojo"></div>
-                <input type="password" placeholder="REPITA LA CONTRASEÑA*" value={props.user.passwordRepeat} name="passwordRepeat" onChange={props.ChangeText} />
+                <input
+                    type="password"
+                    placeholder="CONTRASEÑA*"
+                    value={props.user.password}
+                    name="password"
+                    onChange={props.ChangeText}
+                />
             </div>
-            {props.errors.errorpasswordRepeat ? <p style={{ gridColumn: '1/4' }}>{props.errors.errorpasswordRepeat}</p> : ''}
+            {props.errors.errorpassword ? (
+                <p style={{ gridColumn: "1/4" }}>
+                    {props.errors.errorpassword}
+                </p>
+            ) : (
+                ""
+            )}
+            <div className="password">
+                <div className="colorRojo"></div>
+                <input
+                    type="password"
+                    placeholder="REPITA LA CONTRASEÑA*"
+                    value={props.user.passwordRepeat}
+                    name="passwordRepeat"
+                    onChange={props.ChangeText}
+                />
+            </div>
+            {props.errors.errorpasswordRepeat ? (
+                <p style={{ gridColumn: "1/4" }}>
+                    {props.errors.errorpasswordRepeat}
+                </p>
+            ) : (
+                ""
+            )}
             <h4>FECHA DE NACIMIENTO</h4>
             <div className="date">
                 <div>
@@ -85,7 +157,7 @@ const PersonasRegister = (props) => {
                         <option value="31">31</option>
                     </select>
                 </div>
-                <br/>
+                <br />
                 <div>
                     <div className="colorRojo"></div>
                     <select name="month" onChange={props.ChangeText}>
@@ -104,7 +176,7 @@ const PersonasRegister = (props) => {
                         <option value="12">DICIEMBRE</option>
                     </select>
                 </div>
-                <br/>
+                <br />
                 <div>
                     <div className="colorRojo"></div>
                     <select name="year" onChange={props.ChangeText}>
@@ -231,11 +303,39 @@ const PersonasRegister = (props) => {
                         <option value="2040">2040</option>
                     </select>
                 </div>
-                {props.errors.errorday ? <p style={{ gridColumn: '1/2' }}>{props.errors.errorday}</p> : ''}
-                {props.errors.errorday || props.errors.errormonth || props.errors.erroryear ? <br /> : ''}
-                {props.errors.errormonth ? <p style={{ gridColumn: '3/4' }}>{props.errors.errormonth}</p> : ''}
-                {props.errors.errorday || props.errors.errormonth || props.errors.erroryear ? <br /> : ''}
-                {props.errors.erroryear ? <p style={{ gridColumn: '5/6' }}>{props.errors.erroryear}</p> : ''}
+                {props.errors.errorday ? (
+                    <p style={{ gridColumn: "1/2" }}>{props.errors.errorday}</p>
+                ) : (
+                    ""
+                )}
+                {props.errors.errorday ||
+                props.errors.errormonth ||
+                props.errors.erroryear ? (
+                    <br />
+                ) : (
+                    ""
+                )}
+                {props.errors.errormonth ? (
+                    <p style={{ gridColumn: "3/4" }}>
+                        {props.errors.errormonth}
+                    </p>
+                ) : (
+                    ""
+                )}
+                {props.errors.errorday ||
+                props.errors.errormonth ||
+                props.errors.erroryear ? (
+                    <br />
+                ) : (
+                    ""
+                )}
+                {props.errors.erroryear ? (
+                    <p style={{ gridColumn: "5/6" }}>
+                        {props.errors.erroryear}
+                    </p>
+                ) : (
+                    ""
+                )}
             </div>
             {/* <div className="fecha">
                 <div className="colorRojo"></div>
@@ -243,59 +343,113 @@ const PersonasRegister = (props) => {
             </div> */}
             <div>
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="DIRECCIÓN*" value={props.user.adress} name="adress" onChange={props.ChangeText}/>
+                <input
+                    type="text"
+                    placeholder="DIRECCIÓN*"
+                    value={props.user.adress}
+                    name="adress"
+                    onChange={props.ChangeText}
+                />
             </div>
             <br />
             <div>
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="TELÉFONO" value={props.user.phone} name="phone" onChange={props.ChangeText}/>
+                <input
+                    type="text"
+                    placeholder="TELÉFONO"
+                    value={props.user.phone}
+                    name="phone"
+                    onChange={props.ChangeText}
+                />
             </div>
-            {props.errors.erroradress ? <p style={{ gridColumn: '1/2' }}>{props.errors.erroradress}</p> : ''}
-            {props.errors.erroradress || props.errors.errorphone ? <br /> : ''}
-            {props.errors.errorphone ? <p style={{ gridColumn: '3/4' }}>{props.errors.errorphone}</p> : ''}
+            {props.errors.erroradress ? (
+                <p style={{ gridColumn: "1/2" }}>{props.errors.erroradress}</p>
+            ) : (
+                ""
+            )}
+            {props.errors.erroradress || props.errors.errorphone ? <br /> : ""}
+            {props.errors.errorphone ? (
+                <p style={{ gridColumn: "3/4" }}>{props.errors.errorphone}</p>
+            ) : (
+                ""
+            )}
             <div className="correo">
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="CORREO ELECTRÓNICO" value={props.user.email} name="email" onChange={props.ChangeText}/>
+                <input
+                    type="text"
+                    placeholder="CORREO ELECTRÓNICO"
+                    value={props.user.email}
+                    name="email"
+                    onChange={props.ChangeText}
+                />
             </div>
-            {props.errors.erroremail ? <p style={{ gridColumn: '1/4' }}>{props.errors.erroremail}</p> : ''}
+            {props.errors.erroremail ? (
+                <p style={{ gridColumn: "1/4" }}>{props.errors.erroremail}</p>
+            ) : (
+                ""
+            )}
+            <label className="terminos">
+                <input
+                    type="checkbox"
+                    className="checkbox"
+                    name="checkbox"
+                    onChange={props.ChangeText}
+                />
+                Acepto terminos y condiciones
+                <br />
+                {props.errors.ckeckerror ? (
+                    <p>{props.errors.ckeckerror}</p>
+                ) : (
+                    ""
+                )}
+            </label>
             <div className="terminos-box">
-               {/*  <br />
-                <label className="terminos">
-                    Acepto terminos y condiciones
-                    <input type="checkbox" className="checkbox" name="checkbox" onChange={props.ChangeText} />
-                    <br/>
-                    {props.errors.ckeckerror ? <p>{props.errors.ckeckerror}</p> : ''}
-                </label> */}
-                <button className="condiciones" onClick={(e) => {change(e)}}>terminos y condiciones</button>
-                {props.errors.ckeckerror ? <br /> : ''}
-                {props.errors.ckeckerror ? <p>{props.errors.ckeckerror}</p> : ''}
-                {
-                    active ?
-                        <TerminosCondicionesForm change={change} ChangeText={props.ChangeText}/>
-                    :
-                    ''
-                }
+                <button
+                    className="condiciones"
+                    onClick={(e) => {
+                        change(e);
+                    }}
+                >
+                    Leer Terminos y condiciones
+                </button>
+                {active ? (
+                    <TerminosCondicionesForm
+                        change={change}
+                        ChangeText={props.ChangeText}
+                    />
+                ) : (
+                    ""
+                )}
             </div>
             <div className="select">
                 <div className="colorRojo"></div>
-                <select value={props.user.know} name="know" onChange={props.ChangeText}>
+                <select
+                    value={props.user.know}
+                    name="know"
+                    onChange={props.ChangeText}
+                >
                     <option value="">¿Cómo supo de nosotoros?</option>
                     <option value="1">Página Web</option>
                     <option value="2">Recomendación</option>
                     <option value="3">Asesor Comercial</option>
-                    <option value="4">Otro</option>
+                    <option value="4">Redes sociales</option>
+                    <option value="5">Otro</option>
                 </select>
             </div>
-            {props.errors.errorknow ? <p style={{ gridColumn: '1/4' }}>{props.errors.errorknow}</p> : '' }
+            {props.errors.errorknow ? (
+                <p style={{ gridColumn: "1/4" }}>{props.errors.errorknow}</p>
+            ) : (
+                ""
+            )}
 
-            <button className="entrar">ENTRAR
+            <button className="entrar">
+                ENTRAR
                 <svg viewBox="0 0 512 512">
                     <path d="M416 448h-84c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h84c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32h-84c-6.6 0-12-5.4-12-12V76c0-6.6 5.4-12 12-12h84c53 0 96 43 96 96v192c0 53-43 96-96 96zm-47-201L201 79c-15-15-41-4.5-41 17v96H24c-13.3 0-24 10.7-24 24v96c0 13.3 10.7 24 24 24h136v96c0 21.5 26 32 41 17l168-168c9.3-9.4 9.3-24.6 0-34z" />
                 </svg>
             </button>
 
             <style jsx>{`
-
                 .date {
                     display: grid;
                     grid-template-columns: 1fr 10px 1fr 10px 1fr;
@@ -332,11 +486,12 @@ const PersonasRegister = (props) => {
                 }
 
                 .checkbox {
-                    transform: translateY(25%);
+                    transform: translateY(15%);
+                    margin-right: 5px;
                 }
 
                 .terminos-box {
-                    grid-column: 1/4;
+                    grid-column: 3/4;
                     border: none;
                     justify-self: flex-end;
                     padding-right: 20px;
@@ -344,7 +499,11 @@ const PersonasRegister = (props) => {
                 }
 
                 .terminos {
-                    color: black
+                    font-size: 12px;
+                    color: black;
+                    grid-column: 1/2;
+                    align-self: center;
+                    justify-self: center;
                 }
 
                 form {
@@ -353,11 +512,14 @@ const PersonasRegister = (props) => {
                     margin-bottom: 100px;
                 }
 
-                .id, .correo, .select, .fecha {
+                .id,
+                .correo,
+                .select,
+                .fecha {
                     grid-column: 1/4;
                 }
 
-                .docuemnt{
+                .docuemnt {
                     grid-column: 1/4;
                 }
 
@@ -386,19 +548,17 @@ const PersonasRegister = (props) => {
                 form > div {
                     margin: 10px 0;
                 }
-                
+
                 div {
                     display: grid;
                     grid-template-columns: 5px 1fr;
                     border: 1px solid #33333322;
                     border-left: none;
-                }    
+                }
 
                 .colorRojo {
                     background-color: var(--puntoRojo);
                 }
-
-                
 
                 input {
                     border: none;
@@ -437,12 +597,11 @@ const PersonasRegister = (props) => {
                     height: 25px;
                     transform: translateY(20%);
                     margin-left: 10px;
-                    fill: var(--puntoRojo)
+                    fill: var(--puntoRojo);
                 }
-                
             `}</style>
         </form>
-    )
-}
+    );
+};
 
-export default PersonasRegister
+export default PersonasRegister;

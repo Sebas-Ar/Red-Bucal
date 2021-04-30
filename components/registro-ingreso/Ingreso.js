@@ -1,49 +1,67 @@
-import React, { useState, useEffect } from 'react'
-import RememberPass from './RememberPass';
+import React, { useState, useEffect } from "react";
+import RememberPass from "./RememberPass";
 
 const Ingreso = (props) => {
+    const [url, setUrl] = useState("");
 
-    const [url, setUrl] = useState('')
-    
     useEffect(() => {
         const path = window.location.pathname;
-        setUrl(path)
+        setUrl(path);
     });
 
     return (
-        <form onSubmit={e => {e.preventDefault()}}>
+        <form
+            onSubmit={(e) => {
+                e.preventDefault();
+            }}
+        >
             {/*<RememberPass /> */}
             <div>
                 <div className="colorRojo"></div>
-                <input type="text" placeholder="EMAIL" name="email" value={props.login.email} onChange={props.ChangeTextLogin} />
+                <input
+                    type="text"
+                    placeholder="CEDULA / EMAIL"
+                    name="email"
+                    value={props.login.email}
+                    onChange={props.ChangeTextLogin}
+                />
             </div>
             <div className="password">
                 <div className="colorAzul"></div>
-                <input type="password" placeholder="CONTRASEÑA" name="password" value={props.login.password ? props.login.password : ''} onChange={props.ChangeTextLogin}/>
-                {props.errorsLogin.error ? <p>{props.errorsLogin.error}</p> : ''}
+                <input
+                    type="password"
+                    placeholder="CONTRASEÑA"
+                    name="password"
+                    value={props.login.password ? props.login.password : ""}
+                    onChange={props.ChangeTextLogin}
+                />
+                {props.errorsLogin.error ? (
+                    <p>{props.errorsLogin.error}</p>
+                ) : (
+                    ""
+                )}
             </div>
 
-            <button onClick={props.onSubmitLogin}>ENTRAR
+            <button onClick={props.onSubmitLogin}>
+                ENTRAR
                 <svg viewBox="0 0 512 512">
                     <path d="M416 448h-84c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h84c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32h-84c-6.6 0-12-5.4-12-12V76c0-6.6 5.4-12 12-12h84c53 0 96 43 96 96v192c0 53-43 96-96 96zm-47-201L201 79c-15-15-41-4.5-41 17v96H24c-13.3 0-24 10.7-24 24v96c0 13.3 10.7 24 24 24h136v96c0 21.5 26 32 41 17l168-168c9.3-9.4 9.3-24.6 0-34z" />
                 </svg>
             </button>
 
-            {
-                props.type === 'admin'
-                ?
-                    null
-                :
-                    <span onClick={() => props.ChangeRegLog()}>¿No tienes cuenta? Registrate</span>
-            }
+            {props.type === "admin" ? null : (
+                <span className="register" onClick={() => props.ChangeRegLog()}>
+                    ¿No tienes cuenta? Registrate
+                </span>
+            )}
+            <span className="remember">¿Olvidaste tu contraseña?</span>
 
             <style jsx>{`
-
                 form {
                     display: grid;
                     position: relative;
                 }
-                
+
                 div {
                     display: grid;
                     grid-template-columns: 5px 1fr;
@@ -52,7 +70,7 @@ const Ingreso = (props) => {
                 }
 
                 .colorRojo {
-                    background-color: var(--puntoRojo); 
+                    background-color: var(--puntoRojo);
                 }
 
                 .colorAzul {
@@ -105,29 +123,31 @@ const Ingreso = (props) => {
                     height: 20px;
                     transform: translateY(20%);
                     margin-left: 10px;
-                    fill: var(--puntoRojo)
+                    fill: var(--puntoRojo);
                 }
 
-                span {
+                .register, .remember {
                     position: absolute;
                     bottom: -15px;
-                    color: #60A9CAAA;
+                    color: #60a9caaa;
                     text-decoration: underline;
                     width: 350px;
                     text-align: center;
                     font-size: 15px;
                     cursor: pointer;
-                    transition: color .5s;
+                    transition: color 0.5s;
                 }
 
-                span:hover {
-                    color: #60A9CA;
-
+                .remember {
+                    bottom: -45px;
                 }
-                
+
+                .register:hover {
+                    color: #60a9ca;
+                }
             `}</style>
         </form>
-    )
-}
+    );
+};
 
-export default Ingreso
+export default Ingreso;

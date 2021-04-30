@@ -14,8 +14,8 @@ const LayoutPlanes = () => {
                 valor="12"
                 fecha="AÑO"
                 colaborador="UN SOLO PAGO ANUAL*"
-                tit1="Plan red bucal para personas"
-                text1="Es un plan más completo diseñado especialmente para resguardar la salud bucal de aquellas personas que quieren darle tratamiento preventivo a su boca."
+                tit1="Plan Red Bucal ® PERSONAS:"
+                text1="Diseñado especialmente para resguardar la salud bucal de aquellas personas que desean darle tratamiento preventivo y/o correctivo a su salud bucal."
             />
             <Planes 
                 title="EMPRESAS" 
@@ -24,8 +24,8 @@ const LayoutPlanes = () => {
                 valor="1"
                 fecha="MES"
                 colaborador="POR COLABORDOR*"
-                tit1="Plan red bucal para empresas"  
-                text1="Colocamos a su disposición un producto sencillo y al alcance de todos, ofreciéndoles servicios preventivos y correctivos para el cuidado de la salud oral de sus colaboradores."
+                tit1="Plan Red Bucal ® EMPRESAS:"  
+                text1="Colocamos a su disposición un producto sencillo, que le permite ofrecer servicios preventivos y/o correctivos a sus colaboradores, para el cuidado de su salud bucal."
             />
             <div className="linea3"></div>
             <div className="linea4"></div>

@@ -16,6 +16,7 @@ const empresarial = () => {
             <Empresas />
             <EmpresasResponsive />
             <Personal 
+                title="USD 1.00 + ITBMS"
                 ubicacion=".5fr 5.5fr 6fr" 
                 img="3/4" 
                 text="2/3" 

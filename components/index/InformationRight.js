@@ -13,8 +13,9 @@ const InformationRight = () => {
                         <span className="nuestra">NUESTRA</span>
                         <span className="red">RED</span>
                     </h3>
-                    <p>Somos quienes te conectan a una red robusta de servicios odontológicos que ofrece excelencia dental con una amplia cobertura a un precio muy accesible.
-                    Contamos con centros listos para brindar la mejor solución de salud dental. Nuestros especialistas garantizan servicios de calidad, y nuestras locaciones y horarios facilitan flexibilidad al paciente. 
+                    <p>Te conectamos a una red única de clínicas odontológicas, que permite a sus afiliados acceder a una amplia cobertura dental a un precio muy accesible. Contamos con centros a nivel nacional, con especialistas idóneos que garantizan un servicio de calidad. 
+                        <br/><br/>
+                        En nuestras sucursales conseguirá un equipo integrado por distintas especialidades como ortodoncia, odontología general, diseño de sonrisa, odontopediatría, especialista en endodoncia, prótesis fija y removible, especialista en periodoncia y cirujanos maxilofaciales.
                     </p>
                 </div>
                 <div className="img2"></div>
@@ -68,7 +69,7 @@ const InformationRight = () => {
 
                 .text {
                     display: grid;
-                    grid-template-rows: 2.5fr 2fr;
+                    grid-template-rows: 2fr 2.5fr;
                 }
 
                 h3 {
@@ -102,7 +103,7 @@ const InformationRight = () => {
                     height: 20px;
                     background: var(--puntoAzul);
                     border-radius: 50%;
-                    top: 130px;
+                    bottom: 40px;
                     right: 50px;
                 }
 

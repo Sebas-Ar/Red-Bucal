@@ -1,25 +1,28 @@
 const location = [
     /* 8.374306, -80.159611 */
     {
-        name: 'Río Hato Plaza Farallones Clínica de Ortodoncia y Estética Dental',
+        name:
+            "Río Hato Plaza Farallones Clínica de Ortodoncia y Estética Dental",
         id: 0,
         latitude: 8.374306,
         longitude: -80.159611,
-        color: '#D97C6E',
-        contact: '908-8364 / 6305-9087',
-        location: 'Plaza Farallones, Vía Carretera Panamerican, Río Hato, Local 14',
-        url: 'https://goo.gl/maps/58wpZ535Ckjj2Vqv8'
+        color: "#D97C6E",
+        contact: "908-8364 / 6305-9087",
+        location:
+            "Plaza Farallones, Vía Carretera Panamericana, Río Hato, Local 14",
+        url: "https://goo.gl/maps/58wpZ535Ckjj2Vqv8",
     },
     /* 8.877172, -79.760975 */
     {
-        name: 'Ondgo Chorrera Clínica de Ortodoncia y Estética Dental',
+        name: "Ondgo Chorrera Clínica de Ortodoncia y Estética Dental",
         id: 1,
         latitude: 8.877172,
         longitude: -79.760975,
-        color: '#F1CD5F',
-        contact: '342-2002',
-        location: 'On D Go La Chorrera, Vía Carretera Panamerican, La Chorrera, Nivel 100, Planta Alta, Local 50',
-        url: 'https://goo.gl/maps/X2WsAM2G9hZBcTiN7'
+        color: "#F1CD5F",
+        contact: "342-2002",
+        location:
+            "On D Go La Chorrera, Vía Carretera Panamericana, La Chorrera, Nivel 100, Planta Alta, Local 50",
+        url: "https://goo.gl/maps/X2WsAM2G9hZBcTiN7",
     },
     /* 8.889181, -79.749204 */
     /* {
@@ -34,25 +37,26 @@ const location = [
     }, */
     /* 8.921982, -79.704878 */
     {
-        name: 'Westland Mall Clínica de Ortodoncia y Estética Dental',
+        name: "Westland Mall Clínica de Ortodoncia y Estética Dental",
         id: 2,
         latitude: 8.921982,
         longitude: -79.704878,
-        color: '#D97C6E',
-        contact: '344-4866 ',
-        location: 'Westland mall, Vía Carreta Panamerican, Arraijan, Vista Alegre, Planta Alta, Local 13',
-        url: 'https://goo.gl/maps/urfkNFYiN6pXaPbd9'
+        color: "#D97C6E",
+        contact: "344-4866 ",
+        location:
+            "Westland mall, Vía Carreta Panamerican, Arraijan, Vista Alegre, Planta Alta, Local 13",
+        url: "https://goo.gl/maps/urfkNFYiN6pXaPbd9",
     },
     /* 8.972661, -79.552953 */
     {
-        name: 'Albrook Mall Clínica de Ortodoncia y Estética Dental',
+        name: "Albrook Mall Clínica de Ortodoncia y Estética Dental",
         id: 3,
         latitude: 8.972661,
         longitude: -79.552953,
-        color: '#60A9CA',
-        contact: '396-2494',
-        location: 'Albrook Mall, Albrook, Panamá, Planta Alta, Local 11',
-        url: 'https://goo.gl/maps/AKsBQuYNMSyfEdJs7'
+        color: "#60A9CA",
+        contact: "396-2494",
+        location: "Albrook Mall, Albrook, Panamá, Planta Alta, Local 11",
+        url: "https://goo.gl/maps/AKsBQuYNMSyfEdJs7",
     },
     /* 8.972867, -79.551822 */
     /* {
@@ -100,14 +104,15 @@ const location = [
     }, */
     /* 9.029225, -79.530707 */
     {
-        name: 'Centennial Plaza Clínica de Ortodoncia y Estética Dental',
+        name: "Centennial Plaza Clínica de Ortodoncia y Estética Dental",
         id: 4,
         latitude: 9.029225,
         longitude: -79.530707,
-        color: '#60A9CA',
-        contact: '203-0792',
-        location: 'Centennial Plaza, Vía Puente Centenario, Panamá, Planta Alta',
-        url: 'https://goo.gl/maps/CMJw6sphyDT1CNoHA'
+        color: "#60A9CA",
+        contact: "203-0792",
+        location:
+            "Centennial Plaza, Vía Puente Centenario, Panamá, Planta Alta",
+        url: "https://goo.gl/maps/CMJw6sphyDT1CNoHA",
     },
     /* 9.037799, -79.482980 */
     /* {
@@ -122,37 +127,40 @@ const location = [
     }, */
     /* 9.041202, -79.479046 */
     {
-        name: 'Villa Lucre  Clínica de Ortodoncia y Estética Dental',
+        name: "Villa Lucre  Clínica de Ortodoncia y Estética Dental",
         id: 5,
         latitude: 9.041202,
         longitude: -79.479046,
-        color: '#D97C6E',
-        contact: '394-6337 / 6263-6828',
-        location: 'Villa Lucre Mall, Av Rafael E. Alemán, San Miguelito, Nivel 100, Local 100',
-        url: 'https://goo.gl/maps/TvobCirdmusm5NsF8'
+        color: "#D97C6E",
+        contact: "394-6337 / 6263-6828",
+        location:
+            "Villa Lucre Mall, Av Rafael E. Alemán, San Miguelito, Nivel 100, Local 100",
+        url: "https://goo.gl/maps/TvobCirdmusm5NsF8",
     },
     /* 9.052244, -79.451740 */
     {
-        name: 'MetroMall Clínica de Ortodoncia y Estética Dental',
+        name: "MetroMall Clínica de Ortodoncia y Estética Dental",
         id: 6,
         latitude: 9.052244,
-        longitude: -79.451740,
-        color: '#F1CD5F',
-        contact: '389-6765 / 6828-2401',
-        location: 'Megamall, Vía Carretera Panamerican, 24 de diciembre, Consultorios Médicos, Local 40',
-        url: 'https://goo.gl/maps/2eYBCFXj9HJk6mYn7'
+        longitude: -79.45174,
+        color: "#F1CD5F",
+        contact: "389-6765 / 6828-2401",
+        location:
+            "Megamall, Vía Carretera Panamericana, 24 de diciembre, Consultorios Médicos, Local 40",
+        url: "https://goo.gl/maps/2eYBCFXj9HJk6mYn7",
     },
     /* 9.069618, -79.460344 */
-    /* {
-        name: 'Brisas del Golf Signature Plaza Clínica de Ortodoncia y Estética Dental',
-        id: 13,
+    {
+        name:
+            "Brisas del Golf Signature Plaza Clínica de Ortodoncia y Estética Dental",
+        id: 7,
         latitude: 9.069618,
         longitude: -79.460344,
-        color: '#60A9CA',
-        contact: '6264-6082',
-        location: 'Av M. Zarate, San Miguelito',
-        url: 'https://goo.gl/maps/dUw9goJnTeK33XD87'
-    }, */
+        color: "#60A9CA",
+        contact: "6264-6082",
+        location: "Av M. Zarate, San Miguelito",
+        url: "https://goo.gl/maps/dUw9goJnTeK33XD87",
+    },
     /* 9.068931, -79.452001 */
     /* {
         name: 'Brisas del Golf Clínicas de Ortodoncia de Panamá',
@@ -175,7 +183,6 @@ const location = [
         location: 'Carr. Panamericana, Panamá',
         url: 'https://goo.gl/maps/2kaJ68Pnn1xtnJW79'
     }, */
-    
-]
+];
 
-export default location
+export default location;

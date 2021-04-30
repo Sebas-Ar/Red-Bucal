@@ -87,20 +87,20 @@ const EmployeeList = (props) => {
                                         getData(user.id)
                                     }}>Ver</button>
                                     <br/>
-                                    <button className="selectionEliminar" onClick={ () => {
+                                    {/* <button className="selectionEliminar" onClick={ () => {
                                         deleteUser(user.id)
                                         console.log(user.id);
                                     }
-                                    } >Eliminar</button>
+                                    } >Eliminar</button> */}
                                 </div>
                             </div>
                         ))
                         :
                         ''
                     }
-                    <div className="content">
+                    {/* <div className="content">
                         <button className="agregar" onClick={changeAddUser}>Agregar</button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
@@ -108,7 +108,7 @@ const EmployeeList = (props) => {
             
                 .btns {
                     display: grid;
-                    grid-template-columns: 1fr 10px 1fr;
+                    grid-template-columns: 1frr;
                 }
 
                 .userID:hover p {

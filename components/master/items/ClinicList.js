@@ -60,7 +60,7 @@ const ClinicList = ({clinicList}) => {
                 display: grid;
                 grid-gap: .5rem 1rem;
                 grid-template-columns: 1fr 1fr 1fr;
-                max-height: 400px;
+                max-height: 250px;
                 overflow: auto;
             }
 

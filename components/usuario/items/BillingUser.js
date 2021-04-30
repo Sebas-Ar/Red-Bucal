@@ -1,93 +1,107 @@
-import React, { useState, useEffect } from 'react'
-import PagoFisico from '../../pagos/PagoFisico';
-import PagoVirtual from '../../pagos/PagoVirtual';
+import React, { useState, useEffect } from "react";
+import PagoFisico from "../../pagos/PagoFisico";
+import PagoVirtual from "../../pagos/PagoVirtual";
 
 const BillingUser = (props) => {
-
-    const [activeFisico, setActiveFisico] = useState(false)
-    const [activeVirtual, setActiveVirtual] = useState(false)
-    const [dates, setDates] = useState({})
+    const [activeFisico, setActiveFisico] = useState(false);
+    const [activeVirtual, setActiveVirtual] = useState(false);
+    const [dates, setDates] = useState({});
 
     useEffect(() => {
-
         if (props.data.start && props.data.end) {
-            const {start, end} = props.data
+            const { start, end } = props.data;
 
-            const startDate = new Date(start)
-            const endDate = new Date(end)
-            console.log(startDate)
-            console.log(endDate)
-    
+            const startDate = new Date(start);
+            const endDate = new Date(end);
+            console.log(startDate);
+            console.log(endDate);
+
             setDates({
-                start: `${startDate.getDate()}-${startDate.getMonth() + 1}-${startDate.getFullYear()}`,
-                end: `${endDate.getDate()}-${endDate.getMonth() + 1}-${endDate.getFullYear()}`
-            })
+                start: `${startDate.getDate()}-${
+                    startDate.getMonth() + 1
+                }-${startDate.getFullYear()}`,
+                end: `${endDate.getDate()}-${
+                    endDate.getMonth() + 1
+                }-${endDate.getFullYear()}`,
+            });
         }
-
-
-    }, [props.data])
+    }, [props.data]);
 
     const changeFisico = () => {
-        setActiveFisico(!activeFisico)
-    }
+        setActiveFisico(!activeFisico);
+    };
 
     const changeVirtual = () => {
-        setActiveVirtual(!activeVirtual)
-    }
+        setActiveVirtual(!activeVirtual);
+    };
 
     return (
         <section>
-            {
-                activeFisico
-                ?
-                    <PagoFisico changeFisico={changeFisico}/>
-                :
-                    ''
-            }
-            {
-                activeVirtual
-                ?
-                    <PagoVirtual changeVirtual={changeVirtual} data={props.data} setData={props.setData} type={'user'} pago={12.84}/>
-                :
-                ''
-            }
+            {activeFisico ? <PagoFisico changeFisico={changeFisico} /> : ""}
+            {activeVirtual ? (
+                <PagoVirtual
+                    changeVirtual={changeVirtual}
+                    data={props.data}
+                    setData={props.setData}
+                    type={"user"}
+                    pago={(props.data.dependientes.length + 1) * 12.84}
+                />
+            ) : (
+                ""
+            )}
             <label className="type">
                 TIPO DE PLAN:
-                <p>{props.data.plan ? 'EMPRESARIAL' : 'PERSONAL' }</p>
+                <p>{props.data.plan ? "AFILIACIÓN" : "PERSONAL"}</p>
             </label>
-            <label className="type">
-                VALOR A PAGAR:
-                <p>12.84 USD</p>
-            </label>
+            {
+                props.data.plan === true
+                ?
+                <label></label>
+                :
+                <label className="type">
+                    VALOR A PAGAR:
+                    {props.data.dependientes ? (
+                        <p>{(props.data.dependientes.length + 1) * 12.84} USD</p>
+                    ) : (
+                        <p>12.84 USD</p>
+                    )}
+                </label>
+            }
             <label>
                 FECHA DE INICIO:
-                <p>{props.data.start ? dates.start : '------------'}</p>
+                <p>{props.data.start ? dates.start : "------------"}</p>
             </label>
             <label>
                 FECHA DE FINALIZACIÓN:
-                <p>{props.data.start ? dates.end : '------------'}</p>
+                <p>{props.data.start ? dates.end : "------------"}</p>
             </label>
-            <div>
-                <span>RENOVACIÓN:</span> <br/> <br/>
+           {/*  quitar cuando se pueda pagar por cada uno individualmente */}
+            {/* <div className={props.data.plan === true || props.data.state === true ? "hidden": ''}> */}
+            <div className="hidden">
+                <span>RENOVACIÓN:</span> <br /> <br />
                 <button onClick={changeVirtual}>Virtual</button>
                 <button onClick={changeFisico}>Físico</button>
-                <img className="pagos" src="/img/pagos.png" alt="metodos de pago"/>
+                <img
+                    className="pagos"
+                    src="/img/pagos.png"
+                    alt="metodos de pago"
+                />
             </div>
 
             <style jsx>{`
-
                 form {
                     display: inline-block;
                 }
-                
+
                 section {
                     align-self: center;
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     margin: 0 50px;
-                }    
+                }
 
-                label, span {
+                label,
+                span {
                     margin: 20px 0;
                     color: var(--mainColor);
                     font-weight: 600;
@@ -99,7 +113,7 @@ const BillingUser = (props) => {
 
                 button {
                     border: none;
-                    outline: none; 
+                    outline: none;
                     background-color: var(--mainColor);
                     padding: 10px;
                     cursor: pointer;
@@ -117,10 +131,15 @@ const BillingUser = (props) => {
                     margin-top: 10px;
                     height: 30px;
                 }
-                
+
+                .hidden {
+                    position: relative;
+                    z-index: -1;
+                    opacity: 0.5;
+                }
             `}</style>
         </section>
-    )
-}
+    );
+};
 
-export default BillingUser
+export default BillingUser;

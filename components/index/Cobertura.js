@@ -5,7 +5,7 @@ const Cobertura = () => {
         <div className="content">
             <h2>NUESTRA COBERTURA</h2>
             <div className="linea"></div>
-            <p>Cubrimos consulta dental con diagnóstico, planes de tratamiento, profilaxis dental, topificación de Flúor, sellantes de sosas y fisuras, radiografías, colocación de resina simple o compuesta en dientes anteriores y posteriores, extracción simple, endodoncias monorradiculares, birradiculares, multirradiculares, pulpotomías y pulpectomía, cementado provisional de prótesis fija, y otros beneficios de descuentos en tratamientos dentales que van desde el 20% hasta el 60%.</p>
+            <p>Anualmente cubrimos su consulta con diagnóstico y limpieza dental, y otros beneficios de descuento en tratamientos odontológicos, que van desde el 20% hasta el 100%.</p>
             <style jsx>{`
                 
                 .content {

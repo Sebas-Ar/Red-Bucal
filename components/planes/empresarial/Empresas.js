@@ -22,7 +22,7 @@ const Empresas = () => {
                     <h2>EMPRESAS</h2>
                     <h3>CONFIANZA & AYUDA</h3>
                 </hgroup>
-                <p>Nos preocupa su salud oral y la de sus colaboradores por lo que, como estrategia de atracción y retención de talento, brindándoles a un bajo costo y alto impacto en beneficios para la calidad de la salud oral de los mismos, colocamos a su disposición nuestro plan PLUS EMPRESARIAL.</p>
+                <p>Con el objetivo de brindarle apoyo al mantener la salud bucal de sus colaboradores, le ofrecemos nuestro plan EMPRESARIAL. A un bajo costo, con alto impacto, colocamos a disposición de sus empleados beneficios para tratamientos dentales preventivos y/o gastos inesperados, generando en ellos vínculos de lealtad que se reflejan en su desempeño laboral</p>
                 <div className="botones">
                     <button onClick={contacto} className="contacto">Contacto</button>
                     <button onClick={registro} className="registro">Registro</button>
