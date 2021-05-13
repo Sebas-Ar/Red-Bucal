@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
 
 const FamiliasResponsive = () => {
     return (
         <section className="content">
-
             <div className="box">
                 <h2>
                     <span className="personas">PERSONAS</span>
@@ -14,15 +13,20 @@ const FamiliasResponsive = () => {
             <div className="img"></div>
             <h3>CONFIANZA & AYUDA</h3>
             <div className="info">
-                <p>Con el objetivo de brindarle apoyo para elegir la opción que más se ajusta a sus necesidades le ofrecemos nuestro plan PLUS INDIVIDUAL O FAMILIAR para así protegerlo de gastos dentales inesperados y ayudarlo a mantener su salud oral y la de su familia en óptimas condiciones.</p>
+                <p>
+                    Con el objetivo de brindarle apoyo para elegir la opción que
+                    más se ajusta a sus necesidades le ofrecemos nuestro plan
+                    PLUS INDIVIDUAL O FAMILIAR para así protegerlo de gastos
+                    dentales inesperados y ayudarlo a mantener su salud oral y
+                    la de su familia en óptimas condiciones.
+                </p>
             </div>
 
             <style jsx>{`
-
                 :global(:root) {
                     --sizeInfo: 1;
                 }
-                
+
                 .content {
                     width: 500px;
                     display: none;
@@ -36,7 +40,7 @@ const FamiliasResponsive = () => {
                 }
 
                 .box:before {
-                    content: '';
+                    content: "";
                     position: absolute;
                     width: 100px;
                     height: 5px;
@@ -130,7 +134,7 @@ const FamiliasResponsive = () => {
 
                 .info {
                     padding: 30px 20px;
-                    text-align: center;
+                    text-align: justify;
                     letter-spacing: 1px;
                     font-size: 20px;
                     font-weight: 600;
@@ -142,15 +146,12 @@ const FamiliasResponsive = () => {
                 }
 
                 @media screen and (max-width: 850px) {
-
                     .content {
                         display: block;
                     }
-
                 }
 
                 @media screen and (max-width: 500px) {
-
                     .content {
                         width: 100%;
                     }
@@ -164,30 +165,22 @@ const FamiliasResponsive = () => {
                         border-bottom-right-radius: 0%;
                         transform: translate(0%);
                     }
-
                 }
 
                 @media screen and (max-width: 420px) {
-
                     :global(:root) {
-                        --sizeInfo: .8;
+                        --sizeInfo: 0.8;
                     }
-
                 }
 
                 @media screen and (max-width: 340px) {
-
                     :global(:root) {
-                        --sizeInfo: .75;
+                        --sizeInfo: 0.75;
                     }
-
                 }
-
-
-                
             `}</style>
         </section>
-    )
-}
+    );
+};
 
-export default FamiliasResponsive
+export default FamiliasResponsive;

@@ -8,7 +8,14 @@ const handler = async (req, res) => {
         .collection("bussines")
         .find(
             { insurrance: true },
-            { projection: { _id: true, name: true, businessMail: true } }
+            {
+                projection: {
+                    _id: true,
+                    name: true,
+                    businessMail: true,
+                    RUC: true,
+                },
+            }
         )
         .toArray();
 
@@ -50,8 +57,8 @@ const handler = async (req, res) => {
             }
 
             let erroMessage = [];
-            let cuotaAsegurado
-            
+            let cuotaAsegurado;
+
             for (let i = 8; i < data.length; i++) {
                 let numErrors = erroMessage.length;
 
@@ -67,7 +74,7 @@ const handler = async (req, res) => {
                         if (user.RUC !== RUC) {
                             erroMessage[numErrors][
                                 "errorId"
-                            ] = `El usuario registrado con la cedula ${identification} ya cuenta con una afiliacion vigente`;
+                            ] = `El usuario registrado con la cedula ${identification} ya cuenta con una afiliacion a una entidad vigente`;
                         }
                     } else {
                         if (user.state === true) {
@@ -105,7 +112,7 @@ const handler = async (req, res) => {
                 });
             }
 
-            cuotaAsegurado = data[6][1]
+            cuotaAsegurado = data[6][1];
 
             if (!cuotaAsegurado) {
                 return res.json({
@@ -115,8 +122,8 @@ const handler = async (req, res) => {
             }
 
             const date = new Date();
-            const end = new Date()
-            end.setMonth(end.getMonth() + 1)
+            const end = new Date();
+            end.setMonth(end.getMonth() + 1);
 
             const business = await req.db.collection("bussines").insertOne({
                 state: true,
@@ -150,7 +157,7 @@ const handler = async (req, res) => {
                     name: data[i][0],
                     identification: data[i][1] + "",
                     birthdate: data[i][3],
-                    adress: '',
+                    adress: "",
                     phone: "",
                     email: "",
                     password: hashedPasswordUser,
@@ -186,12 +193,40 @@ const handler = async (req, res) => {
                 insurance: business.ops[0],
                 info: {
                     num: identifications.length,
-                    value: identifications.length * cuotaAsegurado
-                }
+                    value: identifications.length * cuotaAsegurado,
+                },
             });
         } catch (error) {
             console.log(error);
         }
+    } else if (req.method === "DELETE") {
+        const { RUC } = req.query;
+        console.log(RUC);
+
+        await req.db.collection("bussines").deleteOne({ RUC });
+
+        const userList = await req.db.collection("users").updateMany(
+            { RUC },
+            {
+                $set: {
+                    RUC: "",
+                    state: false,
+                    plan: false,
+                    start: "",
+                    end: "",
+                },
+            },
+            {
+                new: true,
+            }
+        );
+
+        const releasedUsersNum = JSON.parse(userList).nModified;
+
+        res.status(200).json({
+            status: "ok",
+            message: `se ha cambiado ${releasedUsersNum} usuarios al plan de cuenta personal`,
+        });
     } else {
         res.status(405).end();
     }

@@ -53,20 +53,20 @@ const BillingUser = (props) => {
                 TIPO DE PLAN:
                 <p>{props.data.plan ? "AFILIACIÓN" : "PERSONAL"}</p>
             </label>
-            {
-                props.data.plan === true
-                ?
+            {props.data.plan === true ? (
                 <label></label>
-                :
+            ) : (
                 <label className="type">
                     VALOR A PAGAR:
                     {props.data.dependientes ? (
-                        <p>{(props.data.dependientes.length + 1) * 12.84} USD</p>
+                        <p>
+                            {(props.data.dependientes.length + 1) * 12.84} USD
+                        </p>
                     ) : (
                         <p>12.84 USD</p>
                     )}
                 </label>
-            }
+            )}
             <label>
                 FECHA DE INICIO:
                 <p>{props.data.start ? dates.start : "------------"}</p>
@@ -75,9 +75,15 @@ const BillingUser = (props) => {
                 FECHA DE FINALIZACIÓN:
                 <p>{props.data.start ? dates.end : "------------"}</p>
             </label>
-           {/*  quitar cuando se pueda pagar por cada uno individualmente */}
-            {/* <div className={props.data.plan === true || props.data.state === true ? "hidden": ''}> */}
-            <div className="hidden">
+            {/*  quitar cuando se pueda pagar por cada uno individualmente */}
+            <div
+                className={
+                    props.data.plan === true || props.data.state === true
+                        ? "hidden"
+                        : ""
+                }
+            >
+                {/* <div className="hidden"> */}
                 <span>RENOVACIÓN:</span> <br /> <br />
                 <button onClick={changeVirtual}>Virtual</button>
                 <button onClick={changeFisico}>Físico</button>

@@ -1,34 +1,34 @@
-import React from 'react'
+import React from "react";
 
 const FeatureUno = (props) => {
     return (
         <section className="content">
-
             <div className="amarillo left"></div>
 
             <img className="img" src={props.img} alt="" />
 
             <h2>{props.titulo}</h2>
             <div className="data">
-                <img className="marker" src="/img/marker.svg" alt=""/>
+                <img className="marker" src="/img/marker.svg" alt="" />
                 <p>{props.location}</p>
-                <img className="marker" src="/img/phone.svg" alt=""/>
+                <img className="marker" src="/img/phone.svg" alt="" />
                 <p>{props.phone}</p>
-                <a href={props.url} target="_blank" rel="noopener noreferrer">¿Cómo llegar?</a>
+                <a href={props.url} target="_blank" rel="noopener noreferrer">
+                    ¿Cómo llegar?
+                </a>
             </div>
 
             <div className="amarillo right"></div>
             <style jsx>{`
-                
                 .content {
                     height: ${props.activate ? "270px" : "0px"};
                     overflow: hidden;
                     display: grid;
                     grid-template-columns: 30px 1fr 30px;
-                    grid-template-rows: 70px 50px 150px;
+                    grid-template-rows: 90px auto 150px;
                     justify-items: center;
                     align-items: center;
-                    transition: height .5s;
+                    transition: height 0.5s;
                 }
 
                 .data {
@@ -59,7 +59,9 @@ const FeatureUno = (props) => {
                 }
 
                 .img {
-                    height: 45px;
+                    box-sizing: border-box;
+                    padding: 5px 0;
+                    height: 100%;
                 }
 
                 .marker {
@@ -92,23 +94,20 @@ const FeatureUno = (props) => {
                 }
 
                 @media screen and (max-width: 1320px) and (min-width: 1000px) {
-
-                    h2, p {
+                    h2,
+                    p {
                         font-size: 16px;
                     }
-
                 }
                 @media screen and (max-width: 1100px) and (min-width: 800px) {
-                    
-                    h2, p {
+                    h2,
+                    p {
                         font-size: 14px;
                     }
-                    
                 }
-                
             `}</style>
         </section>
-    )
-}
+    );
+};
 
-export default FeatureUno
+export default FeatureUno;

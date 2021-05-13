@@ -1,31 +1,42 @@
-const ClinicList = ({clinic, setActivate, changeClinic, numClinic, activate}) => {
-
+const ClinicList = ({
+    clinic,
+    setActivate,
+    changeClinic,
+    numClinic,
+    activate,
+    setClinicPhoto,
+}) => {
     const onclick = () => {
-        setActivate(true)
-        changeClinic(clinic.id)
-    }
+        setActivate(true);
+        changeClinic(clinic.id);
+        setClinicPhoto(clinic.photo);
+    };
 
     return (
         <li className="container">
-            <button onClick={() => onclick()}>
-                {clinic.name}
-            </button>
+            <button onClick={() => onclick()}>{clinic.name}</button>
 
             <style jsx>{`
-
                 li {
-                    background-color: ${ activate ? clinic.id === numClinic ? "#E5B33D" : "var(--amarillo)" : "var(--amarillo)"};
+                    background-color: ${activate
+                        ? clinic.id === numClinic
+                            ? "#E5B33D"
+                            : "var(--amarillo)"
+                        : "var(--amarillo)"};
                     color: var(--mainColor);
                     list-style: none;
                 }
 
                 li:hover {
-                    background-color: #E5B33D; 
+                    background-color: #e5b33d;
                 }
 
                 button {
-                    font-weight: ${ activate ? clinic.id === numClinic ? "700" : "500" : "500"};
-                     ;
+                    font-weight: ${activate
+                        ? clinic.id === numClinic
+                            ? "700"
+                            : "500"
+                        : "500"};
                     font-size: 14px;
                     text-align: left;
                     padding: 15px 10px 13px;
@@ -37,10 +48,9 @@ const ClinicList = ({clinic, setActivate, changeClinic, numClinic, activate}) =>
                     cursor: pointer;
                     outline: none;
                 }
-
             `}</style>
         </li>
-    )
-}
+    );
+};
 
-export default ClinicList
+export default ClinicList;

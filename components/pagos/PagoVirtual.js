@@ -166,6 +166,10 @@ const PagoVirtual = (props) => {
                             timer: 2000,
                         });
 
+                        await axios.get(
+                            `/api/emailpay?email=${props.data.email}`
+                        );
+
                         props.changeVirtual();
                         enable = false;
                     } else {

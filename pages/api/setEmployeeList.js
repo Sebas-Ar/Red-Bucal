@@ -1,123 +1,201 @@
 import validator from "email-validator";
-import withMiddleware from '../../middlewares/withMiddleware'
-import bcrypt from "bcryptjs"
+import withMiddleware from "../../middlewares/withMiddleware";
+import bcrypt from "bcryptjs";
 
 const handler = async (req, res) => {
-    if (req.method === 'POST') {
-        const { excel, RUC, identifications} = req.body  
-        let encontrar
+    if (req.method === "POST") {
+        const { data, RUC } = req.body;
 
-        for (let i = 6; i < excel.length; i++) {
-            try {
-                const identification = excel[i][2]
-                const count = await req.db.collection('users').countDocuments({ identification })
+        const entity = await req.db.collection("bussines").findOne({ RUC });
 
-                if (count) {
+        if (entity.insurrance) {
+            console.log(entity);
 
-                    console.log(`ya existe ${identification}`);
+            let erroMessage = [];
+            let cuotaAsegurado;
 
-                } else {
+            for (let i = 8; i < data.length; i++) {
+                let numErrors = erroMessage.length;
 
-                    const salt = await bcrypt.genSalt(10)
-                    const hashedPassword = await bcrypt.hash(identification, salt)
-                    const user = await req.db.collection('users').insertOne({
+                let identification = data[i][1] + "";
+
+                const user = await req.db
+                    .collection("users")
+                    .findOne({ identification });
+
+                erroMessage[numErrors] = { row: i + 7 };
+                if (user) {
+                    if (user.plan == true) {
+                        if (user.RUC !== RUC) {
+                            erroMessage[numErrors][
+                                "errorId"
+                            ] = `El usuario registrado con la cedula ${identification} ya cuenta con una afiliacion a una entidad vigente`;
+                        }
+                    } else {
+                        if (user.state === true) {
+                            erroMessage[numErrors][
+                                "errorId"
+                            ] = `El usuario registrado con la cedula ${identification} ya cuenta con una cuenta personal activa`;
+                        }
+                    }
+                }
+
+                if (
+                    JSON.stringify(erroMessage[numErrors]) ===
+                    `{"row":${i + 7}}`
+                ) {
+                    erroMessage.pop();
+                }
+            }
+
+            if (erroMessage.length) {
+                return res.json({
+                    status: "fileError",
+                    message: erroMessage,
+                });
+            }
+
+            let userContinue = [];
+
+            entity.identifications.forEach(async (user) => {
+                for (let i = 8; i < data.length; i++) {
+                    if (user.id === data[i][1] + "") {
+                        console.log(user.id, data[i][1]);
+                        userContinue.push(user);
+                    }
+                }
+
+                await req.db.collection("users").update(
+                    { identification: user.id },
+                    {
+                        $set: {
+                            RUC: "",
+                            state: false,
+                            plan: false,
+                            start: "",
+                            end: "",
+                        },
+                    }
+                );
+            });
+
+            console.log(userContinue);
+
+            const start = new Date();
+            const end = new Date();
+            end.setMonth(end.getMonth() + 1);
+
+            for (let i = 8; i < data.length; i++) {
+                const userExist = await req.db
+                    .collection("users")
+                    .findOne({ identification: data[i][1] + "" });
+
+                if (!userExist) {
+                    const salt = await bcrypt.genSalt(10);
+                    const hashedPasswordUser = await bcrypt.hash(
+                        data[i][1] + "",
+                        salt
+                    );
+
+                    await req.db.collection("users").insertOne({
                         RUC,
-                        state: false,
-                        date: excel[i][0],
-                        name: excel[i][1],
-                        identification: excel[i][2],
-                        birthdate: excel[i][3],
-                        adress: excel[i][4],
-                        phone: excel[i][5],
-                        email: excel[i][6],
-                        password: hashedPassword,
+                        state: true,
+                        start: start,
+                        end: end,
+                        name: data[i][0],
+                        identification: data[i][1] + "",
+                        birthdate: data[i][3],
+                        adress: "",
+                        phone: "",
+                        email: "",
+                        password: hashedPasswordUser,
                         know: 5,
-                        plan: false,
+                        plan: true,
                         service: false,
                         terminos: true,
                         historial: [],
-                    })
+                        mustChangePass: true,
+                        alerts: {
+                            week: false,
+                            month: false,
+                        },
+                        date: start,
+                        dependeOf: data[i][2] ? data[i][2] : "",
+                        dependientes: [],
+                    });
 
-                    let validate = true;
-                    for (let j = 0; j < identifications.length; j++) {
-                        if (identifications[j].id === excel[i][2]) {
-                            validate = false
+                    if (data[i][2]) {
+                        await req.db.collection("users").findOneAndUpdate(
+                            { identification: data[i][2] + "" },
+                            {
+                                $push: {
+                                    dependientes: data[i][1] + "",
+                                },
+                            }
+                        );
+                    }
+
+                    userContinue.push({
+                        id: data[i][1] + "",
+                        name: data[i][0],
+                    });
+                } else {
+                    await req.db.collection("users").update(
+                        { identification: data[i][1] + "" },
+                        {
+                            $set: {
+                                RUC,
+                                plan: true,
+                                state: true,
+                                start,
+                                end,
+                            },
                         }
-                    }
-                    if(validate) {
-                        identifications.push({
-                            id: excel[i][2],
-                            name: excel[i][1]
-                        })
-                    }
-
-                    encontrar = await req.db.collection('bussines').findAndModify(
-                        { "RUC": RUC },
-                        [['_id', 'asc']],
-                        { "$set": { "identifications": identifications } },
-                        { "new": true }
-                    )
-
-                    console.log(encontrar)
-
+                    );
                 }
-                
-            } catch (error) {
-                console.log(error);
             }
+
+            console.log(userContinue);
+
+            cuotaAsegurado = data[6][1];
+
+            if (!cuotaAsegurado) {
+                return res.json({
+                    status: "error",
+                    message: "El excel no incluye la cuota por cada asegurado",
+                });
+            }
+
+            const business = await req.db
+                .collection("bussines")
+                .findOneAndUpdate(
+                    { RUC },
+                    {
+                        $set: {
+                            start,
+                            end,
+                            identifications: userContinue,
+                        },
+                    },
+                    {
+                        returnOriginal: false,
+                    }
+                );
+
+            res.status(201).json({
+                status: "ok",
+                message: "Aseguradora actualizada satisfactoriamente",
+                data: business.value,
+            });
+        } else {
+            res.status(201).json({
+                status: "ok",
+                message: "Empresa actualizada satisfactoriamente",
+            });
         }
-
-        let business = {};
-
-        for (let i = 0; i < identifications.length; i++) {
-
-            let validate = false
-
-            for (let j = 0; j < excel.length; j++) {
-                if (identifications[i].id === excel[j][2]) {
-                    validate = true
-                }
-            }
-
-            if(!validate) {
-
-                await req.db.collection('users').deleteOne({ "identification": identifications[i].id })
-
-                let pos = 0;
-
-                for (let k = 0; k < identifications.length; k++) {
-                    if (identifications[k].id === identifications[i].id) {
-                        pos = k
-                    }
-                }
-
-                identifications.splice(pos, 1)
-
-                business = await req.db.collection('bussines').findAndModify(
-                    { "RUC": RUC },
-                    [['_id', 'asc']],
-                    { "$set": { "identifications": identifications } },
-                    { "new": true }
-                )
-
-                console.log(business)
-
-            }
-
-        }
-
-        res.status(201).json({
-            status: 'ok',
-            message: 'Empresa actualizada satisfactoriamente',
-            data: encontrar
-        })
-
     } else {
-
         res.status(405).end();
-
     }
-
-}
+};
 
 export default withMiddleware(handler);

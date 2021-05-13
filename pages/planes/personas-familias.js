@@ -1,13 +1,14 @@
-import React from 'react'
-import Layout from '../../components/layout/Layout'
-import Familias from '../../components/planes/personas/Familias'
-import Personal from '../../components/planes/Personal'
-import LayoutForm from '../../components/form/LayoutForm'
-import Banner from '../../components/planes/Banner'
-import Footer from '../../components/footer/Footer'
-import FamiliasResponsive from '../../components/planes/personas/FamiliasResponsive'
-import PersonalResponsive from '../../components/planes/PersonalResponsive'
-import Social from '../../components/social/Social'
+import React from "react";
+import Layout from "../../components/layout/Layout";
+import Familias from "../../components/planes/personas/Familias";
+import Personal from "../../components/planes/Personal";
+import LayoutForm from "../../components/form/LayoutForm";
+import Banner from "../../components/planes/Banner";
+import Footer from "../../components/footer/Footer";
+import FamiliasResponsive from "../../components/planes/personas/FamiliasResponsive";
+import PersonalResponsive from "../../components/planes/PersonalResponsive";
+import Social from "../../components/social/Social";
+import Planes from "../../components/index/Planes";
 
 const personas = () => {
     return (
@@ -15,7 +16,7 @@ const personas = () => {
             <Social />
             <Familias />
             <FamiliasResponsive />
-            <Personal
+            {/* <Personal
                 title="USD 12.00 + ITBMS"
                 ubicacion="6fr 5fr 1fr"
                 img="1/2"
@@ -28,12 +29,35 @@ const personas = () => {
                 imgBig="/img/cambio.jpg"
                 margin="100px"
             />
-            <PersonalResponsive imgBig="/img/cambio.jpg"/>
+            <PersonalResponsive imgBig="/img/cambio.jpg"/> */}
+            <div className="plan">
+                <Planes
+                    title="PERSONAS"
+                    img="/img/odontologo-izquierda.png"
+                    position="1/3"
+                    valor="12"
+                    fecha="AÑO"
+                    colaborador="UN SOLO PAGO ANUAL*"
+                    tit1="Plan Red Bucal ® PERSONAS:"
+                    text1="Diseñado especialmente para resguardar la salud bucal de aquellas personas que desean darle tratamiento preventivo y/o correctivo a su salud bucal."
+                />
+            </div>
             <Banner />
-            <LayoutForm diente="/img/diente-form2.png" fondo="/img/doctora.png" />
+            <LayoutForm
+                diente="/img/diente-form2.png"
+                fondo="/img/doctora.png"
+            />
             <Footer />
-        </Layout>
-    )
-}
 
-export default personas
+            <style jsx>{`
+                .plan {
+                    display: grid;
+                    justify-content: center;
+                    margin: 2rem;
+                }
+            `}</style>
+        </Layout>
+    );
+};
+
+export default personas;

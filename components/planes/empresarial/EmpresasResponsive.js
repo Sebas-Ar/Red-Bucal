@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
 
 const EmpresasResponsive = () => {
     return (
         <section className="content">
-
             <hgroup>
                 <h2>EMPRESAS</h2>
                 <h3>CONFIANZA & AYUDA</h3>
@@ -12,15 +11,20 @@ const EmpresasResponsive = () => {
             <div className="img"></div>
 
             <div className="info">
-                <p>Nos preocupa su salud oral y la de sus colaboradores por lo que, como estrategia de atracción y retención de talento, brindándoles a un bajo costo y alto impacto en beneficios para la calidad de la salud oral de los mismos, colocamos a su disposición nuestro plan PLUS EMPRESARIAL.</p>
+                <p>
+                    Nos preocupa su salud oral y la de sus colaboradores por lo
+                    que, como estrategia de atracción y retención de talento,
+                    brindándoles a un bajo costo y alto impacto en beneficios
+                    para la calidad de la salud oral de los mismos, colocamos a
+                    su disposición nuestro plan PLUS EMPRESARIAL.
+                </p>
             </div>
 
             <style jsx>{`
-
                 :global(:root) {
                     --sizeInfo: 1;
                 }
-                
+
                 .content {
                     width: 500px;
                     display: none;
@@ -41,7 +45,7 @@ const EmpresasResponsive = () => {
                 }
 
                 hgroup:before {
-                    content: '';
+                    content: "";
                     position: absolute;
                     width: 100px;
                     height: 5px;
@@ -75,7 +79,7 @@ const EmpresasResponsive = () => {
 
                 .info {
                     padding: 30px 20px;
-                    text-align: center;
+                    text-align: justify;
                     letter-spacing: 1px;
                     font-size: 20px;
                     font-weight: 600;
@@ -87,32 +91,25 @@ const EmpresasResponsive = () => {
                 }
 
                 @media screen and (max-width: 850px) {
-
                     .content {
                         display: block;
                     }
-
                 }
 
                 @media screen and (max-width: 500px) {
-
                     .content {
                         width: 100%;
                     }
-
                 }
 
                 @media screen and (max-width: 420px) {
-
                     :global(:root) {
-                        --sizeInfo: .8;
+                        --sizeInfo: 0.8;
                     }
-
                 }
-                
             `}</style>
         </section>
-    )
-}
+    );
+};
 
-export default EmpresasResponsive
+export default EmpresasResponsive;

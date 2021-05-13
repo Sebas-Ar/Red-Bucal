@@ -3,6 +3,7 @@ import RememberPass from "./RememberPass";
 
 const Ingreso = (props) => {
     const [url, setUrl] = useState("");
+    const [remember, setRemember] = useState(false);
 
     useEffect(() => {
         const path = window.location.pathname;
@@ -15,7 +16,6 @@ const Ingreso = (props) => {
                 e.preventDefault();
             }}
         >
-            {/*<RememberPass /> */}
             <div>
                 <div className="colorRojo"></div>
                 <input
@@ -54,8 +54,10 @@ const Ingreso = (props) => {
                     ¿No tienes cuenta? Registrate
                 </span>
             )}
-            <span className="remember">¿Olvidaste tu contraseña?</span>
-
+            <span className="remember" onClick={() => setRemember(true)}>
+                ¿Olvidaste tu contraseña?
+            </span>
+            {remember ? <RememberPass setRemember={setRemember} /> : null}
             <style jsx>{`
                 form {
                     display: grid;
@@ -126,7 +128,8 @@ const Ingreso = (props) => {
                     fill: var(--puntoRojo);
                 }
 
-                .register, .remember {
+                .register,
+                .remember {
                     position: absolute;
                     bottom: -15px;
                     color: #60a9caaa;

@@ -99,6 +99,7 @@ const master = () => {
                 {user == 1 ? (
                     select === 0 ? (
                         <FindUserAdmin
+                            type="master"
                             ChangeUser={ChangeUser}
                             ChangeType={ChangeType}
                             type={type}
@@ -136,6 +137,7 @@ const master = () => {
                     )
                 ) : select === 0 ? (
                     <FindUserAdmin
+                        type="master"
                         ChangeUser={ChangeUser}
                         ChangeType={ChangeType}
                         type={type}

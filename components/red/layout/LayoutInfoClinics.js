@@ -1,32 +1,50 @@
-import ClinicList from '../ClinicList'
-import FeatureUno from '../FeatureUno'
+import { useState } from "react";
+import ClinicList from "../ClinicList";
+import FeatureUno from "../FeatureUno";
 
 const LayoutInfoClinics = (props) => {
+    const [clinicPhoto, setClinicPhoto] = useState("albrook mall.jpeg");
 
     return (
         <article className="content">
-
-            <div className="barraAmarilla"><h3>{props.activate ? props.location[props.clinic].name : "Selecciona una Clinica"}</h3></div>
+            <div className="barraAmarilla">
+                <h3>
+                    {props.activate
+                        ? props.location[props.clinic].name
+                        : "Selecciona una Clinica"}
+                </h3>
+            </div>
             <div className="info">
-                <FeatureUno titulo="INFORMACIÓN" img="/img/info.svg" location={props.location[props.clinic].location} phone={props.location[props.clinic].contact} activate={props.activate} url={props.location[props.clinic].url}/>
+                <FeatureUno
+                    titulo="INFORMACIÓN"
+                    img={`/img/sucursales/${clinicPhoto}`}
+                    location={props.location[props.clinic].location}
+                    phone={props.location[props.clinic].contact}
+                    activate={props.activate}
+                    url={props.location[props.clinic].url}
+                />
                 <div className="list">
                     <ul>
-                        {
-                            props.location.map(clinic => (
-                                <ClinicList numClinic={props.clinic} clinic={clinic} changeClinic={props.changeClinic} activate={props.activate} setActivate={props.setActivate}/>
-                            ))
-                        }
+                        {props.location.map((clinic) => (
+                            <ClinicList
+                                numClinic={props.clinic}
+                                clinic={clinic}
+                                changeClinic={props.changeClinic}
+                                activate={props.activate}
+                                setActivate={props.setActivate}
+                                setClinicPhoto={setClinicPhoto}
+                            />
+                        ))}
                     </ul>
                 </div>
             </div>
 
             <style jsx>{`
-                
                 .content {
                     display: grid;
                     grid-template-rows: 85px 1fr;
                     height: 80vh;
-                }  
+                }
 
                 .barraAmarilla {
                     background-color: var(--amarillo);
@@ -49,13 +67,14 @@ const LayoutInfoClinics = (props) => {
                 }
 
                 .list {
-                    background: var(--amarillo)
-                    
+                    background: var(--amarillo);
                 }
 
                 ul {
                     overflow: auto;
-                    height: calc(80vh - ${props.activate ? "270px" : "0px"} - 85px);
+                    height: calc(
+                        80vh - ${props.activate ? "270px" : "0px"} - 85px
+                    );
                     box-sizing: border-box;
                     margin-right: 10px;
                     margin-left: 20px;
@@ -76,15 +95,12 @@ const LayoutInfoClinics = (props) => {
                 }
 
                 @media screen and (max-width: 1000px) and (min-width: 700px) {
-                    
                     h3 {
                         font-size: 16px;
                     }
-                    
                 }
 
                 @media screen and (max-width: 420px) {
-
                     .barraAmarilla {
                         padding: 0 0px;
                     }
@@ -92,12 +108,10 @@ const LayoutInfoClinics = (props) => {
                     h3 {
                         font-size: 20px;
                     }
-
                 }
-            
             `}</style>
         </article>
-    )
-}
+    );
+};
 
-export default LayoutInfoClinics
+export default LayoutInfoClinics;

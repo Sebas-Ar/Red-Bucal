@@ -1,59 +1,75 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
-import readXlsxFile from 'read-excel-file'
+import readXlsxFile from "read-excel-file";
+import ErrorsFileExcel from "./ErrorsFileExcel";
 
 const SetExcelList = (props) => {
-
-
-    const [data, setData] = useState({})
-
-    useEffect(() => {
-        let dat = {}
-        dat = Object.assign({}, dat, { RUC: props.data.RUC })
-        dat = Object.assign({}, dat, { identifications: props.data.identifications })
-        setData(dat)
-    }, [])
+    const [data, setData] = useState([]);
+    const [showFileError, setshowFileError] = useState(false);
+    const [errorsFile, setErrorsFile] = useState([]);
 
     const readExcel = async (e) => {
         try {
             console.log("cargando archivo");
             const xmls = await readXlsxFile(e.target.files[0]);
-            setData(Object.assign({}, data, { data: xmls }));
+            setData(xmls);
         } catch (error) {
             const file = document.getElementById("file");
             file.value = null;
-            setData(Object.assign({}, data, { data: undefined }));
+            setData([]);
         }
-    }
+    };
 
     const onSubmit = async (e) => {
-        e.preventDefault()
-        const url = '/api/setEmployeeList'
-        const result = await axios.post(url, data)
-        if (result.data.status) {
+        e.preventDefault();
+        const url = "/api/setEmployeeList";
+        const result = await axios.post(url, { data, RUC: props.data.RUC });
+        console.log(result);
+        if (result.data.status == "ok") {
             Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Información actualizada',
-                showConfirmButton: false,
-                timer: 1000
-            })
-            props.changeData(result.data.data.value)
-            console.log(result.data.data.value)
+                position: "center",
+                icon: "success",
+                title: result.data.message,
+                showConfirmButton: true,
+            });
+            props.changeData(result.data.data);
+        } else {
+            setErrorsFile(result.data.message);
+            setshowFileError(true);
         }
-    }
+    };
 
     return (
         <form className="content" onSubmit={onSubmit}>
+            {showFileError ? (
+                <ErrorsFileExcel
+                    setshowFileError={setshowFileError}
+                    errorsFile={errorsFile}
+                />
+            ) : null}
             <div className="upload">
-                <label className="label">{data.excel ? 'PLANTILLA CARGADA' : 'SUBIR PLANTILLA DE REGISTRO PARA EMPLEADOS'}
-                    <input id="file" className="uploadInput" type="file" onChange={(e) => { readExcel(e) }} />
+                <label className="label">
+                    {data.excel
+                        ? "PLANTILLA CARGADA"
+                        : "SUBIR PLANTILLA DE REGISTRO PARA EMPLEADOS"}
+                    <input
+                        id="file"
+                        className="uploadInput"
+                        type="file"
+                        onChange={(e) => {
+                            readExcel(e);
+                        }}
+                        onClick={(e) => {
+                            e.target.value = "";
+                            setData([]);
+                        }}
+                        accept=".xlsx"
+                    />
                 </label>
             </div>
             <button>Actualizar</button>
             <style jsx>{`
-
                 form {
                     align-self: center;
                     display: grid;
@@ -62,9 +78,6 @@ const SetExcelList = (props) => {
                 }
 
                 .upload {
-                    position: relative;
-                    z-index: -1;
-                    opacity: 0.5;
                     background-color: var(--puntoRojo);
                     cursor: pointer;
                     position: relative;
@@ -86,19 +99,16 @@ const SetExcelList = (props) => {
 
                 .uploadInput {
                     position: absolute;
-                    top:0;
+                    top: 0;
                     height: 0px;
-                    width: 0px; 
+                    width: 0px;
                     opacity: 0;
                 }
-                
+
                 button {
-                    position: relative;
-                    z-index: -1;
-                    opacity: 0.5;
                     margin: 10px;
                     border: none;
-                    outline: none; 
+                    outline: none;
                     background-color: var(--mainColor);
                     padding: 10px;
                     cursor: pointer;
@@ -107,10 +117,9 @@ const SetExcelList = (props) => {
                     margin-right: 10px;
                     width: 100px;
                 }
-                
             `}</style>
         </form>
-    )
-}
+    );
+};
 
-export default SetExcelList
+export default SetExcelList;

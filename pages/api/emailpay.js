@@ -1,10 +1,8 @@
-/* import nodeMailer from 'nodemailer'
-import sgTransport from 'nodemailer-sendgrid-transport' */
 import sgMail from "@sendgrid/mail";
 
 export default (req, res) => {
-    if (req.method === "POST") {
-        const { name, phone, email, message } = req.body;
+    if (req.method === "GET") {
+        const { email } = req.query;
 
         sgMail.setApiKey(process.env.TOKEN_SEND_GRID);
 
@@ -15,12 +13,10 @@ export default (req, res) => {
                 <title>Correo</title>
             </head>
             <body>
-                <ul>
-                    <li>Nombre: ${name}</li>
-                    <li>Telefono: ${phone}</li>
-                    <li>Email: ${email}</li>
-                </ul>
-                <p>${message}</p>
+                <h2>¡Bienvenido a tu programa de beneficios RED BUCAL!</h2>
+                <p>Nuestros especialistas están listos para atenderte en cualquiera de nuestras sucursales. Ingresando a <a href="www.redbucal.com">www.redbucal.com</a> tendrás acceso a tu perfil y todos los beneficios de la cobertura</p>
+                <p>Para más información, puedes comunicarte con nosotros al teléfono +507 63281368</p>
+                <p>El equipo de Red Bucal</p>
             </body>
             </html>
         `;

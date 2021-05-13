@@ -1,38 +1,34 @@
-import React from 'react'
+import React from "react";
 
 const NuestrosClientes = () => {
     return (
         <div className="content">
             <h2>NUESTROS CLIENTES</h2>
             <div className="linea"></div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus inventore iste voluptatibus delectus vel voluptates ad dolore officiis nulla id!</p>
             <div className="imagenes">
-                <img src="/img/logo6.png" alt="" />
-                <img src="/img/logo7.png" alt="" />
-                <img src="/img/logo8.png" alt="" />
-                <img src="/img/logo9.png" alt="" />
-                <img src="/img/logo10.png" alt="" />
-            </div>
-            <div className="imagenes">
-                <img src="/img/logo11.png" alt="" />
-                <img src="/img/logo12.png" alt="" />
-                <img src="/img/logo13.png" alt="" />
-                <img src="/img/logo14.png" alt="" />
-                <img src="/img/logo15.png" alt="" />
+                <img src="/img/logos/capital-bistro.png" alt="fallo" />
+                <img src="/img/logos/casa-duran.png" alt="error" />
+                <img src="/img/logos/clinilab.png" alt="error" />
+                <img src="/img/logos/denti-clinica.jpg" alt="error" />
+
+                <img src="/img/logos/grupo-lux.jpg" alt="error" />
+                <img src="/img/logos/Panamerican.png" alt="error" />
+                <img src="/img/logos/radimagen-logo.png" alt="error" />
+                <img src="/img/logos/Seguros-vivir.jpg" alt="error" />
             </div>
 
             <style jsx>{`
-                
                 .content {
                     margin-top: 50px;
                     display: grid;
-                    grid-template-rows: 1fr 1.5fr 1.5fr 1.5fr;
                 }
                 img {
                     width: 220px;
                 }
 
-                .linea, h2 {
+                .linea,
+                h2 {
+                    margin: 3rem 0;
                     grid-row: 1/2;
                     grid-column: 1/2;
                 }
@@ -66,7 +62,7 @@ const NuestrosClientes = () => {
 
                 p {
                     grid-column: 1/2;
-                    grid-row:2/3;
+                    grid-row: 2/3;
                     justify-self: center;
                     align-self: center;
                     text-align: center;
@@ -76,12 +72,35 @@ const NuestrosClientes = () => {
                 }
 
                 .imagenes {
-                    justify-self: center;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                    justify-items: center;
+                    align-items: center;
+                    grid-row-gap: 1rem;
+                    grid-column-gap: 1rem;
+                    margin-bottom: 2rem;
                 }
-                
+
+                @media screen and (max-width: 1077px) {
+                    .imagenes {
+                        grid-template-columns: 1fr 1fr 1fr;
+                    }
+                }
+
+                @media screen and (max-width: 842px) {
+                    .imagenes {
+                        grid-template-columns: 1fr 1fr;
+                    }
+                }
+
+                @media screen and (max-width: 519px) {
+                    .imagenes {
+                        grid-template-columns: 1fr;
+                    }
+                }
             `}</style>
         </div>
-    )
-}
+    );
+};
 
-export default NuestrosClientes
+export default NuestrosClientes;

@@ -1,8 +1,29 @@
 import { useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
 
-const InsuranceCarrierList = ({ insuranceList }) => {
-    const [toggleAfiliados, setToggleAfiliados] = useState(false);
-    const [name, setName] = useState("");
+const InsuranceCarrierList = ({ insuranceList, setInsuranceList }) => {
+    const deleteInsuranse = (RUC) => {
+        Swal.fire({
+            title: "Seguro que quieres eliminar la aseguradora?",
+            showCancelButton: true,
+            confirmButtonText: `Eliminar`,
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const url = `/api/insurrance?RUC=${RUC}`;
+                const result = await axios.delete(url);
+                console.log(result);
+                setInsuranceList(
+                    insuranceList.filter((ins) => ins.RUC !== RUC)
+                );
+                Swal.fire(
+                    "Aseguradora eliminada",
+                    result.data.message,
+                    "success"
+                );
+            }
+        });
+    };
 
     return (
         <div className="container">
@@ -18,24 +39,14 @@ const InsuranceCarrierList = ({ insuranceList }) => {
                         <span>{item.businessMail}</span>
                         <button
                             onClick={() => {
-                                setName(item.name);
-                                setToggleAfiliados(!toggleAfiliados);
+                                deleteInsuranse(item.RUC);
                             }}
                         >
-                            Ver afiliados
+                            Eliminar
                         </button>
                     </>
                 ))}
             </div>
-
-            {toggleAfiliados
-                ? {
-                      /* <AfiliadosList
-                    setToggleAfiliados={setToggleAfiliados}
-                    name={name}
-                /> */
-                  }
-                : null}
 
             <style jsx>{`
                 .container {

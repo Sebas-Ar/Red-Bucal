@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const SobreNosotros = () => {
     return (
@@ -9,27 +9,32 @@ const SobreNosotros = () => {
                     <span className="sobre">SOBRE</span>
                     <span className="nosotros">NOSOTROS</span>
                 </h1>
-                <br/>
-                <br/>
-                <p>Red Bucal se cimenta sobre la visión de organizar una estructura de clínicas dentales para que las mismas puedan generar el paquete de beneficios en servicios odontológicos más competitivo del país. Capilaridad, flexibilidad, conectividad y economía, son algunas de las características que representan con mayor proximidad las actividades que lleva a cabo Red Bucal para llevar sonrisas al alcance de todos. </p>
-                <br/>
-                <p>Además, no solamente contamos con una red robusta de clínicas que brindan estos beneficios, sino, los mismos pueden ser adquiridos tanto por individuos, como empresas, valor competitivo que nos diferencia del mercado. 
-Nuestra red es una red amigable, respetable y confiable, lo que nos permite ser buen aliado de su salud bucal y acompañarlos en todo momento. 
-</p>
+                <br />
+                <br />
+                <p>
+                    Somos una red robusta de servicios odontológicos, que ofrece
+                    un novedoso programa de cobertura en tratamientos dentales
+                    de calidad a un precio muy accesible.
+                </p>
+                <br />
+                <p>
+                    Flexibilidad, conectividad y economía, son algunas de las
+                    características que representan con mayor proximidad los
+                    servicios que brinda Red Bucal, llevando así sonrisas al
+                    alcance de todos.
+                </p>
             </div>
             <div className="imagenes">
                 <h1 className="second-title">
                     <span className="nosotros">SOBRE</span>
-                    <br/>
+                    <br />
                     <span className="nosotros">NOSOTROS</span>
                 </h1>
                 <div className="color"></div>
                 <div className="img"></div>
             </div>
 
-
             <style jsx>{`
-                
                 .content {
                     box-sizing: border-box;
                     height: calc(100vh - 60px);
@@ -67,7 +72,7 @@ Nuestra red es una red amigable, respetable y confiable, lo que nos permite ser 
                 .img {
                     grid-column: 2/3;
                     grid-row: 1/4;
-                    
+
                     background-image: url("/img/dentist-1.png");
                     background-position: center;
                     background-size: auto 100%;
@@ -91,13 +96,13 @@ Nuestra red es una red amigable, respetable y confiable, lo que nos permite ser 
                 .nosotros {
                     margin-top: -30px;
                     font-weight: 700;
-                    font-size: 80px
+                    font-size: 80px;
                 }
 
                 p {
                     text-align: justify;
                     font-weight: 500;
-                    font-size: .9rem;
+                    font-size: 1.2rem;
                     color: var(--mainColorClaro);
                 }
 
@@ -155,7 +160,7 @@ Nuestra red es una red amigable, respetable y confiable, lo que nos permite ser 
                         grid-column: 1/2;
                         grid-row: 1/2;
                     }
-                    
+
                     .main-title {
                         display: none;
                     }
@@ -167,10 +172,9 @@ Nuestra red es una red amigable, respetable y confiable, lo que nos permite ser 
                         transform: translateY(-50%);
                         text-align: center;
                         color: white;
-                        background-color: #091C4799;
+                        background-color: #091c4799;
                         width: 100%;
                     }
-
                 }
 
                 @media screen and (max-width: 450px) {
@@ -182,10 +186,9 @@ Nuestra red es una red amigable, respetable y confiable, lo que nos permite ser 
                         background-position: center right;
                     }
                 }
-
             `}</style>
         </div>
-    )
-}
+    );
+};
 
-export default SobreNosotros
+export default SobreNosotros;
