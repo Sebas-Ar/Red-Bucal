@@ -8,7 +8,7 @@ const AddInsuranceCarrier = (props) => {
     const [data, setData] = useState({});
     const [errors, setErrors] = useState({});
     const [errorsFile, setErrorsFile] = useState([]);
-    const [showFileError, setshowFileError] = useState(false)
+    const [showFileError, setshowFileError] = useState(false);
 
     const onChange = (e) => {
         setData(
@@ -101,13 +101,15 @@ const AddInsuranceCarrier = (props) => {
             const result = await axios.post(url, data);
 
             if (result.data.status == "ok") {
-                let date = new Date()
-                date.setMonth(date.getMonth() + 1)
+                let date = new Date();
+                date.setMonth(date.getMonth() + 1);
                 Swal.fire({
                     position: "center",
                     icon: "success",
                     html: `<p><strong>Numero de ususarios agregado: </strong>${result.data.info.num}</p><p><strong>Valor total a pagar: </strong>${result.data.info.value}$</p>`,
-                    title: `Aseguradora agregada y activada hasta el ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+                    title: `Aseguradora agregada y activada hasta el ${date.getDate()}/${
+                        date.getMonth() + 1
+                    }/${date.getFullYear()}`,
                     showConfirmButton: true,
                 });
                 let insuranceAdded = [...props.insuranceList];
@@ -126,7 +128,7 @@ const AddInsuranceCarrier = (props) => {
                 });
 
                 setErrorsFile(result.data.message);
-                setshowFileError(true)
+                setshowFileError(true);
             } else {
                 console.log(result.data.message);
                 if (result.data.message === "el correo es invalido") {
@@ -155,7 +157,10 @@ const AddInsuranceCarrier = (props) => {
     return (
         <div className="content">
             {showFileError ? (
-                <ErrorsFileExcel setshowFileError={setshowFileError} errorsFile={errorsFile} />
+                <ErrorsFileExcel
+                    setshowFileError={setshowFileError}
+                    errorsFile={errorsFile}
+                />
             ) : null}
             <form onSubmit={onSubmit}>
                 <svg onClick={props.changeAddUser} viewBox="0 0 512 512">
@@ -232,7 +237,7 @@ const AddInsuranceCarrier = (props) => {
                     ) : null}
                 </label>
                 <a
-                    href="/archives/PLANTILLA-DE-REGISTRO-PARA-ASEGURADOS.xslx"
+                    href="/archives/PLANTILLA-DE-REGISTRO-PARA-ASEGURADOS.xlsx"
                     download="PLANTILLA-DE-REGISTRO-PARA-ASEGURADOS.xlsx"
                 >
                     <span>DESCARGAR PLANTILLA DE REGISTRO PARA ASEGURADOS</span>
