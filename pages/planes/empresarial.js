@@ -36,7 +36,7 @@ const empresarial = () => {
                     position="3/5"
                     valor="1"
                     fecha="MES"
-                    colaborador="POR COLABORDOR*"
+                    colaborador="POR COLABORADOR*"
                     tit1="Plan Red Bucal ® EMPRESAS:"
                     text1="Colocamos a su disposición un producto sencillo, que le permite ofrecer servicios preventivos y/o correctivos a sus colaboradores, para el cuidado de su salud bucal."
                 />

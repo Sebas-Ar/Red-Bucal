@@ -44,7 +44,11 @@ const BillingUser = (props) => {
                     data={props.data}
                     setData={props.setData}
                     type={"user"}
-                    pago={(props.data.dependientes.length + 1) * 12.84}
+                    pago={
+                        (props.data.dependientes
+                            ? props.data.dependientes.length + 1
+                            : 1) * 12.84
+                    }
                 />
             ) : (
                 ""

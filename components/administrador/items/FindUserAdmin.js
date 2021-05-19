@@ -93,7 +93,7 @@ const FindUserAdmin = (props) => {
     };
 
     const deleteUser = async (identification) => {
-        if (props.type === "master") {
+        if (props.typeAdmin === "master") {
             const url = `/api/deleOneUser?identification=${identification}`;
 
             const result = await axios.delete(url);
@@ -330,6 +330,10 @@ const FindUserAdmin = (props) => {
 
                 .delete {
                     background-color: var(--puntoRojo);
+                }
+
+                .delete:hover {
+                    background-color: #f47c6e;
                 }
 
                 .wrapper-butons {

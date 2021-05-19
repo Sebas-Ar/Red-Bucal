@@ -21,7 +21,7 @@ export default (req, res) => {
             </html>
         `;
         const msg = {
-            to: "administracion@redbucal.com",
+            to: email,
             /* from: 'xevaz.ariasd@gmail.com', */
             from: "redbucal.info@gmail.com",
             subject: "CONTACTENOS - Red Bucal",

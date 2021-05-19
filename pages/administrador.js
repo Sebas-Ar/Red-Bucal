@@ -95,7 +95,7 @@ const administrador = () => {
                 {user == 1 ? (
                     select === 0 ? (
                         <FindUserAdmin
-                            type="admin"
+                            typeAdmin="admin"
                             ChangeUser={ChangeUser}
                             ChangeType={ChangeType}
                             type={type}
@@ -129,7 +129,7 @@ const administrador = () => {
                     )
                 ) : select === 0 ? (
                     <FindUserAdmin
-                        type="admin"
+                        typeAdmin="admin"
                         ChangeUser={ChangeUser}
                         ChangeType={ChangeType}
                         type={type}

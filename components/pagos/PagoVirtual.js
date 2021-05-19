@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 import Loading from "../loading/Loading";
 
 const PagoVirtual = (props) => {
+    const [promotionTest, setpromotionTest] = useState("");
+
     const [data, setData] = useState({
         cardType: "-",
     });
@@ -71,11 +73,10 @@ const PagoVirtual = (props) => {
 
         let payload = {
             /* produccion */
-            cclw:
-                "8322FDB3B17351C9B9C8EA8FE01874AA7F31F3BAC4695E9996FFC88912AB0E6D8938B03CA4935DCE3D4EAE90D67E09C43D76B583318C2872C62D03D87A8A7B60",
+            cclw: "8322FDB3B17351C9B9C8EA8FE01874AA7F31F3BAC4695E9996FFC88912AB0E6D8938B03CA4935DCE3D4EAE90D67E09C43D76B583318C2872C62D03D87A8A7B60",
             /* pruebas */
             /* cclw: 'D17B05A095489D1176560B4666A283454185F353F401D0201CC5C16F92535DF6B1DEBA18E79442CC0D6F75FD024207680AFBDFD6CF015478BF30CBEF9160A08D', */
-            amount: props.pago, //El monto o valor total de la transacción a realizar. NO PONER
+            amount: promotionTest == "test" ? 1 : props.pago, //El monto o valor total de la transacción a realizar. NO PONER
             taxAmount: props.pago * 0.07,
             email, //String MaxLength:100 Email del
             phone, //Numeric MaxLength:16 Teléfono del Tarjeta habiente,
@@ -176,8 +177,7 @@ const PagoVirtual = (props) => {
                         Swal.fire({
                             position: "center",
                             icon: "warning",
-                            title:
-                                "Pago Fallido, no tienes fondos suficientes.",
+                            title: "Pago Fallido, no tienes fondos suficientes.",
                             showConfirmButton: false,
                             timer: 2500,
                         });
@@ -216,8 +216,7 @@ const PagoVirtual = (props) => {
                         Swal.fire({
                             position: "center",
                             icon: "warning",
-                            title:
-                                "Al realizar 3 transacciones con la misma tarjeta y datos de procesamiento el sistema detecta que es posiblemente una transacción duplicada y solo permite hasta 3 intentos.\nPor favor vuelve a intentar en unos minutos.",
+                            title: "Al realizar 3 transacciones con la misma tarjeta y datos de procesamiento el sistema detecta que es posiblemente una transacción duplicada y solo permite hasta 3 intentos.\nPor favor vuelve a intentar en unos minutos.",
                             showConfirmButton: true,
                         });
                     }
@@ -311,6 +310,13 @@ const PagoVirtual = (props) => {
                 </svg>
 
                 <h3>PAGO VIRTUAL</h3>
+                <label>
+                    prom: <br />
+                    <input
+                        type="text"
+                        onChange={(e) => setpromotionTest(e.target.value)}
+                    />
+                </label>
 
                 <label>
                     Nombre: <br />
