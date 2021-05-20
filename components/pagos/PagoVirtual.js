@@ -4,8 +4,6 @@ import Swal from "sweetalert2";
 import Loading from "../loading/Loading";
 
 const PagoVirtual = (props) => {
-    const [promotionTest, setpromotionTest] = useState("");
-
     const [data, setData] = useState({
         cardType: "-",
     });
@@ -76,7 +74,7 @@ const PagoVirtual = (props) => {
             cclw: "8322FDB3B17351C9B9C8EA8FE01874AA7F31F3BAC4695E9996FFC88912AB0E6D8938B03CA4935DCE3D4EAE90D67E09C43D76B583318C2872C62D03D87A8A7B60",
             /* pruebas */
             /* cclw: 'D17B05A095489D1176560B4666A283454185F353F401D0201CC5C16F92535DF6B1DEBA18E79442CC0D6F75FD024207680AFBDFD6CF015478BF30CBEF9160A08D', */
-            amount: promotionTest == "test" ? 1 : props.pago, //El monto o valor total de la transacción a realizar. NO PONER
+            amount: props.pago, //El monto o valor total de la transacción a realizar. NO PONER
             taxAmount: props.pago * 0.07,
             email, //String MaxLength:100 Email del
             phone, //Numeric MaxLength:16 Teléfono del Tarjeta habiente,
@@ -131,9 +129,9 @@ const PagoVirtual = (props) => {
                         },
                     }
                 );
-
+                /* quitar el negativo para que se realice el pago */
                 if (result.data.success) {
-                    console.log(Number(result.data.data.totalPay));
+                    /* quitar lo que esta despues del Or */
                     if (Number(result.data.data.totalPay)) {
                         let response;
 
@@ -142,7 +140,7 @@ const PagoVirtual = (props) => {
                             response = await axios.put(URL_EDIT_USER_SERVICE, {
                                 identification:
                                     props.data.identification || props.data.RUC,
-                                state: true,
+                                state: props.data.state,
                             });
                         } else if (props.type === "empresa") {
                             const URL_EDIT_BUSSINES_SERVICE =
@@ -310,13 +308,6 @@ const PagoVirtual = (props) => {
                 </svg>
 
                 <h3>PAGO VIRTUAL</h3>
-                <label>
-                    prom: <br />
-                    <input
-                        type="text"
-                        onChange={(e) => setpromotionTest(e.target.value)}
-                    />
-                </label>
 
                 <label>
                     Nombre: <br />

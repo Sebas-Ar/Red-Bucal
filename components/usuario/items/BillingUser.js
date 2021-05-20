@@ -45,9 +45,16 @@ const BillingUser = (props) => {
                     setData={props.setData}
                     type={"user"}
                     pago={
-                        (props.data.dependientes
-                            ? props.data.dependientes.length + 1
-                            : 1) * 12.84
+                        props.data.dependientes
+                            ? Math.round(
+                                  (props.data.dependientes.filter(
+                                      (dep) => dep.state === false
+                                  ).length +
+                                      (props.data.state === true ? 0 : 1)) *
+                                      100 *
+                                      12.84
+                              ) / 100
+                            : 12.84
                     }
                 />
             ) : (
@@ -64,7 +71,15 @@ const BillingUser = (props) => {
                     VALOR A PAGAR:
                     {props.data.dependientes ? (
                         <p>
-                            {(props.data.dependientes.length + 1) * 12.84} USD
+                            {Math.round(
+                                (props.data.dependientes.filter((dep) => {
+                                    return dep.state === false;
+                                }).length +
+                                    (props.data.state === true ? 0 : 1)) *
+                                    12.84 *
+                                    100
+                            ) / 100}{" "}
+                            USD
                         </p>
                     ) : (
                         <p>12.84 USD</p>
@@ -82,7 +97,12 @@ const BillingUser = (props) => {
             {/*  quitar cuando se pueda pagar por cada uno individualmente */}
             <div
                 className={
-                    props.data.plan === true || props.data.state === true
+                    props.data.plan === true ||
+                    (props.data.state === true &&
+                        !props.data.dependientes.filter((dep) => {
+                            console.log(props.data.dependientes);
+                            return dep.state === false;
+                        }).length)
                         ? "hidden"
                         : ""
                 }

@@ -59,12 +59,14 @@ const InfoAdmin = (props) => {
                     : "LISTA DE DEPENDIENTES:"}{" "}
                 <br />
                 {props.data.dependeOf ? (
-                    <p>{props.data.dependeOf}</p>
+                    <p>{`${props.data.dependeOf.name} - ${props.data.dependeOf.id}`}</p>
                 ) : props.data.dependientes ? (
                     props.data.dependientes.length !== 0 ? (
                         props.data.dependientes.map((item, i) => (
                             <p key={i} className="list">
-                                {item}
+                                {`${item.name} - id: ${item.id} - stado: ${
+                                    item.state ? "Activo" : "Inactivo"
+                                }`}
                             </p>
                         ))
                     ) : (

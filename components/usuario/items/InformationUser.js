@@ -28,12 +28,15 @@ const InformationUser = (props) => {
                     : "LISTA DE DEPENDIENTES:"}{" "}
                 <br />
                 {props.data.dependeOf ? (
-                    <p>{props.data.dependeOf}</p>
+                    <p>{`${props.data.dependeOf.name} - ${props.data.dependeOf.id}`}</p>
                 ) : props.data.dependientes ? (
                     props.data.dependientes.length !== 0 ? (
                         props.data.dependientes.map((item, i) => (
                             <p key={i} className="list">
-                                {item.name} - {item.id}
+                                {`${item.name} - ${item.id} - `}
+                                <strong>
+                                    {`${item.state ? "Activo" : "Inactivo"}`}
+                                </strong>
                             </p>
                         ))
                     ) : (
@@ -41,7 +44,6 @@ const InformationUser = (props) => {
                     )
                 ) : null}
                 {props.data.dependeOf || props.data.plan === true ? null : (
-                    
                     <button onClick={() => setHandleAddUser(true)}>
                         <svg viewBox="0 0 448 512">
                             <path

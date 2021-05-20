@@ -1,65 +1,79 @@
-import React, { useState, useEffect } from 'react'
-import Swal from 'sweetalert2'
+import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 import moment from "moment";
 import axios from "axios";
 
 const RecordAdmin = (props) => {
-
     const [data, setData] = useState({
         identification: props.data.identification,
         historial: props.data.historial,
-        hora: moment().locale("es").format('LT'),
-        fecha: moment().locale("es").format('LL')            
     });
-    const [tratamiento, setTratamiento] = useState('')
 
-    useEffect(() => { 
+    const [date, setDate] = useState({
+        hora: moment().locale("es").format("LT"),
+        fecha: moment().locale("es").format("LL"),
+    });
+
+    const [tratamiento, setTratamiento] = useState("");
+
+    useEffect(() => {
         const timer = setInterval(() => {
-            let time = {}
-            time.hora = moment().locale("es").format('LT')
-            time.fecha = moment().locale("es").format('LL')            
-            setData(Object.assign({}, data, time))
-            console.log(data)
+            let time = {};
+            time.hora = moment().locale("es").format("LT");
+            time.fecha = moment().locale("es").format("LL");
+            setDate(Object.assign({}, date, time));
         }, 3000);
 
-        return () => {clearInterval(timer)}
-    }, [])
+        return () => {
+            clearInterval(timer);
+        };
+    }, []);
 
     const onchange = (e) => {
-        setTratamiento(e.target.value)
-    }
+        setTratamiento(e.target.value);
+    };
 
     const onSubmit = async (e) => {
-        e.preventDefault()
-        if (!tratamiento) return Swal.fire({
-            position: 'center',
-            icon: 'warning',
-            title: 'El campo "tratamiento" está vacío',
-            showConfirmButton: false,
-            timer: 1500
-        })
-        const url = '/api/addHistorial'
-        try {
+        e.preventDefault();
 
-            const result = await axios.put(url, {...data, tratamiento})
-            console.log(result.data)
+        if (!tratamiento) {
+            return Swal.fire({
+                position: "center",
+                icon: "warning",
+                title: 'El campo "tratamiento" está vacío',
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
+
+        const url = "/api/addHistorial";
+        try {
+            console.log(data);
+            const result = await axios.put(url, {
+                ...data,
+                ...date,
+                tratamiento,
+            });
+            console.log(result.data);
             if (result.data.status) {
                 Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Historial actualizado',
+                    position: "center",
+                    icon: "success",
+                    title: "Historial actualizado",
                     showConfirmButton: false,
-                    timer: 1000
-                })
-                props.changeData(result.data.data)
-                setData(Object.assign({}, data, {historial: result.data.data.historial}))
+                    timer: 1000,
+                });
+                props.changeData(result.data.data);
+                setData(
+                    Object.assign({}, data, {
+                        historial: result.data.data.historial,
+                    })
+                );
             }
-
         } catch (error) {
             console.log(error);
         }
-
-    }
+    };
 
     return (
         <section>
@@ -69,39 +83,51 @@ const RecordAdmin = (props) => {
                 <p>TRATAMIENTO</p>
                 <div className="linea"></div>
                 <div className="wrapper-form">
-                    {
-                        props.data.historial.map(historial => (
-                            <div className="form">
-                                <p>{historial.fecha}</p>
-                                <p>{historial.hora}</p>
-                                <p>{historial.tratamiento}</p>
-                            </div>
-                        ))
-
-                    }
+                    {props.data.historial
+                        ? props.data.historial.map((historial) => (
+                              <div className="form">
+                                  <p>{historial.fecha}</p>
+                                  <p>{historial.hora}</p>
+                                  <p>{historial.tratamiento}</p>
+                              </div>
+                          ))
+                        : null}
                 </div>
                 <form onSubmit={onSubmit}>
-                    <input type="text" name="fecha" onChange={onchange} value={data.fecha} disabled/>
-                    <input className="hora" type="text" name="hora" onChange={onchange} value={data.hora} disabled/>
+                    <input
+                        type="text"
+                        name="fecha"
+                        onChange={onchange}
+                        value={date.fecha}
+                        disabled
+                    />
+                    <input
+                        className="hora"
+                        type="text"
+                        name="hora"
+                        onChange={onchange}
+                        value={date.hora}
+                        disabled
+                    />
                     <input type="text" name="tratamiento" onChange={onchange} />
                     <button>Agregar</button>
                 </form>
             </div>
 
             <style jsx>{`
-                
                 section {
                     align-self: center;
                     display: grid;
                     justify-items: center;
-                }   
+                }
 
                 .table {
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr;
                 }
 
-                form, .form {
+                form,
+                .form {
                     grid-column: 1/4;
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr;
@@ -135,7 +161,8 @@ const RecordAdmin = (props) => {
                     margin: 10px;
                 }
 
-                input, select {
+                input,
+                select {
                     margin: 10px;
                     padding: 5px;
                     border: 1px solid #33333322;
@@ -165,8 +192,8 @@ const RecordAdmin = (props) => {
                 }
 
                 @media screen and (max-width: 750px) {
-
-                    input, select {
+                    input,
+                    select {
                         width: 120px;
                         justify-self: center;
                         margin: 10px 5px;
@@ -182,20 +209,18 @@ const RecordAdmin = (props) => {
                 }
 
                 @media screen and (max-width: 380px) {
-
                     p {
                         font-size: 14px;
                     }
 
-                    input::placeholder, select::placeholder {
+                    input::placeholder,
+                    select::placeholder {
                         font-size: 14px;
                     }
-
                 }
-                
             `}</style>
         </section>
-    )
-}
+    );
+};
 
-export default RecordAdmin
+export default RecordAdmin;

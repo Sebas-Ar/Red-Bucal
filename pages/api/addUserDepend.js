@@ -57,7 +57,12 @@ const handler = async (req, res) => {
                         plan: true,
                         date: "0" + date.getDate() + " / 0" + date.getMonth(),
                         service: false,
-                        dependeOf: `${dependName} - ${identification}`,
+                        historial: [],
+                        know: 5,
+                        dependeOf: {
+                            name: dependName,
+                            id: identification,
+                        },
                     });
 
                     if (!dependientes) {

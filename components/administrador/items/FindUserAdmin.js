@@ -51,6 +51,7 @@ const FindUserAdmin = (props) => {
         const url = `/api/getUser?id=${id}`;
         const result = await axios.get(url, id);
         props.changeData(result.data.message);
+        console.log(result.data.message);
         setValidateInfoUser(true);
     };
 
