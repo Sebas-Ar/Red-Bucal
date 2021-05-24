@@ -58,7 +58,7 @@ const NavMaster = (props) => {
                                 }}
                                 style={selection(6)}
                             >
-                                GESTIONAR ASEGURADORAS
+                                GESTIONAR ENTIDADES
                             </button>
                         </li>
                         <li>
@@ -147,7 +147,7 @@ const NavMaster = (props) => {
                                 }}
                                 style={selection(6)}
                             >
-                                GESTIONAR ASEGURADORAS
+                                GESTIONAR ENTIDADES
                             </button>
                         </li>
                         <li>

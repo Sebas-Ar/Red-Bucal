@@ -7,13 +7,14 @@ const handler = async (req, res) => {
     const insuranceList = await req.db
         .collection("bussines")
         .find(
-            { insurrance: true },
+            {},
             {
                 projection: {
                     _id: true,
                     name: true,
                     businessMail: true,
                     RUC: true,
+                    insurrance: true,
                 },
             }
         )
@@ -59,7 +60,7 @@ const handler = async (req, res) => {
             let erroMessage = [];
             let cuotaAsegurado;
 
-            for (let i = 8; i < data.length; i++) {
+            for (let i = 9; i < data.length; i++) {
                 let numErrors = erroMessage.length;
 
                 let identification = data[i][1] + "";
@@ -68,7 +69,7 @@ const handler = async (req, res) => {
                     .collection("users")
                     .findOne({ identification });
 
-                erroMessage[numErrors] = { row: i + 7 };
+                erroMessage[numErrors] = { row: i + 8 };
                 if (user) {
                     if (user.plan == true) {
                         if (user.RUC !== RUC) {
@@ -87,7 +88,7 @@ const handler = async (req, res) => {
 
                 if (
                     JSON.stringify(erroMessage[numErrors]) ===
-                    `{"row":${i + 7}}`
+                    `{"row":${i + 8}}`
                 ) {
                     erroMessage.pop();
                 }
@@ -105,14 +106,14 @@ const handler = async (req, res) => {
 
             let identifications = [];
 
-            for (let i = 8; i < data.length; i++) {
+            for (let i = 9; i < data.length; i++) {
                 identifications.push({
                     id: data[i][1] + "",
                     name: data[i][0],
                 });
             }
 
-            cuotaAsegurado = data[6][1];
+            cuotaAsegurado = data[7][1];
 
             if (!cuotaAsegurado) {
                 return res.json({
@@ -138,53 +139,88 @@ const handler = async (req, res) => {
                 plan: false,
                 terminos: true,
                 date,
-                insurrance: true,
             });
 
             req.session.businessId = await business.insertedId;
 
-            for (let i = 8; i < data.length; i++) {
-                const hashedPasswordUser = await bcrypt.hash(
-                    data[i][1] + "",
-                    salt
-                );
+            for (let i = 9; i < data.length; i++) {
+                let identification = data[i][1] + "";
 
-                await req.db.collection("users").insertOne({
-                    RUC,
-                    state: true,
-                    start: date,
-                    end: end,
-                    name: data[i][0],
-                    identification: data[i][1] + "",
-                    birthdate: data[i][3],
-                    adress: "",
-                    phone: "",
-                    email: "",
-                    password: hashedPasswordUser,
-                    know: 5,
-                    plan: true,
-                    service: false,
-                    terminos: true,
-                    historial: [],
-                    mustChangePass: true,
-                    alerts: {
-                        week: false,
-                        month: false,
-                    },
-                    date,
-                    dependeOf: data[i][2] ? data[i][2] : "",
-                    dependientes: [],
-                });
+                const user = await req.db
+                    .collection("users")
+                    .findOne({ identification });
 
-                if (data[i][2]) {
-                    await req.db.collection("users").findOneAndUpdate(
-                        { identification: data[i][2] + "" },
+                if (!user) {
+                    const hashedPasswordUser = await bcrypt.hash(
+                        data[i][1] + "",
+                        salt
+                    );
+
+                    await req.db.collection("users").insertOne({
+                        RUC,
+                        state: true,
+                        start: date,
+                        end: end,
+                        name: data[i][0],
+                        identification: data[i][1] + "",
+                        birthdate: data[i][3],
+                        adress: "",
+                        phone: "",
+                        email: "",
+                        password: hashedPasswordUser,
+                        know: 5,
+                        plan: true,
+                        service: false,
+                        terminos: true,
+                        historial: [],
+                        mustChangePass: true,
+                        alerts: {
+                            week: false,
+                            month: false,
+                        },
+                        date,
+                        dependeOf: data[i][2] ? data[i][2] : "",
+                        dependientes: [],
+                    });
+
+                    if (data[i][2]) {
+                        await req.db.collection("users").findOneAndUpdate(
+                            { identification: data[i][2] + "" },
+                            {
+                                $push: {
+                                    dependientes: data[i][1] + "",
+                                },
+                            }
+                        );
+                    }
+                } else {
+                    await req.db.collection("users").updtaeOne(
                         {
-                            $push: {
-                                dependientes: data[i][1] + "",
+                            identification,
+                        },
+                        {
+                            $set: {
+                                RUC,
+                                state: true,
+                                start: date,
+                                end: end,
+                                plan: true,
+                                dependeOf: data[i][2] ? data[i][2] : "",
+                                dependientes: [],
                             },
                         }
                     );
+
+                    if (data[i][2]) {
+                        await req.db.collection("users").findOneAndUpdate(
+                            { identification: data[i][2] + "" },
+                            {
+                                $push: {
+                                    dependientes: data[i][1] + "",
+                                },
+                            }
+                        );
+                    }
                 }
             }
 

@@ -10,10 +10,8 @@ const handler = async (req, res) => {
                 .collection("users")
                 .findOne({ identification });
 
-            console.log(user);
-
             if (user.plan == true) {
-                if (user.RUC == "") {
+                if (user.RUC == "" || !user.RUC) {
                     await req.db
                         .collection("users")
                         .deleteOne({ identification });
@@ -39,30 +37,42 @@ const handler = async (req, res) => {
                         message:
                             "El usuario no puede ser eliminado, ya que cuenta con usuarios depedendientes, por favor elimine los dependientes para poder eliminar el principal",
                     });
-                } else if (user.dependeOf) {
-                    const userDepend = await req.db
-                        .collection("users")
-                        .findOne({ identification: user.dependeOf + "" });
+                } else if (user.dependeOf && user.dependeOf.id) {
+                    if (user.state == true) {
+                        res.send({
+                            status: "error",
+                            message:
+                                "El usuario dependiente tiene una cuenta activa",
+                        });
+                    } else {
+                        const userDepend = await req.db
+                            .collection("users")
+                            .findOne({
+                                identification: user.dependeOf.id + "",
+                            });
 
-                    await req.db.collection("users").updateOne(
-                        { identification: user.dependeOf + "" },
-                        {
-                            $set: {
-                                dependientes: userDepend.dependientes.filter(
-                                    (ident) => ident !== identification
-                                ),
-                            },
-                        }
-                    );
+                        await req.db.collection("users").updateOne(
+                            { identification: user.dependeOf.id + "" },
+                            {
+                                $set: {
+                                    dependientes:
+                                        userDepend.dependientes.filter(
+                                            (ident) =>
+                                                ident.id !== identification
+                                        ),
+                                },
+                            }
+                        );
 
-                    await req.db
-                        .collection("users")
-                        .deleteOne({ identification });
+                        await req.db
+                            .collection("users")
+                            .deleteOne({ identification });
 
-                    res.send({
-                        status: "ok",
-                        message: `el usuario que dependia de ${userDepend.name} fué eliminado`,
-                    });
+                        res.send({
+                            status: "ok",
+                            message: `el usuario que dependia de ${userDepend.name} fué eliminado`,
+                        });
+                    }
                 } else {
                     await req.db
                         .collection("users")

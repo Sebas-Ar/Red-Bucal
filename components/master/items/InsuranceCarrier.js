@@ -23,12 +23,12 @@ const InsuranceCarrier = () => {
 
     return (
         <section className="container">
-            <h3>LISTA DE ASEGURADORAS</h3>
+            <h3>LISTA DE ENTIDADES</h3>
             <InsuranceCarrierList
                 insuranceList={insuranceList}
                 setInsuranceList={setInsuranceList}
             />
-            <button onClick={changeAddUser}>Agregar aseguradora</button>
+            <button onClick={changeAddUser}>Agregar Entidad</button>
             {info ? (
                 <AddInsuranceCarrier
                     changeAddUser={changeAddUser}

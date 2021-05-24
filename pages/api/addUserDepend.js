@@ -54,7 +54,7 @@ const handler = async (req, res) => {
                         birthdate: `${day}/${month}/${year}`,
                         addres,
                         phone,
-                        plan: true,
+                        plan: false,
                         date: "0" + date.getDate() + " / 0" + date.getMonth(),
                         service: false,
                         historial: [],
