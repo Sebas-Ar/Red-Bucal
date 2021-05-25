@@ -1,22 +1,20 @@
-import React from 'react'
+import React from "react";
 
 const Banner = () => {
     return (
         <section className="content">
-
             <div className="diente1"></div>
             <div className="text">
                 <hgroup>
                     <h2>
                         <span className="clinicas">CLINICAS</span>
                         <span className="profesionales">PROFESIONALES</span>
-                    </h2>  
+                    </h2>
                 </hgroup>
             </div>
             <div className="diente2"></div>
 
             <style jsx>{`
-
                 .diente1 {
                     background-image: url("/img/diente-banner1.png");
                     background-repeat: no-repeat;
@@ -30,14 +28,14 @@ const Banner = () => {
                     background-size: 100% auto;
                     background-position: right center;
                 }
-                
+
                 .content {
                     height: 500px;
                     display: grid;
                     grid-template-columns: 1fr 7fr 1fr;
                     background-image: url("/img/banner.png");
                     background-size: auto 100%;
-                }    
+                }
 
                 .text {
                     color: white;
@@ -58,7 +56,7 @@ const Banner = () => {
                 .profesionales {
                     font-size: 90px;
                     margin-top: -30px;
-                }   
+                }
 
                 hgroup {
                     display: grid;
@@ -72,7 +70,7 @@ const Banner = () => {
                     font-weight: 200;
                     width: 500px;
                 }
-                
+
                 @media screen and (max-width: 900px) {
                     .clinicas {
                         letter-spacing: 10px;
@@ -81,25 +79,27 @@ const Banner = () => {
 
                     .profesionales {
                         font-size: 50px;
-                    }   
+                    }
                 }
                 @media screen and (max-width: 550px) {
-
                     .content {
                         height: 400px;
+                    }
+
+                    h2 {
+                        grid-row-gap: 10px;
                     }
 
                     .content {
                         grid-template-columns: 1fr;
                     }
 
-                    .diente1, .diente2 {
+                    .diente1,
+                    .diente2 {
                         display: none;
                     }
-
                 }
                 @media screen and (max-width: 400px) {
-
                     .content {
                         height: 300px;
                     }
@@ -112,13 +112,11 @@ const Banner = () => {
                     .profesionales {
                         font-size: 38px;
                         margin-top: -10px;
-                    }   
-
+                    }
                 }
-                
             `}</style>
         </section>
-    )
-}
+    );
+};
 
-export default Banner
+export default Banner;

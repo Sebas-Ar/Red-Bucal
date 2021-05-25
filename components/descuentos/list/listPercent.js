@@ -39,7 +39,6 @@ const listPercent = [
             "CL Resina (2 superficies)",
             "CL Resina (3 superficies)",
             "CL Resina (4 o más superficies)",
-            "Control de ortodoncia mensual",
             "Control de ortodoncia quincenal",
             "Emergencia",
             "Exodoncia compleja",
@@ -127,6 +126,7 @@ const listPercent = [
             "Reparación de bracket",
             "Reparación de bracket estético perdido",
             "Reparación de bracket perdido",
+            "Control de ortodoncia mensual",
         ],
     },
     {

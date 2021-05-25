@@ -315,7 +315,7 @@ const PagoVirtual = (props) => {
                     {err.firstName ? <p>{err.firstName}</p> : ""}
                 </label>
                 <label>
-                    Apelido: <br />
+                    Apellido: <br />
                     <input type="text" name="lastName" onChange={onChange} />
                     {err.lastName ? <p>{err.lastName}</p> : ""}
                 </label>

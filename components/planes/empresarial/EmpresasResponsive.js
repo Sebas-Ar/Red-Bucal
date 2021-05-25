@@ -16,7 +16,8 @@ const EmpresasResponsive = () => {
                     que, como estrategia de atracción y retención de talento,
                     brindándoles a un bajo costo y alto impacto en beneficios
                     para la calidad de la salud oral de los mismos, colocamos a
-                    su disposición nuestro plan PLUS EMPRESARIAL.
+                    su disposición nuestro plan{" "}
+                    <strong>PLUS EMPRESARIAL</strong>.
                 </p>
             </div>
 
@@ -78,16 +79,18 @@ const EmpresasResponsive = () => {
                 }
 
                 .info {
-                    padding: 30px 20px;
-                    text-align: justify;
-                    letter-spacing: 1px;
-                    font-size: 20px;
-                    font-weight: 600;
-                    color: #333333;
+                    padding: 30px 40px;
                     position: relative;
                     background-repeat: no-repeat;
                     background-size: 100px;
                     background-position: bottom left;
+                }
+
+                p {
+                    margin-top: 20px;
+                    text-align: justify;
+                    line-height: 25px;
+                    color: var(--mainColor);
                 }
 
                 @media screen and (max-width: 850px) {

@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
 
 const InformationRightResponsive = () => {
     return (
         <section className="content">
-
             <div className="title">
                 <div className="border"></div>
                 <h3>
@@ -12,16 +11,22 @@ const InformationRightResponsive = () => {
                 </h3>
                 <div className="border"></div>
             </div>
-            <br/>
+            <br />
             <div className="img"></div>
-            
+
             <div className="info">
-                <p>Somos quienes te conectan a una red robusta de servicios odontológicos que ofrece excelencia dental con una amplia cobertura a un precio muy accesible.
-                    Contamos con centros listos para brindar la mejor solución de salud dental. Nuestros especialistas garantizan servicios de calidad, y nuestras locaciones y horarios facilitan flexibilidad al paciente.</p>
+                <p>
+                    Somos quienes te conectan a una red robusta de servicios
+                    odontológicos que ofrece excelencia dental con una amplia
+                    cobertura a un precio muy accesible. Contamos con centros
+                    listos para brindar la mejor solución de salud dental.
+                    Nuestros especialistas garantizan servicios de calidad, y
+                    nuestras locaciones y horarios facilitan flexibilidad al
+                    paciente.
+                </p>
             </div>
 
             <style jsx>{`
-                
                 .content {
                     width: 500px;
                     display: none;
@@ -41,7 +46,7 @@ const InformationRightResponsive = () => {
                 }
 
                 .title:before {
-                    content: '';
+                    content: "";
                     position: absolute;
                     width: 100px;
                     height: 5px;
@@ -77,21 +82,23 @@ const InformationRightResponsive = () => {
                 }
 
                 .info {
-                    padding: 30px 20px;
-                    text-align: center;
-                    letter-spacing: 1px;
-                    font-size: 20px;
-                    font-weight: 600;
-                    color: #333333;
+                    padding: 30px 40px;
                     position: relative;
                     background-image: url("/img/puntos4x3.png");
                     background-repeat: no-repeat;
                     background-size: 100px;
-                    background-position: bottom left;
+                    background-position: 0% 125%;
+                }
+
+                p {
+                    margin-top: 20px;
+                    text-align: justify;
+                    line-height: 25px;
+                    color: var(--mainColor);
                 }
 
                 .info:before {
-                    content: '';
+                    content: "";
                     position: absolute;
                     width: 100px;
                     height: 5px;
@@ -101,28 +108,20 @@ const InformationRightResponsive = () => {
                     transform: translate(-50%);
                 }
 
-
                 @media screen and (max-width: 850px) {
-
                     .content {
                         display: block;
                     }
-
                 }
 
                 @media screen and (max-width: 500px) {
-
                     .content {
                         width: 100%;
                     }
-
                 }
-
-
-                
             `}</style>
         </section>
-    )
-}
+    );
+};
 
-export default InformationRightResponsive
+export default InformationRightResponsive;

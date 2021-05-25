@@ -36,6 +36,7 @@ const SobreNosotros = () => {
 
             <style jsx>{`
                 .content {
+                    margin-top: 30px;
                     box-sizing: border-box;
                     height: calc(100vh - 60px);
                     min-height: 720px;
@@ -79,9 +80,16 @@ const SobreNosotros = () => {
                 }
 
                 .text {
-                    margin: 40px 40px 80px 40px;
+                    padding: 20px 40px;
                     color: var(--mainColor);
                     display: grid;
+                }
+
+                p {
+                    margin-top: 20px;
+                    text-align: justify;
+                    line-height: 25px;
+                    color: var(--mainColor);
                 }
 
                 h1 {
@@ -97,13 +105,6 @@ const SobreNosotros = () => {
                     margin-top: -30px;
                     font-weight: 700;
                     font-size: 80px;
-                }
-
-                p {
-                    text-align: justify;
-                    font-weight: 500;
-                    font-size: 1.2rem;
-                    color: var(--mainColorClaro);
                 }
 
                 @media screen and (max-width: 1340px) {

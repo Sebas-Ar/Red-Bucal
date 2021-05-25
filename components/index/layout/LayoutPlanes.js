@@ -1,5 +1,5 @@
-import React from 'react'
-import Planes from '../Planes'
+import React from "react";
+import Planes from "../Planes";
 
 const LayoutPlanes = () => {
     return (
@@ -7,31 +7,30 @@ const LayoutPlanes = () => {
             <div className="linea1"></div>
             <div className="linea2"></div>
             <div className="linea"></div>
-            <Planes 
-                title="PERSONAS" 
-                img="/img/odontologo-izquierda.png" 
-                position="1/3" 
+            <Planes
+                title="PERSONAS"
+                img="/img/odontologo-izquierda.png"
+                position="1/3"
                 valor="12"
                 fecha="AÑO"
                 colaborador="UN SOLO PAGO ANUAL*"
                 tit1="Plan Red Bucal ® PERSONAS:"
                 text1="Diseñado especialmente para resguardar la salud bucal de aquellas personas que desean darle tratamiento preventivo y/o correctivo a su salud bucal."
             />
-            <Planes 
-                title="EMPRESAS" 
-                img="/img/odontologo-derecha.png" 
+            <Planes
+                title="EMPRESAS"
+                img="/img/odontologo-derecha.png"
                 position="3/5"
                 valor="1"
                 fecha="MES"
-                colaborador="POR COLABORDOR*"
-                tit1="Plan Red Bucal ® EMPRESAS:"  
+                colaborador="POR COLABORADOR*"
+                tit1="Plan Red Bucal ® EMPRESAS:"
                 text1="Colocamos a su disposición un producto sencillo, que le permite ofrecer servicios preventivos y/o correctivos a sus colaboradores, para el cuidado de su salud bucal."
             />
             <div className="linea3"></div>
             <div className="linea4"></div>
-            
+
             <style jsx>{`
-                
                 .content {
                     margin-top: 50px;
                     display: grid;
@@ -41,7 +40,7 @@ const LayoutPlanes = () => {
                     background-repeat: no-repeat;
                     background-position: right center;
                     background-size: auto 28%;
-                }    
+                }
 
                 .linea {
                     position: relative;
@@ -72,7 +71,8 @@ const LayoutPlanes = () => {
                     border-radius: 50%;
                 }
 
-                .linea1, .linea2 {
+                .linea1,
+                .linea2 {
                     grid-row: 1/2;
                     background: #33333399;
                     height: 50%;
@@ -80,7 +80,8 @@ const LayoutPlanes = () => {
                     align-self: flex-end;
                 }
 
-                .linea3, .linea4 {
+                .linea3,
+                .linea4 {
                     grid-row: 3/4;
                     background: #33333399;
                     height: 140%;
@@ -113,24 +114,22 @@ const LayoutPlanes = () => {
                         background-size: auto 18%;
                     }
 
-                    .linea1, .linea2, .linea3, .linea4, .linea {
+                    .linea1,
+                    .linea2,
+                    .linea3,
+                    .linea4,
+                    .linea {
                         display: none;
                     }
-
-                    
                 }
                 @media screen and (max-width: 640px) {
-
                     .content {
                         margin-top: 0px;
-                        
                     }
-
                 }
-                
             `}</style>
         </div>
-    )
-}
+    );
+};
 
-export default LayoutPlanes
+export default LayoutPlanes;

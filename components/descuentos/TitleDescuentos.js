@@ -1,19 +1,20 @@
-import React from 'react'
+import React from "react";
 
 const TitleDescuentos = () => {
     return (
         <div className="content">
             <h1>
-                <span className="delgado">A TRAVÉS DE NUESTROS PLANES GOZARÁ DE</span>
+                <span className="delgado">
+                    A TRAVÉS DE NUESTROS PLANES GOZARÁ DE
+                </span>
                 <span className="grueso">LOS SIGUIENTES BENEFICIOS</span>
             </h1>
 
             <style jsx>{`
-
                 :global(:root) {
-                    --sizeTitlebenef: .7; 
+                    --sizeTitlebenef: 0.7;
                 }
-                
+
                 .content {
                     margin-top: 150px;
                 }
@@ -23,7 +24,7 @@ const TitleDescuentos = () => {
                     text-align: center;
                     color: var(--mainColor);
                     margin: 50px 0;
-                }  
+                }
 
                 .delgado {
                     font-weight: 100;
@@ -35,18 +36,20 @@ const TitleDescuentos = () => {
                     letter-spacing: calc(3px * var(--sizeTitlebenef));
                     font-size: calc(90px * var(--sizeTitlebenef));
                 }
-                
+
                 @media screen and (max-width: 930px) {
-                    --sizeTitlebenef: .5; 
+                    --sizeTitlebenef: 0.5;
                 }
 
                 @media screen and (max-width: 690px) {
-                    --sizeTitlebenef: .3; 
+                    --sizeTitlebenef: 0.3;
+                    h1 {
+                        grid-row-gap: 5px;
+                    }
                 }
-
             `}</style>
         </div>
-    )
-}
+    );
+};
 
-export default TitleDescuentos
+export default TitleDescuentos;

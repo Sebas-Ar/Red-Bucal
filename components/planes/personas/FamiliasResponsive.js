@@ -15,10 +15,11 @@ const FamiliasResponsive = () => {
             <div className="info">
                 <p>
                     Con el objetivo de brindarle apoyo para elegir la opción que
-                    más se ajusta a sus necesidades le ofrecemos nuestro plan
-                    PLUS INDIVIDUAL O FAMILIAR para así protegerlo de gastos
-                    dentales inesperados y ayudarlo a mantener su salud oral y
-                    la de su familia en óptimas condiciones.
+                    más se ajusta a sus necesidades le ofrecemos nuestro plan{" "}
+                    <strong>PLUS INDIVIDUAL</strong> O <strong>FAMILIAR</strong>{" "}
+                    para así protegerlo de gastos dentales inesperados y
+                    ayudarlo a mantener su salud oral y la de su familia en
+                    óptimas condiciones.
                 </p>
             </div>
 
@@ -133,16 +134,18 @@ const FamiliasResponsive = () => {
                 }
 
                 .info {
-                    padding: 30px 20px;
-                    text-align: justify;
-                    letter-spacing: 1px;
-                    font-size: 20px;
-                    font-weight: 600;
-                    color: #333333;
+                    padding: 30px 40px;
                     position: relative;
                     background-repeat: no-repeat;
                     background-size: 100px;
                     background-position: bottom left;
+                }
+
+                p {
+                    margin-top: 20px;
+                    text-align: justify;
+                    line-height: 25px;
+                    color: var(--mainColor);
                 }
 
                 @media screen and (max-width: 850px) {

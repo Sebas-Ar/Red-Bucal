@@ -19,7 +19,6 @@ const NuestrosClientes = () => {
 
             <style jsx>{`
                 .content {
-                    margin-top: 50px;
                     display: grid;
                 }
                 img {

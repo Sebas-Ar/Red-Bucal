@@ -43,7 +43,7 @@ const LayoutInfoClinics = (props) => {
                 .content {
                     display: grid;
                     grid-template-rows: 85px 1fr;
-                    height: 80vh;
+                    height: 75vh;
                 }
 
                 .barraAmarilla {
@@ -73,7 +73,7 @@ const LayoutInfoClinics = (props) => {
                 ul {
                     overflow: auto;
                     height: calc(
-                        80vh - ${props.activate ? "270px" : "0px"} - 85px
+                        75vh - ${props.activate ? "270px" : "0px"} - 85px
                     );
                     box-sizing: border-box;
                     margin-right: 10px;

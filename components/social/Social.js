@@ -44,7 +44,7 @@ const Social = () => {
                 <li>
                     <a
                         className="azul"
-                        href="https://www.facebook.com/"
+                        href="https://www.facebook.com/pages/category/Product-Service/Red-Bucal-103457618545667/"
                         target="_blank"
                         rel="noopener noreferrer"
                     >

@@ -1,32 +1,37 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import ReactMapGl, { Marker } from "react-map-gl";
 
-
 const PanamaMap = (props) => {
-
     const [viewPort, setViewPort] = useState({
         latitude: 8.708158,
         longitude: -79.757642,
-        width: '100%',
-        height: '80vh',
-        zoom: 8.7                                  
+        width: "100%",
+        height: "75vh",
+        zoom: 8.7,
     });
 
     const [myPosition, setMyPosition] = useState({
         /* 8.587050, -79.319817 */
-        latitude: 8.587050,
-        longitude: -79.319817
+        latitude: 8.58705,
+        longitude: -79.319817,
     });
 
     const [dentro, setDentro] = useState(false);
 
     useEffect(() => {
-        const width = screen.width
+        const width = screen.width;
 
         if (width < 460) {
-            setViewPort(Object.assign({}, viewPort, { width: undefined + 'px', zoom: 8}))
+            setViewPort(
+                Object.assign({}, viewPort, {
+                    width: undefined + "px",
+                    zoom: 8,
+                })
+            );
         } else {
-            setViewPort(Object.assign({}, viewPort, { width: undefined + 'px'}))
+            setViewPort(
+                Object.assign({}, viewPort, { width: undefined + "px" })
+            );
         }
 
         /* const succeed = (pos) => {
@@ -59,47 +64,47 @@ const PanamaMap = (props) => {
         navigator.geolocation.getCurrentPosition(
             succeed, failure, options
         ) */
-            /* izquierda -> -83.034849 */
-            /* derecha -> -77.158126 */
-            /* arriba -> 9.638075 */
-            /* abajo -> 7.172350 */
-
-        }, []);
-        
+        /* izquierda -> -83.034849 */
+        /* derecha -> -77.158126 */
+        /* arriba -> 9.638075 */
+        /* abajo -> 7.172350 */
+    }, []);
 
     return (
         <div className="content">
-            <ReactMapGl 
-                {...viewPort} mapboxApiAccessToken={process.env.TOKEN_MAP}
-                    onViewportChange={viewPort => {
-                    setViewPort(viewPort)
+            <ReactMapGl
+                {...viewPort}
+                mapboxApiAccessToken={process.env.TOKEN_MAP}
+                onViewportChange={(viewPort) => {
+                    setViewPort(viewPort);
                 }}
                 mapStyle="mapbox://styles/sebas-ar/ck82lxiwb1a581iqwvh1ab3m3"
             >
-                {
-                    props.location.map(loc => (
-                        <Marker
-                            key={loc.id}
-                            latitude={loc.latitude}
-                            longitude={loc.longitude}
+                {props.location.map((loc) => (
+                    <Marker
+                        key={loc.id}
+                        latitude={loc.latitude}
+                        longitude={loc.longitude}
+                    >
+                        <button
+                            style={{
+                                backgroundColor: loc.color,
+                                height: loc.id === props.clinic ? "50px" : "",
+                                width: loc.id === props.clinic ? "50px" : "",
+                                transform:
+                                    loc.id === props.clinic
+                                        ? "translate(-40%, -40%)"
+                                        : "",
+                            }}
+                            onClick={() => {
+                                props.changeClinic(loc.id);
+                                window.open(loc.url, "_blank");
+                            }}
                         >
-                            <button 
-                                style={{ 
-                                    backgroundColor: loc.color,
-                                    height: loc.id === props.clinic ? '50px' : '',
-                                    width: loc.id === props.clinic ? '50px' : '',
-                                    transform: loc.id === props.clinic ? 'translate(-40%, -40%)' : ''
-                                }} 
-                                onClick={() => {
-                                    props.changeClinic(loc.id)
-                                    window.open(loc.url, '_blank');
-                                }}>
-                                <img src="/img/diente-form.png" alt="diente"/>
-                            </button>
-
-                        </Marker>
-                    ))
-                }
+                            <img src="/img/diente-form.png" alt="diente" />
+                        </button>
+                    </Marker>
+                ))}
 
                 {/* <Marker
                     latitude={myPosition.latitude}
@@ -115,7 +120,6 @@ const PanamaMap = (props) => {
                     </button>
 
                 </Marker> */}
-                
             </ReactMapGl>
 
             <style jsx>{`
@@ -147,8 +151,8 @@ const PanamaMap = (props) => {
 
                 .text {
                     position: absolute;
-                    top: ${dentro ? '-20px' : '-30px'};
-                    left: ${dentro ? '-110px' : '-220px'};
+                    top: ${dentro ? "-20px" : "-30px"};
+                    left: ${dentro ? "-110px" : "-220px"};
                     background: #777777;
                     padding: 6px 6px;
                     border-radius: 15px;
@@ -168,34 +172,42 @@ const PanamaMap = (props) => {
                 button {
                     z-index: 1;
                     ${
-                    viewPort.zoom > 7.5
-                    ?
-                    viewPort.zoom < 11.315332227113439
-                        ?
-                        'height:' + viewPort.zoom * (viewPort.zoom - 7.5) + 'px;'
-                        :
-                        viewPort.zoom < 14.130664454226876
-                            ?
-                            'height:' + (viewPort.zoom * (viewPort.zoom - 7.5) - ((viewPort.zoom * (viewPort.zoom - 7.5))/2)) + 'px;'
-                            :
-                            'height:' + (viewPort.zoom * (viewPort.zoom - 7.5) - ((viewPort.zoom * (viewPort.zoom - 7.5))/1.5)) + 'px;'
-                    :
-                    'height: 10px;'
+                        viewPort.zoom > 7.5
+                            ? viewPort.zoom < 11.315332227113439
+                                ? "height:" +
+                                  viewPort.zoom * (viewPort.zoom - 7.5) +
+                                  "px;"
+                                : viewPort.zoom < 14.130664454226876
+                                ? "height:" +
+                                  (viewPort.zoom * (viewPort.zoom - 7.5) -
+                                      (viewPort.zoom * (viewPort.zoom - 7.5)) /
+                                          2) +
+                                  "px;"
+                                : "height:" +
+                                  (viewPort.zoom * (viewPort.zoom - 7.5) -
+                                      (viewPort.zoom * (viewPort.zoom - 7.5)) /
+                                          1.5) +
+                                  "px;"
+                            : "height: 10px;"
                     }
                     ${
-                    viewPort.zoom > 7.5
-                    ?
-                    viewPort.zoom < 11.315332227113439
-                        ?
-                        'width:' + viewPort.zoom * (viewPort.zoom - 7.5) + 'px;'
-                        :
-                        viewPort.zoom < 14.130664454226876
-                            ?
-                            'width:' + (viewPort.zoom * (viewPort.zoom - 7.5) - ((viewPort.zoom * (viewPort.zoom - 7.5)) / 2)) + 'px;'
-                            :
-                            'width:' + (viewPort.zoom * (viewPort.zoom - 7.5) - ((viewPort.zoom * (viewPort.zoom - 7.5)) / 1.5)) + 'px;'
-                    :
-                    'width: 10px;'
+                        viewPort.zoom > 7.5
+                            ? viewPort.zoom < 11.315332227113439
+                                ? "width:" +
+                                  viewPort.zoom * (viewPort.zoom - 7.5) +
+                                  "px;"
+                                : viewPort.zoom < 14.130664454226876
+                                ? "width:" +
+                                  (viewPort.zoom * (viewPort.zoom - 7.5) -
+                                      (viewPort.zoom * (viewPort.zoom - 7.5)) /
+                                          2) +
+                                  "px;"
+                                : "width:" +
+                                  (viewPort.zoom * (viewPort.zoom - 7.5) -
+                                      (viewPort.zoom * (viewPort.zoom - 7.5)) /
+                                          1.5) +
+                                  "px;"
+                            : "width: 10px;"
                     }
                     border: none;
                     cursor: pointer;
@@ -207,11 +219,10 @@ const PanamaMap = (props) => {
 
                 button:hover {
                     z-index: 10;
-                    ${viewPort.zoom < 11.315332227113439
-                        ?
-                        'transform: translate(-40%,-40%);'
-                        :
-                        ''
+                    ${
+                        viewPort.zoom < 11.315332227113439
+                            ? "transform: translate(-40%,-40%);"
+                            : ""
                     }
                     height: 50px;
                     width: 50px;
@@ -223,9 +234,7 @@ const PanamaMap = (props) => {
                 
             `}</style>
         </div>
-    )
-}
+    );
+};
 
-
-
-export default PanamaMap
+export default PanamaMap;
