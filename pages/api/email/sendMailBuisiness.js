@@ -15,7 +15,7 @@ export default (req, res) => {
                 <br />
                 <p>Nuestros especialistas están listos para atenderte en cualquiera de nuestras sucursales. Ingresando a <a href="www.redbucal.com">www.redbucal.com</a> tendrás acceso a tu perfil y todos los beneficios de la cobertura</p>
                 <br />
-                <img src="/img/email/emailCorporativo.png" alt="Corporativo red bucal" />
+                <img src="https://redbucal.com/img/email/emailCorporativo.png" alt="Corporativo red bucal" />
                 <br />
                 <p>Síguenos nuestras redes como:</p>
                 <p><a href="https://www.instagram.com/red_bucal/">Instagram</a> red_bucal</p>
