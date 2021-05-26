@@ -17,6 +17,7 @@ const BillingAdmin = (props) => {
                     state: check,
                     identification: props.data.identification,
                 });
+
                 if (result.data.status) {
                     Swal.fire({
                         position: "center",
@@ -25,6 +26,13 @@ const BillingAdmin = (props) => {
                         showConfirmButton: false,
                         timer: 1000,
                     });
+                    // send pay email to user
+
+                    if (props.data.email) {
+                        const apiEmail = `/api/emailpay?email=${props.data.email}`;
+                        await axios.get(apiEmail);
+                    }
+
                     props.changeData(result.data.data);
                 }
             } else {
@@ -50,6 +58,12 @@ const BillingAdmin = (props) => {
                     showConfirmButton: false,
                     timer: 1000,
                 });
+
+                if (props.data.email && check === true) {
+                    const apiEmail = `/api/emailpay?email=${props.data.email}`;
+                    await axios.get(apiEmail);
+                }
+
                 props.changeData(result.data.data);
             }
         }

@@ -14,7 +14,7 @@ const handler = async (req, res) => {
             let erroMessage = [];
             let cuotaAsegurado;
 
-            for (let i = 8; i < data.length; i++) {
+            for (let i = 9; i < data.length; i++) {
                 let numErrors = erroMessage.length;
 
                 let identification = data[i][1] + "";
@@ -23,7 +23,7 @@ const handler = async (req, res) => {
                     .collection("users")
                     .findOne({ identification });
 
-                erroMessage[numErrors] = { row: i + 7 };
+                erroMessage[numErrors] = { row: i + 8 };
                 if (user) {
                     if (user.plan == true) {
                         if (user.RUC !== RUC) {
@@ -42,7 +42,7 @@ const handler = async (req, res) => {
 
                 if (
                     JSON.stringify(erroMessage[numErrors]) ===
-                    `{"row":${i + 7}}`
+                    `{"row":${i + 8}}`
                 ) {
                     erroMessage.pop();
                 }
@@ -58,7 +58,7 @@ const handler = async (req, res) => {
             let userContinue = [];
 
             entity.identifications.forEach(async (user) => {
-                for (let i = 8; i < data.length; i++) {
+                for (let i = 9; i < data.length; i++) {
                     if (user.id === data[i][1] + "") {
                         console.log(user.id, data[i][1]);
                         userContinue.push(user);
@@ -85,7 +85,7 @@ const handler = async (req, res) => {
             const end = new Date();
             end.setMonth(end.getMonth() + 1);
 
-            for (let i = 8; i < data.length; i++) {
+            for (let i = 9; i < data.length; i++) {
                 const userExist = await req.db
                     .collection("users")
                     .findOne({ identification: data[i][1] + "" });
@@ -157,7 +157,7 @@ const handler = async (req, res) => {
 
             console.log(userContinue);
 
-            cuotaAsegurado = data[6][1];
+            cuotaAsegurado = data[7][1];
 
             if (!cuotaAsegurado) {
                 return res.json({

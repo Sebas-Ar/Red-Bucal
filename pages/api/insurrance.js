@@ -139,6 +139,7 @@ const handler = async (req, res) => {
                 plan: false,
                 terminos: true,
                 date,
+                insurrance: true,
             });
 
             req.session.businessId = await business.insertedId;
@@ -155,6 +156,26 @@ const handler = async (req, res) => {
                         data[i][1] + "",
                         salt
                     );
+
+                    let userToDepend;
+
+                    if (data[i][2]) {
+                        userToDepend = await req.db
+                            .collection("users")
+                            .findOneAndUpdate(
+                                { identification: data[i][2] + "" },
+                                {
+                                    $push: {
+                                        dependientes: {
+                                            name: data[i][0],
+                                            id: data[i][1],
+                                            state: true,
+                                        },
+                                    },
+                                }
+                            );
+                    }
+                    console.log(userToDepend);
 
                     await req.db.collection("users").insertOne({
                         RUC,
@@ -179,22 +200,16 @@ const handler = async (req, res) => {
                             month: false,
                         },
                         date,
-                        dependeOf: data[i][2] ? data[i][2] : "",
+                        dependeOf: data[i][2]
+                            ? {
+                                  name: userToDepend.value.name,
+                                  id: data[i][2],
+                              }
+                            : "",
                         dependientes: [],
                     });
-
-                    if (data[i][2]) {
-                        await req.db.collection("users").findOneAndUpdate(
-                            { identification: data[i][2] + "" },
-                            {
-                                $push: {
-                                    dependientes: data[i][1] + "",
-                                },
-                            }
-                        );
-                    }
                 } else {
-                    await req.db.collection("users").updtaeOne(
+                    await req.db.collection("users").updateOne(
                         {
                             identification,
                         },
