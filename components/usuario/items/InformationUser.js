@@ -4,6 +4,11 @@ import AddUser from "./AddUser";
 const InformationUser = (props) => {
     const [handleAddUser, setHandleAddUser] = useState(false);
 
+    const fromateDate = (date) => {
+        const format = new Date(date)
+        return `${format.getDate()}/${format.getMonth() + 1}/${format.getFullYear()}`
+    }
+
     return (
         <section>
             {handleAddUser ? (
@@ -57,7 +62,7 @@ const InformationUser = (props) => {
             </label>
             <label>
                 FECHA DE NACIMIENTO:
-                <p>{props.data.birthdate}</p>
+                <p>{fromateDate(props.data.birthdate)}</p>
             </label>
             <label>
                 CELULAR:

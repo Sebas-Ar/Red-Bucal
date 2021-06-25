@@ -11,7 +11,7 @@ export default (req, res) => {
                 <title>Correo</title>
             </head>
             <body>
-                <h2>¡Bienvenido a tu programa de beneficios RED BUCAL CORPORATIVO!</h2>
+                <h2>¡Bienvenido a tu programa de beneficios RED BUCAL CORPORATIVO! test</h2>
                 <br />
                 <p>Nuestros especialistas están listos para atenderte en cualquiera de nuestras sucursales. Ingresando a <a href="www.redbucal.com">www.redbucal.com</a> tendrás acceso a tu perfil y todos los beneficios de la cobertura</p>
                 <br />

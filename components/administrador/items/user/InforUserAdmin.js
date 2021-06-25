@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import moment from "moment";
+import validateDate from "../../../../utils/validateDate";
 import axios from "axios";
 
 const InfoAdmin = (props) => {
@@ -9,22 +9,18 @@ const InfoAdmin = (props) => {
     useEffect(() => {
         let inf = {};
         inf.identificationChange = props.data.identification;
-        if (
-            moment(props.data.birthdate).locale("es").format("LL") ===
-            "Invalid date"
-        ) {
-            inf.birthdate = props.data.birthdate;
-        } else {
-            inf.birthdate = moment(props.data.birthdate)
-                .locale("es")
-                .format("LL");
-        }
+        inf.birthdate = fromateDate(props.data.birthdate)
         inf.phone = props.data.phone;
         inf.adress = props.data.adress;
         inf.email = props.data.email;
         inf.identification = props.data.identification;
         setInfo(inf);
     }, []);
+
+    const fromateDate = (date) => {
+        const format = new Date(date)
+        return `${format.getDate()}/${format.getMonth() + 1}/${format.getFullYear()}`
+    }
 
     const onchange = (e) => {
         setInfo(Object.assign({}, info, { [e.target.name]: e.target.value }));
@@ -33,22 +29,35 @@ const InfoAdmin = (props) => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        const url = "/api/editUserData";
-        try {
-            const result = await axios.put(url, info);
-            if (result.data.status) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Información actualizada",
-                    showConfirmButton: false,
-                    timer: 1000,
-                });
-                props.changeData(result.data.data);
+        const [isValidate, message] = validateDate(info.birthdate)
+
+        if (isValidate) {
+            const url = "/api/editUserData";
+            try {
+                const result = await axios.put(url, { ...info });
+                if (result.data.status) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Información actualizada",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
+                    props.changeData(result.data.data);
+                }
+            } catch (error) {
+                console.log(error);
             }
-        } catch (error) {
-            console.log(error);
+        } else {
+            Swal.fire({
+                position: "center",
+                icon: "warning",
+                title: message,
+                showConfirmButton: false,
+                timer: 2000,
+            });
         }
+
     };
 
     return (
@@ -64,9 +73,8 @@ const InfoAdmin = (props) => {
                     props.data.dependientes.length !== 0 ? (
                         props.data.dependientes.map((item, i) => (
                             <p key={i} className="list">
-                                {`${item.name} - id: ${item.id} - stado: ${
-                                    item.state ? "Activo" : "Inactivo"
-                                }`}
+                                {`${item.name} - id: ${item.id} - stado: ${item.state ? "Activo" : "Inactivo"
+                                    }`}
                             </p>
                         ))
                     ) : (
@@ -88,10 +96,11 @@ const InfoAdmin = (props) => {
                 />
             </label>
             <label>
-                FECHA DE NACIMIENTO: <br />
+                FECHA DE NACIMIENTO (dd/mm/aaaa): <br />
                 <input
                     type="text"
                     name="birthdate"
+                    placeholder="dd/mm/aa"
                     value={info.birthdate}
                     onChange={onchange}
                 />

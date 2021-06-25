@@ -151,30 +151,31 @@ const handler = async (req, res) => {
                     .collection("users")
                     .findOne({ identification });
 
+                let userToDepend;
+
+                if (data[i][2]) {
+                    userToDepend = await req.db
+                        .collection("users")
+                        .findOneAndUpdate(
+                            { identification: data[i][2] + "" },
+                            {
+                                $addToSet: {
+                                    dependientes: {
+                                        name: data[i][0],
+                                        id: data[i][1],
+                                        state: true,
+                                    },
+                                },
+                            }
+                        );
+                }
+
                 if (!user) {
                     const hashedPasswordUser = await bcrypt.hash(
                         data[i][1] + "",
                         salt
                     );
 
-                    let userToDepend;
-
-                    if (data[i][2]) {
-                        userToDepend = await req.db
-                            .collection("users")
-                            .findOneAndUpdate(
-                                { identification: data[i][2] + "" },
-                                {
-                                    $push: {
-                                        dependientes: {
-                                            name: data[i][0],
-                                            id: data[i][1],
-                                            state: true,
-                                        },
-                                    },
-                                }
-                            );
-                    }
                     console.log(userToDepend);
 
                     await req.db.collection("users").insertOne({
@@ -202,9 +203,9 @@ const handler = async (req, res) => {
                         date,
                         dependeOf: data[i][2]
                             ? {
-                                  name: userToDepend.value.name,
-                                  id: data[i][2],
-                              }
+                                name: userToDepend.value.name,
+                                id: data[i][2],
+                            }
                             : "",
                         dependientes: [],
                     });
@@ -220,7 +221,12 @@ const handler = async (req, res) => {
                                 start: date,
                                 end: end,
                                 plan: true,
-                                dependeOf: data[i][2] ? data[i][2] : "",
+                                dependeOf: data[i][2]
+                                    ? {
+                                        name: userToDepend.value.name,
+                                        id: data[i][2],
+                                    }
+                                    : "",
                                 dependientes: [],
                             },
                         }
@@ -230,8 +236,12 @@ const handler = async (req, res) => {
                         await req.db.collection("users").findOneAndUpdate(
                             { identification: data[i][2] + "" },
                             {
-                                $push: {
-                                    dependientes: data[i][1] + "",
+                                $addToSet: {
+                                    dependientes: {
+                                        name: data[i][0],
+                                        id: data[i][1],
+                                        state: true,
+                                    }
                                 },
                             }
                         );
