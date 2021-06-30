@@ -49,11 +49,25 @@ const handler = async (req, res) => {
 
                 let identification = data[i][1] + "";
 
+                erroMessage[numErrors] = { row: i + 6 };
+
+                if (!data[i][0]) {
+                    erroMessage[numErrors][
+                        "errorName"
+                    ] = `El campo del nombre del usuario se encuentra vacio`;
+                }
+
+                if (!data[i][1]) {
+                    erroMessage[numErrors][
+                        "errorId"
+                    ] = `El campo de la identificaion del usuario se encuentra vacio`;
+                }
+
                 const user = await req.db
                     .collection("users")
                     .findOne({ identification });
 
-                erroMessage[numErrors] = { row: i + 8 };
+
                 if (user) {
                     if (user.plan == true) {
                         if (user.RUC !== RUC) {
@@ -72,7 +86,7 @@ const handler = async (req, res) => {
 
                 if (
                     JSON.stringify(erroMessage[numErrors]) ===
-                    `{"row":${i + 8}}`
+                    `{"row":${i + 6}}`
                 ) {
                     erroMessage.pop();
                 }
