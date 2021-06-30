@@ -1,8 +1,8 @@
 import react, { useState } from 'react'
 
-const loading = () => {    
+const loading = ({ color }) => {
 
-    const [i, setI] = useState([1,2,3,4,5,6,7,8,9,10])
+    const [i, setI] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
     const style = item => {
         return {
@@ -43,7 +43,7 @@ const loading = () => {
                     left: 0;
                     width: 4px;
                     height: 4px;
-                    background: var(--mainColor);
+                    background: ${color ? color : 'var(--mainColor)'};
                     border-radius: 50%;
                 }
 

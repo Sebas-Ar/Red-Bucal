@@ -3,11 +3,13 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import readXlsxFile from "read-excel-file";
 import ErrorsFileExcel from "./ErrorsFileExcel";
+import Loading from '../../loading/Loading'
 
 const AddInsuranceCarrier = (props) => {
     const [data, setData] = useState({
         type: "empresa",
     });
+    const [load, setLoad] = useState(false);
     const [errors, setErrors] = useState({});
     const [errorsFile, setErrorsFile] = useState([]);
     const [showFileError, setshowFileError] = useState(false);
@@ -34,6 +36,7 @@ const AddInsuranceCarrier = (props) => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
+        setLoad(true)
 
         let errors = {};
         let validate = true;
@@ -86,9 +89,8 @@ const AddInsuranceCarrier = (props) => {
 
         if (!data.data) {
             errors = Object.assign({}, errors, {
-                errorData: `Falta el archivo de ${
-                    data.type == "aseguradora" ? "ASEGURADOS" : "EMPLEADOS"
-                }`,
+                errorData: `Falta el archivo de ${data.type == "aseguradora" ? "ASEGURADOS" : "EMPLEADOS"
+                    }`,
             });
             validate = false;
         }
@@ -112,9 +114,8 @@ const AddInsuranceCarrier = (props) => {
                         position: "center",
                         icon: "success",
                         html: `<p><strong>Numero de ususarios agregado: </strong>${result.data.info.num}</p><p><strong>Valor total a pagar: </strong>${result.data.info.value}$</p>`,
-                        title: `Aseguradora agregada y activada hasta el ${date.getDate()}/${
-                            date.getMonth() + 1
-                        }/${date.getFullYear()}`,
+                        title: `Aseguradora agregada y activada hasta el ${date.getDate()}/${date.getMonth() + 1
+                            }/${date.getFullYear()}`,
                         showConfirmButton: true,
                     });
                     let insuranceAdded = [...props.insuranceList];
@@ -166,9 +167,8 @@ const AddInsuranceCarrier = (props) => {
                         position: "center",
                         icon: "success",
                         html: `<p><strong>Numero de ususarios agregado: </strong>${result.data.info.num}</p><p><strong>Valor total a pagar: </strong>${result.data.info.value}$</p>`,
-                        title: `Aseguradora agregada y activada hasta el ${date.getDate()}/${
-                            date.getMonth() + 1
-                        }/${date.getFullYear()}`,
+                        title: `Aseguradora agregada y activada hasta el ${date.getDate()}/${date.getMonth() + 1
+                            }/${date.getFullYear()}`,
                         showConfirmButton: true,
                     });
                     let insuranceAdded = [...props.insuranceList];
@@ -211,7 +211,7 @@ const AddInsuranceCarrier = (props) => {
                 }
             }
         }
-
+        setLoad(false)
         setErrors(errors);
     };
 
@@ -307,12 +307,10 @@ const AddInsuranceCarrier = (props) => {
                     ) : null}
                 </label>
                 <a
-                    href={`/archives/PLANTILLA-DE-REGISTRO-PARA-${
-                        data.type == "aseguradora" ? "ASEGURADOS" : "EMPLEADOS"
-                    }.xlsx`}
-                    download={`PLANTILLA-DE-REGISTRO-PARA-${
-                        data.type == "aseguradora" ? "ASEGURADOS" : "EMPLEADOS"
-                    }.xlsx`}
+                    href={`/archives/PLANTILLA-DE-REGISTRO-PARA-${data.type == "aseguradora" ? "ASEGURADOS" : "EMPLEADOS"
+                        }.xlsx`}
+                    download={`PLANTILLA-DE-REGISTRO-PARA-${data.type == "aseguradora" ? "ASEGURADOS" : "EMPLEADOS"
+                        }.xlsx`}
                 >
                     <span>
                         DESCARGAR PLANTILLA DE REGISTRO PARA{" "}
@@ -325,11 +323,10 @@ const AddInsuranceCarrier = (props) => {
                     <label className="label">
                         {data.data
                             ? "PLANTILLA CARGADA"
-                            : `SUBIR PLANTILLA DE REGISTRO PARA ${
-                                  data.type == "aseguradora"
-                                      ? "ASEGURADOS"
-                                      : "EMPLEADOS"
-                              }`}
+                            : `SUBIR PLANTILLA DE REGISTRO PARA ${data.type == "aseguradora"
+                                ? "ASEGURADOS"
+                                : "EMPLEADOS"
+                            }`}
                         <input
                             id="file"
                             className="uploadInput"
@@ -352,7 +349,9 @@ const AddInsuranceCarrier = (props) => {
                         ) : null}
                     </label>
                 </div>
-                <button>Agregar</button>
+                <button disabled={load}>
+                    {load ? <Loading color="white" /> : "Agregar"}
+                </button>
             </form>
 
             <style jsx>{`
@@ -448,7 +447,7 @@ const AddInsuranceCarrier = (props) => {
                     height: 30px;
                     color: white;
                     border-radius: 5px;
-                    cursor: pointer;
+                    cursor: ${load ? 'auto' : 'pointer'};
                     grid-column: 1/3;
                     justify-self: center;
                     outline: none;
