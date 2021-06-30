@@ -234,6 +234,8 @@ const handler = async (req, res) => {
                     });
                 } else {
                     await req.db.collection("users").updateOne({
+                        identification,
+                    }, {
                         RUC,
                         state: true,
                         start: date,
@@ -241,7 +243,12 @@ const handler = async (req, res) => {
                         phone: data[i][5],
                         email: data[i][4],
                         plan: true,
-                        dependeOf: data[i][2] ? data[i][2] : "",
+                        dependeOf: data[i][2]
+                            ? {
+                                name: userToDepend.value.name,
+                                id: data[i][2],
+                            }
+                            : "",
                         dependientes: [],
                     });
 
@@ -249,8 +256,12 @@ const handler = async (req, res) => {
                         await req.db.collection("users").findOneAndUpdate(
                             { identification: data[i][2] + "" },
                             {
-                                $push: {
-                                    dependientes: data[i][1] + "",
+                                $addToSet: {
+                                    dependientes: {
+                                        name: data[i][0],
+                                        id: data[i][1],
+                                        state: true,
+                                    }
                                 },
                             }
                         );
