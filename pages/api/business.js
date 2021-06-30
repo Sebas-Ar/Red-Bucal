@@ -77,7 +77,7 @@ const handler = async (req, res) => {
                     erroMessage.pop();
                 }
             }
-            console.log(erroMessage);
+
             if (erroMessage.length) {
                 return res.json({
                     status: "fileError",
@@ -198,8 +198,6 @@ const handler = async (req, res) => {
                                 }
                             );
                     }
-                    console.log("usuario \n");
-                    console.log(userToDepend);
 
                     await req.db.collection("users").insertOne({
                         RUC,
@@ -236,20 +234,23 @@ const handler = async (req, res) => {
                     await req.db.collection("users").updateOne({
                         identification,
                     }, {
-                        RUC,
-                        state: true,
-                        start: date,
-                        end: end,
-                        phone: data[i][5],
-                        email: data[i][4],
-                        plan: true,
-                        dependeOf: data[i][2]
-                            ? {
-                                name: userToDepend.value.name,
-                                id: data[i][2],
-                            }
-                            : "",
-                        dependientes: [],
+                        $set: {
+
+                            RUC,
+                            state: true,
+                            start: date,
+                            end: end,
+                            phone: data[i][5],
+                            email: data[i][4],
+                            plan: true,
+                            dependeOf: data[i][2]
+                                ? {
+                                    name: userToDepend.value.name,
+                                    id: data[i][2],
+                                }
+                                : "",
+                            dependientes: [],
+                        }
                     });
 
                     if (data[i][2]) {
