@@ -128,7 +128,7 @@ const handler = async (req, res) => {
             req.session.businessId = await business.insertedId;
 
             for (let i = 9; i < data.length; i++) {
-                console.log("send email to " + data[i][4]);
+                /* console.log("send email to " + data[i][4]);
                 sgMail.setApiKey(process.env.TOKEN_SEND_GRID);
 
                 const contentHTML = `
@@ -157,7 +157,6 @@ const handler = async (req, res) => {
                 `;
                 const msg = {
                     to: data[i][4],
-                    /* from: 'xevaz.ariasd@gmail.com', */
                     from: "redbucal.info@gmail.com",
                     subject: "Plan Corporativo - Red Bucal",
                     text: "esete es el texto de inicio",
@@ -168,7 +167,7 @@ const handler = async (req, res) => {
                     sgMail.send(msg);
                 } catch (error) {
                     console.log(error);
-                }
+                } */
                 let identification = data[i][1] + "";
 
                 const user = await req.db
@@ -227,9 +226,9 @@ const handler = async (req, res) => {
                         date,
                         dependeOf: data[i][2]
                             ? {
-                                  name: userToDepend.value.name,
-                                  id: data[i][2],
-                              }
+                                name: userToDepend.value.name,
+                                id: data[i][2],
+                            }
                             : "",
                         dependientes: [],
                     });
