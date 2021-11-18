@@ -32,11 +32,11 @@ const RegisterAll = (props) => {
 
                 <div className="botones">
                     <h3 onClick={changeFalse}>PERSONAS</h3>
-                    <label className="checkbox">
+                    {/* <label className="checkbox">
                         <input type="checkbox" onChange={changeType} />
                         <i></i>
                     </label>
-                    <h3 onClick={changeTrue}>EMPRESAS</h3>
+                    <h3 onClick={changeTrue}>EMPRESAS</h3> */}
                 </div>
                 {type ? (
                     <EmpresasRegister
@@ -111,21 +111,22 @@ const RegisterAll = (props) => {
                     padding: 10px 15px;
                     border-radius: 30px;
                     color: white;
-                    cursor: pointer;
                     transition: background-color 0.5s;
                     box-shadow: 5px 5px 8px -5px #33333399;
                 }
 
                 h3:nth-child(1) {
+                    display: block;
                     background-color: ${type
-                        ? "rgb(140, 184, 209, .5)"
-                        : "var(--puntoAzul)"};
+                    ? "rgb(140, 184, 209, .5)"
+                    : "var(--puntoAzul)"};
+                    margin: auto;
                 }
 
                 h3:nth-child(3) {
                     background-color: ${type
-                        ? "var(--puntoRojo)"
-                        : "#D97C6E77"};
+                    ? "var(--puntoRojo)"
+                    : "#D97C6E77"};
                 }
 
                 .form {
@@ -143,7 +144,7 @@ const RegisterAll = (props) => {
 
                 .botones {
                     display: grid;
-                    grid-template-columns: 1fr 100px 1fr;
+                    
                     justify-items: center;
                     align-items: center;
                     margin-bottom: 50px;
@@ -166,8 +167,8 @@ const RegisterAll = (props) => {
 
                 i {
                     background-color: ${type
-                        ? "var(--puntoRojo)"
-                        : "var(--puntoAzul)"};
+                    ? "var(--puntoRojo)"
+                    : "var(--puntoAzul)"};
                     border: none;
                     position: absolute;
                     left: 0;

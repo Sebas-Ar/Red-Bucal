@@ -4,6 +4,7 @@ import axios from "axios";
 import readXlsxFile from "read-excel-file";
 import ErrorsFileExcel from "./ErrorsFileExcel";
 import Loading from '../../loading/Loading'
+import { validateAseguradora, validateEmpresa } from '../../../utils/validateExcelFormat'
 
 const AddInsuranceCarrier = (props) => {
     const [data, setData] = useState({
@@ -104,110 +105,171 @@ const AddInsuranceCarrier = (props) => {
 
         if (validate) {
             if (data.type == "empresa") {
-                const url = "/api/business";
-                const result = await axios.post(url, data);
+                const isValidateExcel = validateEmpresa(data.data)
+                if (isValidateExcel) {
+                    const url = "/api/business";
+                    const result = await axios.post(url, data);
 
-                if (result.data.status == "ok") {
-                    let date = new Date();
-                    date.setMonth(date.getMonth() + 1);
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        html: `<p><strong>Numero de ususarios agregado: </strong>${result.data.info.num}</p><p><strong>Valor total a pagar: </strong>${result.data.info.value}$</p>`,
-                        title: `Aseguradora agregada y activada hasta el ${date.getDate()}/${date.getMonth() + 1
-                            }/${date.getFullYear()}`,
-                        showConfirmButton: true,
-                    });
-                    let insuranceAdded = [...props.insuranceList];
-                    insuranceAdded.push(result.data.insurance);
-                    props.setInsuranceList(insuranceAdded);
-                    props.changeAddUser();
-                } else if (result.data.status == "fileError") {
+                    if (result.data.status == "ok") {
+                        let date = new Date();
+                        date.setMonth(date.getMonth() + 1);
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            html: `<p><strong>Numero de ususarios agregado: </strong>${result.data.info.num}</p><p><strong>Valor total a pagar: </strong>${result.data.info.value}$</p>`,
+                            title: `Aseguradora agregada y activada hasta el ${date.getDate()}/${date.getMonth() + 1
+                                }/${date.getFullYear()}`,
+                            showConfirmButton: true,
+                        });
+                        let insuranceAdded = [...props.insuranceList];
+                        insuranceAdded.push(result.data.insurance);
+                        props.setInsuranceList(insuranceAdded);
+                        props.changeAddUser();
+                    } else if (result.data.status == "fileError") {
+                        const file = document.getElementsByClassName("file");
+                        file.value = "";
+
+                        setData(Object.assign({}, data, { data: undefined }));
+
+                        errors = Object.assign({}, errors, {
+
+                            errorData:
+                                "Error en los datos del archivo, corrijalos y vuelva a subirlo",
+                        });
+
+                        setErrorsFile(result.data.message);
+                        setshowFileError(true);
+                    } else {
+                        console.log(result.data.message);
+                        if (result.data.message === "el correo es invalido") {
+                            errors = Object.assign({}, errors, {
+                                erroremail: result.data.message,
+                            });
+                        } else if (
+                            result.data.message ===
+                            "El correo ya ha sido registrado"
+                        ) {
+                            errors = Object.assign({}, errors, {
+                                erroremail: result.data.message,
+                            });
+                        } else if (
+                            result.data.message === "El RUC ya ha sido registrado"
+                        ) {
+                            errors = Object.assign({}, errors, {
+                                errorRUC: result.data.message,
+                            });
+                        } else if (result.data.message === "El excel no incluye la cuota por cada Empleado") {
+                            const file = document.getElementsByClassName("file");
+                            file.value = "";
+
+                            setData(Object.assign({}, data, { data: undefined }));
+
+                            Swal.fire({
+                                position: "center",
+                                icon: "warning",
+                                title: result.data.message,
+                                showConfirmButton: true,
+                            });
+                        }
+                    }
+                } else {
+
                     const file = document.getElementsByClassName("file");
                     file.value = "";
 
                     setData(Object.assign({}, data, { data: undefined }));
 
-                    errors = Object.assign({}, errors, {
-                        errorData:
-                            "Error en los datos del archivo, corrijalos y vuelva a subirlo",
+                    Swal.fire({
+                        position: "center",
+                        icon: "warning",
+                        title: `Esta intentado registrar una Empresa. La estructura del excel ha sido modificado, descargue nuevamente el excel y pase los datos de los usuarios.`,
+                        showConfirmButton: true,
                     });
-
-                    setErrorsFile(result.data.message);
-                    setshowFileError(true);
-                } else {
-                    console.log(result.data.message);
-                    if (result.data.message === "el correo es invalido") {
-                        errors = Object.assign({}, errors, {
-                            erroremail: result.data.message,
-                        });
-                    } else if (
-                        result.data.message ===
-                        "El correo ya ha sido registrado"
-                    ) {
-                        errors = Object.assign({}, errors, {
-                            erroremail: result.data.message,
-                        });
-                    } else if (
-                        result.data.message === "El RUC ya ha sido registrado"
-                    ) {
-                        errors = Object.assign({}, errors, {
-                            errorRUC: result.data.message,
-                        });
-                    }
                 }
             } else {
-                const url = "/api/insurrance";
-                const result = await axios.post(url, data);
 
-                if (result.data.status == "ok") {
-                    let date = new Date();
-                    date.setMonth(date.getMonth() + 1);
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        html: `<p><strong>Numero de ususarios agregado: </strong>${result.data.info.num}</p><p><strong>Valor total a pagar: </strong>${result.data.info.value}$</p>`,
-                        title: `Aseguradora agregada y activada hasta el ${date.getDate()}/${date.getMonth() + 1
-                            }/${date.getFullYear()}`,
-                        showConfirmButton: true,
-                    });
-                    let insuranceAdded = [...props.insuranceList];
-                    insuranceAdded.push(result.data.insurance);
-                    props.setInsuranceList(insuranceAdded);
-                    props.changeAddUser();
-                } else if (result.data.status == "fileError") {
+                const isValidateExcel = validateAseguradora(data.data)
+                if (isValidateExcel) {
+
+
+
+                    const url = "/api/insurrance";
+                    const result = await axios.post(url, data);
+
+                    if (result.data.status == "ok") {
+                        let date = new Date();
+                        date.setMonth(date.getMonth() + 1);
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            html: `<p><strong>Numero de ususarios agregado: </strong>${result.data.info.num}</p><p><strong>Valor total a pagar: </strong>${result.data.info.value}$</p>`,
+                            title: `Aseguradora agregada y activada hasta el ${date.getDate()}/${date.getMonth() + 1
+                                }/${date.getFullYear()}`,
+                            showConfirmButton: true,
+                        });
+                        let insuranceAdded = [...props.insuranceList];
+                        insuranceAdded.push(result.data.insurance);
+                        props.setInsuranceList(insuranceAdded);
+                        props.changeAddUser();
+                    } else if (result.data.status == "fileError") {
+                        const file = document.getElementsByClassName("file");
+                        file.value = "";
+
+                        setData(Object.assign({}, data, { data: undefined }));
+
+                        errors = Object.assign({}, errors, {
+                            errorData:
+                                "Error en los datos del archivo, corrijalos y vuelva a subirlo",
+                        });
+
+                        setErrorsFile(result.data.message);
+                        setshowFileError(true);
+                    } else {
+                        console.log(result.data.message);
+                        if (result.data.message === "el correo es invalido") {
+                            errors = Object.assign({}, errors, {
+                                erroremail: result.data.message,
+                            });
+                        } else if (
+                            result.data.message ===
+                            "El correo ya ha sido registrado"
+                        ) {
+                            errors = Object.assign({}, errors, {
+                                erroremail: result.data.message,
+                            });
+                        } else if (
+                            result.data.message === "El RUC ya ha sido registrado"
+                        ) {
+                            errors = Object.assign({}, errors, {
+                                errorRUC: result.data.message,
+                            });
+                        } else if (result.data.message === "El excel no incluye la cuota por cada asegurado") {
+                            const file = document.getElementsByClassName("file");
+                            file.value = "";
+
+                            setData(Object.assign({}, data, { data: undefined }));
+
+                            Swal.fire({
+                                position: "center",
+                                icon: "warning",
+                                title: result.data.message,
+                                showConfirmButton: true,
+                            });
+                        }
+                    }
+                } else {
+
                     const file = document.getElementsByClassName("file");
                     file.value = "";
 
                     setData(Object.assign({}, data, { data: undefined }));
 
-                    errors = Object.assign({}, errors, {
-                        errorData:
-                            "Error en los datos del archivo, corrijalos y vuelva a subirlo",
+                    Swal.fire({
+                        position: "center",
+                        icon: "warning",
+                        title: `Esta intentado registrar una Aseguradora. La estructura del excel ha sido modificado, descargue nuevamente el excel y pase los datos de los usuarios.`,
+                        showConfirmButton: true,
                     });
-
-                    setErrorsFile(result.data.message);
-                    setshowFileError(true);
-                } else {
-                    console.log(result.data.message);
-                    if (result.data.message === "el correo es invalido") {
-                        errors = Object.assign({}, errors, {
-                            erroremail: result.data.message,
-                        });
-                    } else if (
-                        result.data.message ===
-                        "El correo ya ha sido registrado"
-                    ) {
-                        errors = Object.assign({}, errors, {
-                            erroremail: result.data.message,
-                        });
-                    } else if (
-                        result.data.message === "El RUC ya ha sido registrado"
-                    ) {
-                        errors = Object.assign({}, errors, {
-                            errorRUC: result.data.message,
-                        });
-                    }
                 }
             }
         }

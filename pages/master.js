@@ -95,6 +95,7 @@ const master = () => {
                 adminData={adminData}
                 changeActivate={changeActivate}
                 activate={activate}
+                type={data?.insurrance}
             >
                 {user == 1 ? (
                     select === 0 ? (

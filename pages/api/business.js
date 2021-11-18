@@ -116,7 +116,7 @@ const handler = async (req, res) => {
             if (!cuotaAsegurado) {
                 return res.json({
                     status: "error",
-                    message: "El excel no incluye la cuota por cada asegurado",
+                    message: "El excel no incluye la cuota por cada Empleado",
                 });
             }
 

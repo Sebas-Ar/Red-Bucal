@@ -19,7 +19,11 @@ const ErrorsFileExcel = ({ errorsFile, setshowFileError }) => {
                     {errorsFile.map((err) => (
                         <div className="file-error">
                             <p className="center">{err?.row}</p>
-                            <p>{err?.errorId}</p>
+                            <div>
+                                {err?.errorId ? <p>{err?.errorId}</p> : null}
+                                {err?.errorName ? <p>{err?.errorName}</p> : null}
+                                {err?.errorDate ? <p>{err?.errorDate}</p> : null}
+                            </div>
                         </div>
                     ))}
                 </div>

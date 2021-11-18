@@ -78,7 +78,7 @@ const NavMaster = (props) => {
                                 }}
                                 style={selection(0)}
                             >
-                                BUSCAR USUARIO / EMPRESA
+                                BUSCAR USUARIO / ENTIDAD
                             </button>
                         </li>
                         <li>
@@ -178,7 +178,7 @@ const NavMaster = (props) => {
                                 }}
                                 style={selection(1)}
                             >
-                                INFORMACIÓN EMPRESARIAL
+                                INFORMACIÓN {props.type ? 'ASEGURADORA' : 'EMPRESARIAL'}
                             </button>
                         </li>
                         <li>
@@ -200,7 +200,7 @@ const NavMaster = (props) => {
                                 }}
                                 style={selection(3)}
                             >
-                                EMPLEADOS
+                                {props.type ? 'LISTA DE ASEGURADOS' : 'LISTA DE EMPLEADOS'}
                             </button>
                         </li>
                         <li>
@@ -211,7 +211,7 @@ const NavMaster = (props) => {
                                 }}
                                 style={selection(4)}
                             >
-                                ACTUALIZAR EMPLEADOS
+                                {props.type ? 'ACTUALIZAR ASEGURADOS' : 'ACTUALIZAR EMPLEADOS'}
                             </button>
                         </li>
                         {/* <li>
@@ -236,7 +236,7 @@ const NavMaster = (props) => {
                                 }}
                                 style={selection(6)}
                             >
-                                GESTIONAR ASEGURADORAS
+                                GESTIONAR ENTIDADES
                             </button>
                         </li>
                         <li>
@@ -311,6 +311,7 @@ const NavMaster = (props) => {
 
                 button,
                 h2 {
+                    text-transform: uppercase;
                     text-align: left;
                     border: none;
                     background-color: white;
@@ -354,13 +355,13 @@ const NavMaster = (props) => {
                         margin: 0 30px 0 0;
                         transition: transform 0.5s, box-shadow 1s;
                         transform: ${props.activate
-                            ? "translate(0, -50%)"
-                            : "translate(-100%, -50%)"};
+                    ? "translate(0, -50%)"
+                    : "translate(-100%, -50%)"};
                         background-color: white;
                         border-radius: 0 30px 30px 0;
                         box-shadow: ${props.activate
-                            ? "5px 5px 20px 0px #33333366"
-                            : "0px 0px 0px 0px #33333322"};
+                    ? "5px 5px 20px 0px #33333366"
+                    : "0px 0px 0px 0px #33333322"};
                     }
 
                     .diente1 {
@@ -387,14 +388,15 @@ const NavMaster = (props) => {
                         box-shadow: 5px 5px 10px 0px #33333355;
                         background: var(--amarillo);
                         color: white;
+                        cursor: pointer;
                     }
 
                     svg {
                         width: 20px;
                         transition: transform 2s;
                         transform: ${props.activate
-                            ? "rotate(180deg)"
-                            : "rotate(0deg)"};
+                    ? "rotate(180deg)"
+                    : "rotate(0deg)"};
                     }
 
                     .linea {
