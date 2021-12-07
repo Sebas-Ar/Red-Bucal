@@ -62,7 +62,8 @@ const FindUserAdmin = (props) => {
     };
 
     const deleteBusiness = async (RUC) => {
-        if (props.type === "master") {
+        console.log(props.typeAdmin)
+        if (props.typeAdmin === "master") {
             const url = `/api/deleteBusiness?RUC=${RUC}`;
             const result = await axios.delete(url);
 
@@ -94,6 +95,7 @@ const FindUserAdmin = (props) => {
     };
 
     const deleteUser = async (identification) => {
+
         if (props.typeAdmin === "master") {
             const url = `/api/deleOneUser?identification=${identification}`;
 
