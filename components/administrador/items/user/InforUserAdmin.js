@@ -18,7 +18,12 @@ const InfoAdmin = (props) => {
     }, []);
 
     const fromateDate = (date) => {
-        const format = new Date(date)
+        console.log(date)
+
+        let format = new Date(date)
+        // if (format == 'Invalid Date') format = new Date(date.replaceAll('-', '/'))
+        // console.log(format)
+        // console.log(date.replaceAll('-', '/'))
         return `${format.getDate()}/${format.getMonth() + 1}/${format.getFullYear()}`
     }
 

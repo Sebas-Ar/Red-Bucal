@@ -1,4 +1,5 @@
 const validateDate = (date) => {
+	console.log(date)
 	const dateSplited = date.split('/')
 
 	const invalidFormat = 'Formato de fecha invalido (dd/mm/aaaa)'

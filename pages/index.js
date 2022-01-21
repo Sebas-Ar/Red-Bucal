@@ -10,6 +10,7 @@ import InformationRightResponsive from '../components/index/InformationRightResp
 import InformationLeftResponsive from '../components/index/InformationLeftResponsive'
 import SliderMain from '../components/index/slider/SliderMain'
 import Social from '../components/social/Social'
+import Respaldo from '../components/nosotros/Respaldo'
 
 const Home = () => {
   return (
@@ -18,13 +19,14 @@ const Home = () => {
       <SliderMain />
       <LayoutPlanes />
       <Cobertura />
-      <InformationRight />  
+      <Respaldo />
+      <InformationRight />
       <InformationRightResponsive />
       <InformationLeft />
       <InformationLeftResponsive />
-      <LayoutForm 
+      <LayoutForm
         diente="/img/diente-form1.png"
-        fondo="/img/doctora.png" 
+        fondo="/img/doctora.png"
       />
       <Footer />
 
