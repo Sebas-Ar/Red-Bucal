@@ -13,26 +13,26 @@ import Social from '../components/social/Social'
 import Respaldo from '../components/nosotros/Respaldo'
 
 const Home = () => {
-  return (
-    <Layout>
-      <Social />
-      <SliderMain />
-      <LayoutPlanes />
-      <Cobertura />
-      <Respaldo />
-      <InformationRight />
-      <InformationRightResponsive />
-      <InformationLeft />
-      <InformationLeftResponsive />
-      <LayoutForm
-        diente="/img/diente-form1.png"
-        fondo="/img/doctora.png"
-      />
-      <Footer />
+    return (
+        <Layout>
+            <Social />
+            <SliderMain />
+            <LayoutPlanes />
+            <Cobertura />
+            <Respaldo />
+            <InformationRight />
+            <InformationRightResponsive />
+            <InformationLeft />
+            <InformationLeftResponsive />
+            <LayoutForm
+                diente="/img/diente-form1.png"
+                fondo="/img/doctora.png"
+            />
+            <Footer />
 
 
-    </Layout>
-  )
+        </Layout>
+    )
 }
 
 export default Home
