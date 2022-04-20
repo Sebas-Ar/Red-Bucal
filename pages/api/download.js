@@ -88,7 +88,7 @@ const handler = async (req, res) => {
             res.json({status: 'ok'})
 
         } catch (error) {
-            
+            console.log(error)
             res.json({status: 'error'})
         }
 
