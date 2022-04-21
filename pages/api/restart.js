@@ -1,5 +1,5 @@
 import withMiddleware from "../../middlewares/withMiddleware";
-import { ObjectId } from "mongodb";
+import bcrypt from "bcryptjs"
 
 const handler = async (req, res) => {
 	if (req.method === "POST") {
@@ -12,8 +12,16 @@ const handler = async (req, res) => {
 			
 			for (let i = 0; i < userList.length; i++) {
 				const exist = await req.db.collection('users').countDocuments({identification: userList[i].identification})
-				if (exist) {
-					count++
+				if (!exist) {
+
+					const salt = await bcrypt.genSalt(10)
+					const hashedPassword = await bcrypt.hash(userList[i].identification, salt)
+
+					await req.db.collection('users').insertOne({
+						...userList[i],
+						mustChangePass: true,
+						password: hashedPassword
+					})
 				}
 			}
 			
