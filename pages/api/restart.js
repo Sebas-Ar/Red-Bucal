@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs"
 
 const handler = async (req, res) => {
 	if (req.method === "POST") {
-		const { userList } = req.body
+		/* const { userList } = req.body
 
 		console.log("numero de usurarios total: ", userList.length)
 		let count = 0
@@ -13,7 +13,8 @@ const handler = async (req, res) => {
 			for (let i = 0; i < userList.length; i++) {
 				const exist = await req.db.collection('users').countDocuments({identification: userList[i].identification})
 				if (!exist) {
-
+					count++
+					console.log(count)
 					const salt = await bcrypt.genSalt(10)
 					const hashedPassword = await bcrypt.hash(userList[i].identification, salt)
 
@@ -31,7 +32,7 @@ const handler = async (req, res) => {
 			console.log(error)
 		}
 		
-		console.log('numero de usuarios a reestaurar: ', count)
+		console.log('numero de usuarios a reestaurar: ', count) */
 
 		res.send({
 			message: 'respuestad',
