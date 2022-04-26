@@ -49,7 +49,7 @@ const FindUserAdmin = (props) => {
 
     const getDataUser = async (id) => {
         const url = `/api/getUser?id=${id}`;
-        const result = await axios.get(url, id);
+        const result = await axios.get(url);
         props.changeData(result.data.message);
         console.log(result.data.message);
         setValidateInfoUser(true);
