@@ -57,7 +57,7 @@ const FindUserAdmin = (props) => {
 
     const getDataBusiness = async (id) => {
         const url = `/api/getBusiness?id=${id}`;
-        const result = await axios.get(url, id);
+        const result = await axios.get(url);
         props.changeData(result.data.message);
     };
 
