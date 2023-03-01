@@ -8,24 +8,25 @@ const LayoutPlanes = () => {
             <div className="linea2"></div>
             <div className="linea"></div>
             <Planes
-                title="PERSONAS"
+                title="PLAN PREMIUM"
                 img="/img/odontologo-izquierda.png"
                 position="1/3"
-                valor="12"
+                valor="19.26"
                 fecha="AÑO"
                 colaborador="UN SOLO PAGO ANUAL*"
-                tit1="Plan Red Bucal ® PERSONAS:"
-                text1="Diseñado especialmente para resguardar la salud bucal de aquellas personas que desean darle tratamiento preventivo y/o correctivo a su salud bucal."
+                tit1="Plan de Salud Premium Red Bucal:"
+                text1="Diseñado especialmente para resguardar la salud dental y la salud general de aquellas personas que desean darle tratamiento preventivo y/o correctivo a su salud en general."
+
             />
             <Planes
-                title="EMPRESAS"
+                title="PLAN EMPRESAS"
                 img="/img/odontologo-derecha.png"
                 position="3/5"
                 valor="1"
                 fecha="MES"
                 colaborador="POR COLABORADOR*"
                 tit1="Plan Red Bucal ® EMPRESAS:"
-                text1="Colocamos a su disposición un producto sencillo, que le permite ofrecer servicios preventivos y/o correctivos a sus colaboradores, para el cuidado de su salud bucal."
+                text1="Colocamos a su disposición un producto sencillo, que le permite ofrecer servicios preventivos y/o correctivos a sus colaboradores, para el cidado de su salud bucal."
             />
             <div className="linea3"></div>
             <div className="linea4"></div>
