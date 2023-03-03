@@ -1,16 +1,15 @@
 const location = [
-    /* 8.374306, -80.159611 */
     {
         name:
             "Río Hato Plaza Farallones Clínica de Ortodoncia y Estética Dental",
         id: 0,
-        latitude: 8.374306,
-        longitude: -80.159611,
+        latitude: 8.375104,  
+        longitude: -80.159825,
         color: "#D97C6E",
         contact: "908-8364 / 6305-9087",
         location:
             "Plaza Farallones, Vía Carretera Panamericana, Río Hato, Local 14",
-        url: "https://goo.gl/maps/58wpZ535Ckjj2Vqv8",
+        url: "https://goo.gl/maps/DDbcwcQoedRKf8GF7",
         photo: "RIO-HATO.jpg",
     },
     /* 8.877172, -79.760975 */
@@ -26,19 +25,6 @@ const location = [
         url: "https://goo.gl/maps/X2WsAM2G9hZBcTiN7",
         photo: "La-chorrera.jpg",
     },
-    /* 8.889181, -79.749204 */
-    /* {
-        name: 'Market Plaza Clínica de Ortodoncia y Estética Dental',
-        id: 2,
-        latitude: 8.889181,
-        longitude: -79.749204,
-        color: '#60A9CA',
-        contact: '344-5830 /31',
-        location: 'Urbanización Costa Verde, La Chorrera ',
-        url: 'https://goo.gl/maps/ZL77VWb5SUvXYG7x7'
-        photo: ''
-    }, */
-    /* 8.921982, -79.704878 */
     {
         name: "Westland Mall Clínica de Ortodoncia y Estética Dental",
         id: 2,
@@ -51,7 +37,6 @@ const location = [
         url: "https://goo.gl/maps/urfkNFYiN6pXaPbd9",
         photo: "WESTLAND-MALL.jpg",
     },
-    /* 8.972661, -79.552953 */
     {
         name: "Albrook Mall Clínica de Ortodoncia y Estética Dental",
         id: 3,
@@ -63,55 +48,6 @@ const location = [
         url: "https://goo.gl/maps/AKsBQuYNMSyfEdJs7",
         photo: "albrook-mall.jpeg",
     },
-    /* 8.972867, -79.551822 */
-    /* {
-        name: 'Albrook Mall Clínicas de Ortodoncia de Panamá',
-        id: 5,
-        latitude: 8.972867,
-        longitude: -79.551822,
-        color: '#60A9CA',
-        contact: '203-5887',
-        location: 'Avenida Marginal, Panamá ',
-        url: 'https://goo.gl/maps/B6w8aNSVmBSFpuob8'
-        photo: ''
-    }, */
-    /* 8.985901, -79.522712 */
-    /* {
-        name: 'Obarrio Clínicas de Ortodoncia de Panamá',
-        id: 6,
-        latitude: 8.985901,
-        longitude: -79.522712,
-        color: '#D97C6E',
-        contact: '2698219',
-        location: '----------',
-        url: 'https://goo.gl/maps/cGrT9d7XwBmoekZX9'
-        photo: ''
-    }, */
-    /* 9.003472, -79.516607 */
-    /* {
-        name: 'San Fernando Consultorio Especializado Dento Facial',
-        id: 7,
-        latitude: 9.003472,
-        longitude: -79.516607,
-        color: '#F1CD5F',
-        contact: '229-6668/6669',
-        location: 'Clinica Hospital San Fernando Vía España, Panamá',
-        url: 'https://goo.gl/maps/cDg33erzGug21hqJ6'
-        photo: ''
-    }, */
-    /* 9.029054, -79.534513 */
-    /* {
-        name: 'Altaplaza Clínicas de Ortodoncia de Panamá',
-        id: 8,
-        latitude: 9.029054,
-        longitude: -79.534513,
-        color: '#F1CD5F',
-        contact: '200-2286',
-        location: '------------',
-        url: 'https://goo.gl/maps/JHaEKvYtgakwxazw5'
-        photo: ''
-    }, */
-    /* 9.029225, -79.530707 */
     {
         name: "Centennial Plaza Clínica de Ortodoncia y Estética Dental",
         id: 4,
@@ -124,19 +60,6 @@ const location = [
         url: "https://goo.gl/maps/CMJw6sphyDT1CNoHA",
         photo: "CENTENNIAL-MALL.jpg",
     },
-    /* 9.037799, -79.482980 */
-    /* {
-        name: 'San Judas Tadeo Clínicas de Ortodoncia de Panamá',
-        id: 10,
-        latitude: 9.037799,
-        longitude: -79.482980,
-        color: '#60A9CA',
-        contact: '277-5020',
-        location: '------------',
-        url: 'https://goo.gl/maps/R7rK7oRMcsYFbqvC6'
-        photo: ''
-    }, */
-    /* 9.041202, -79.479046 */
     {
         name: "Villa Lucre  Clínica de Ortodoncia y Estética Dental",
         id: 5,
@@ -164,8 +87,7 @@ const location = [
     },
     /* 9.069618, -79.460344 */
     {
-        name:
-            "Brisas del Golf Signature Plaza Clínica de Ortodoncia y Estética Dental",
+        name:"Brisas del Golf Signature Plaza Clínica de Ortodoncia y Estética Dental",
         id: 7,
         latitude: 9.069618,
         longitude: -79.460344,
@@ -175,30 +97,105 @@ const location = [
         url: "https://goo.gl/maps/dUw9goJnTeK33XD87",
         photo: "BRISAS-DEL-GOLF.jpg",
     },
-    /* 9.068931, -79.452001 */
-    /* {
-        name: 'Brisas del Golf Clínicas de Ortodoncia de Panamá',
+    {
+        name: "Clínica Dental Pinzón",
+        id: 8,
+        latitude: 9.358639, 
+        longitude: -79.895449,
+        color: "#8A4874",
+        contact: "6676-8886",
+        location: "Colón, Calle 10 y avenida Roosevelt, Edificio N°10092, planta baja, diagonal o antes del Albergue Maria",
+        url: "https://goo.gl/maps/ZRUQxJ9CXWtNorRc7",
+        photo: "append-ClinicaPinzon.jpeg",
+    },
+    {
+        name: "CliniLab - Santa María",
+        id: 9,
+        latitude: 9.027289, 
+        longitude: -79.467839,
+        color: "#24948C",
+        contact: "310-0680",
+        location: "PH Plaza Santa Maria entre Chanis y Costa del Este, al lado de Banco General, planta baja",
+        url: "https://goo.gl/maps/vQGWGooho4jd8D5P7",
+        photo: "append-Santa-Maria.jpg",
+    },
+    {
+        name: "CliniLab - El Dorado",
+        id: 10,
+        latitude: 9.009928, 
+        longitude: -79.534067,
+        color: "#123F3C",
+        contact: "310-0680",
+        location: "Edificio PH Plaza Alhambra, local 12, planta baja",
+        url: "https://goo.gl/maps/GWYZvqR5Vnfqp4dr5",
+        photo: "append-Dorado.jpg",
+    },
+	{
+        name: "CliniLab - Costa Verde",
+        id: 11,
+        latitude: 8.896674, 
+        longitude: -79.752352,
+        color: "#22E122",
+        contact: "",
+        location: "La Chorrera, Plaza Paseo Costa Verde, al lado de RAENCO, planta baja",
+        url: "https://goo.gl/maps/YJg6nuR7KrXBGjhw6",
+        photo: "append-Costa-verde.jpg",
+    },
+	{
+        name: "CliniLab - Casco Antiguo",
+        id: 12,
+        latitude: 8.953781, 
+        longitude: -79.535615,
+        color: "#17DECA",
+        contact: "",
+        location: "Edificio PH Marques de Portago, calle 8ª este, planta baja",
+        url: "https://goo.gl/maps/SCfmSXPTjuHLFQTw5",
+        photo: "append-Casco.jpg",
+    },
+    {
+        name: "CliniLab - Calle 50",
+        id: 13,
+        latitude: 8.981865, 
+        longitude: -79.521733,
+        color: "#B4BA5D",
+        contact: "310-0680",
+        location: "Calle 50 y frente al hotel RIU, Edificio Vista Mar, planta baja",
+        url: "https://goo.gl/maps/Wo2T8vqzfx5LxG4b6",
+        photo: "append-Calle-50.jpg",
+    },
+	{
+        name: "Radimagen",
         id: 14,
-        latitude: 9.068931,
-        longitude: -79.452001,
-        color: '#D97C6E',
-        contact: '2203686',
-        location: '---------',
-        url: 'https://goo.gl/maps/MDFS5i5vmTP2jNHk6'
-        photo: ''
-    }, */
-    /* 9.098390, -79.351771 */
-    /* {
-        name: 'MegaMall Clínica de Ortodoncia y Estética Dental',
+        latitude: 8.987917,
+        longitude:  -79.505218,
+        color: "#9C3D25",
+        contact: "382-1424",
+        location: "Corregimiento de San Francisco, Avenida Israel, entre calle 74 y 73, al lado de la estación Texaco",
+        url: "https://goo.gl/maps/Wyx24Q6NGsyZjXyP8",
+        photo: "append-Radimagen.jpeg",
+    },
+	{
+        name: "CliniLab - Santiago",
         id: 15,
-        latitude: 9.098390,
-        longitude: -79.351771,
-        color: '#F1CD5F',
-        contact: '389-6765 / 388-2657',
-        location: 'Carr. Panamericana, Panamá',
-        url: 'https://goo.gl/maps/2kaJ68Pnn1xtnJW79'
-        photo: ''
-    }, */
+        latitude: 8.101559, 
+        longitude: -80.966700,
+        color: "#5B4B5B",
+        contact: "6279-2635",
+        location: "Santiago de Veraguas, Centro Comercial Galerías.",
+        url: "https://goo.gl/maps/jog4oWCPP63J3azy7",
+        photo: "append-Santiago.jpg",
+    },
+	{
+        name: "CliniLab - Penonomé",
+        id: 16,
+        latitude: 8.512556,
+        longitude: -80.355548,
+        color: "#60A9CA",
+        contact: "997-8514",
+        location: "Penonomé, Plaza Boulevard, planta baja",
+        url: "https://goo.gl/maps/UEZS1W5zNzSAWfxMA",
+        photo: "append-Penonome.jpg",
+    },
 ];
 
 export default location;

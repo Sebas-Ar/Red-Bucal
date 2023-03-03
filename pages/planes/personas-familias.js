@@ -32,14 +32,14 @@ const personas = () => {
             <PersonalResponsive imgBig="/img/cambio.jpg"/> */}
             <div className="plan">
                 <Planes
-                    title="PERSONAS"
+                    title="PLAN PREMIUM"
                     img="/img/odontologo-izquierda.png"
                     position="1/3"
-                    valor="12"
+                    valor="19.26"
                     fecha="AÑO"
                     colaborador="UN SOLO PAGO ANUAL*"
-                    tit1="Plan Red Bucal ® PERSONAS:"
-                    text1="Diseñado especialmente para resguardar la salud bucal de aquellas personas que desean darle tratamiento preventivo y/o correctivo a su salud bucal."
+                    tit1="Plan de Salud Premium Red Bucal:"
+                    text1="Diseñado especialmente para resguardar la salud dental y la salud general de aquellas personas que desean darle tratamiento preventivo y/o correctivo a su salud en general."
                 />
             </div>
             <Banner />

@@ -62,13 +62,13 @@ const NavPhone = () => {
                             <div className="linea"></div>
                             <Link href="/planes/personas-familias">
                                 <a>
-                                    <li style={validateUrl('/planes/personas-familias')}>PERSONA & FAMILIAS</li>
+                                    <li style={validateUrl('/planes/personas-familias')}>PLAN PREMIUM</li>
                                 </a>
                             </Link>
                             <div className="linea"></div>
                             <Link href="/planes/empresarial">
                                 <a>
-                                    <li style={validateUrl('/planes/empresarial')}>EMPRESARIAL</li>
+                                    <li style={validateUrl('/planes/empresarial')}>PLAN EMPRESAS</li>
                                 </a>
                             </Link>
                         </ul>
@@ -80,11 +80,25 @@ const NavPhone = () => {
                         </a>
                     </Link>
                     <div className="linea"></div>
-                    <Link href="/beneficios">
-                        <a>
-                            <li style={validateUrl('/beneficios')}>BENEFICIOS</li>
-                        </a>
-                    </Link>
+
+                    <li>
+                        <ul>
+                            <li style={validateUrlPlanes('/beneficios','/prevencion')}><div>BENEFICIOS <span>▼</span></div></li>
+                            <div className="linea"></div>
+                            <Link href="/beneficios">
+                                <a>
+                                    <li style={validateUrl('/beneficios')}>SALUD DENTAL</li>
+                                </a>
+                            </Link>
+                            <div className="linea"></div>
+                            <Link href="/prevencion">
+                                <a>
+                                    <li style={validateUrl('/prevencion')}>MEDICINA GENERAL</li>
+                                </a>
+                            </Link>
+                        </ul>
+                    </li>
+
                     <div className="linea"></div>
                     <Link href="/nosotros">
                         <a>

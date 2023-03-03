@@ -5,21 +5,17 @@ const FamiliasResponsive = () => {
         <section className="content">
             <div className="box">
                 <h2>
-                    <span className="personas">PERSONAS</span>
-                    <span className="familias">& FAMILIAS</span>
+                    <span className="personas">PLAN</span>
+                    <span className="familias">PREMIUM</span>
                 </h2>
             </div>
             <br />
             <div className="img"></div>
             <h3>CONFIANZA & AYUDA</h3>
             <div className="info">
-                <p>
-                    Con el objetivo de brindarle apoyo para elegir la opción que
-                    más se ajusta a sus necesidades le ofrecemos nuestro plan{" "}
-                    <strong>PLUS INDIVIDUAL</strong> O <strong>FAMILIAR</strong>{" "}
-                    para así protegerlo de gastos dentales inesperados y
-                    ayudarlo a mantener su salud oral y la de su familia en
-                    óptimas condiciones.
+                <p> Con el objetivo de brindarle seguridad al mantener su salud bucal 
+                    y la de su familia le ofrecemos nuestro {" "}<strong>Plan Premium</strong> {" "}
+                    para así apoyarle con tratamientos preventivos y/o gastos dentales inesperados.
                 </p>
             </div>
 

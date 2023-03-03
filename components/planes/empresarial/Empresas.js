@@ -19,10 +19,13 @@ const Empresas = () => {
             <div className="img"></div>
             <div className="text">
                 <hgroup>
-                    <h2>EMPRESAS</h2>
+                    <h2>PLAN EMPRESAS</h2>
                     <h3>CONFIANZA & AYUDA</h3>
                 </hgroup>
-                <p>Con el objetivo de brindarle apoyo al mantener la salud bucal de sus colaboradores, le ofrecemos nuestro plan EMPRESARIAL. A un bajo costo, con alto impacto, colocamos a disposición de sus empleados beneficios para tratamientos dentales preventivos y/o gastos inesperados, generando en ellos vínculos de lealtad que se reflejan en su desempeño laboral</p>
+                <p>Con el objetivo de brindarle apoyo en mantener su Salud General, 
+                    le ofrecemos nuestro {" "}<strong>Plan Empresas</strong> {" "} a un bajo costo con Beneficios 
+                    de Salud Dental y Beneficios en Medicina Preventiva y/o gastos inesperados, 
+                    generando  vínculos de lealtad en todos nuestros clientes.</p>
                 <div className="botones">
                     <button onClick={contacto} className="contacto">Contacto</button>
                     <button onClick={registro} className="registro">Registro</button>

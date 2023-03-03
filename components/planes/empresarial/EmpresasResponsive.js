@@ -4,7 +4,7 @@ const EmpresasResponsive = () => {
     return (
         <section className="content">
             <hgroup>
-                <h2>EMPRESAS</h2>
+                <h2>PLAN EMPRESAS</h2>
                 <h3>CONFIANZA & AYUDA</h3>
             </hgroup>
             <br />
@@ -12,12 +12,11 @@ const EmpresasResponsive = () => {
 
             <div className="info">
                 <p>
-                    Nos preocupa su salud oral y la de sus colaboradores por lo
-                    que, como estrategia de atracción y retención de talento,
-                    brindándoles a un bajo costo y alto impacto en beneficios
-                    para la calidad de la salud oral de los mismos, colocamos a
-                    su disposición nuestro plan{" "}
-                    <strong>PLUS EMPRESARIAL</strong>.
+                Con el objetivo de brindarle apoyo en mantener su Salud General, 
+                le ofrecemos  nuestro {" "}<strong>Plan Empresas</strong> {" "}
+                a un bajo costo con Beneficios de Salud Dental y Beneficios en 
+                Medicina Preventiva y/o gastos inesperados, generando  vínculos 
+                de lealtad en todos nuestros clientes.
                 </p>
             </div>
 

@@ -5,7 +5,10 @@ import Head from 'next/head'
 //Genera los Links
 const links = [
   { href: '/red', label: 'RED' },
+  /*
   { href: '/beneficios', label: 'BENEFICIOS' },
+  { href: '/prevencion', label: 'PREVENCION' },
+  */
   { href: '/nosotros', label: 'NOSOTROS' },
   { href: '/contacto', label: 'CONTACTO' },
 ].map(link => {
@@ -31,6 +34,14 @@ const Nav = () => {
     return {
       paddingBottom: (url === urlPersona) || (url === urlEmpresas) ? "3px" : "",
       borderBottom: (url === urlPersona) || (url === urlEmpresas) ? "4px solid #091C47" : ""
+    }
+  }
+
+  //genera el borde de la pagina actual para los Beneficios
+  const bordeBeneficios = (urlDescuentos, urlPrevencion) => {
+    return {
+      paddingBottom: (url === urlDescuentos) || (url === urlPrevencion) ? "3px" : "",
+      borderBottom: (url === urlDescuentos) || (url === urlPrevencion) ? "4px solid #091C47" : ""
     }
   }
 
@@ -65,16 +76,34 @@ const Nav = () => {
         <ul>
             <Link href="/planes/personas-familias">
               <a>
-                <li className="link" style={borde('/planes/personas-familias')}>PERSONAS & FAMILIAS</li>
+                <li className="link" style={borde('/planes/personas-familias')}>PLAN PREMIUM</li>
               </a>
             </Link>
             <Link href="/planes/empresarial">
               <a>
-                <li className="link" style={borde('/planes/empresarial')}>EMPRESARIAL</li>
+                <li className="link" style={borde('/planes/empresarial')}>PLAN EMPRESAS</li>
               </a>
             </Link>
         </ul>
       </li>
+
+      <li className="link" style={bordeBeneficios('/beneficios', '/prevencion')}>
+        BENEFICIOS
+        <span>▼</span>
+        <ul>
+            <Link href="/beneficios">
+              <a>
+                <li className="link" style={borde('/beneficios')}>SALUD DENTAL</li>
+              </a>
+            </Link>
+            <Link href="/prevencion">
+              <a>
+                <li className="link" style={borde('/prevencion')}>MEDICINA GENERAL</li>
+              </a>
+            </Link>
+        </ul>
+      </li>
+
       {links.map(({ key, href, label }) => (
         <li key={key}>
           <Link href={href}>

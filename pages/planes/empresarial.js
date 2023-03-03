@@ -31,14 +31,14 @@ const empresarial = () => {
             <PersonalResponsive imgBig="/img/operacion.png"/> */}
             <div className="plan">
                 <Planes
-                    title="EMPRESAS"
+                    title="PLAN EMPRESAS"
                     img="/img/odontologo-derecha.png"
                     position="3/5"
                     valor="1"
                     fecha="MES"
-                    colaborador="POR COLABORADOR*"
+                    colaborador="POR COLABORADOR**"
                     tit1="Plan Red Bucal ® EMPRESAS:"
-                    text1="Colocamos a su disposición un producto sencillo, que le permite ofrecer servicios preventivos y/o correctivos a sus colaboradores, para el cuidado de su salud bucal."
+                    text1="Colocamos a su disposición un producto sencillo, que le permite ofrecer servicios preventivos y/o correctivos a sus colaboradores, para el cidado de su salud bucal."
                 />
             </div>
             <Banner />

@@ -55,7 +55,7 @@ const LayoutInfoClinics = (props) => {
                 }
 
                 h3 {
-                    font-size: 24px;
+                    font-size: 20px;
                     color: var(--mainColor);
                     text-align: center;
                 }
@@ -106,7 +106,7 @@ const LayoutInfoClinics = (props) => {
                     }
 
                     h3 {
-                        font-size: 20px;
+                        font-size: 16px;
                     }
                 }
             `}</style>

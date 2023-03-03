@@ -5,7 +5,12 @@ const Cobertura = () => {
         <div className="content">
             <h2>NUESTRA COBERTURA</h2>
             <div className="linea"></div>
-            <p>Anualmente cubrimos su consulta con diagnóstico y limpieza dental, y otros beneficios de descuento en tratamientos odontológicos, que van desde el 20% hasta el 100%.</p>
+            <p>Anualmente contamos con dos Planes de Salud: el <b>Plan Premium con Beneficios Dentales</b> una consulta con diagnóstico y limpieza dental, 
+                y otros beneficios de descuento en tratamientos dentales que van desde el 20% al 80%. Adicional en el <b>Plan Empresas</b> se tiene todos 
+                beneficios antes mencionados y <b>Beneficios en Medicina Preventiva</b> como lo son: el costo fijo de B/. 5.00 para las consultas de 
+                Medicina General, descuentos en consultas especializadas y beneficios de descuentos del 25% en todo tipo de laboratorios y 
+                exámenes especializados en nuestra red de clínicas.
+</p>
             <style jsx>{`
                 
                 .content {

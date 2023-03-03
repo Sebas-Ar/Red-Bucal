@@ -20,11 +20,11 @@ const Familias = () => {
             <div className="puntos"></div>
             <div className="text">
                 <h2>
-                    <span className="personas">PERSONAS</span>
-                    <span className="familias">& FAMILIAS</span>
+                    <span className="personas">PLAN</span>
+                    <span className="familias">PREMIUM</span>
                 </h2>
                 <h3>CONFIANZA & AYUDA</h3>
-                <p>Con el objetivo de brindarle seguridad al mantener su salud bucal y la de su familia, le ofrecemos nuestro plan PERSONAL O FAMILIAR, para así apoyarlo con tratamientos preventivos y/o gastos dentales inesperados.</p>
+                <p>Con el objetivo de brindarle seguridad al mantener su salud bucal y la de su familia le ofrecemos nuestro {" "}<strong>Plan Premium</strong> {" "} para así apoyarle con tratamientos preventivos y/o gastos dentales inesperados.</p>
                 <div className="botones">
                     <button onClick={contacto} className="contacto">Contacto</button>
                     <button onClick={registro} className="registro">Registro</button>
