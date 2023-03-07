@@ -6,15 +6,24 @@ const NuestrosClientes = () => {
             <h2>NUESTROS CLIENTES</h2>
             <div className="linea"></div>
             <div className="imagenes">
-                <img src="/img/logos/capital-bistro.png" alt="fallo" />
-                <img src="/img/logos/casa-duran.png" alt="error" />
-                <img src="/img/logos/clinilab.png" alt="error" />
-                <img src="/img/logos/denti-clinica.jpg" alt="error" />
+                <img src="/img/logos/_banescoSeguros.jpg" alt="error" />
+                <img src="/img/logos/_westland.jpg" alt="error" />  
+                <img src="/img/logos/_rigaServices.jpg" alt="error" />
+                <img src="/img/logos/_ir.jpg" alt="error" />
 
-                <img src="/img/logos/grupo-lux.jpg" alt="error" />
-                <img src="/img/logos/Panamerican.png" alt="error" />
-                <img src="/img/logos/radimagen-logo.png" alt="error" />
-                <img src="/img/logos/Seguros-vivir.jpg" alt="error" />
+                <img src="/img/logos/_aliadoSeguros.jpg" alt="fallo" />
+                <img src="/img/logos/_bancoDelta.jpg" alt="error" />
+                <img src="/img/logos/_clinilab.jpg" alt="error" />
+                <img src="/img/logos/_vivirSeguros.jpg" alt="error" />
+                
+                <img src="/img/logos/_itsPTY.jpg" alt="error" />
+                <img src="/img/logos/_radimagen.jpg" alt="error" />
+                <img src="/img/logos/_dentiClinica.jpg" alt="error" />
+                <img src="/img/logos/_elCisne.jpg" alt="error" />                            
+                
+                <img src="/img/logos/_panamericanNetwork.jpg" alt="error" />
+                <img src="/img/logos/_clinicaOrtodoncia.jpg" alt="error" />
+
             </div>
 
             <style jsx>{`
