@@ -6,23 +6,23 @@ const NuestrosClientes = () => {
             <h2>NUESTROS CLIENTES</h2>
             <div className="linea"></div>
             <div className="imagenes">
-                <img src="/img/logos/_banescoSeguros.jpg" alt="error" />
-                <img src="/img/logos/_westland.jpg" alt="error" />  
-                <img src="/img/logos/_rigaServices.jpg" alt="error" />
-                <img src="/img/logos/_ir.jpg" alt="error" />
+                <img src="/img/logos/_banescoSeguros.png" alt="fallo" />
+                <img src="/img/logos/_westland.png" alt="error" />  
+                <img src="/img/logos/_rigaServices.png" alt="error" />
+                <img src="/img/logos/_ir.jpeg" alt="error" />
 
-                <img src="/img/logos/_aliadoSeguros.jpg" alt="fallo" />
-                <img src="/img/logos/_bancoDelta.jpg" alt="error" />
-                <img src="/img/logos/_clinilab.jpg" alt="error" />
-                <img src="/img/logos/_vivirSeguros.jpg" alt="error" />
+                <img src="/img/logos/_aliadoSeguros.png" alt="error" />
+                <img src="/img/logos/_bancoDelta.png" alt="error" />
+                <img src="/img/logos/_clinilab.png" alt="error" />
+                <img src="/img/logos/_vivirSeguros.png" alt="error" />
                 
-                <img src="/img/logos/_itsPTY.jpg" alt="error" />
-                <img src="/img/logos/_radimagen.jpg" alt="error" />
-                <img src="/img/logos/_dentiClinica.jpg" alt="error" />
-                <img src="/img/logos/_elCisne.jpg" alt="error" />                            
+                <img src="/img/logos/_itsPTY.png" alt="error" />
+                <img src="/img/logos/_radimagen.png" alt="error" />
+                <img src="/img/logos/_dentiClinica.png" alt="error" />
+                <img src="/img/logos/_elCisne.png" alt="error" />                            
                 
-                <img src="/img/logos/_panamericanNetwork.jpg" alt="error" />
-                <img src="/img/logos/_clinicaOrtodoncia.jpg" alt="error" />
+                <img src="/img/logos/_panamericanNetwork.png" alt="error" />
+                <img src="/img/logos/_clinicaOrtodoncia.png" alt="error" />
 
             </div>
 
