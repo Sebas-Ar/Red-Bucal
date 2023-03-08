@@ -7,11 +7,12 @@ const Respaldo = () => {
             <div className="linea"></div>
             <p>En alianza con nosotros a través de estas clínicas hemos logrado generar el valor agregado que caracteriza nuestra visión conectado así las sonrisas con una salud bucal más responsable.</p>
             <div className="imagenes">
-                <img src="/img/logo1.png" alt=""/>
-                <img src="/img/logo2.png" alt=""/>
-                <img src="/img/logo3.png" alt=""/>
-                <img src="/img/logo4.png" alt=""/>
-                <img src="/img/logo5.png" alt=""/>
+                <img src="/img/logo16.png" alt=""/>
+                <img src="/img/logo17.png" alt=""/>
+                <img src="/img/logo18.png" alt=""/>
+                <img src="/img/logo19.png" alt=""/>
+                <img src="/img/logo20.png" alt=""/>
+                <img src="/img/logo22.png" alt=""/>
             </div>
             <div className="dientes"></div>
             
@@ -23,7 +24,7 @@ const Respaldo = () => {
                     grid-template-rows: 1fr 1.5fr 1.5fr;
                 }
                 img {
-                    height: 100px;
+                    height: 30px;
                 }
 
                 .linea, h2 {
