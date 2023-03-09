@@ -5,12 +5,11 @@ const Cobertura = () => {
         <div className="content">
             <h2>NUESTRA COBERTURA</h2>
             <div className="linea"></div>
-            <p>Anualmente contamos con dos Planes de Salud: el <b>Plan Premium con Beneficios Dentales</b> una consulta con diagnóstico y limpieza dental, 
-                y otros beneficios de descuento en tratamientos dentales que van desde el 20% al 80%. Adicional en el <b>Plan Empresas</b> se tiene todos 
-                beneficios antes mencionados y <b>Beneficios en Medicina Preventiva</b> como lo son: el costo fijo de B/. 5.00 para las consultas de 
-                Medicina General, descuentos en consultas especializadas y beneficios de descuentos del 25% en todo tipo de laboratorios y 
-                exámenes especializados en nuestra red de clínicas.
-</p>
+            <p>Contamos con el Nuevo <b>Plan de Salud Premium: con los mejores Beneficios en Salud Dental y excelentes Beneficios en Medicina Preventiva General </b> 
+            algunos de estos nuevos beneficios son: el costo fijo de B/. 5.00 para las consultas de Medicina General, Consultas especializadas , todo tipo de laboratorios 
+            clínicos hablamos de mas de 350 tipos de laboratorios con cobertura del 25% y Exámenes de Imagenología de todo tipo hablamos de mas de 175 tipos de exámenes 
+            con el 25% de cobertura de forma ilimitada en todo el año en nuestra red de clínicas.
+            </p>
             <style jsx>{`
                 
                 .content {
