@@ -33,7 +33,7 @@ const NuestrosClientes = () => {
                 img {
                     width: 220px;
                 }
-
+                
                 .linea,
                 h2 {
                     margin: 3rem 0;

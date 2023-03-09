@@ -5,7 +5,8 @@ const Respaldo = () => {
         <div className="content">
             <h2>RESPALDO</h2>
             <div className="linea"></div>
-            <p>En alianza con nosotros a través de estas clínicas hemos logrado generar el valor agregado que caracteriza nuestra visión conectado así las sonrisas con una salud bucal más responsable.</p>
+            <p>En alianza con nuestros clientes hemos logrado generar el valor agregado que nos caracteriza en nuestra visión en donde queremos cuidarte conectando sonrisas con una salud bucal más responsable.</p>
+            
             <div className="imagenes">
                 <img src="/img/logo16.png" alt=""/>
                 <img src="/img/logo17.png" alt=""/>
@@ -14,11 +15,12 @@ const Respaldo = () => {
                 <img src="/img/logo20.png" alt=""/>
                 <img src="/img/logo22.png" alt=""/>
             </div>
+
             <div className="dientes"></div>
             
             <style jsx>{`
-                
-                .content {
+
+                 .content {
                     margin-top: 50px;
                     display: grid;
                     grid-template-rows: 1fr 1.5fr 1.5fr;
