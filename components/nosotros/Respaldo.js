@@ -6,14 +6,14 @@ const Respaldo = () => {
             <h2>RESPALDO</h2>
             <div className="linea"></div>
             <p>En alianza con nuestros clientes hemos logrado generar el valor agregado que nos caracteriza en nuestra visión en donde queremos cuidarte conectando sonrisas con una salud bucal más responsable.</p>
-            
+
             <div className="imagenes">
-                <img src="/img/logo16.png" alt=""/>
-                <img src="/img/logo17.png" alt=""/>
-                <img src="/img/logo18.png" alt=""/>
-                <img src="/img/logo19.png" alt=""/>
+                <img src="/img/logo16.png" alt=""/> 
                 <img src="/img/logo20.png" alt=""/>
+                <img src="/img/logo17.png" alt=""/>
+                <img src="/img/logo19.png" alt=""/>
                 <img src="/img/logo22.png" alt=""/>
+                <img src="/img/logo18.png" alt=""/>                
             </div>
 
             <div className="dientes"></div>
@@ -26,7 +26,9 @@ const Respaldo = () => {
                     grid-template-rows: 1fr 1.5fr 1.5fr;
                 }
                 img {
-                    height: 30px;
+                    height: 40px;
+                    display: flex;
+                    justify-content: center;                    
                 }
 
                 .linea, h2 {
@@ -73,9 +75,13 @@ const Respaldo = () => {
                 }
 
                 .imagenes {
-                    grid-column: 1/2;
-                    grid-row:3/4;
-                    justify-self: center;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    justify-items: center;
+                    align-items: center;
+                    grid-row-gap: 2rem;
+                    grid-column-gap: 1/32rem;
+                    margin-bottom: 2rem;
                 }
 
                 .dientes {
