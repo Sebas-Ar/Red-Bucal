@@ -79,7 +79,7 @@ const InformationUser = (props) => {
 
             <label>
                 DETALLE COBERTURAS:
-            <p> {props.data.state === true ? "NO DESCARGABLE HASTA CANCELAR" : (  
+            <p> {props.data.state === false ? "NO DESCARGABLE HASTA CANCELAR" : (  
                 <a href="/archives/COBERTURA RED BUCAL-PLAN PREMIUM.pdf" download="COBERTURA RED BUCAL-PLAN PREMIUM.pdf">
                 <div className="download">
                     <div className="colorAzul"></div>

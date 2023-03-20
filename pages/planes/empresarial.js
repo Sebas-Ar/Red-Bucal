@@ -34,9 +34,9 @@ const empresarial = () => {
                     title="PLAN EMPRESAS"
                     img="/img/odontologo-derecha.png"
                     position="3/5"
-                    valor="1"
+                    valor=""
                     fecha="MES"
-                    colaborador="POR COLABORADOR**"
+                    colaborador="CONSULTENOS EL COSTO POR COLABORADOR"
                     tit1="Plan Red Bucal ® EMPRESAS:"
                     text1="Colocamos a su disposición un producto sencillo, que le permite ofrecer servicios preventivos y/o correctivos a sus colaboradores, para el cidado de su salud bucal."
                 />
