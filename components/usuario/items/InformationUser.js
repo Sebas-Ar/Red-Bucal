@@ -78,8 +78,8 @@ const InformationUser = (props) => {
             </label>
 
             <label>
-                PLANES:
-            <p> {props.data.state == "INACTIVO" ? null : (  
+                DETALLE COBERTURAS:
+            <p> {props.data.state === true ? "NO DESCARGABLE HASTA CANCELAR" : (  
                 <a href="/archives/COBERTURA RED BUCAL-PLAN PREMIUM.pdf" download="COBERTURA RED BUCAL-PLAN PREMIUM.pdf">
                 <div className="download">
                     <div className="colorAzul"></div>
@@ -99,12 +99,7 @@ const InformationUser = (props) => {
 
                 .colorAzul {
                     background-color: var(--puntoAzul);
-                }
-
-                .download {
-                    background-color: var(--puntoRojo);
-                    cursor: pointer;
-                }			
+                }		
 
                 label {
                     margin: 10px 0;
