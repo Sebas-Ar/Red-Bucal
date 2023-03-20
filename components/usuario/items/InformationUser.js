@@ -77,6 +77,18 @@ const InformationUser = (props) => {
                 <p>{props.data.email}</p>
             </label>
 
+            <label>
+                PLANES:
+            <p> {props.data.state == "INACTIVO" ? null : (  
+                <a href="/archives/COBERTURA RED BUCAL-PLAN PREMIUM.pdf" download="COBERTURA RED BUCAL-PLAN PREMIUM.pdf">
+                <div className="download">
+                    <div className="colorAzul"></div>
+                    <p>Descargar Planes</p>
+                </div>
+               </a>
+			)}</p>
+            </label>
+
             <style jsx>{`
                 section {
                     align-self: center;
@@ -84,6 +96,15 @@ const InformationUser = (props) => {
                     grid-template-columns: 1fr 1fr;
                     margin: 0 50px;
                 }
+
+                .colorAzul {
+                    background-color: var(--puntoAzul);
+                }
+
+                .download {
+                    background-color: var(--puntoRojo);
+                    cursor: pointer;
+                }			
 
                 label {
                     margin: 10px 0;

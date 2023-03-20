@@ -52,9 +52,9 @@ const BillingUser = (props) => {
                                   ).length +
                                       (props.data.state === true ? 0 : 1)) *
                                       100 *
-                                      12.84
+                                      20.61
                               ) / 100
-                            : 12.84
+                            : 20.61
                     }
                 />
             ) : (
@@ -76,13 +76,13 @@ const BillingUser = (props) => {
                                     return dep.state === false;
                                 }).length +
                                     (props.data.state === true ? 0 : 1)) *
-                                    12.84 *
+                                    19.26 *
                                     100
                             ) / 100}{" "}
                             USD
                         </p>
                     ) : (
-                        <p>12.84 USD</p>
+                        <p>19.26 USD</p>
                     )}
                 </label>
             )}
