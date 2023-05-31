@@ -75,7 +75,7 @@ const PagoVirtual = (props) => {
             /* pruebas */
             /* cclw: 'D17B05A095489D1176560B4666A283454185F353F401D0201CC5C16F92535DF6B1DEBA18E79442CC0D6F75FD024207680AFBDFD6CF015478BF30CBEF9160A08D', */
             amount: props.pago, //El monto o valor total de la transacción a realizar. NO PONER
-            taxAmount: props.pago * 0.07,
+            taxAmount: 0.00,
             email, //String MaxLength:100 Email del
             phone, //Numeric MaxLength:16 Teléfono del Tarjeta habiente,
             address, //String MaxLength:100 Dirección del Tarjeta,
