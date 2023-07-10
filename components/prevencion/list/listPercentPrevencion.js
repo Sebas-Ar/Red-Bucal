@@ -18,6 +18,13 @@ const listPercentPrevencion = [
 			"Cirugía General",
 			"Oftalmología",
 			"Medicina Interna",
+            "Cirugía Vascular",
+            "Hematología Pediátrica",
+            "Psicología",
+            "Ortopedia",
+            "Geriatría",
+            "Ginecología",
+            "Urología",
         ],
     },
     {
