@@ -2,6 +2,8 @@ import { createCanvas, loadImage, registerFont } from 'canvas';
 
 export async function generateImage(name, identification,start, end,plan) {
   
+  console.log("Inicia Generacion");
+
   // Registrar la fuente "Lato"
   registerFont('./public/fonts/Lato/Lato-Bold.ttf', { family: 'Lato', weight: 'bold' });
 
@@ -35,6 +37,8 @@ export async function generateImage(name, identification,start, end,plan) {
   let monthEnd = dateEnd.toLocaleString(locale, options);
       monthEnd=monthEnd.charAt(0).toUpperCase() + monthEnd.slice(1).toLowerCase();
   const vigenciaEnd = `${dateEnd.getDate()} | ${monthEnd} | ${dateEnd.getFullYear()}`;
+
+  console.log("Fechas");
 
   // Dibujar la plantilla de imagen en el lienzo
   context.drawImage(templateImage, 0, 0);
