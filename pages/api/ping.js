@@ -1,5 +1,3 @@
-import { generateImage } from '../../utils/imageUtils';
-
 export default (req, res) => {
     if (req.method === "GET") {
         
