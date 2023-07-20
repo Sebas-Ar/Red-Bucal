@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default async (req, res) => {
     if (req.method === "GET") {
-        const { email, name, identification, start, end,plan  } = req.query;        
+        const { email, name, identification,start, end,plan  } = req.query;
 
         const apiUrl = `${req.secure ? 'https' : 'http'}://${req.headers.host}/api/generateCarnet`;
 
@@ -16,9 +16,15 @@ export default async (req, res) => {
                 <title>Correo</title>
             </head>
             <body>
-                <h2>¡Bienvenido a tu programa de beneficios RED BUCAL!</h2>
-                <p>Nuestros especialistas están listos para atenderte en cualquiera de nuestras sucursales. Ingresando a <a href="www.redbucal.com">www.redbucal.com</a> tendrás acceso a tu perfil y todos los beneficios de la cobertura</p>
-                <p>Para más información, puedes comunicarte con nosotros al teléfono +507 63281368</p>
+                <h2>Gracias por elegir Red Bucal Tu Plan de Salud</h2>
+
+                <p>Red Bucal te brinda beneficios en Salud Dental y en Medicina Preventiva General, puedes descargar tu carnet de afiliación a Red Bucal que se encuentra adjunto, 
+                tu Plan está activo a partir de hoy y puedes comenzar a utilizarlo de inmediato, solo debes coordinar con una de nuestras sucursales la atención que necesitas.</p>
+                
+                <p>Nuestros especialistas están listos para atenderte en cualquiera de nuestras sucursales. Ingresando a www.redbucal.com tendrás acceso a tu perfil y todos los beneficios de la cobertura.
+                Para más información, puedes comunicarte a nuestra línea de Atención al Cliente vía WhatsApp <strong>+507 63281368</strong>.</p>
+                
+                <br>
                 <p>El equipo de Red Bucal</p>
             </body>
             </html>
@@ -57,7 +63,6 @@ export default async (req, res) => {
             });
 
             sgMail.send(msg);
-
         } catch (error) {
             console.error(error);
         }
