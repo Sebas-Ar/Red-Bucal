@@ -166,12 +166,7 @@ const PagoVirtual = (props) => {
                         });
 
                         await axios.get(
-                            `/api/emailpay?email=${props.data.email}
-                            &name=${props.data.name}
-                            &identification=${props.data.identification}
-                            &start=${props.data.start}
-                            &end=${props.data.end}
-                            &plan=${props.data.plan}`
+                            `/api/emailpay?email=${props.data.email}`
                         );
 
                         props.changeVirtual();

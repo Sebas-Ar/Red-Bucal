@@ -1,11 +1,8 @@
 import sgMail from "@sendgrid/mail";
-import axios from "axios";
 
-export default async (req, res) => {
+export default (req, res) => {
     if (req.method === "GET") {
-        const { email, name, identification, start, end,plan  } = req.query;        
-
-        const apiUrl = `${req.secure ? 'https' : 'http'}://${req.headers.host}/api/generateCarnet`;
+        const { email } = req.query;
 
         sgMail.setApiKey(process.env.TOKEN_SEND_GRID);
 
@@ -23,43 +20,20 @@ export default async (req, res) => {
             </body>
             </html>
         `;
-
+        console.log("sending email to " + email);
         const msg = {
-            to: email.trim(),
+            to: email,
+            /* from: 'xevaz.ariasd@gmail.com', */
             from: "redbucal.info@gmail.com",
             subject: "CONTACTENOS - Red Bucal",
             text: "esete es el texto de inicio",
             html: contentHTML,
-            attachments: [],
         };
 
-    
         try {
-            
-            const params = {
-                name,
-                identification,
-                start,
-                end,
-                plan
-              };
-          
-            const response = await axios.get(apiUrl, {
-                params: params,
-                responseType: 'arraybuffer'
-              });
-
-            msg.attachments.push({
-                content: Buffer.from(response.data).toString('base64'),//pdfBytes.toString('base64'),
-                filename: 'carnet.png',
-                type: 'image/png',
-                disposition: 'attachment',
-            });
-
             sgMail.send(msg);
-
         } catch (error) {
-            console.error(error);
+            console.log(error);
         }
 
         res.status(200).json({

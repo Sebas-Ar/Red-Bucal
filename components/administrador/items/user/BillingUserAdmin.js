@@ -17,6 +17,7 @@ const BillingAdmin = (props) => {
                     state: check,
                     identification: props.data.identification,
                 });
+
                 if (result.data.status) {
                     Swal.fire({
                         position: "center",
@@ -26,16 +27,12 @@ const BillingAdmin = (props) => {
                         timer: 1000,
                     });
                     // send pay email to user
+
                     if (props.data.email) {
-                        const apiEmail = `/api/emailpay?email=${result.data.data.email}
-                        &name=${result.data.data.name}
-                        &identification=${result.data.data.identification}
-                        &start=${result.data.data.start}
-                        &end=${result.data.data.end}
-                        &plan=${result.data.data.plan}`;
-                        
+                        const apiEmail = `/api/emailpay?email=${props.data.email}`;
                         await axios.get(apiEmail);
                     }
+
                     props.changeData(result.data.data);
                 }
             } else {
@@ -48,13 +45,11 @@ const BillingAdmin = (props) => {
                 });
             }
         } else if (props.type === "master") {
-            
             const url = "/api/editOneUser";
             let result = await axios.put(url, {
                 state: check,
                 identification: props.data.identification,
             });
-
             if (result.data.status) {
                 Swal.fire({
                     position: "center",
@@ -65,12 +60,7 @@ const BillingAdmin = (props) => {
                 });
 
                 if (props.data.email && check === true) {
-                    const apiEmail = `/api/emailpay?email=${result.data.data.email}
-                                    &name=${result.data.data.name}
-                                    &identification=${result.data.data.identification}
-                                    &start=${result.data.data.start}
-                                    &end=${result.data.data.end}
-                                    &plan=${result.data.data.plan}`;
+                    const apiEmail = `/api/emailpay?email=${props.data.email}`;
                     await axios.get(apiEmail);
                 }
 

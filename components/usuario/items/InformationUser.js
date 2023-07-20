@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import AddUser from "./AddUser";
-import BotonAgregar from "../../carnet/carnet";
 
 const InformationUser = (props) => {
     const [handleAddUser, setHandleAddUser] = useState(false);
@@ -87,13 +86,6 @@ const InformationUser = (props) => {
                     <p>Descargar Planes</p>
                 </div>
                </a>
-			)}</p>
-            </label>
-
-            <label>
-                CARNET:
-            <p> {props.data.state === false ? "NO DESCARGABLE HASTA CANCELAR" : (  
-                <BotonAgregar data={props.data}/>
 			)}</p>
             </label>
 
