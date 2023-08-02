@@ -3,11 +3,7 @@ import { generateImage } from '../../utils/imageUtils';
 export default async (req, res) => {
     if (req.method === "GET") {
         
-        console.log("Inicia");
-
         const { name, identification,start, end,plan } = req.query;
-
-        console.log(req.query);
 
         // Generar la imagen utilizando los parámetros recibidos
         const imageBytes = await generateImage(name.trim(), identification.trim(),start.trim(), end.trim(),plan);

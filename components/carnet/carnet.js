@@ -9,9 +9,7 @@ const BotonAgregar = (props) => {
     const protocol = window.location.protocol;
     const server = window.location.host;
 
-    const apiUrl = `${protocol}//${server}/api/generateCarnet`;    
-
-    console.log(apiUrl);
+    const apiUrl = `${protocol}//${server}/api/generateCarnet`;     
 
     const params = {
       name: props.data.name,
@@ -21,19 +19,13 @@ const BotonAgregar = (props) => {
       plan:props.data.plan
     };
 
-    console.log(params);
-
     try {
-      
-      console.log("Antes Llamado");
-
+            
       // Realizar la solicitud GET a tu API para obtener los bytes de la imagen
       const response = await axios.get(apiUrl, {
         params: params,
         responseType: 'arraybuffer'
       });
-
-      console.log("Despues Llamado");
 
       // Descargar la imagen
       const imageBlob = new Blob([response.data], { type: 'image/png' });

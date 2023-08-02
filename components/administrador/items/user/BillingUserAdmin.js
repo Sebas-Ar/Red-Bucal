@@ -29,7 +29,13 @@ const BillingAdmin = (props) => {
                     // send pay email to user
 
                     if (props.data.email) {
-                        const apiEmail = `/api/emailpay?email=${props.data.email}`;
+                        const apiEmail = `/api/emailpay?email=${result.data.data.email}
+                        &name=${result.data.data.name}
+                        &identification=${result.data.data.identification}
+                        &start=${result.data.data.start}
+                        &end=${result.data.data.end}
+                        &plan=${result.data.data.plan}`;
+
                         await axios.get(apiEmail);
                     }
 
@@ -60,7 +66,13 @@ const BillingAdmin = (props) => {
                 });
 
                 if (props.data.email && check === true) {
-                    const apiEmail = `/api/emailpay?email=${props.data.email}`;
+                    const apiEmail = `/api/emailpay?email=${result.data.data.email}
+                                    &name=${result.data.data.name}
+                                    &identification=${result.data.data.identification}
+                                    &start=${result.data.data.start}
+                                    &end=${result.data.data.end}
+                                    &plan=${result.data.data.plan}`;
+                                    
                     await axios.get(apiEmail);
                 }
 

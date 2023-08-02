@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import validateDate from "../../../../utils/validateDate";
 import axios from "axios";
+import CarnetLabel from '../../../carnet/carnetLabel';
+import BotonAgregar from "../../../carnet/carnet";
 
 const InfoAdmin = (props) => {
     const [info, setInfo] = useState({});
@@ -136,6 +138,18 @@ const InfoAdmin = (props) => {
                     value={info.email}
                     onChange={onchange}
                 />
+            </label>
+            <label>
+                CARNET: <br></br>
+            {props.data.state === false ? (
+                "NO ES POSIBLE DESCARGARLO HASTA CANCELAR"
+            ) : (
+                <label>
+                <CarnetLabel data={props.data} />
+                <BotonAgregar data={props.data}/>
+                </label>
+            )}
+            
             </label>
             <button>Actualizar</button>
 
