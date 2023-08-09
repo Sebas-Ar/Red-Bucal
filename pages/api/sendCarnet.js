@@ -15,18 +15,19 @@ export default async (req, res) => {
             <head>
                 <title>Correo</title>
             </head>
-            <body>
-                <h2>Gracias por elegir Red Bucal Tu Plan de Salud</h2>
+                <body>
+                    <h2>Gracias por elegir Red Bucal!</h2>
 
-                <p>Red Bucal te brinda beneficios en Salud Dental y en Medicina Preventiva General, puedes descargar tu carnet de afiliación a Red Bucal que se encuentra adjunto, 
-                tu Plan está activo a partir de hoy y puedes comenzar a utilizarlo de inmediato, solo debes coordinar con una de nuestras sucursales la atención que necesitas.</p>
-                
-                <p>Nuestros especialistas están listos para atenderte en cualquiera de nuestras sucursales. Ingresando a www.redbucal.com tendrás acceso a tu perfil y todos los beneficios de la cobertura.
-                Para más información, puedes comunicarte a nuestra línea de Atención al Cliente vía WhatsApp <strong>+507 63281368</strong>.</p>
-                
-                <br>
-                <p>El equipo de Red Bucal</p>
-            </body>
+                    <p>Su Plan de Salud Dental Premium y Medicina Preventiva General se encuentra activo, nuestros especialistas están listos para atenderle en todas las Clínicas de la Red Bucal.</p>
+                    <p>Por favor descargue su Carnet Digital de este correo para que utilizarlo de inmediato.</p>
+                    <p>Para comenzar a utilizar su Plan Premium, solo debe coordinar su primera consulta con una de las Clínicas de la Red.</p>
+                    <p>Para guiarle en el proceso de Atención al Cliente o Coordinación de Citas  por favor acceda al siguiente enlace de nuestra línea de atención: https://wa.me/message/OOD225XELIHJB1 y uno de nuestros Agentes le ayudará en la atención que necesite vía WhatsApp o consúltenos al +507 6328-1368.</p>
+                    <p>Si desea descargar la Cobertura Actualizada de su Plan por favor consulte con uno de nuestros agentes al chat o Ingresando a su perfil en la Plataforma Red Bucal: <a href="www.redbucal.com">www.redbucal.com</a> </p>
+                    <p>Estamos complacidos de poderle servir.</p>
+
+                    <p>Gerencia General</p>
+                    <p>Red Bucal</p>
+                </body>
             </html>
         `;
 
