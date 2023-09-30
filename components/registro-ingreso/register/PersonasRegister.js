@@ -410,7 +410,7 @@ const PersonasRegister = (props) => {
                         change(e);
                     }}
                 >
-                    Leer Terminos y condiciones
+                    Leer Términos y condiciones
                 </button>
                 {active ? (
                     <TerminosCondicionesForm

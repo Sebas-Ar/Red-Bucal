@@ -11,7 +11,7 @@ const LayoutInfoClinics = (props) => {
                 <h3>
                     {props.activate
                         ? props.location[props.clinic].name
-                        : "Selecciona una Clinica"}
+                        : "Selecciona una Clínica"}
                 </h3>
             </div>
             <div className="info">
@@ -96,7 +96,7 @@ const LayoutInfoClinics = (props) => {
 
                 @media screen and (max-width: 1000px) and (min-width: 700px) {
                     h3 {
-                        font-size: 16px;
+                        font-size: 14px;
                     }
                 }
 
@@ -106,7 +106,7 @@ const LayoutInfoClinics = (props) => {
                     }
 
                     h3 {
-                        font-size: 16px;
+                        font-size: 14px;
                     }
                 }
             `}</style>

@@ -72,7 +72,7 @@ const AddClinic = (props) => {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Clinica agregada',
+                    title: 'Clínica agregada',
                     showConfirmButton: false,
                     timer: 1000
                 })

@@ -32,7 +32,7 @@ const handler = async (req, res) => {
                     if (countId) {
                         res.send({
                             status: 'error',
-                            message: 'nombre ya registrado',
+                            message: 'Nombre ya registrado',
                         });
                     } else {
 
@@ -50,7 +50,7 @@ const handler = async (req, res) => {
 
                         res.status(201).json({
                             status: 'ok',
-                            message: 'Clinica agregada',
+                            message: 'Clínica agregada',
                             clinic: clinic.ops[0]
                         })
 

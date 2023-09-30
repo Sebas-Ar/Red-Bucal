@@ -24,9 +24,9 @@ const LayoutPlanes = () => {
                 position="3/5"
                 valor=""
                 fecha="MES"
-                colaborador="CONSULTENOS EL COSTO POR COLABORADOR"
+                colaborador="CONSÚLTENOS EL COSTO POR COLABORADOR"
                 tit1="Plan Red Bucal ® EMPRESAS:"
-                text1="Colocamos a su disposición un producto sencillo, que le permite ofrecer servicios preventivos y/o correctivos a sus colaboradores, para el cidado de su salud bucal."
+                text1="Colocamos a su disposición un producto sencillo, que le permite ofrecer servicios preventivos y/o correctivos a sus colaboradores, para el cuidado de su salud bucal."
             />
             <div className="linea3"></div>
             <div className="linea4"></div>

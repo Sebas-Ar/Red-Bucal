@@ -129,7 +129,7 @@ const location = [
         latitude: 8.896674, 
         longitude: -79.752352,
         color: "#22E122",
-        contact: "",
+        contact: "310-0680",
         location: 
             "La Chorrera, Plaza Paseo Costa Verde, al lado de RAENCO, planta baja",
         url: "https://goo.gl/maps/YJg6nuR7KrXBGjhw6",

@@ -26,11 +26,11 @@ const Form = () => {
 
     return (
         <form>
-            <h4>Dejanos un mensaje</h4>
+            <h4>Déjanos un mensaje</h4>
             <label className="nombre">Nombre
                 <input type="text" name="name" onChange={onChangeData}/>
             </label>
-            <label className="telefono">Telefono
+            <label className="telefono">Teléfono
                 <input type="number" name="phone" onChange={onChangeData}/>
             </label>
             <label className="email">Email

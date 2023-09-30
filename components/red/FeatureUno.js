@@ -52,7 +52,7 @@ const FeatureUno = (props) => {
                 }
 
                 p {
-                    align-self: center;
+                    align-self: left;
                     color: white;
                     font-size: 20px;
                     justify-self: flex-start;
@@ -65,7 +65,7 @@ const FeatureUno = (props) => {
                 }
 
                 .marker {
-                    height: 30px;
+                    height: 20px;
                 }
 
                 .amarillo {

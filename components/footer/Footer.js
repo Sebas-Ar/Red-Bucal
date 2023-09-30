@@ -14,7 +14,7 @@ const Footer = () => {
         <footer>
             <div>
                 <p>© Red Bucal | Todos los derechos reservados. </p>
-                <span onClick={() => {change()}}>Terminos y Condiciones</span>
+                <span onClick={() => {change()}}>Términos y Condiciones</span>
             </div>
             {
                 active 

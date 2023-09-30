@@ -37,7 +37,7 @@ const ClinicList = ({
                             ? "700"
                             : "500"
                         : "500"};
-                    font-size: 14px;
+                    font-size: 12px;
                     text-align: left;
                     padding: 15px 10px 13px;
                     height: 100%;
