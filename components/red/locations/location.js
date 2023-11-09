@@ -100,8 +100,32 @@ const location = [
         photo: "BRISAS-DEL-GOLF.jpg",
     },
     {
-        name: "CliniLab - Santa María",
+        name:"Dentoestetica",
         id: 8,
+        latitude: 9.028864, 
+        longitude: -79.525079,
+        color: "#60A9CA",
+        contact: "6329-5632 / 317-9198",
+        location: 
+            "Dentoestetica, Plaza Green Park, Condado del Rey, Panamá",
+        url: "https://maps.app.goo.gl/ZgEDnmrGDkBqAe7BA",
+        photo: "DENTOESTETICA.jpg",
+    },
+    {
+        name:"Parque Lefevre Especialidades Dentales",
+        id: 9, 
+        latitude: 9.011498, 
+        longitude: -79.504132,
+        color: "#60A9CA",
+        contact: "6615-8276 / 2214293",
+        location: 
+            "Calle quinta Parque lefevre con vía España, edificio Manta, Panamá. Frente a restaurante Boho de Rio Abajo.",
+        url: "https://maps.app.goo.gl/ULjpjRccBJPAoMS46",
+        photo: "CLINICA-PARQUE-LEFEVRE.jpg",
+    },
+    {
+        name: "CliniLab - Santa María",
+        id: 10,
         latitude: 9.027289, 
         longitude: -79.467839,
         color: "#24948C",
@@ -113,7 +137,7 @@ const location = [
     },
     {
         name: "CliniLab - El Dorado",
-        id: 9,
+        id: 11,
         latitude: 9.009928, 
         longitude: -79.534067,
         color: "#123F3C",
@@ -125,7 +149,7 @@ const location = [
     },
 	{
         name: "CliniLab - Costa Verde",
-        id: 10,
+        id: 12,
         latitude: 8.896674, 
         longitude: -79.752352,
         color: "#22E122",
@@ -137,7 +161,7 @@ const location = [
     },
     {
         name: "CliniLab - Calle 50",
-        id: 11,
+        id: 13,
         latitude: 8.981865, 
         longitude: -79.521733,
         color: "#B4BA5D",
@@ -149,7 +173,7 @@ const location = [
     },
 	{
         name: "Radimagen",
-        id: 12,
+        id: 14,
         latitude: 8.987917,
         longitude:  -79.505218,
         color: "#9C3D25",
@@ -161,7 +185,7 @@ const location = [
     },
 	{
         name: "CliniLab - Penonomé",
-        id: 13,
+        id: 15,
         latitude: 8.512556,
         longitude: -80.355548,
         color: "#60A9CA",

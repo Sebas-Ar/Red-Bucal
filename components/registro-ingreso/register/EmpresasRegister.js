@@ -211,7 +211,7 @@ const EmpresasRegister = (props) => {
             <div className="select">
                 <div className="colorAzul"></div>
                 <select onChange={props.onChangeBusiness} name="know">
-                    <option value="">¿Cómo supo de nosotoros?</option>
+                    <option value="">¿Cómo supo de nosotros?</option>
                     <option value="1">Página Web</option>
                     <option value="2">Recomendación</option>
                     <option value="3">Asesor Comercial</option>

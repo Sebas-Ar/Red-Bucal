@@ -63,15 +63,13 @@ const listPercentPrevencion = [
         list: [
             "Clinilab Calle 50",
             "Clinilab El Dorado",
-            "Clinilab Casco Antiguo",
             "Clinilab Santa Maria Plaza",
             "Clinilab Costa Verde",
             "Clinilab Penonomé",
-            "Clinilab Santiago",
         ],
     },
     {
-        title: "PERFILES DISPONIBLES EN LA CLINICA",
+        title: "PERFILES DISPONIBLES EN LA CLÍNICA",
         list: [
             "Perfil Hepático",
             "Perfil Renal",
@@ -90,7 +88,7 @@ const listPercentPrevencion = [
         ],
     },
     {
-        title: "CENTRO ESPECIALIZADO DE IMAGENES",
+        title: "CENTRO ESPECIALIZADO DE IMÁGENES",
         list: [
             "Radimagen Vía Israel",
             "Clinilab de Penonomé",

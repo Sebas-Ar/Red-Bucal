@@ -36,7 +36,7 @@ export default async (req, res) => {
             /* from: 'xevaz.ariasd@gmail.com', */
             from: "redbucal.info@gmail.com",
             subject: "CONTACTENOS - Red Bucal",
-            text: "esete es el texto de inicio",
+            text: "este es el texto de inicio",
             html: contentHTML,
             attachments: []
         };
