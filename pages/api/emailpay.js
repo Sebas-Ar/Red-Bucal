@@ -43,7 +43,6 @@ export default async (req, res) => {
 
         try {
 
-
             const params = {
                 name,
                 identification,

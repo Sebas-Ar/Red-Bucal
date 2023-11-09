@@ -101,7 +101,7 @@ const location = [
     },
     {
         name:"Dentoestetica",
-        id: 8,
+        id: 8, 
         latitude: 9.028864, 
         longitude: -79.525079,
         color: "#60A9CA",
