@@ -1,7 +1,7 @@
 const location = [
     {
         name:
-            "Río Hato Plaza Farallones Clínica de Ortodoncia y Estética Dental",
+            "Río Hato Plaza Farallones Clínica de Ortodoncia y Estética Dental",
         id: 0,
         latitude: 8.375104,  
         longitude: -80.159825,
@@ -14,7 +14,7 @@ const location = [
     },
     /* 8.877172, -79.760975 */
     {
-        name: "Ondgo Chorrera Clínica de Ortodoncia y Estética Dental",
+        name: "Ondgo Chorrera Clínica de Ortodoncia y Estética Dental",
         id: 1,
         latitude: 8.877172,
         longitude: -79.760975,
@@ -26,7 +26,7 @@ const location = [
         photo: "La-chorrera.jpg",
     },
     {
-        name: "Westland Mall Clínica de Ortodoncia y Estética Dental",
+        name: "Westland Mall Clínica de Ortodoncia y Estética Dental",
         id: 2,
         latitude: 8.921982,
         longitude: -79.704878,
@@ -50,11 +50,11 @@ const location = [
         photo: "albrook-mall.jpeg",
     },
     {
-        name: "Centennial Plaza Clínica de Ortodoncia y Estética Dental",
+        name: "Centennial Plaza Clínica de Ortodoncia y Estética Dental",
         id: 4,
         latitude: 9.029225,
         longitude: -79.530707,
-        color: "#60A9CA",
+        color: "#914242",
         contact: "203-0792",
         location:
             "Centennial Plaza, Vía Puente Centenario, Panamá, Planta Alta",
@@ -62,11 +62,11 @@ const location = [
         photo: "CENTENNIAL-MALL.jpg",
     },
     {
-        name: "Villa Lucre  Clínica de Ortodoncia y Estética Dental",
+        name: "Villa Lucre Clínica de Ortodoncia y Estética Dental",
         id: 5,
         latitude: 9.041202,
         longitude: -79.479046,
-        color: "#D97C6E",
+        color: "#5A4291",
         contact: "394-6337 / 6263-6828",
         location:
             "Villa Lucre Mall, Av Rafael E. Alemán, San Miguelito, Nivel 100, Local 100",
@@ -75,7 +75,7 @@ const location = [
     },
     /* 9.052244, -79.451740 */
     {
-        name: "Mega Mall Clínica de Ortodoncia y Estética Dental",
+        name: "Mega Mall Clínica de Ortodoncia y Estética Dental",
         id: 6,
         latitude: 9.052244,
         longitude: -79.45174,
@@ -88,11 +88,11 @@ const location = [
     },
     /* 9.069618, -79.460344 */
     {
-        name:"Brisas del Golf Signature Plaza Clínica de Ortodoncia y Estética Dental",
+        name:"Brisas del Golf Signature Plaza Clínica de Ortodoncia y Estética Dental",
         id: 7,
         latitude: 9.069618,
         longitude: -79.460344,
-        color: "#60A9CA",
+        color: "#4F9142",
         contact: "6264-6082",
         location: 
             "Av M. Zarate, San Miguelito",
@@ -104,7 +104,7 @@ const location = [
         id: 8, 
         latitude: 9.028864, 
         longitude: -79.525079,
-        color: "#60A9CA",
+        color: "#1A4A10",
         contact: "6329-5632 / 317-9198",
         location: 
             "Dentoestetica, Plaza Green Park, Condado del Rey, Panamá",
@@ -116,10 +116,10 @@ const location = [
         id: 9, 
         latitude: 9.011498, 
         longitude: -79.504132,
-        color: "#60A9CA",
+        color: "#758D25",
         contact: "6615-8276 / 2214293",
         location: 
-            "Calle quinta Parque lefevre con vía España, edificio Manta, Panamá. Frente a restaurante Boho de Rio Abajo.",
+            "Calle quinta Parque lefevre con vía España, edificio Manta, Panamá. Frente a restaurante Boho de Rio Abajo.",
         url: "https://maps.app.goo.gl/ULjpjRccBJPAoMS46",
         photo: "CLINICA-PARQUE-LEFEVRE.jpg",
     },
@@ -175,7 +175,7 @@ const location = [
         name: "Radimagen",
         id: 14,
         latitude: 8.987917,
-        longitude:  -79.505218,
+        longitude: -79.505218,
         color: "#9C3D25",
         contact: "382-1424",
         location: 
@@ -188,7 +188,7 @@ const location = [
         id: 15,
         latitude: 8.512556,
         longitude: -80.355548,
-        color: "#60A9CA",
+        color: "#835A24",
         contact: "997-8514",
         location: 
             "Penonomé, Plaza Boulevard, planta baja",
