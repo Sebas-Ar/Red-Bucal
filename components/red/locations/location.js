@@ -23,7 +23,7 @@ const location = [
         location:
             "On D Go La Chorrera, Vía Carretera Panamericana, La Chorrera, Nivel 100, Planta Alta, Local 50",
         url: "https://goo.gl/maps/X2WsAM2G9hZBcTiN7",
-        photo: "La-chorrera.jpg",
+        photo: "append-La-chorrera.jpeg",
     },
     {
         name: "Westland Mall Clínica de Ortodoncia y Estética Dental",
@@ -59,7 +59,7 @@ const location = [
         location:
             "Centennial Plaza, Vía Puente Centenario, Panamá, Planta Alta",
         url: "https://goo.gl/maps/CMJw6sphyDT1CNoHA",
-        photo: "CENTENNIAL-MALL.jpg",
+        photo: "append-centennial-mall.jpeg",
     },
     {
         name: "Villa Lucre Clínica de Ortodoncia y Estética Dental",
@@ -71,7 +71,7 @@ const location = [
         location:
             "Villa Lucre Mall, Av Rafael E. Alemán, San Miguelito, Nivel 100, Local 100",
         url: "https://goo.gl/maps/TvobCirdmusm5NsF8",
-        photo: "VILLA-LUCRE-MALL.jpg",
+        photo: "append-villalucre-mall.jpeg",
     },
     /* 9.052244, -79.451740 */
     {
@@ -84,7 +84,7 @@ const location = [
         location:
             "Megamall, Vía Carretera Panamericana, 24 de diciembre, Consultorios Médicos, Local 40",
         url: "https://goo.gl/maps/2eYBCFXj9HJk6mYn7",
-        photo: "MEGA-MALL.jpg",
+        photo: "append-mega-mall.jpeg",
     },
     /* 9.069618, -79.460344 */
     {
@@ -97,7 +97,7 @@ const location = [
         location: 
             "Av M. Zarate, San Miguelito",
         url: "https://goo.gl/maps/dUw9goJnTeK33XD87",
-        photo: "BRISAS-DEL-GOLF.jpg",
+        photo: "append-brisasDelgolf.jpeg",
     },
     {
         name:"Dentoestetica",
@@ -109,7 +109,7 @@ const location = [
         location: 
             "Dentoestetica, Plaza Green Park, Condado del Rey, Panamá",
         url: "https://maps.app.goo.gl/ZgEDnmrGDkBqAe7BA",
-        photo: "DENTOESTETICA.jpg",
+        photo: "append-dentoestetica.jpeg",
     },
     {
         name:"Parque Lefevre Especialidades Dentales",
