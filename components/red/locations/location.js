@@ -10,7 +10,7 @@ const location = [
         location:
             "Plaza Farallones, Vía Carretera Panamericana, Río Hato, Local 14",
         url: "https://goo.gl/maps/DDbcwcQoedRKf8GF7",
-        photo: "RIO-HATO.jpg",
+        photo: "append-rio-hato.jpeg",
     },
     /* 8.877172, -79.760975 */
     {
@@ -35,7 +35,7 @@ const location = [
         location:
             "Westland mall, Vía Carreta Panamerican, Arraijan, Vista Alegre, Planta Alta, Local 13",
         url: "https://goo.gl/maps/urfkNFYiN6pXaPbd9",
-        photo: "WESTLAND-MALL.jpg",
+        photo: "append-westland-mall.jpg",
     },
     {
         name: "Albrook Mall Clínica de Ortodoncia y Estética Dental",
