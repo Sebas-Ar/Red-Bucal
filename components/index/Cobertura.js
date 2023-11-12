@@ -76,9 +76,9 @@ const Cobertura = () => {
                 @media screen and (max-width: 640px) {
 
                     .content {
-                        background-size: auto 100%;
-                        
+                        grid-template-columns: .5fr 2.25fr 2.25fr .5fr;
                     }
+
                 }
                 
             `}</style>
