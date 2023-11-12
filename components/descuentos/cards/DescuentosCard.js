@@ -38,7 +38,7 @@ const DescuentosCard = ({changeActive, changeList}) => {
                     .container {
                         margin: 50px;
                     }
-               }e
+               }
            
            `}</style>
         </div>

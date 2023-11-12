@@ -101,12 +101,17 @@ const Portada = () => {
                     margin-top: calc(-50px * var(--sizeLetter));
                 }
 
-                @media screen and (max-width: 1370px) {
+                @media screen and (max-width: 2960px) {
                     .content, .img {
                         background-size: auto 100%;
                     }
                 }
+                
                 @media screen and (max-width: 1300px) {
+                    .img, .content {
+                        background-position-x: 25%;
+                    }
+
                     .color {
                         width: 95%;
                     }
@@ -119,7 +124,11 @@ const Portada = () => {
                 @media screen and (max-width: 1040px) {
 
                     :global(:root) {
-                        --sizeLetter: 0.7;
+                        --sizeLetter: 0.6;
+                    }
+
+                    h2 {
+                        color: white
                     }
                 }
 
@@ -129,19 +138,13 @@ const Portada = () => {
                         --sizeLetter: 0.5;
                     }
 
-                    h2 {
-                        color: white
-                    }
-
-                    .img, .content {
-                        background-position-x: 20%;
-                    }
                 }
 
                 @media screen and (max-width: 690px) {
+
                     .img, .content {
-                        background-position-x: 25%;
-                    }
+                        background-position-x: 20%;
+                    }   
 
                     :global(:root) {
                         --sizeLetter: 0.4;
@@ -149,31 +152,42 @@ const Portada = () => {
                 }
 
                 @media screen and (max-width: 560px) {
-
                     h1, h2 {
                         margin-right: 20px;
-                    }
-                }
-
-                @media screen and (max-width: 475px) {
-                    h1, h2 {
-                        margin-right: 10px;
                     }
 
                     :global(:root) {
                         --sizeLetter: 0.3;
                     }
+
+                }
+
+                @media screen and (max-width: 480px) {
+
+                    .img, .content {
+                        background-position-x: 25%;
+                    }                       
+
+                    h1, h2 {
+                        margin-right: 10px;
+                    }
+
+                    :global(:root) {
+                        --sizeLetter: 0.2;
+                    }
                 }
 
                 @media screen and (max-width: 340px) {
+                    .img, .content {
+                        background-position-x: 28%; 
+                    }
+
                     h1, h2 {
                         margin-right: 5px;
                     }
 
-                    :global(:root) {
-                        --sizeLetter: 0.28;
-                    }
                 }
+ 
             `}</style>
         </div>
     );
