@@ -73,13 +73,7 @@ const Cobertura = () => {
                     color: var(--mainColor);
                 }
 
-                @media screen and (max-width: 640px) {
 
-                    .content {
-                        grid-template-columns: .5fr 2.25fr 2.25fr .5fr;
-                    }
-
-                }
                 
             `}</style>
         </div>
