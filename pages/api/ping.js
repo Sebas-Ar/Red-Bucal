@@ -28,7 +28,7 @@ export default async (req, res) => {
                 const options = { month: 'long' };
                 const locale = 'es-ES';
                 // Cargar la plantilla de imagen
-                const templatePath = './public/Template.png'; // Ruta de la plantilla de imagen
+                const templatePath = './public/Template_V3.png'; // Ruta de la plantilla de imagen
                 const templateImage =await loadImage(templatePath);
 
                 console.log("Crear Canvas");

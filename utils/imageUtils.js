@@ -47,7 +47,7 @@ export async function generateImage(name, identification, start, end, plan) {
     context.fillStyle = color;
     context.fillText(`Cédula: ${identification}`, xCoord, yCoord - 20);
 
-    if (plan == "false") context.fillText(`Vigencia: ${vigenciaStart} > ${vigenciaEnd}`, xCoord, yCoord);
+    if (plan == "false") context.fillText(`Vigencia: ${vigenciaStart} hasta: ${vigenciaEnd}`, xCoord, yCoord);
     else context.fillText(`Vigencia: ${vigenciaStart}`, xCoord, yCoord);
 
     // Generar los bytes de la imagen en formato PNG
