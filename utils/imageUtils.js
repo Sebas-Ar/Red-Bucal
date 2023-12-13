@@ -3,22 +3,19 @@ import { createCanvas, loadImage, registerFont } from 'canvas';
 export async function generateImage(name, identification, start, end, plan) {
 
   try {
-    // Registrar la fuente "Lato"
-    registerFont('./public/fonts/Lato/Lato-Bold.ttf', { family: 'Lato', weight: 'bold' });
-
-    // Registrar la fuente "David Libre"
-    registerFont('./public/fonts/David_Libre/DavidLibre-Regular.ttf', { family: 'David Libre', weight: 'bold' });
+    // Registrar la fuente "Avenir Next"
+    registerFont('./public/fonts/Avenir/Avenir Next.ttf', { family: 'Avenir Next', weight: 'bold' });
 
     // Agregar texto personalizado al lienzo
     const xCoord = 50;
-    const yCoord = 210;
+    const yCoord = 180;
     const fontSizeName = 18;
     const fontSize = 14;
     const color = 'white';
     const options = { month: 'long' };
     const locale = 'es-ES';
     // Cargar la plantilla de imagen
-    const templatePath = './public/Template_V3.png'; // Ruta de la plantilla de imagen
+    const templatePath = './public/Template_V4.png'; // Ruta de la plantilla de imagen
     const templateImage = await loadImage(templatePath);
 
     // Crear un lienzo (canvas) para dibujar la imagen
@@ -39,15 +36,15 @@ export async function generateImage(name, identification, start, end, plan) {
     context.drawImage(templateImage, 0, 0);
 
     // Agregar texto personalizado al lienzo
-    context.font = `${fontSizeName}px Lato`;
+    context.font = `${fontSizeName}px Avenir Next`;
     context.fillStyle = color;
     context.fillText(`${name}`, xCoord, yCoord - 40);
 
-    context.font = `${fontSize}px "David Libre"`;
+    context.font = `${fontSize}px "Avenir Next"`;
     context.fillStyle = color;
     context.fillText(`Cédula: ${identification}`, xCoord, yCoord - 20);
 
-    if (plan == "false") context.fillText(`Vigencia: ${vigenciaStart} hasta: ${vigenciaEnd}`, xCoord, yCoord);
+    if (plan == "false") context.fillText(`Vigencia: ${vigenciaStart} hasta ${vigenciaEnd}`, xCoord, yCoord);
     else context.fillText(`Vigencia: ${vigenciaStart}`, xCoord, yCoord);
 
     // Generar los bytes de la imagen en formato PNG
