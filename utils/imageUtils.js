@@ -4,18 +4,24 @@ export async function generateImage(name, identification, start, end, plan) {
 
   try {
     // Registrar la fuente "Avenir Next"
-    registerFont('./public/fonts/Avenir/Avenir Next.ttf', { family: 'Avenir Next', weight: 'bold' });
+    registerFont('./public/fonts/Avenir/AvenirNextLTPro-Regular.ttf', { family: 'Open Sans', weight: 'normal' });
+    registerFont('./public/fonts/Avenir/AvenirNextLTPro-Bold.ttf', { family: 'Open Sans', weight: 'bold' });
+
+    // Función para configurar el estilo de la fuente
+    function setFontStyle(context, size, weight, fontFamily) {
+      context.font = `${weight} ${size}px "${fontFamily}"`;
+    }
 
     // Agregar texto personalizado al lienzo
-    const xCoord = 50;
-    const yCoord = 180;
+    const xCoord = 45;
+    const yCoord = 170;
     const fontSizeName = 18;
-    const fontSize = 14;
+    const fontSize = 12;
     const color = 'white';
     const options = { month: 'long' };
     const locale = 'es-ES';
     // Cargar la plantilla de imagen
-    const templatePath = './public/Template_V4.png'; // Ruta de la plantilla de imagen
+    const templatePath = './public/Template_V5.png'; // Ruta de la plantilla de imagen
     const templateImage = await loadImage(templatePath);
 
     // Crear un lienzo (canvas) para dibujar la imagen
@@ -36,15 +42,15 @@ export async function generateImage(name, identification, start, end, plan) {
     context.drawImage(templateImage, 0, 0);
 
     // Agregar texto personalizado al lienzo
-    context.font = `${fontSizeName}px Avenir Next`;
+    setFontStyle(context, fontSizeName, 'bold', 'Avenir Next');
     context.fillStyle = color;
-    context.fillText(`${name}`, xCoord, yCoord - 40);
+    context.fillText(`${name}`, xCoord, yCoord - 35);
 
-    context.font = `${fontSize}px "Avenir Next"`;
+    setFontStyle(context, fontSize, 'normal', 'Avenir Next');
     context.fillStyle = color;
-    context.fillText(`Cédula: ${identification}`, xCoord, yCoord - 20);
+    context.fillText(`Cédula: ${identification}`, xCoord, yCoord - 17);
 
-    if (plan == "false") context.fillText(`Vigencia: ${vigenciaStart} hasta ${vigenciaEnd}`, xCoord, yCoord);
+    if (plan == "false") context.fillText(`Vigencia desde ${vigenciaStart} hasta ${vigenciaEnd}`, xCoord, yCoord);
     else context.fillText(`Vigencia: ${vigenciaStart}`, xCoord, yCoord);
 
     // Generar los bytes de la imagen en formato PNG
