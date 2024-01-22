@@ -124,8 +124,32 @@ const location = [
         photo: "CLINICA-PARQUE-LEFEVRE.jpg",
     },
     {
+        name:"MaDenta San Francisco",
+        id: 10, 
+        latitude: 8.991570,  
+        longitude: -79.503038,
+        color: "#458C25",
+        contact: "6316-4927",
+        location: 
+            "MaDenta Clínica Dental, Plaza 76, Calle 76 Este, Panamá.",
+        url: "https://maps.app.goo.gl/RXtT8iud7x1L8mKM9",
+        photo: "append-MaDenta-SnFco.jpg",
+    },
+    {
+        name:"MaDenta Santa María Plaza",
+        id: 11, 
+        latitude: 9.027442, 
+        longitude: -79.468382,
+        color: "#958A25",
+        contact: "6228-3902",
+        location: 
+            "Calle boulevard Santa María, Plaza Santa María, ciudad de Panamá.",
+        url: "https://maps.app.goo.gl/8XyGfQdYzcDvyTFYA",
+        photo: "append-MaDenta-SnMaPza.jpg",
+    },
+    {
         name: "CliniLab - Santa María",
-        id: 10,
+        id: 12,
         latitude: 9.027289, 
         longitude: -79.467839,
         color: "#24948C",
@@ -137,7 +161,7 @@ const location = [
     },
     {
         name: "CliniLab - El Dorado",
-        id: 11,
+        id: 13,
         latitude: 9.009928, 
         longitude: -79.534067,
         color: "#123F3C",
@@ -149,7 +173,7 @@ const location = [
     },
 	{
         name: "CliniLab - Costa Verde",
-        id: 12,
+        id: 14,
         latitude: 8.896674, 
         longitude: -79.752352,
         color: "#22E122",
@@ -161,7 +185,7 @@ const location = [
     },
     {
         name: "CliniLab - Calle 50",
-        id: 13,
+        id: 15,
         latitude: 8.981865, 
         longitude: -79.521733,
         color: "#B4BA5D",
@@ -173,7 +197,7 @@ const location = [
     },
 	{
         name: "Radimagen",
-        id: 14,
+        id: 16,
         latitude: 8.987917,
         longitude: -79.505218,
         color: "#9C3D25",
@@ -185,7 +209,7 @@ const location = [
     },
 	{
         name: "CliniLab - Penonomé",
-        id: 15,
+        id: 17,
         latitude: 8.512556,
         longitude: -80.355548,
         color: "#835A24",
