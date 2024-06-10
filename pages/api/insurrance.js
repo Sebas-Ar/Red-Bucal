@@ -15,6 +15,7 @@ const handler = async (req, res) => {
                     businessMail: true,
                     RUC: true,
                     insurrance: true,
+                    identifications: true
                 },
             }
         )
