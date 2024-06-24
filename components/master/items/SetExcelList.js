@@ -46,8 +46,8 @@ const SetExcelList = (props) => {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        html: <p><strong>Numero de ususarios actuales: </strong>${result.data.info.num}</p><p><strong>Valor total a pagar: </strong>${result.data.info.value}$</p>,
-                        title: Aseguradora agregada y activada hasta el ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()},
+                        html: `<p><strong>Numero de ususarios actuales: </strong>${result.data.info.num}</p><p><strong>Valor total a pagar: </strong>${result.data.info.value}$</p>`,
+                        title: `Aseguradora agregada y activada hasta el ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
                         showConfirmButton: true,
                     });
                     props.changeData(result.data.data);
@@ -90,7 +90,7 @@ const SetExcelList = (props) => {
                 Swal.fire({
                     position: "center",
                     icon: "warning",
-                    title: Esta intentado registrar una Aseguradora. La estructura del excel ha sido modificado, descargue nuevamente el excel y pase los datos de los usuarios.,
+                    title: `Esta intentado registrar una Aseguradora. La estructura del excel ha sido modificado, descargue nuevamente el excel y pase los datos de los usuarios.`,
                     showConfirmButton: true,
                 });
 
@@ -109,8 +109,8 @@ const SetExcelList = (props) => {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        html: <p><strong>Numero de ususarios actuales: </strong>${result.data.info.num}</p><p><strong>Valor total a pagar: </strong>${result.data.info.value}$</p>,
-                        title: Empresa agregada y activada hasta el ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()},
+                        html: `<p><strong>Numero de ususarios actuales: </strong>${result.data.info.num}</p><p><strong>Valor total a pagar: </strong>${result.data.info.value}$</p>`,
+                        title: `Empresa agregada y activada hasta el ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
                         showConfirmButton: true,
                     });
                     props.changeData(result.data.data);
@@ -152,7 +152,7 @@ const SetExcelList = (props) => {
                 Swal.fire({
                     position: "center",
                     icon: "warning",
-                    title: Esta intentado actualizar una Empresa. La estructura del excel ha sido modificado, descargue nuevamente el excel y pase los datos de los usuarios.,
+                    title: `Esta intentado actualizar una Empresa. La estructura del excel ha sido modificado, descargue nuevamente el excel y pase los datos de los usuarios.`,
                     showConfirmButton: true,
                 });
             }
@@ -163,7 +163,7 @@ const SetExcelList = (props) => {
 
     const toDate = (end) => {
         const endDate = new Date(end);
-        return ${endDate.getDate()}/${endDate.getMonth() + 1}/${endDate.getFullYear()}
+        return `${endDate.getDate()}/${endDate.getMonth() + 1}/${endDate.getFullYear()}`
     }
 
     return (
@@ -183,7 +183,7 @@ const SetExcelList = (props) => {
                 <label className="label">
                     {data
                         ? "PLANTILLA CARGADA"
-                        : SUBIR PLANTILLA DE REGISTRO PARA ${props.data?.insurrance ? 'ASEGURADOS' : 'EMPLEADOS'}}
+                        : `SUBIR PLANTILLA DE REGISTRO PARA ${props.data?.insurrance ? 'ASEGURADOS' : 'EMPLEADOS'}`}
                     <input
                         id="file"
                         className="uploadInput"
