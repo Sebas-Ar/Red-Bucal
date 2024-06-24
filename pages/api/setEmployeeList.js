@@ -28,7 +28,7 @@ const handler = async (req, res) => {
         }
 
         for (let i = 9; i < data.length; i++) {
-            console.log('first loop: ', i, 'bulkWrite length: ', usersBulkWrite.length)
+            //console.log('first loop: ', i, 'bulkWrite length: ', usersBulkWrite.length)
             let numErrors = erroMessage.length;
 
             let identification = data[i][1] + "";
@@ -38,13 +38,13 @@ const handler = async (req, res) => {
             if (!data[i][0]) {
                 erroMessage[numErrors][
                     "errorName"
-                ] = El campo del nombre del usuario se encuentra vacio;
+                ] = `El campo del nombre del usuario se encuentra vacio`;
             }
 
             if (!data[i][1]) {
                 erroMessage[numErrors][
                     "errorId"
-                ] = El campo de la identificaion del usuario se encuentra vacio;
+                ] = `El campo de la identificaion del usuario se encuentra vacio`;
             }
 
             // const user = await req.db
@@ -58,20 +58,20 @@ const handler = async (req, res) => {
                     if (user.RUC !== RUC) {
                         erroMessage[numErrors][
                             "errorId"
-                        ] = El usuario registrado con la cedula ${identification} ya cuenta con una afiliacion a una entidad vigente;
+                        ] = `El usuario registrado con la cedula ${identification} ya cuenta con una afiliacion a una entidad vigente`;
                     }
                 } else {
                     if (user.state === true) {
                         erroMessage[numErrors][
                             "errorId"
-                        ] = El usuario registrado con la cedula ${identification} ya cuenta con una cuenta personal activa;
+                        ] = `El usuario registrado con la cedula ${identification} ya cuenta con una cuenta personal activa`;
                     }
                 }
             }
 
             if (
                 JSON.stringify(erroMessage[numErrors]) ===
-                {"row":${i + 6}}
+                `{"row":${i + 6}}`
             ) {
                 erroMessage.pop();
             }
@@ -96,7 +96,7 @@ const handler = async (req, res) => {
         for (let index = 0; index < entity.identifications.length; index++) {
             const user = entity.identifications[index];
 
-            console.log('second loop: ', index, 'bulkWrite length: ', usersBulkWrite.length);
+            //console.log('second loop: ', index, 'bulkWrite length: ', usersBulkWrite.length);
 
             for (let i = 9; i < data.length; i++) {
                 if (user.id === data[i][1] + "") {
