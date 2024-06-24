@@ -430,7 +430,7 @@ const handler = async (req, res) => {
         //console.log('Execution time: ', totalTime, ' seconds');
     
         if (totalTime > 300) await sendReport([
-            Execution time: ${totalTime} seconds,
+            `Execution time:` ${totalTime} seconds,
             Rows processed: ${data.length - 9},
         ]);
     } else {
