@@ -1,3 +1,4 @@
+// @ts-check
 import validator from "email-validator";
 import withMiddleware from "../../middlewares/withMiddleware";
 import bcrypt from "bcryptjs";
@@ -5,7 +6,7 @@ import bcrypt from "bcryptjs";
 const saveLimit = 1000
 
 const handler = async (req, res) => {
-    const _start = performance.now();
+    //const _start = performance.now();
     if (req.method === "POST") {
         const { data, RUC } = req.body;
 
@@ -425,14 +426,14 @@ const handler = async (req, res) => {
         //     },
         // });
 
-        const _end = performance.now();
-        const totalTime = ((_end - _start) / 1_000).toFixed(0);
+        //const _end = performance.now();
+        //const totalTime = ((_end - _start) / 1_000).toFixed(0);
         //console.log('Execution time: ', totalTime, ' seconds');
-    
+    /*
         if (totalTime > 300) await sendReport([
             `Execution time: ${totalTime} seconds`,
             `Rows processed: ${data.length - 9}`
-        ]);
+        ]);*/
 
     } else {
         res.status(405).end();
