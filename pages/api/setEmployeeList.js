@@ -426,8 +426,8 @@ const handler = async (req, res) => {
         // });
 
         const _end = performance.now();
-        const totalTime = ((_end - _start) / 1_000).toFixed(0)
-        console.log('Execution time: ', totalTime, ' seconds');
+        const totalTime = ((_end - _start) / 1_000).toFixed(0);
+        //console.log('Execution time: ', totalTime, ' seconds');
     
         if (totalTime > 300) await sendReport([
             Execution time: ${totalTime} seconds,
