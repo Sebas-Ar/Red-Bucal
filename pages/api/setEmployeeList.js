@@ -246,7 +246,7 @@ const handler = async (req, res) => {
                                 adress: "",
                                 phone: data[i][5] ? data[i][5] : '',
                                 email: data[i][4] ? data[i][4] : '',
-                                // password: hashedPasswordUser,
+                                //password: hashedPasswordUser,
                                 know: 5,
                                 plan: true,
                                 service: false,
