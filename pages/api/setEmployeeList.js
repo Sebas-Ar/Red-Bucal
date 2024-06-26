@@ -8,7 +8,7 @@ const saveLimit = 1000
 const handler = async (req, res) => {
     //const _start = performance.now();
     if (req.method === "POST") {
-        const { data, RUC } = req.body;
+        let { data, RUC } = req.body;
 
         const entity = await req.db.collection("bussines").findOne({ RUC });
         const users = await req.db.collection('users').find().toArray();
@@ -17,6 +17,7 @@ const handler = async (req, res) => {
         const usersBulkWrite = []
         const arrPromises = []
         let erroMessage = [];
+        let errorIndex = new Set()
         let cuotaAsegurado;
 
         cuotaAsegurado = data[7][1];
@@ -37,12 +38,14 @@ const handler = async (req, res) => {
             erroMessage[numErrors] = { row: i + 6 };
 
             if (!data[i][0]) {
+                errorIndex.add(i)
                 erroMessage[numErrors][
                     "errorName"
                 ] = `El campo del nombre del usuario se encuentra vacio`;
             }
 
             if (!data[i][1]) {
+                errorIndex.add(i)
                 erroMessage[numErrors][
                     "errorId"
                 ] = `El campo de la identificaion del usuario se encuentra vacio`;
@@ -57,12 +60,14 @@ const handler = async (req, res) => {
             if (user) {
                 if (user.plan == true) {
                     if (user.RUC !== RUC) {
+                        errorIndex.add(i)
                         erroMessage[numErrors][
                             "errorId"
                         ] = `El usuario registrado con la cedula ${identification} ya cuenta con una afiliacion a una entidad vigente`;
                     }
                 } else {
                     if (user.state === true) {
+                        errorIndex.add(i)
                         erroMessage[numErrors][
                             "errorId"
                         ] = `El usuario registrado con la cedula ${identification} ya cuenta con una cuenta personal activa`;
@@ -78,19 +83,25 @@ const handler = async (req, res) => {
             }
         }
 
-        if (erroMessage.length) {
-            return res.json({
-                status: "fileError",
-                message: erroMessage,
-            });
-        } else {
-            res.status(201).json({
-                status: "ok",
-                message: "Aseguradora actualizada satisfactoriamente",
-                data: null,
-                info: {},
-            });
-        }
+        //  data = data.filter((row, index) => {
+
+        //  })
+
+        // if (erroMessage.length) {
+        //     return res.json({
+        //         status: "fileError",
+        //         message: erroMessage,
+        //     });
+        // } else {
+        // }
+        res.status(201).json({
+            status: "ok",
+            message: "Aseguradora actualizada satisfactoriamente",
+            data: null,
+            info: {},
+        });
+
+        data = data.filter((row, index) => !errorIndex.has(index))
 
         let userContinue = [];
 
