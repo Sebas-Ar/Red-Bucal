@@ -207,12 +207,7 @@ const SetExcelList = (props) => {
                     ) : null}
                 </label>
             </div>
-            <button 
-                disabled={(() => {
-                    if (data === undefined) return true
-                    if (load === true) return true
-                    return false
-                })()}>
+            <button disabled={data === undefined ? true : false}>
                 {load ? <Loading color="white" /> : "Actualizar"}
             </button>
             <style jsx>{`
