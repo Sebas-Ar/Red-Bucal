@@ -1,12 +1,89 @@
 import validator from "email-validator";
 import withMiddleware from "../../middlewares/withMiddleware";
 import bcrypt from "bcryptjs";
+const Queue = require('node-persistent-queue');
+const cliProgress = require('cli-progress');
 
 const handler = async (req, res) => {
+    const q = new Queue('./queue.sqlite');
+    const bar1 = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
+
+    await q.open()
+
+    q.on('open', () => {
+        console.log('Opening SQLite DB');
+        console.log('Queue contains ' + q.getLength() + ' job/s');
+    });
+
+    q.on('add', async task => {
+        console.log('Adding task: ' + JSON.stringify(task));
+        console.log('Queue contains ' + q.getLength() + ' job/s');
+    });
+
+    q.on('start', async () => {
+        console.log('Starting queue');
+    });
+
+    q.on('next', async (task) => {
+        if (task.job.type === 'update') {
+            await req.db.collection("users").update(
+                task.job.id,
+                task.job.body
+            )
+        } else if (task.type === 'create') {
+            const salt = await bcrypt.genSalt(10);
+            const hashedPasswordUser = await bcrypt.hash(
+                task.job.body.$set.identification,
+                salt
+            );
+
+            await req.db.collection("users").insertOne({
+                ...task.body,
+                password: hashedPasswordUser
+            })
+        }
+        const sqlite = q.getSqlite3()
+        // Dame el primer elemento de la tabla queue
+        const getAsync = (sql) => new Promise((resolve, reject) => {
+            sqlite.get(sql, (err, row) => {
+                if (err) {
+                    reject(err)
+                }
+                resolve(row)
+            })
+        })
+
+        const resp = await getAsync('SELECT * FROM queue LIMIT 1')
+
+        console.clear();
+        bar1.update(resp.id);
+        console.log('\n')
+        q.done();
+    });
+
+    // Stop the queue when it gets empty
+    q.on('empty', async () => {
+        console.log('Queue contains ' + q.getLength() + ' job/');
+        q.stop();
+        q.close()
+            .then(() => {
+                process.exit(0);
+            })
+    });
+
+    q.on('stop', async () => {
+        console.log('Stopping queue');
+    });
+
+    q.on('close', async () => {
+        console.log('Closing SQLite DB');
+    });
+
     if (req.method === "POST") {
         const { data, RUC } = req.body;
 
         const entity = await req.db.collection("bussines").findOne({ RUC });
+        const users = await req.db.collection('users').find().toArray();
 
         let erroMessage = [];
         let cuotaAsegurado;
@@ -39,9 +116,10 @@ const handler = async (req, res) => {
                 ] = `El campo de la identificaion del usuario se encuentra vacio`;
             }
 
-            const user = await req.db
-                .collection("users")
-                .findOne({ identification });
+            // const user = await req.db
+            //     .collection("users")
+            //     .findOne({ identification });
+            const user = users.find(user => user.identification === identification);
 
             if (user) {
                 if (user.plan == true) {
@@ -105,18 +183,124 @@ const handler = async (req, res) => {
         end.setMonth(end.getMonth() + 1);
 
         for (let i = 9; i < data.length; i++) {
-            const userExist = await req.db
-                .collection("users")
-                .findOne({ identification: data[i][1] + "" });
+            const userExist = users.find(user => user.identification === data[i][1] + "");
+
+            // const userExist = await req.db
+            //     .collection("users")
+            //     .findOne({ identification: data[i][1] + "" });
 
             let userToDepend;
 
             if (data[i][2]) {
-                userToDepend = await req.db
-                    .collection("users")
-                    .findOneAndUpdate(
-                        { identification: data[i][2] + "" },
-                        {
+                await q.add({
+                    type: 'update',
+                    id: { identification: data[i][2] + "" },
+                    body: {
+                        $addToSet: {
+                            dependientes: {
+                                name: data[i][0],
+                                id: data[i][1],
+                                state: true,
+                            },
+                        },
+                    }
+
+                })
+                // userToDepend = await req.db
+                //     .collection("users")
+                //     .findOneAndUpdate(
+                //         { identification: data[i][2] + "" },
+                //         {
+                //             $addToSet: {
+                //                 dependientes: {
+                //                     name: data[i][0],
+                //                     id: data[i][1],
+                //                     state: true,
+                //                 },
+                //             },
+                //         }
+                //     );
+            }
+
+            if (!userExist) {
+                // const salt = await bcrypt.genSalt(10);
+                // const hashedPasswordUser = await bcrypt.hash(
+                //     data[i][1] + "",
+                //     salt
+                // );
+
+                await q.add({
+                    type: 'create',
+                    body: {
+                        RUC,
+                        state: true,
+                        start: start,
+                        end: end,
+                        name: data[i][0],
+                        identification: data[i][1] + "",
+                        birthdate: data[i][3],
+                        adress: "",
+                        phone: data[i][5] ? data[i][5] : '',
+                        email: data[i][4] ? data[i][4] : '',
+                        // password: hashedPasswordUser,
+                        know: 5,
+                        plan: true,
+                        service: false,
+                        terminos: true,
+                        historial: [],
+                        mustChangePass: true,
+                        alerts: {
+                            week: false,
+                            month: false,
+                        },
+                        date: start,
+                        dependeOf: data[i][2]
+                            ? {
+                                name: userToDepend.value.name,
+                                id: data[i][2],
+                            }
+                            : "",
+                        dependientes: [],
+                    }
+                })
+
+                // await req.db.collection("users").insertOne({
+                //     RUC,
+                //     state: true,
+                //     start: start,
+                //     end: end,
+                //     name: data[i][0],
+                //     identification: data[i][1] + "",
+                //     birthdate: data[i][3],
+                //     adress: "",
+                //     phone: data[i][5] ? data[i][5] : '',
+                //     email: data[i][4] ? data[i][4] : '',
+                //     password: hashedPasswordUser,
+                //     know: 5,
+                //     plan: true,
+                //     service: false,
+                //     terminos: true,
+                //     historial: [],
+                //     mustChangePass: true,
+                //     alerts: {
+                //         week: false,
+                //         month: false,
+                //     },
+                //     date: start,
+                //     dependeOf: data[i][2]
+                //         ? {
+                //             name: userToDepend.value.name,
+                //             id: data[i][2],
+                //         }
+                //         : "",
+                //     dependientes: [],
+                // });
+
+                if (data[i][2]) {
+                    await q.add({
+                        type: 'update',
+                        id: { identification: data[i][2] + "" },
+                        body: {
                             $addToSet: {
                                 dependientes: {
                                     name: data[i][0],
@@ -125,61 +309,19 @@ const handler = async (req, res) => {
                                 },
                             },
                         }
-                    );
-            }
-
-            if (!userExist) {
-                const salt = await bcrypt.genSalt(10);
-                const hashedPasswordUser = await bcrypt.hash(
-                    data[i][1] + "",
-                    salt
-                );
-
-                await req.db.collection("users").insertOne({
-                    RUC,
-                    state: true,
-                    start: start,
-                    end: end,
-                    name: data[i][0],
-                    identification: data[i][1] + "",
-                    birthdate: data[i][3],
-                    adress: "",
-                    phone: data[i][5] ? data[i][5] : '',
-                    email: data[i][4] ? data[i][4] : '',
-                    password: hashedPasswordUser,
-                    know: 5,
-                    plan: true,
-                    service: false,
-                    terminos: true,
-                    historial: [],
-                    mustChangePass: true,
-                    alerts: {
-                        week: false,
-                        month: false,
-                    },
-                    date: start,
-                    dependeOf: data[i][2]
-                        ? {
-                            name: userToDepend.value.name,
-                            id: data[i][2],
-                        }
-                        : "",
-                    dependientes: [],
-                });
-
-                if (data[i][2]) {
-                    await req.db.collection("users").findOneAndUpdate(
-                        { identification: data[i][2] + "" },
-                        {
-                            $addToSet: {
-                                dependientes: {
-                                    name: data[i][0],
-                                    id: data[i][1],
-                                    state: true,
-                                }
-                            },
-                        }
-                    );
+                    })
+                    // await req.db.collection("users").findOneAndUpdate(
+                    //     { identification: data[i][2] + "" },
+                    //     {
+                    //         $addToSet: {
+                    //             dependientes: {
+                    //                 name: data[i][0],
+                    //                 id: data[i][1],
+                    //                 state: true,
+                    //             }
+                    //         },
+                    //     }
+                    // );
                 }
 
                 userContinue.push({
@@ -187,9 +329,10 @@ const handler = async (req, res) => {
                     name: data[i][0],
                 });
             } else {
-                await req.db.collection("users").update(
-                    { identification: data[i][1] + "" },
-                    {
+                await q.add({
+                    type: 'update',
+                    id: { identification: data[i][1] + "" },
+                    body: {
                         $set: {
                             RUC,
                             plan: true,
@@ -198,7 +341,19 @@ const handler = async (req, res) => {
                             end,
                         },
                     }
-                );
+                })
+                // await req.db.collection("users").update(
+                //     { identification: data[i][1] + "" },
+                //     {
+                //         $set: {
+                //             RUC,
+                //             plan: true,
+                //             state: true,
+                //             start,
+                //             end,
+                //         },
+                //     }
+                // );
             }
         }
 
