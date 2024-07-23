@@ -236,5 +236,4 @@ const handler = async (req, res) => {
         res.status(405).end();
     }
 };
-
 export default withMiddleware(handler);
