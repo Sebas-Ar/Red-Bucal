@@ -20,7 +20,7 @@ export default async (req, res) => {
 
                     <p>Su Plan de Salud Dental Premium y Medicina Preventiva General se encuentra activo, nuestros especialistas están listos para atenderle en todas las Clínicas de la Red Bucal.</p>
                     <p>Por favor descargue su Carnet Digital de este correo para que utilizarlo de inmediato.</p>
-                    <p>Para comenzar a utilizar su Plan Premium, solo debe coordinar su primera consulta con una de las Clínicas de la Red.</p>
+                    <p>Para comenzar a utilizar su Plan Dental, solo debe coordinar su primera consulta con una de las Clínicas de la Red.</p>
                     <p>Para guiarle en el proceso de Atención al Cliente o Coordinación de Citas  por favor acceda al siguiente enlace de nuestra línea de atención: https://wa.me/message/OOD225XELIHJB1 y uno de nuestros Agentes le ayudará en la atención que necesite vía WhatsApp o consúltenos al +507 6328-1368.</p>
                     <p>Si desea descargar la Cobertura Actualizada de su Plan por favor consulte con uno de nuestros agentes al chat o Ingresando a su perfil en la Plataforma Red Bucal: <a href="www.redbucal.com">www.redbucal.com</a> </p>
                     <p>Estamos complacidos de poderle servir.</p>
