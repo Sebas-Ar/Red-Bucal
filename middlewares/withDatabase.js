@@ -1,10 +1,10 @@
-import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
+import { MongoClient } from "mongodb";
 dotenv.config()
 
 const { RED_BUCAL_MONGODB_HOTS, RED_BUCAL_MONGODB_DATABASE } = process.env
 //const MONGODB_URI = `mongodb://${RED_BUCAL_MONGODB_HOTS}/${RED_BUCAL_MONGODB_DATABASE}`
-const MONGODB_URI = `mongodb://localhost/red-bucal-database`
+const MONGODB_URI = `mongodb+srv://juanariasd:eiJipA7hq5q7wx08@clusterredbucal.mzldt.mongodb.net/?retryWrites=true&w=majority&appName=ClusterRedBucal`
 
 const client = new MongoClient(MONGODB_URI, {
     useUnifiedTopology: true,
