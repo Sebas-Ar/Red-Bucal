@@ -23,7 +23,7 @@ const Respaldo = () => {
                 <img src="/img/logo35.png" alt=""/> 
                 <img src="/img/logo36.png" alt=""/> 
                 <img src="/img/logo37.png" alt=""/>
-                <img src="/img/logo39.png" alt=""/> 
+                <img src="/img/logo39.png" alt=""/>
 {/* En espera para corregir el tamaño
                 <img src="/img/logo38.png" alt=""/> 
                 <img src="/img/logo40.png" alt=""/>  
@@ -43,29 +43,33 @@ const Respaldo = () => {
             
             <style jsx>{`
 
-                 .content {
+                .content {
                     margin-top: 50px;
                     display: grid;
-                    grid-template-rows: 1fr 1.5fr 1.5fr;
+                    grid-template-rows: auto auto auto;
+                    position: relative;
                 }
+
                 img {
-                    height: 40px;
+                    height: 2.5rem;
                     display: flex;
                     justify-content: center;                    
                 }
 
-                .linea, h2 {
+                h2 {
                     grid-row: 1/2;
                     grid-column: 1/2;
                 }
 
                 .linea {
-                    position: relative;
+                    position: absolute;
                     background: #66666699;
                     height: 2px;
                     width: 350px;
                     justify-self: flex-end;
                     align-self: center;
+                    top: 0;
+                    right: 0;
                 }
 
                 .linea:before {
@@ -79,6 +83,7 @@ const Respaldo = () => {
                 }
 
                 h2 {
+                    z-index: 1;
                     align-self: center;
                     justify-self: center;
                     color: var(--mainColor);
@@ -93,27 +98,56 @@ const Respaldo = () => {
                     align-self: center;
                     text-align: center;
                     font-weight: 500;
-                    width: 700px;
+                    max-width: 700px;
                     color: var(--mainColorClaro);
+                    margin: 0 5rem;
+                    padding: 1.5em;
                 }
 
                 .imagenes {
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr;
+                    grid-column: 1/2;
+                    grid-row: 3/4;
                     justify-items: center;
                     align-items: center;
-                    grid-row-gap: 2rem;
-                    grid-column-gap: 1/32rem;
+                    gap: 2rem;
+                    margin-inline: 2rem;
                     margin-bottom: 2rem;
                 }
 
                 .dientes {
                     grid-column: 1/2;
-                    grid-row:2/4;
+                    grid-row:2/3;
                     background-image: url("/img/diente-horizontal.png");
                     background-size: auto 120%;
                     background-position: right;
-                    width: 90px;
+                    height: 100%;
+                    width: 5em;
+                }
+
+                @media screen and (width < 800px) {
+                    .imagenes {
+                        grid-template-columns: 1fr 1fr;
+                    }
+
+                    img {
+                        height: 3rem;
+                    }
+                }
+
+                @media screen and (width < 660px) {
+                    .imagenes {
+                        grid-template-columns: 1fr;
+                    }
+
+                    img {
+                        height: 3rem;
+                    }
+
+                    p {
+                        margin: 0 3rem;
+                    }
                 }
 
             `}</style>
