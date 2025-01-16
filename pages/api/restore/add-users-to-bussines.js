@@ -30,7 +30,6 @@ const handler = async (req, res) => {
 			console.log(error)
 		}
 		
-		console.log('bussines restaurados')
 
 		res.send({
 			message: 'respuesta'
