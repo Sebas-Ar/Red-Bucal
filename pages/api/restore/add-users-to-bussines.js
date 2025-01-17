@@ -6,7 +6,6 @@ const handler = async (req, res) => {
 	if (req.method === "POST") {
 		const { usersList, bussinesID } = req.body
 
-
 		try {
 			
 			usersList.forEach(async user => {
