@@ -1,5 +1,3 @@
-import React from 'react'
-
 const PersonalResponsive = (props) => {
     return (
         <section className="content">

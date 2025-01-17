@@ -1,9 +1,9 @@
-import { useState } from "react";
-import ClinicList from "../ClinicList";
-import FeatureUno from "../FeatureUno";
+import { useState } from 'react'
+import ClinicList from '../ClinicList'
+import FeatureUno from '../FeatureUno'
 
 const LayoutInfoClinics = (props) => {
-    const [clinicPhoto, setClinicPhoto] = useState("albrook mall.jpeg");
+    const [clinicPhoto, setClinicPhoto] = useState('albrook mall.jpeg')
 
     return (
         <article className="content">
@@ -11,7 +11,7 @@ const LayoutInfoClinics = (props) => {
                 <h3>
                     {props.activate
                         ? props.location[props.clinic].name
-                        : "Selecciona una Clínica"}
+                        : 'Selecciona una Clínica'}
                 </h3>
             </div>
             <div className="info">
@@ -73,7 +73,7 @@ const LayoutInfoClinics = (props) => {
                 ul {
                     overflow: auto;
                     height: calc(
-                        75vh - ${props.activate ? "270px" : "0px"} - 85px
+                        75vh - ${props.activate ? '270px' : '0px'} - 85px
                     );
                     box-sizing: border-box;
                     margin-right: 10px;
@@ -111,7 +111,7 @@ const LayoutInfoClinics = (props) => {
                 }
             `}</style>
         </article>
-    );
-};
+    )
+}
 
-export default LayoutInfoClinics;
+export default LayoutInfoClinics

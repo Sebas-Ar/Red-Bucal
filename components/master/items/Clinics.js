@@ -1,10 +1,9 @@
-import Axios from "axios"
-import { useEffect, useState } from "react"
-import AddClinic from "./AddClinic"
-import ClinicList from "./ClinicList"
+import Axios from 'axios'
+import { useEffect, useState } from 'react'
+import AddClinic from './AddClinic'
+import ClinicList from './ClinicList'
 
 const Clinics = () => {
-
     const [info, setInfo] = useState(false)
     const [clinicList, setClinicList] = useState([])
 
@@ -27,11 +26,9 @@ const Clinics = () => {
         <ClinicList clinicList={clinicList}/>
         <button onClick={changeAddUser}>Agregar clinica</button>
         {
-            info 
-            ?
-            <AddClinic changeAddUser={changeAddUser} setClinicList={setClinicList} clinicList={clinicList}/>
-            :
-            null
+            info
+                ? <AddClinic changeAddUser={changeAddUser} setClinicList={setClinicList} clinicList={clinicList}/>
+                : null
         }
 
         <style jsx>{`

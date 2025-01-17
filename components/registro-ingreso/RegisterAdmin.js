@@ -1,22 +1,20 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import AdminRegister from './register/AdminRegister'
-import EmpresasRegister from './register/EmpresasRegister'
 
 const RegisterAll = (props) => {
+    const [type] = useState(false)
 
-    const [type, setType] = useState(false)
+    // const changeType = () => {
+    //     setType(!type)
+    // }
 
-    const changeType = () => {
-        setType(!type)
-    }
+    // const changeTrue = () => {
+    //     setType(true)
+    // }
 
-    const changeTrue = () => {
-        setType(true);
-    }
-
-    const changeFalse = () => {
-        setType(false);
-    }
+    // const changeFalse = () => {
+    //     setType(false)
+    // }
 
     return (
         <div className="content">

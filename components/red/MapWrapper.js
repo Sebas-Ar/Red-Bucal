@@ -1,4 +1,4 @@
-const MapWrapper = ({children}) => {
+const MapWrapper = ({ children }) => {
     return (
         <div className="container">
 

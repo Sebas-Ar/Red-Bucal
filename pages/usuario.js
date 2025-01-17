@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import { useRouter } from 'next/router'
-import axios from "axios";
-import Layout from '../components/layout/Layout'
-import NavUsuario from '../components/usuario/NavUsuario'
-import InformationUser from '../components/usuario/items/InformationUser'
-import BillingUser from '../components/usuario/items/BillingUser'
-import ServicesUser from '../components/usuario/items/ServicesUser'
-import RecordUser from '../components/usuario/items/RecordUser'
-import ChangePass from '../components/usuario/ChangePass';
+import { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
+import Layout from '../components/layout/Layout'
+import ChangePass from '../components/usuario/ChangePass'
+import NavUsuario from '../components/usuario/NavUsuario'
+import BillingUser from '../components/usuario/items/BillingUser'
+import InformationUser from '../components/usuario/items/InformationUser'
+import RecordUser from '../components/usuario/items/RecordUser'
+import ServicesUser from '../components/usuario/items/ServicesUser'
 
-const usuario = () => {
-
+const Usuario = () => {
     const router = useRouter()
 
-    const [select, setSelect] = useState(0);
-    const [data, setData] = useState({});
+    const [select, setSelect] = useState(0)
+    const [data, setData] = useState({})
     const [changePassword, setChangePassword] = useState(false)
 
     const onClick = (selector) => {
@@ -30,20 +29,20 @@ const usuario = () => {
         if (sessionStorage.getItem('tokenUser')) {
             const url = '/api/session'
             const result = await axios.get(url)
-            console.log(result);
+            console.log(result)
             if (result.data.data.user._id === sessionStorage.getItem('tokenUser')) {
-                const {user} = result.data.data
+                const { user } = result.data.data
                 setData(user)
                 if (user.mustChangePass) {
                     setChangePassword(true)
                 }
             } else {
-                router.replace("/")
+                router.replace('/')
             }
         } else {
-            router.replace("/")
+            router.replace('/')
         }
-    } 
+    }
 
     useEffect(() => {
         get()
@@ -51,8 +50,8 @@ const usuario = () => {
 
     const changeTour = async (email) => {
         try {
-            const url= '/api/tour'
-            const result = await axios.post(url, {email})
+            const url = '/api/tour'
+            const result = await axios.post(url, { email })
             console.log(result)
         } catch (error) {
             console.log(error)
@@ -60,8 +59,7 @@ const usuario = () => {
     }
 
     useEffect(() => {
-        
-        if(data.tour) {
+        if (data.tour) {
             Swal.fire({
                 position: 'center',
                 icon: 'question',
@@ -71,30 +69,31 @@ const usuario = () => {
             })
             changeTour(data.email)
         }
+    }, [data])
 
-    }, [data]);
+    return (
 
-        return (
-    
-            <Layout>
-                <NavUsuario onClick={onClick} select={select} data={data}>
-                    {
-                        changePassword
-                        ?
-                        <ChangePass change={closeChangePass} _id={data._id}/>
-                        :
-                        ''
-                    }
-                    {
-                        select === 0 ? <InformationUser data={data} /> : 
-                        select === 1 ? <BillingUser data={data} setData={setData} /> :
-                        select === 2 ? <ServicesUser data={data}/> :
-                        select === 3 ? <RecordUser  data={data}/> :
-                        'cuatro' 
-                    }
-                </NavUsuario>
-            </Layout>
-        )
+        <Layout>
+            <NavUsuario onClick={onClick} select={select} data={data}>
+                {
+                    changePassword
+                        ? <ChangePass change={closeChangePass} _id={data._id}/>
+                        : ''
+                }
+                {
+                    select === 0
+                        ? <InformationUser data={data} />
+                        : select === 1
+                            ? <BillingUser data={data} setData={setData} />
+                            : select === 2
+                                ? <ServicesUser data={data}/>
+                                : select === 3
+                                    ? <RecordUser data={data}/>
+                                    : 'cuatro'
+                }
+            </NavUsuario>
+        </Layout>
+    )
 }
 
-export default usuario
+export default Usuario

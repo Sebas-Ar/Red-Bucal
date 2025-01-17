@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from 'react'
 import Portada from './Portada'
 import Portada2 from './Portada2'
 
 const SliderMain = () => {
-    const [slide, setSlide] = useState(0);
+    const [slide, setSlide] = useState(0)
 
     useEffect(() => {
         const time = setTimeout(() => {
             if (slide <= 0) {
-                setSlide(slide + 1);
+                setSlide(slide + 1)
             } else {
-                setSlide(slide - 1);
+                setSlide(slide - 1)
             }
-        }, 5000);
+        }, 5000)
         return () => {
-            clearTimeout(time);
-        };
-    }, [slide]);
+            clearTimeout(time)
+        }
+    }, [slide])
 
     const selectSlide = (num) => {
         setSlide(num)
@@ -24,8 +24,8 @@ const SliderMain = () => {
 
     const filling = (num) => {
         return {
-            background: num === slide ? "var(--mainColorClaro)" : "",
-        };
+            background: num === slide ? 'var(--mainColorClaro)' : ''
+        }
     }
 
     return (
@@ -52,7 +52,7 @@ const SliderMain = () => {
 
             <style jsx>{`
                 ul {
-                    margin-left: ${slide === 0 ? "0%" : "-100%"};
+                    margin-left: ${slide === 0 ? '0%' : '-100%'};
                 }
             `}</style>
 
@@ -106,7 +106,7 @@ const SliderMain = () => {
 
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default SliderMain;
+export default SliderMain

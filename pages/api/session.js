@@ -1,4 +1,4 @@
-import withMiddleware from "../../middlewares/withMiddleware"
+import withMiddleware from '../../middlewares/withMiddleware'
 
 const handler = (req, res) => {
     if (req.method === 'GET') {
@@ -12,7 +12,6 @@ const handler = (req, res) => {
             })
         } else {
             if (req.business) {
-
                 res.status(200).send({
                     status: 'ok',
                     data: {
@@ -20,10 +19,8 @@ const handler = (req, res) => {
                         user: req.business
                     }
                 })
-
             } else {
                 if (req.admin) {
-
                     res.status(200).send({
                         status: 'ok',
                         data: {
@@ -31,11 +28,8 @@ const handler = (req, res) => {
                             user: req.admin
                         }
                     })
-
                 } else {
-
                     if (req.master) {
-
                         res.status(200).send({
                             status: 'ok',
                             data: {
@@ -43,7 +37,6 @@ const handler = (req, res) => {
                                 user: req.master
                             }
                         })
-
                     } else {
                         res.status(200).send({
                             status: 'ok',

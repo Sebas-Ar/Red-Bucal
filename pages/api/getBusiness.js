@@ -1,27 +1,25 @@
+import { ObjectId } from 'mongodb'
+import { connectToDatabase } from '../../backend/db'
 import withMiddleware from '../../middlewares/withMiddleware'
-import {ObjectId} from 'mongodb';
 
 const handler = async (req, res) => {
-
+    const mongoClient = await connectToDatabase()
     if (req.method === 'GET') {
-        const {query} = req
+        const { query } = req
 
-        const data = await req.db.collection('bussines').findOne({_id: ObjectId(query.id)})
+        const data = await mongoClient.db.collection('bussines').findOne({ _id: ObjectId(query.id) })
 
-        res.send({message: data})
-
+        res.send({ message: data })
     } else if (req.method === 'POST') {
         const { RUC } = req.body
         try {
-
-            const user = await req.db.collection('bussines').aggregate(aggregateId(RUC)).toArray()
+            const user = await mongoClient.db.collection('bussines').aggregate(aggregateId(RUC)).toArray()
             if (user.length === 0) {
-                const user = await req.db.collection('bussines').aggregate(aggregateName(RUC)).toArray()
+                const user = await mongoClient.db.collection('bussines').aggregate(aggregateName(RUC)).toArray()
                 res.send({ message: user })
             } else {
                 res.send({ message: user })
             }
-
         } catch (error) {
             res.json({
                 status: 'error',
@@ -29,18 +27,15 @@ const handler = async (req, res) => {
             })
         }
     } else {
-
-        res.status(405).end();
-
+        res.status(405).end()
     }
-
 }
 
 const aggregateId = (RUC) => (
     [
         {
             $match: {
-                RUC: {$regex: RUC === '' ? '.' : RUC, $options: 'i'}
+                RUC: { $regex: RUC === '' ? '.' : RUC, $options: 'i' }
             }
         },
         {
@@ -56,7 +51,7 @@ const aggregateName = (RUC) => (
     [
         {
             $match: {
-                name: {$regex: RUC === '' ? '.' : RUC, $options: 'i'}
+                name: { $regex: RUC === '' ? '.' : RUC, $options: 'i' }
             }
         },
         {
@@ -68,4 +63,4 @@ const aggregateName = (RUC) => (
     ]
 )
 
-export default withMiddleware(handler);
+export default withMiddleware(handler)

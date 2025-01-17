@@ -1,13 +1,11 @@
-import React from 'react'
-
 const Cobertura = () => {
     return (
         <div className="content">
             <h2>NUESTRA COBERTURA</h2>
             <div className="linea"></div>
-            <p>Contamos con el Nuevo <b>Plan de Salud Premium: con los mejores Beneficios en Salud Dental y excelentes Beneficios en Medicina Preventiva General </b> 
-            algunos de estos nuevos beneficios son: el costo fijo de B/. 5.00 para las consultas de Medicina General, Consultas especializadas , todo tipo de laboratorios 
-            clínicos hablamos de mas de 350 tipos de laboratorios con cobertura del 25% y Exámenes de Imagenología de todo tipo hablamos de mas de 175 tipos de exámenes 
+            <p>Contamos con el Nuevo <b>Plan de Salud Premium: con los mejores Beneficios en Salud Dental y excelentes Beneficios en Medicina Preventiva General </b>
+            algunos de estos nuevos beneficios son: el costo fijo de B/. 5.00 para las consultas de Medicina General, Consultas especializadas , todo tipo de laboratorios
+            clínicos hablamos de mas de 350 tipos de laboratorios con cobertura del 25% y Exámenes de Imagenología de todo tipo hablamos de mas de 175 tipos de exámenes
             con el 25% de cobertura de forma ilimitada en todo el año en nuestra red de clínicas.
             </p>
             <style jsx>{`

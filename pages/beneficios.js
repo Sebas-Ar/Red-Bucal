@@ -1,24 +1,22 @@
-import React, { useState } from "react";
-import Layout from "../components/layout/Layout";
-import Footer from "../components/footer/Footer";
-import DescuentosBox from "../components/descuentos/DescuentosBox";
-import DescuentosList from "../components/descuentos/DescuentosList";
-import DescuentosBoxResponsive from "../components/descuentos/DescuentosBoxResponsive";
-import TitleDescuentos from "../components/descuentos/TitleDescuentos";
-import DescuentosCard from "../components/descuentos/cards/DescuentosCard";
-import Social from "../components/social/Social";
+import { useState } from 'react'
+import DescuentosList from '../components/descuentos/DescuentosList'
+import TitleDescuentos from '../components/descuentos/TitleDescuentos'
+import DescuentosCard from '../components/descuentos/cards/DescuentosCard'
+import Footer from '../components/footer/Footer'
+import Layout from '../components/layout/Layout'
+import Social from '../components/social/Social'
 
-const beneficios = () => {
-    const [list, setList] = useState(0);
-    const [active, setActive] = useState(false);
+const Beneficios = () => {
+    const [list, setList] = useState(0)
+    const [active, setActive] = useState(false)
 
     const changeActive = () => {
-        setActive(!active);
-    };
+        setActive(!active)
+    }
 
     const changeList = (num) => {
-        setList(num);
-    };
+        setList(num)
+    }
 
     return (
         <Layout>
@@ -43,7 +41,7 @@ const beneficios = () => {
             /> */}
             <Footer />
         </Layout>
-    );
-};
+    )
+}
 
-export default beneficios;
+export default Beneficios

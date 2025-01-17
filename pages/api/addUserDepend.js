@@ -1,9 +1,11 @@
-import validator from "email-validator";
-import withMiddleware from "../../middlewares/withMiddleware";
-import bcrypt from "bcryptjs";
+import bcrypt from 'bcryptjs'
+import validator from 'email-validator'
+import { connectToDatabase } from '../../backend/db'
+import withMiddleware from '../../middlewares/withMiddleware'
 
 const handler = async (req, res) => {
-    if (req.method === "POST") {
+    if (req.method === 'POST') {
+        const mongoClient = await connectToDatabase()
         let {
             name,
             lastname,
@@ -17,36 +19,36 @@ const handler = async (req, res) => {
             email,
             day,
             month,
-            year,
-        } = req.body;
+            year
+        } = req.body
 
-        console.log(req.body);
+        console.log(req.body)
 
         if (!validator.validate(email)) {
             res.json({
-                status: "error",
-                message: "el correo es invalido",
-            });
+                status: 'error',
+                message: 'el correo es invalido'
+            })
         } else {
             try {
-                const count = await req.db
-                    .collection("users")
-                    .countDocuments({ email });
+                const count = await mongoClient.db
+                    .collection('users')
+                    .countDocuments({ email })
 
                 if (count) {
-                    console.log("ya existe");
+                    console.log('ya existe')
 
                     res.send({
-                        status: "error",
-                        message: "El correo ya ha sido registrado",
-                    });
+                        status: 'error',
+                        message: 'El correo ya ha sido registrado'
+                    })
                 } else {
-                    const salt = await bcrypt.genSalt(10);
-                    const hashedPassword = await bcrypt.hash(idDepend, salt);
-                    const date = new Date();
-                    const user = await req.db.collection("users").insertOne({
+                    const salt = await bcrypt.genSalt(10)
+                    const hashedPassword = await bcrypt.hash(idDepend, salt)
+                    const date = new Date()
+                    await mongoClient.db.collection('users').insertOne({
                         state: false,
-                        name: name + " " + lastname,
+                        name: name + ' ' + lastname,
                         typeDoc,
                         identification: idDepend,
                         email,
@@ -55,57 +57,57 @@ const handler = async (req, res) => {
                         addres,
                         phone,
                         plan: false,
-                        date: "0" + date.getDate() + " / 0" + date.getMonth(),
+                        date: '0' + date.getDate() + ' / 0' + date.getMonth(),
                         service: false,
                         historial: [],
                         know: 5,
                         dependeOf: {
                             name: dependName,
-                            id: identification,
-                        },
-                    });
+                            id: identification
+                        }
+                    })
 
                     if (!dependientes) {
                         dependientes = [
                             {
-                                name: name + " " + lastname,
+                                name: name + ' ' + lastname,
                                 id: idDepend,
-                                state: false,
-                            },
-                        ];
+                                state: false
+                            }
+                        ]
                     } else {
                         dependientes.push({
-                            name: name + " " + lastname,
+                            name: name + ' ' + lastname,
                             id: idDepend,
-                            state: false,
-                        });
+                            state: false
+                        })
                     }
 
-                    const encontrar = await req.db
-                        .collection("users")
+                    const encontrar = await mongoClient.db
+                        .collection('users')
                         .findAndModify(
                             { identification },
-                            [["_id", "asc"]],
+                            [['_id', 'asc']],
                             { $set: { dependientes: dependientes } },
                             { new: true }
-                        );
+                        )
 
                     res.status(201).json({
-                        status: "ok",
-                        message: "Usuario agregado satisfactoriamente",
-                        data: encontrar,
-                    });
+                        status: 'ok',
+                        message: 'Usuario agregado satisfactoriamente',
+                        data: encontrar
+                    })
                 }
             } catch (error) {
                 res.json({
-                    status: "error",
-                    message: error.toString(),
-                });
+                    status: 'error',
+                    message: error.toString()
+                })
             }
         }
     } else {
-        res.status(405).end();
+        res.status(405).end()
     }
-};
+}
 
-export default withMiddleware(handler);
+export default withMiddleware(handler)

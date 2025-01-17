@@ -1,37 +1,36 @@
 // import bcrypt from "bcryptjs";
-import { ObjectId } from "mongodb";
-import withMiddleware from "../../../middlewares/withMiddleware";
+import { ObjectId } from 'mongodb'
+import { connectToDatabase } from '../../../backend/db'
+import withMiddleware from '../../../middlewares/withMiddleware'
 
 const handler = async (req, res) => {
-	if (req.method === "POST") {
-		const { adminList } = req.body
+    if (req.method === 'POST') {
+        const mongoClient = await connectToDatabase()
+        const { adminList } = req.body
 
-		// console.log("numero de usurarios total: ", userList.length)
+        // console.log("numero de usurarios total: ", userList.length)
 
-		try {
-			
-			adminList.forEach(async admin => {
-                await req.db.collection('admin').insertOne({
+        try {
+            adminList.forEach(async admin => {
+                await mongoClient.db.collection('admin').insertOne({
                     ...admin,
-                    _id: ObjectId(admin._id.$oid),
+                    _id: ObjectId(admin._id.$oid)
                 })
-
             })
-			
-			console.log('finalizo el for')
-			
-		} catch (error) {
-			console.log(error)
-		}
-		
-		console.log('admins restaurados')
 
-		res.send({
-			message: 'respuesta'
-		});
-	} else {
-		res.status(405).end();
-	}
-};
+            console.log('finalizo el for')
+        } catch (error) {
+            console.log(error)
+        }
 
-export default withMiddleware(handler);
+        console.log('admins restaurados')
+
+        res.send({
+            message: 'respuesta'
+        })
+    } else {
+        res.status(405).end()
+    }
+}
+
+export default withMiddleware(handler)

@@ -1,5 +1,4 @@
-import React from "react";
-import Planes from "../Planes";
+import Planes from '../Planes'
 
 const LayoutPlanes = () => {
     return (
@@ -130,7 +129,7 @@ const LayoutPlanes = () => {
                 }
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default LayoutPlanes;
+export default LayoutPlanes

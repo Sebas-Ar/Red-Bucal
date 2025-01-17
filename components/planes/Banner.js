@@ -1,5 +1,3 @@
-import React from "react";
-
 const Banner = () => {
     return (
         <section className="content">
@@ -116,7 +114,7 @@ const Banner = () => {
                 }
             `}</style>
         </section>
-    );
-};
+    )
+}
 
-export default Banner;
+export default Banner

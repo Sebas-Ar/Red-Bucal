@@ -1,8 +1,10 @@
-export default (req, res) => {
-    if (req.method === "GET") {
-        const { email } = req.query;
+import sgMail from '@sendgrid/mail'
 
-        sgMail.setApiKey(process.env.TOKEN_SEND_GRID);
+export default (req, res) => {
+    if (req.method === 'GET') {
+        const { email } = req.query
+
+        sgMail.setApiKey(process.env.TOKEN_SEND_GRID)
 
         const contentHTML = `
             <!DOCTYPE html>
@@ -27,28 +29,28 @@ export default (req, res) => {
                 <p>El equipo de Red Bucal</p>
             </body>
             </html>
-        `;
-        console.log("sending email to " + email);
+        `
+        console.log('sending email to ' + email)
         const msg = {
             to: email,
             /* from: 'xevaz.ariasd@gmail.com', */
-            from: "redbucal.info@gmail.com",
-            subject: "CONTACTENOS - Red Bucal",
-            text: "esete es el texto de inicio",
-            html: contentHTML,
-        };
+            from: 'redbucal.info@gmail.com',
+            subject: 'CONTACTENOS - Red Bucal',
+            text: 'esete es el texto de inicio',
+            html: contentHTML
+        }
 
         try {
-            sgMail.send(msg);
+            sgMail.send(msg)
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
 
         res.status(200).json({
-            status: "ok",
-            message: "correo enviado",
-        });
+            status: 'ok',
+            message: 'correo enviado'
+        })
     } else {
         // Handle any other HTTP method
     }
-};
+}

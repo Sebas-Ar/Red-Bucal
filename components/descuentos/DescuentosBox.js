@@ -1,9 +1,8 @@
-import React from 'react'
 import Porcentajes from './Porcentajes'
 
 const DescuentosBox = (props) => {
     return (
-        
+
         <div className="content">
             <div className="horizontal1 horizontal"></div>
             <div className="horizontal2 horizontal">
@@ -29,7 +28,7 @@ const DescuentosBox = (props) => {
                     sizeText="35px"
                     hover="rgba(255, 255, 255, 0.8)"
                     changeActive={props.changeActive}
-                    changeList={() => {props.changeList(0)}}
+                    changeList={() => { props.changeList(0) }}
                 />
             </section>
             <section className="ochenta">
@@ -44,7 +43,7 @@ const DescuentosBox = (props) => {
                     sizeText="30px"
                     hover="rgba(17, 136, 204, 0.75)"
                     changeActive={props.changeActive}
-                    changeList={() => {props.changeList(1)}}
+                    changeList={() => { props.changeList(1) }}
                 />
             </section>
             <section className="sesenta">
@@ -59,7 +58,7 @@ const DescuentosBox = (props) => {
                     sizeText="25px"
                     hover="rgba(255, 34, 17, 0.75)"
                     changeActive={props.changeActive}
-                    changeList={() => {props.changeList(2)}}
+                    changeList={() => { props.changeList(2) }}
                 />
             </section>
             <section className="ciencuetaYCinco">
@@ -74,7 +73,7 @@ const DescuentosBox = (props) => {
                     sizeText="20px"
                     hover="rgba(255, 153, 0, 0.85)"
                     changeActive={props.changeActive}
-                    changeList={() => {props.changeList(3)}}
+                    changeList={() => { props.changeList(3) }}
                 />
             </section>
             <section className="cincuenta">
@@ -89,7 +88,7 @@ const DescuentosBox = (props) => {
                     sizeText="15px"
                     hover="rgba(255, 255, 255, 0.8)"
                     changeActive={props.changeActive}
-                    changeList={() => {props.changeList(4)}}
+                    changeList={() => { props.changeList(4) }}
                 />
             </section>
             <section className="cuarenta">
@@ -104,7 +103,7 @@ const DescuentosBox = (props) => {
                     sizeText="20px"
                     hover="rgba(255, 153, 0, 0.85)"
                     changeActive={props.changeActive}
-                    changeList={() => {props.changeList(5)}}
+                    changeList={() => { props.changeList(5) }}
                 />
             </section>
             <section className="treinta">
@@ -119,7 +118,7 @@ const DescuentosBox = (props) => {
                     sizeText="20px"
                     hover="rgba(255, 34, 17, 0.75)"
                     changeActive={props.changeActive}
-                    changeList={() => {props.changeList(6)}}
+                    changeList={() => { props.changeList(6) }}
                 />
             </section>
             <section className="Veinticinco">
@@ -134,7 +133,7 @@ const DescuentosBox = (props) => {
                     sizeText="25px"
                     hover="rgba(17, 136, 204, 0.75)"
                     changeActive={props.changeActive}
-                    changeList={() => {props.changeList(7)}}
+                    changeList={() => { props.changeList(7) }}
                 />
             </section>
             <section className="veinte">
@@ -149,7 +148,7 @@ const DescuentosBox = (props) => {
                     sizeText="20px"
                     hover="rgba(255, 34, 17, 0.75)"
                     changeActive={props.changeActive}
-                    changeList={() => {props.changeList(8)}}
+                    changeList={() => { props.changeList(8) }}
                 />
             </section>
 

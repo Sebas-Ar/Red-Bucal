@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import { scroller } from 'react-scroll';
+import { useState } from 'react'
+import { scroller } from 'react-scroll'
 import Layout from '../components/layout/Layout'
-import MapWrapper from '../components/red/MapWrapper';
+import MapWrapper from '../components/red/MapWrapper'
 
 /* import SliderImg from '../components/red/SliderImg' */
-import PanamaMap from '../components/red/PanamaMap'
 import Footer from '../components/footer/Footer'
 import LayoutInfoClinics from '../components/red/layout/LayoutInfoClinics'
-import TitleRed from '../components/red/TitleRed';
+import PanamaMap from '../components/red/PanamaMap'
+import TitleRed from '../components/red/TitleRed'
 /* import fetch from 'isomorphic-unfetch' */
 
 /* DATOS DE LAS CLINICAS */
 import location from '../components/red/locations/location'
-import Social from '../components/social/Social';
+import Social from '../components/social/Social'
 
-//configuraciones del autoScroll
+// configuraciones del autoScroll
 const setupScroll = {
     duration: 3000,
     delay: 50,
@@ -23,17 +23,13 @@ const setupScroll = {
 }
 
 const Red = () => {
-
-    const [clinic, setClinic] = useState(0);
+    const [clinic, setClinic] = useState(0)
     const [activate, setActivate] = useState(false)
-    
 
     const changeClinic = (num) => {
         setClinic(num)
-        scroller.scrollTo("info", setupScroll)
+        scroller.scrollTo('info', setupScroll)
     }
-
-    
 
     return (
         <Layout>
@@ -51,6 +47,5 @@ const Red = () => {
         </Layout>
     )
 }
-
 
 export default Red

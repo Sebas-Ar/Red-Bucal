@@ -1,13 +1,14 @@
-import withMiddleware from '../../middlewares/withMiddleware'
-import xlsx from 'xlsx'
-import fs from 'fs'
 import archiver from 'archiver'
+import fs from 'fs'
+import xlsx from 'xlsx'
+import { connectToDatabase } from '../../backend/db'
+import withMiddleware from '../../middlewares/withMiddleware'
 
 const handler = async (req, res) => {
+    if (req.method === 'POST') {
+        const mongoClient = await connectToDatabase()
 
-    if (req.method == 'POST') {
-
-        const {afiliacion} = req.body
+        const { afiliacion } = req.body
 
         const projection = {
             _id: false,
@@ -25,32 +26,31 @@ const handler = async (req, res) => {
             end: true,
             service: true,
             date: true,
-            afiliacion: true,
-        }    
-    
-        try {
+            afiliacion: true
+        }
 
+        try {
             let userList
 
             if (afiliacion === '') {
-                userList = await req.db.collection('users')
-                .find(
-                    {},
-                    {projection}
-                ).toArray()
+                userList = await mongoClient.db.collection('users')
+                    .find(
+                        {},
+                        { projection }
+                    ).toArray()
             } else {
-                userList = await req.db.collection('users')
-                .find(
-                    {afiliacion},
-                    {projection}
-                ).toArray()
+                userList = await mongoClient.db.collection('users')
+                    .find(
+                        { afiliacion },
+                        { projection }
+                    ).toArray()
             }
-    
+
             const obj = userList.map(e => e)
-    
+
             const newWB = xlsx.utils.book_new()
             const newWS = xlsx.utils.json_to_sheet(obj)
-            
+
             let fileName
 
             if (afiliacion === '') {
@@ -60,42 +60,39 @@ const handler = async (req, res) => {
             }
 
             afiliacion.replace(/ /, '-')
-    
-            xlsx.utils.book_append_sheet(newWB, newWS, "name")
-    
+
+            xlsx.utils.book_append_sheet(newWB, newWS, 'name')
+
             xlsx.writeFile(newWB, `${fileName}.xlsx`)
-    
+
             // if (fs.f)
-    
+
             if (fs.existsSync(`${fileName}.xlsx`)) {
                 fs.renameSync(`${fileName}.xlsx`, `public/excels/${fileName}.xlsx`, err => {
-                    if (err) throw err;
+                    if (err) throw err
                     console.log('funciona')
                 })
             }
-    
+
             /* fs.readdir('public', (err, arch) => {
                 console.log(arch)
             }) */
-    
-            let output = fs.createWriteStream(`public/excels/${fileName}.zip`)
-            let archive = archiver('zip', { gzip: true, zlib: { leverl: 9 } })
-            archive.on('error', err => {throw err})
+
+            const output = fs.createWriteStream(`public/excels/${fileName}.zip`)
+            const archive = archiver('zip', { gzip: true, zlib: { leverl: 9 } })
+            archive.on('error', err => { throw err })
             archive.pipe(output)
-            archive.file(`public/excels/${fileName}.xlsx`, {name: `${fileName}.xlsx`})
+            archive.file(`public/excels/${fileName}.xlsx`, { name: `${fileName}.xlsx` })
             await archive.finalize()
             fs.unlinkSync(`public/excels/${fileName}.xlsx`)
-            res.json({status: 'ok'})
-
+            res.json({ status: 'ok' })
         } catch (error) {
             console.log(error)
-            res.json({status: 'error'})
+            res.json({ status: 'error' })
         }
-
     } else {
-        res.status(405).json({status: 'error'})
+        res.status(405).json({ status: 'error' })
     }
-
 }
 
 export default withMiddleware(handler)

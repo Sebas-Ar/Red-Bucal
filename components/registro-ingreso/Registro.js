@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from "react";
-import emailValidator from "email-validator";
+import emailValidator from 'email-validator'
+import { useEffect, useState } from 'react'
 
 const Registro = (props) => {
-    const [url, setUrl] = useState("");
-    const [errors, setErrors] = useState(false);
+    // const [url, setUrl] = useState('')
+    const [errors, setErrors] = useState(false)
 
     useEffect(() => {
-        const path = window.location.pathname;
-        setUrl(path);
-    }, []);
+        // const path = window.location.pathname
+        // setUrl(path)
+    }, [])
 
     const validate = () => {
-        let bool = false;
+        let bool = false
         if (emailValidator.validate(props.user.email)) {
-            bool = true;
-            setErrors("");
+            bool = true
+            setErrors('')
         } else {
-            setErrors("Formato de email invalido");
+            setErrors('Formato de email invalido')
         }
-        return bool;
-    };
+        return bool
+    }
 
     return (
         <div className="form">
@@ -28,11 +28,11 @@ const Registro = (props) => {
                 <input
                     type="text"
                     placeholder="EMAIL"
-                    value={props.user.email ? props.user.email : ""}
+                    value={props.user.email ? props.user.email : ''}
                     name="email"
                     onChange={props.ChangeText}
                 />
-                {errors ? <p>{errors}</p> : ""}
+                {errors ? <p>{errors}</p> : ''}
             </div>
             {/* <div className="password">
                 <div className="colorAzul"></div>
@@ -143,7 +143,7 @@ const Registro = (props) => {
                 }
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default Registro;
+export default Registro

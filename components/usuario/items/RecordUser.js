@@ -1,5 +1,3 @@
-import React from "react";
-
 const RecordUser = (props) => {
     return (
         <section>
@@ -9,19 +7,21 @@ const RecordUser = (props) => {
                 <p>TRATAMIENTO</p>
                 <div className="linea"></div>
 
-                {props.data.historial ? (
-                    props.data.historial.map((historial) => (
+                {props.data.historial
+                    ? (
+                        props.data.historial.map((historial) => (
+                            <div className="form">
+                                <p>{historial.fecha}</p>
+                                <p>{historial.hora}</p>
+                                <p>{historial.tratamiento}</p>
+                            </div>
+                        ))
+                    )
+                    : (
                         <div className="form">
-                            <p>{historial.fecha}</p>
-                            <p>{historial.hora}</p>
-                            <p>{historial.tratamiento}</p>
+                            <p style={{ gridColumn: '1/4' }}>HISTORIAL VACIO</p>
                         </div>
-                    ))
-                ) : (
-                    <div className="form">
-                        <p style={{ gridColumn: "1/4" }}>HISTORIAL VACIO</p>
-                    </div>
-                )}
+                    )}
             </div>
 
             <style jsx>{`
@@ -70,7 +70,7 @@ const RecordUser = (props) => {
                 }
             `}</style>
         </section>
-    );
-};
+    )
+}
 
-export default RecordUser;
+export default RecordUser

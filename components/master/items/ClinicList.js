@@ -1,12 +1,10 @@
-import { useState } from "react"
-import AfiliadosList from "./AfiliadosList"
+import { useState } from 'react'
+import AfiliadosList from './AfiliadosList'
 
-const ClinicList = ({clinicList}) => {
-
-    
+const ClinicList = ({ clinicList }) => {
     const [toggleAfiliados, setToggleAfiliados] = useState(false)
-    const [name, setName] = useState('') 
-    
+    const [name, setName] = useState('')
+
     return <div className="container">
 
         <p>Nombre</p>
@@ -16,32 +14,30 @@ const ClinicList = ({clinicList}) => {
         <div className="linea"></div>
         <div className="content">
 
-            <span style={{fontWeight: '900'}}>RED BUCAL</span>
-            <span style={{textAlign: 'center'}}>-</span>
+            <span style={{ fontWeight: '900' }}>RED BUCAL</span>
+            <span style={{ textAlign: 'center' }}>-</span>
             <button onClick={() => {
                 setName('')
                 setToggleAfiliados(!toggleAfiliados)
             }}>Ver afiliados</button>
-        {
-            clinicList.map(item => (
-                <>
-                    <span>{item.name}</span>
-                    <span>{item.email}</span>
-                    <button onClick={() => {
-                        setName(item.name)
-                        setToggleAfiliados(!toggleAfiliados)
-                    }}>Ver afiliados</button>
-                </>
-            ))
-        }
+            {
+                clinicList.map(item => (
+                    <>
+                        <span>{item.name}</span>
+                        <span>{item.email}</span>
+                        <button onClick={() => {
+                            setName(item.name)
+                            setToggleAfiliados(!toggleAfiliados)
+                        }}>Ver afiliados</button>
+                    </>
+                ))
+            }
         </div>
 
         {
             toggleAfiliados
-            ?
-                <AfiliadosList setToggleAfiliados={setToggleAfiliados} name={name}/>
-            :
-                null
+                ? <AfiliadosList setToggleAfiliados={setToggleAfiliados} name={name}/>
+                : null
 
         }
 

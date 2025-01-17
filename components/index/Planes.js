@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 const Planes = (props) => {
-
     const router = useRouter()
 
     const contacto = () => {
-        router.push("/contacto")
+        router.push('/contacto')
     }
 
     const registro = () => {
-        router.push("/registro-ingreso")
+        router.push('/registro-ingreso')
     }
 
     return (
@@ -35,7 +33,7 @@ const Planes = (props) => {
                 .content {
                     grid-row: 2/3;
                     justify-self: center;
-                    grid-column: ${ props.position };
+                    grid-column: ${props.position};
                     display: grid;
                     width: 550px;
                     grid-template-columns: .5fr 4.5fr .5fr;
@@ -61,7 +59,7 @@ const Planes = (props) => {
                     width: 100%;
                     grid-column: 1/4;
                     grid-row: 2/4;
-                    background-image: url(${ props.img });
+                    background-image: url(${props.img});
                     background-size: 100% 100%;
                     box-shadow: 5px 5px 10px 0px #333333aa;
                     z-index: 5;

@@ -1,31 +1,26 @@
-import React from 'react'
-
-const Card = ({list, index, changeActive, changeList}) => {
+const Card = ({ list, index, changeActive, changeList }) => {
     return (
-       <section className="container">
-           <header>
+        <section className="container">
+            <header>
                 <h3>{list.title}</h3>
-           </header>
-           <ul>
-               {
+            </header>
+            <ul>
+                {
                     list.list.map((li, i) => (
                         i <= 5 ? <li>{li}</li> : null
                     ))
-               }
-           </ul>
-           {
+                }
+            </ul>
+            {
                 list.list.length > 5
-                ?
-                <span 
-                    onClick={() => {
-                    changeList(index)
-                    changeActive()
-                    }
-                }>
-                Ver Más</span>
-                :
-                null
-           }
+                    ? <span onClick={() => {
+                        changeList(index)
+                        changeActive()
+                    }}>
+                            Ver Más
+                    </span>
+                    : null
+            }
 
             <style jsx>{`
             
@@ -83,7 +78,7 @@ const Card = ({list, index, changeActive, changeList}) => {
                 }
             
             `}</style>
-       </section> 
+        </section>
     )
 }
 

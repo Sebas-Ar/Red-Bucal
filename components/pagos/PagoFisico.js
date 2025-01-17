@@ -1,13 +1,10 @@
-import React from "react";
-import Link from "next/link";
-
 const PagoFisico = (props) => {
     return (
         <div className="content">
             <section>
                 <svg
                     onClick={() => {
-                        props.changeFisico();
+                        props.changeFisico()
                     }}
                     viewBox="0 0 512 512"
                 >
@@ -108,7 +105,7 @@ const PagoFisico = (props) => {
                 }
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default PagoFisico;
+export default PagoFisico

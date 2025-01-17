@@ -1,29 +1,26 @@
-import React, { useState, useEffect } from 'react'
-import PagoFisico from '../../pagos/PagoFisico';
-import PagoVirtual from '../../pagos/PagoVirtual';
+import { useEffect, useState } from 'react'
+import PagoFisico from '../../pagos/PagoFisico'
+import PagoVirtual from '../../pagos/PagoVirtual'
 
 const BillingUser = (props) => {
-
     const [activeFisico, setActiveFisico] = useState(false)
     const [activeVirtual, setActiveVirtual] = useState(false)
     const [dates, setDates] = useState({})
 
     useEffect(() => {
-
         if (props.data.start && props.data.end) {
-            const {start, end} = props.data
+            const { start, end } = props.data
 
             const startDate = new Date(start)
             const endDate = new Date(end)
             console.log(startDate)
             console.log(endDate)
-    
+
             setDates({
                 start: `${startDate.getDate()}-${startDate.getMonth() + 1}-${startDate.getFullYear()}`,
                 end: `${endDate.getDate()}-${endDate.getMonth() + 1}-${endDate.getFullYear()}`
             })
         }
-
     }, [props.data])
 
     const changeFisico = () => {
@@ -38,17 +35,13 @@ const BillingUser = (props) => {
         <section>
             {
                 activeFisico
-                ?
-                    <PagoFisico changeFisico={changeFisico} />
-                :
-                ''
+                    ? <PagoFisico changeFisico={changeFisico} />
+                    : ''
             }
             {
                 activeVirtual
-                ?
-                    <PagoVirtual changeVirtual={changeVirtual} data={props.data} setData={props.setData} type={'empresa'} pago={props.data.identifications.length}/>
-                :
-                ''
+                    ? <PagoVirtual changeVirtual={changeVirtual} data={props.data} setData={props.setData} type={'empresa'} pago={props.data.identifications.length}/>
+                    : ''
             }
             <label className="type">
                 TIPO DE PLAN:

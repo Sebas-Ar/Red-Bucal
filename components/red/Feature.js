@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Feature = (props) => {
     return (
         <section className="content">

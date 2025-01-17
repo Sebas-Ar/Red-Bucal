@@ -1,39 +1,39 @@
-import React, { useState } from "react";
-import Axios from "axios";
+import Axios from 'axios'
+import { useState } from 'react'
 
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2'
 
 const RememberPass = ({ setRemember }) => {
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState('')
 
     const submit = async (e) => {
-        e.preventDefault();
-        const URL_REMEMBER_PASS = "/api/remember";
-        const response = await Axios.post(URL_REMEMBER_PASS, { email });
+        e.preventDefault()
+        const URL_REMEMBER_PASS = '/api/remember'
+        const response = await Axios.post(URL_REMEMBER_PASS, { email })
 
-        if (response.data.status === "ok") {
+        if (response.data.status === 'ok') {
             Swal.fire({
-                position: "center",
-                icon: "success",
+                position: 'center',
+                icon: 'success',
                 title: response.data.message,
-                showConfirmButton: true,
-            });
-        } else if (response.data.status === "error") {
+                showConfirmButton: true
+            })
+        } else if (response.data.status === 'error') {
             Swal.fire({
-                position: "center",
-                icon: "warning",
+                position: 'center',
+                icon: 'warning',
                 title: response.data.message,
-                showConfirmButton: true,
-            });
+                showConfirmButton: true
+            })
         }
-    };
+    }
 
     return (
         <div className="content">
             <section>
                 <svg
                     onClick={() => {
-                        setRemember(false);
+                        setRemember(false)
                     }}
                     viewBox="0 0 512 512"
                 >
@@ -137,7 +137,7 @@ const RememberPass = ({ setRemember }) => {
                 }
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default RememberPass;
+export default RememberPass

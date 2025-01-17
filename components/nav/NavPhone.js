@@ -1,20 +1,19 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const NavPhone = () => {
-
     const [active, setActive] = useState(false)
-    const [url, setUrl] = useState('');
+    const [url, setUrl] = useState('')
 
     const changeActive = () => {
         setActive(!active)
     }
 
     useEffect(() => {
-        const path = window.location.pathname;
+        const path = window.location.pathname
         setUrl(path)
-    }, []);
+    }, [])
 
     const validateUrl = (urlActual) => {
         return {
@@ -32,9 +31,9 @@ const NavPhone = () => {
             <Head>
                 <title>Red Bucal</title>
                 <link rel="icon" href="/favicon.ico" />
-            </Head> 
+            </Head>
 
-            <Link legacyBehavior  href="/">
+            <Link legacyBehavior href="/">
                 <a>
                     <img src="/img/Capa-2.png" alt="Logo"/>
                 </a>
@@ -50,7 +49,7 @@ const NavPhone = () => {
                 </svg>
                 <ul>
                     <br/>
-                    <Link legacyBehavior  href="/">
+                    <Link legacyBehavior href="/">
                         <a>
                             <li style={validateUrl('/')}>INICIO</li>
                         </a>
@@ -58,15 +57,15 @@ const NavPhone = () => {
                     <div className="linea"></div>
                     <li>
                         <ul>
-                            <li style={validateUrlPlanes('/planes/personas-familias','/planes/empresarial')}><div>PLANES <span>▼</span></div></li>
+                            <li style={validateUrlPlanes('/planes/personas-familias', '/planes/empresarial')}><div>PLANES <span>▼</span></div></li>
                             <div className="linea"></div>
-                            <Link legacyBehavior  href="/planes/personas-familias">
+                            <Link legacyBehavior href="/planes/personas-familias">
                                 <a>
                                     <li style={validateUrl('/planes/personas-familias')}>PLAN PREMIUM</li>
                                 </a>
                             </Link>
                             <div className="linea"></div>
-                            <Link legacyBehavior  href="/planes/empresarial">
+                            <Link legacyBehavior href="/planes/empresarial">
                                 <a>
                                     <li style={validateUrl('/planes/empresarial')}>PLAN EMPRESAS</li>
                                 </a>
@@ -74,7 +73,7 @@ const NavPhone = () => {
                         </ul>
                     </li>
                     <div className="linea"></div>
-                    <Link legacyBehavior  href="/red">
+                    <Link legacyBehavior href="/red">
                         <a>
                             <li style={validateUrl('/red')}>RED</li>
                         </a>
@@ -83,15 +82,15 @@ const NavPhone = () => {
 
                     <li>
                         <ul>
-                            <li style={validateUrlPlanes('/beneficios','/prevencion')}><div>BENEFICIOS <span>▼</span></div></li>
+                            <li style={validateUrlPlanes('/beneficios', '/prevencion')}><div>BENEFICIOS <span>▼</span></div></li>
                             <div className="linea"></div>
-                            <Link legacyBehavior  href="/beneficios">
+                            <Link legacyBehavior href="/beneficios">
                                 <a>
                                     <li style={validateUrl('/beneficios')}>SALUD DENTAL</li>
                                 </a>
                             </Link>
                             <div className="linea"></div>
-                            <Link legacyBehavior  href="/prevencion">
+                            <Link legacyBehavior href="/prevencion">
                                 <a>
                                     <li style={validateUrl('/prevencion')}>MEDICINA GENERAL</li>
                                 </a>
@@ -100,20 +99,20 @@ const NavPhone = () => {
                     </li>
 
                     <div className="linea"></div>
-                    <Link legacyBehavior  href="/nosotros">
+                    <Link legacyBehavior href="/nosotros">
                         <a>
                             <li style={validateUrl('/nosotros')}>NOSOTROS</li>
                         </a>
                     </Link>
                     <div className="linea"></div>
-                    <Link legacyBehavior  href="/contacto">
+                    <Link legacyBehavior href="/contacto">
                         <a>
                             <li style={validateUrl('/contacto')}>CONTACTO</li>
                         </a>
                     </Link>
                 </ul>
                 <div className="final">
-                    <Link legacyBehavior  href="/registro-ingreso">
+                    <Link legacyBehavior href="/registro-ingreso">
                         <a>
                             <svg className="user" viewBox="0 0 448 512">
                                 <path fill="currentColor" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z" />
@@ -188,7 +187,7 @@ const NavPhone = () => {
                     right: 0;
                     transition: transform .5s ease;
                     transform: ${active ? 'translateX(0)' : 'translateX(100%)'};
-                    box-shadow: ${ active ? '-6px 6px 16px 0px #33333399' : ''};
+                    box-shadow: ${active ? '-6px 6px 16px 0px #33333399' : ''};
                 }
 
                 nav > ul {
@@ -277,7 +276,6 @@ const NavPhone = () => {
                 
             `}</style>
 
-
             <style jsx>{`
                 :global(*) {
                     margin: 0;
@@ -320,7 +318,6 @@ const NavPhone = () => {
                 }
 
             `}</style>
-
 
         </header>
     )

@@ -1,11 +1,9 @@
-import React from 'react'
-
 const Porcentajes = (props) => {
     return (
         <div className="content" onClick={() => {
             props.changeActive()
             props.changeList()
-            }}>
+        }}>
 
             <hgroup>
                 <h5>{props.numero}%</h5>

@@ -1,16 +1,14 @@
-import React from 'react'
 import { useRouter } from 'next/router'
 
 const Personal = (props) => {
-
     const router = useRouter()
 
     const contacto = () => {
-        router.replace("/contacto")
+        router.replace('/contacto')
     }
 
     const registro = () => {
-        router.replace("/registro-ingreso")
+        router.replace('/registro-ingreso')
     }
 
     return (

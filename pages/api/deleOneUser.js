@@ -1,98 +1,100 @@
-import withMiddleware from "../../middlewares/withMiddleware";
+import { connectToDatabase } from '../../backend/db'
+import withMiddleware from '../../middlewares/withMiddleware'
 
 const handler = async (req, res) => {
-    if (req.method === "DELETE") {
+    if (req.method === 'DELETE') {
+        const mongoClient = await connectToDatabase()
         try {
-            const { identification } = req.query;
-            console.log(identification);
+            const { identification } = req.query
+            console.log(identification)
 
-            const user = await req.db
-                .collection("users")
-                .findOne({ identification });
+            const user = await mongoClient.db
+                .collection('users')
+                .findOne({ identification })
 
-            if (user.plan == true) {
-                if (user.RUC == "" || !user.RUC) {
-                    await req.db
-                        .collection("users")
-                        .deleteOne({ identification });
+            if (user.plan === true) {
+                if (user.RUC === '' || !user.RUC) {
+                    await mongoClient.db
+                        .collection('users')
+                        .deleteOne({ identification })
 
                     res.send({
-                        status: "ok",
-                        message: `Usuario eliminado `,
-                    });
+                        status: 'ok',
+                        message: 'Usuario eliminado '
+                    })
                 } else {
-                    const empresa = await req.db
-                        .collection("bussines")
-                        .findOne({ RUC: user.RUC });
+                    const empresa = await mongoClient.db
+                        .collection('bussines')
+                        .findOne({ RUC: user.RUC })
 
                     res.send({
-                        status: "ok",
-                        message: `El usuario no puede ser eliminado, Está afiliado a una empresa o aseguradora llamada ${empresa.name}`,
-                    });
+                        status: 'ok',
+                        message: `El usuario no puede ser eliminado, Está afiliado a una empresa o aseguradora llamada ${empresa.name}`
+                    })
                 }
             } else {
                 if (user.dependientes && user.dependientes.length) {
                     res.send({
-                        status: "ok",
+                        status: 'ok',
                         message:
-                            "El usuario no puede ser eliminado, ya que cuenta con usuarios depedendientes, por favor elimine los dependientes para poder eliminar el principal",
-                    });
+                            'El usuario no puede ser eliminado, ya que cuenta con usuarios depedendientes, por favor elimine los dependientes para poder eliminar el principal'
+                    })
                 } else if (user.dependeOf && user.dependeOf.id) {
-                    if (user.state == true) {
+                    if (user.state === true) {
                         res.send({
-                            status: "error",
+                            status: 'error',
                             message:
-                                "El usuario dependiente tiene una cuenta activa",
-                        });
+                                'El usuario dependiente tiene una cuenta activa'
+                        })
                     } else {
-                        const userDepend = await req.db
-                            .collection("users")
+                        const userDepend = await mongoClient.db
+                            .collection('users')
                             .findOne({
-                                identification: user.dependeOf.id + "",
-                            });
+                                identification: user.dependeOf.id + ''
+                            })
 
-                        await req.db.collection("users").updateOne(
-                            { identification: user.dependeOf.id + "" },
+                        await mongoClient.db.collection('users').updateOne(
+                            { identification: user.dependeOf.id + '' },
                             {
                                 $set: {
                                     dependientes:
                                         userDepend.dependientes.filter(
                                             (ident) =>
                                                 ident.id !== identification
-                                        ),
-                                },
+                                        )
+                                }
                             }
-                        );
+                        )
 
-                        await req.db
-                            .collection("users")
-                            .deleteOne({ identification });
+                        await mongoClient.db
+                            .collection('users')
+                            .deleteOne({ identification })
 
                         res.send({
-                            status: "ok",
-                            message: `el usuario que dependia de ${userDepend.name} fué eliminado`,
-                        });
+                            status: 'ok',
+                            message: `el usuario que dependia de ${userDepend.name} fué eliminado`
+                        })
                     }
                 } else {
-                    await req.db
-                        .collection("users")
-                        .deleteOne({ identification });
+                    await mongoClient.db
+                        .collection('users')
+                        .deleteOne({ identification })
 
                     res.send({
-                        status: "ok",
-                        message: `el usuario ${user.name} ha sido eliminado`,
-                    });
+                        status: 'ok',
+                        message: `el usuario ${user.name} ha sido eliminado`
+                    })
                 }
             }
         } catch (error) {
             res.send({
-                status: "error",
-                message: "error al eliminar el usuario",
-            });
+                status: 'error',
+                message: 'error al eliminar el usuario'
+            })
         }
     } else {
-        res.status(405).end();
+        res.status(405).end()
     }
-};
+}
 
-export default withMiddleware(handler);
+export default withMiddleware(handler)

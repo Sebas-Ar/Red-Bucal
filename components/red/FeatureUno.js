@@ -1,5 +1,3 @@
-import React from "react";
-
 const FeatureUno = (props) => {
     return (
         <section className="content">
@@ -21,7 +19,7 @@ const FeatureUno = (props) => {
             <div className="amarillo right"></div>
             <style jsx>{`
                 .content {
-                    height: ${props.activate ? "270px" : "0px"};
+                    height: ${props.activate ? '270px' : '0px'};
                     overflow: hidden;
                     display: grid;
                     grid-template-columns: 30px 1fr 30px;
@@ -107,7 +105,7 @@ const FeatureUno = (props) => {
                 }
             `}</style>
         </section>
-    );
-};
+    )
+}
 
-export default FeatureUno;
+export default FeatureUno

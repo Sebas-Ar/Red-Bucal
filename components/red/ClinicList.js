@@ -4,13 +4,13 @@ const ClinicList = ({
     changeClinic,
     numClinic,
     activate,
-    setClinicPhoto,
+    setClinicPhoto
 }) => {
     const onclick = () => {
-        setActivate(true);
-        changeClinic(clinic.id);
-        setClinicPhoto(clinic.photo);
-    };
+        setActivate(true)
+        changeClinic(clinic.id)
+        setClinicPhoto(clinic.photo)
+    }
 
     return (
         <li className="container">
@@ -19,10 +19,10 @@ const ClinicList = ({
             <style jsx>{`
                 li {
                     background-color: ${activate
-                        ? clinic.id === numClinic
-                            ? "#E5B33D"
-                            : "var(--amarillo)"
-                        : "var(--amarillo)"};
+            ? clinic.id === numClinic
+                ? '#E5B33D'
+                : 'var(--amarillo)'
+            : 'var(--amarillo)'};
                     color: var(--mainColor);
                     list-style: none;
                 }
@@ -33,10 +33,10 @@ const ClinicList = ({
 
                 button {
                     font-weight: ${activate
-                        ? clinic.id === numClinic
-                            ? "700"
-                            : "500"
-                        : "500"};
+            ? clinic.id === numClinic
+                ? '700'
+                : '500'
+            : '500'};
                     font-size: 12px;
                     text-align: left;
                     padding: 15px 10px 13px;
@@ -50,7 +50,7 @@ const ClinicList = ({
                 }
             `}</style>
         </li>
-    );
-};
+    )
+}
 
-export default ClinicList;
+export default ClinicList

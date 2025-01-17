@@ -1,5 +1,3 @@
-import React from "react";
-
 const NuestrosClientes = () => {
     return (
         <div className="content">
@@ -7,7 +5,7 @@ const NuestrosClientes = () => {
             <div className="linea"></div>
             <div className="imagenes">
                 <img src="/img/logos/_banescoSeguros.png" alt="fallo" />
-                <img src="/img/logos/_westland.png" alt="error" />  
+                <img src="/img/logos/_westland.png" alt="error" />
                 <img src="/img/logos/_rigaServices.png" alt="error" />
                 <img src="/img/logos/_ir.jpeg" alt="error" />
 
@@ -15,12 +13,12 @@ const NuestrosClientes = () => {
                 <img src="/img/logos/_bancoDelta.png" alt="error" />
                 <img src="/img/logos/_clinilab.png" alt="error" />
                 <img src="/img/logos/_vivirSeguros.png" alt="error" />
-                
+
                 <img src="/img/logos/_itsPTY.png" alt="error" />
                 <img src="/img/logos/_radimagen.png" alt="error" />
                 <img src="/img/logos/_dentiClinica.png" alt="error" />
-                <img src="/img/logos/_elCisne.png" alt="error" />                            
-                
+                <img src="/img/logos/_elCisne.png" alt="error" />
+
                 <img src="/img/logos/_panamericanNetwork.png" alt="error" />
                 <img src="/img/logos/_clinicaOrtodoncia.png" alt="error" />
 
@@ -108,7 +106,7 @@ const NuestrosClientes = () => {
                 }
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default NuestrosClientes;
+export default NuestrosClientes

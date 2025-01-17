@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
+import axios from 'axios'
+import { useState } from 'react'
 import Swal from 'sweetalert2'
-import axios from "axios";
 
 const AddClinic = (props) => {
-
-    const [data, setData] = useState({});
-    const [errors, setErrors] = useState({});
+    const [data, setData] = useState({})
+    const [errors, setErrors] = useState({})
 
     const onChange = (e) => {
-        setData(Object.assign({}, data, { [e.target.name]: e.target.value, identifications: props.identifications, RUC: props.RUC}))
+        setData(Object.assign({}, data, { [e.target.name]: e.target.value, identifications: props.identifications, RUC: props.RUC }))
     }
 
     const onSubmit = async (e) => {
@@ -18,57 +17,55 @@ const AddClinic = (props) => {
         let validate = true
 
         if (!data.name) {
-            errors = Object.assign({}, errors, {errorName: 'Falta el nombre'})
+            errors = Object.assign({}, errors, { errorName: 'Falta el nombre' })
             validate = false
         }
-        
+
         if (!data.phone) {
-            errors = Object.assign({}, errors, {errorphone: 'Falta el telefono'})
-            validate = false            
+            errors = Object.assign({}, errors, { errorphone: 'Falta el telefono' })
+            validate = false
         }
-        
+
         if (!data.password) {
-            errors = Object.assign({}, errors, {errorpassword: 'Falta la contraseña'})
-            validate = false            
+            errors = Object.assign({}, errors, { errorpassword: 'Falta la contraseña' })
+            validate = false
         }
-        
+
         if (!data.passwordRepeat) {
-            errors = Object.assign({}, errors, {errorpasswordRepeat: 'Falta la contraseña'})
-            validate = false            
+            errors = Object.assign({}, errors, { errorpasswordRepeat: 'Falta la contraseña' })
+            validate = false
         }
 
         if (data.password && data.passwordRepeat && data.password !== data.passwordRepeat) {
-            errors = Object.assign({}, errors, {errorpasswordIgual: 'las contraseñas no coinciden'})
-            validate = false            
+            errors = Object.assign({}, errors, { errorpasswordIgual: 'las contraseñas no coinciden' })
+            validate = false
         }
-        
+
         if (!data.addres) {
-            errors = Object.assign({}, errors, {erroraddres: 'Falta la dirección'})
-            validate = false            
+            errors = Object.assign({}, errors, { erroraddres: 'Falta la dirección' })
+            validate = false
         }
 
         if (!data.provincia) {
-            errors = Object.assign({}, errors, {errorprovincia: 'Falta la provincia'})
-            validate = false            
+            errors = Object.assign({}, errors, { errorprovincia: 'Falta la provincia' })
+            validate = false
         }
 
         if (!data.corregimiento) {
-            errors = Object.assign({}, errors, {errorcorregimiento: 'Falta el corregimiento'})
-            validate = false            
+            errors = Object.assign({}, errors, { errorcorregimiento: 'Falta el corregimiento' })
+            validate = false
         }
 
         if (!data.email) {
-            errors = Object.assign({}, errors, {erroremail: 'Falta el email'})
-            validate = false            
+            errors = Object.assign({}, errors, { erroremail: 'Falta el email' })
+            validate = false
         }
 
         if (validate) {
-
             const url = '/api/admin'
             const result = await axios.post(url, data)
 
-            if (result.data.status == 'ok') {
-
+            if (result.data.status === 'ok') {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
@@ -76,33 +73,22 @@ const AddClinic = (props) => {
                     showConfirmButton: false,
                     timer: 1000
                 })
-                let clinicAdded = [...props.clinicList]
+                const clinicAdded = [...props.clinicList]
                 clinicAdded.push(result.data.clinic)
                 props.setClinicList(clinicAdded)
                 props.changeAddUser()
-
             } else {
-
                 if (result.data.message === 'el correo es invalido') {
-
-                    errors = Object.assign({}, errors, {erroremail: result.data.message})
-
+                    errors = Object.assign({}, errors, { erroremail: result.data.message })
                 } else if (result.data.message === 'El correo ya ha sido registrado') {
-                    
-                    errors = Object.assign({}, errors, {erroremail: result.data.message})
-                    
+                    errors = Object.assign({}, errors, { erroremail: result.data.message })
                 } else if (result.data.message === 'nombre ya registrado') {
-
-                    errors = Object.assign({}, errors, {errorName: result.data.message})
-                    
+                    errors = Object.assign({}, errors, { errorName: result.data.message })
                 }
-
             }
-
         }
 
         setErrors(errors)
-
     }
 
     return (

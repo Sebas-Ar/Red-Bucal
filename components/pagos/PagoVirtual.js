@@ -1,54 +1,57 @@
-import React, { useState } from "react";
-import axios from "axios";
-import Swal from "sweetalert2";
-import Loading from "../loading/Loading";
+import axios from 'axios'
+import { useState } from 'react'
+import Swal from 'sweetalert2'
+import Loading from '../loading/Loading'
 
 const PagoVirtual = (props) => {
     const [data, setData] = useState({
-        cardType: "-",
-    });
-    const [err, setErr] = useState({});
-    const [load, setLoad] = useState(false);
+        cardType: '-'
+    })
+    const [err, setErr] = useState({})
+    const [load, setLoad] = useState(false)
 
     const onChange = (e) => {
-        if (e.target.name === "expMonth") {
-            if (e.target.value.length <= 2)
+        if (e.target.name === 'expMonth') {
+            if (e.target.value.length <= 2) {
                 setData(
                     Object.assign({}, data, { [e.target.name]: e.target.value })
-                );
-        } else if (e.target.name === "expYear") {
-            if (e.target.value.length <= 2)
+                )
+            }
+        } else if (e.target.name === 'expYear') {
+            if (e.target.value.length <= 2) {
                 setData(
                     Object.assign({}, data, { [e.target.name]: e.target.value })
-                );
-        } else if (e.target.name === "cvv") {
-            if (e.target.value.length <= 3)
+                )
+            }
+        } else if (e.target.name === 'cvv') {
+            if (e.target.value.length <= 3) {
                 setData(
                     Object.assign({}, data, { [e.target.name]: e.target.value })
-                );
-        } else if (e.target.name === "phone") {
+                )
+            }
+        } else if (e.target.name === 'phone') {
             setData(
                 Object.assign({}, data, {
-                    [e.target.name]: Number(e.target.value),
+                    [e.target.name]: Number(e.target.value)
                 })
-            );
+            )
         } else {
             setData(
                 Object.assign({}, data, { [e.target.name]: e.target.value })
-            );
+            )
         }
-    };
+    }
 
     const onSubmit = async (e) => {
-        e.preventDefault();
-        setLoad(true);
-        let enable = true;
+        e.preventDefault()
+        setLoad(true)
+        let enable = true
 
         /* pruebas */
         /* const url = "https://sandbox.paguelofacil.com/rest/processTx/AUTH_CAPTURE/" */
         /* Produccion */
         const url =
-            "https://secure.paguelofacil.com/rest/processTx/AUTH_CAPTURE/";
+            'https://secure.paguelofacil.com/rest/processTx/AUTH_CAPTURE/'
 
         const {
             email,
@@ -60,53 +63,53 @@ const PagoVirtual = (props) => {
             cvv,
             firstName,
             lastName,
-            cardType,
-        } = data;
+            cardType
+        } = data
 
-        const date = new Date();
+        const date = new Date()
 
         const finishDate = `${date.getDate()}/${date.getMonth() + 1}/${
             date.getFullYear() + 1
-        }`;
+        }`
 
-        let payload = {
+        const payload = {
             /* produccion */
-            cclw: "8322FDB3B17351C9B9C8EA8FE01874AA7F31F3BAC4695E9996FFC88912AB0E6D8938B03CA4935DCE3D4EAE90D67E09C43D76B583318C2872C62D03D87A8A7B60",
+            cclw: '8322FDB3B17351C9B9C8EA8FE01874AA7F31F3BAC4695E9996FFC88912AB0E6D8938B03CA4935DCE3D4EAE90D67E09C43D76B583318C2872C62D03D87A8A7B60',
             /* pruebas */
             /* cclw: 'D17B05A095489D1176560B4666A283454185F353F401D0201CC5C16F92535DF6B1DEBA18E79442CC0D6F75FD024207680AFBDFD6CF015478BF30CBEF9160A08D', */
-            amount: props.pago, //El monto o valor total de la transacción a realizar. NO PONER
+            amount: props.pago, // El monto o valor total de la transacción a realizar. NO PONER
             taxAmount: 0.00,
-            email, //String MaxLength:100 Email del
-            phone, //Numeric MaxLength:16 Teléfono del Tarjeta habiente,
-            address, //String MaxLength:100 Dirección del Tarjeta,
-            concept: "Su Plan de Red Bucal ha sido activado", //MaxLength:100 ;concepto de la transacción en proceso
-            description: `Fecha de vigencia hasta el ${finishDate}`, //MaxLength:150 ;Es la descripción o el motivo de la transacción en proceso
-            lang: "ES", //EN
+            email, // String MaxLength:100 Email del
+            phone, // Numeric MaxLength:16 Teléfono del Tarjeta habiente,
+            address, // String MaxLength:100 Dirección del Tarjeta,
+            concept: 'Su Plan de Red Bucal ha sido activado', // MaxLength:100 ;concepto de la transacción en proceso
+            description: `Fecha de vigencia hasta el ${finishDate}`, // MaxLength:150 ;Es la descripción o el motivo de la transacción en proceso
+            lang: 'ES', // EN
             customFieldValues: [
                 {
-                    id: "idOrder",
-                    nameOrLabel: "Nro de Orden",
-                    value: "OD-2341233",
+                    id: 'idOrder',
+                    nameOrLabel: 'Nro de Orden',
+                    value: 'OD-2341233'
                 },
                 {
-                    id: "idUser",
-                    nameOrLabel: "User",
-                    value: "351234",
-                },
+                    id: 'idUser',
+                    nameOrLabel: 'User',
+                    value: '351234'
+                }
             ],
             cardInformation: {
                 cardNumber,
-                expMonth, //Mes de expiración de la tarjeta, siempre 2 dígitos
-                expYear, //Numeric Ej.:02 Año de expiración de la tarjeta.
-                cvv, //Código de Seguridad de la tarjeta Numeric MaxLength:3
-                firstName, //String MaxLength:25 Nombre del tarjeta habiente
-                lastName, //String MaxLength:25 Apellido del Tarjeta habiente
-                cardType,
-            },
-        };
+                expMonth, // Mes de expiración de la tarjeta, siempre 2 dígitos
+                expYear, // Numeric Ej.:02 Año de expiración de la tarjeta.
+                cvv, // Código de Seguridad de la tarjeta Numeric MaxLength:3
+                firstName, // String MaxLength:25 Nombre del tarjeta habiente
+                lastName, // String MaxLength:25 Apellido del Tarjeta habiente
+                cardType
+            }
+        }
 
         if (
-            cardType !== "-" &&
+            cardType !== '-' &&
             firstName &&
             lastName &&
             phone &&
@@ -124,46 +127,46 @@ const PagoVirtual = (props) => {
                     /* produccion */
                     {
                         headers: {
-                            authorization: "QgVVaUukMlhuk1XtEGlLqbOtHhoQu349",
-                            "content-type": "application/json",
-                        },
+                            authorization: 'QgVVaUukMlhuk1XtEGlLqbOtHhoQu349',
+                            'content-type': 'application/json'
+                        }
                     }
-                );
+                )
                 /* quitar el negativo para que se realice el pago */
                 if (result.data.success) {
                     /* quitar lo que esta despues del Or */
                     if (Number(result.data.data.totalPay)) {
-                        let response;
+                        let response
 
-                        if (props.type === "user") {
-                            const URL_EDIT_USER_SERVICE = "/api/editUser";
+                        if (props.type === 'user') {
+                            const URL_EDIT_USER_SERVICE = '/api/editUser'
                             response = await axios.put(URL_EDIT_USER_SERVICE, {
                                 identification:
                                     props.data.identification || props.data.RUC,
-                                state: props.data.state,
-                            });
-                        } else if (props.type === "empresa") {
+                                state: props.data.state
+                            })
+                        } else if (props.type === 'empresa') {
                             const URL_EDIT_BUSSINES_SERVICE =
-                                "/api/editBusiness";
+                                '/api/editBusiness'
                             response = await axios.put(
                                 URL_EDIT_BUSSINES_SERVICE,
                                 {
                                     identification: props.data.RUC,
                                     state: true,
-                                    identifications: props.data.identifications,
+                                    identifications: props.data.identifications
                                 }
-                            );
+                            )
                         }
 
-                        props.setData(response.data.data);
+                        props.setData(response.data.data)
 
                         Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: "Pago realizado Satisfactoriamente",
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Pago realizado Satisfactoriamente',
                             showConfirmButton: false,
-                            timer: 2000,
-                        });
+                            timer: 2000
+                        })
 
                         await axios.get(
                             `/api/emailpay?email=${props.data.email}
@@ -172,137 +175,150 @@ const PagoVirtual = (props) => {
                             &start=${props.data.start}
                             &end=${props.data.end}
                             &plan=${props.data.plan}`
-                        );
+                        )
 
-                        props.changeVirtual();
-                        enable = false;
+                        props.changeVirtual()
+                        enable = false
                     } else {
                         Swal.fire({
-                            position: "center",
-                            icon: "warning",
-                            title: "Pago Fallido, no tienes fondos suficientes.",
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Pago Fallido, no tienes fondos suficientes.',
                             showConfirmButton: false,
-                            timer: 2500,
-                        });
+                            timer: 2500
+                        })
                     }
                 } else {
-                    console.log(result.data);
-                    const { code } = result.data.headerStatus;
+                    console.log(result.data)
+                    const { code } = result.data.headerStatus
 
-                    let errCode = {};
+                    let errCode = {}
 
-                    if (code === 605 || code == 607)
+                    if (code === 605 || code === 607) {
                         errCode = Object.assign({}, errCode, {
-                            numberCard: "Número no valido*",
-                        });
-                    if (code === 606)
+                            numberCard: 'Número no valido*'
+                        })
+                    }
+                    if (code === 606) {
                         errCode = Object.assign({}, errCode, {
-                            securityCode: "Código invalido*",
-                        });
-                    if (code === 608)
+                            securityCode: 'Código invalido*'
+                        })
+                    }
+                    if (code === 608) {
                         errCode = Object.assign({}, errCode, {
-                            email: "Email invalido*",
-                        }); //INVALID EMAIL
-                    if (code === 609)
+                            email: 'Email invalido*'
+                        })
+                    } // INVALID EMAIL
+                    if (code === 609) {
                         errCode = Object.assign({}, errCode, {
-                            firstName: "nombre invalido*",
-                        }); //INVALID NAM
-                    if (code === 610)
+                            firstName: 'nombre invalido*'
+                        })
+                    } // INVALID NAM
+                    if (code === 610) {
                         errCode = Object.assign({}, errCode, {
-                            lastName: "apellido invalido*",
-                        }); //INVALID LAST NAM
-                    if (code === 611)
+                            lastName: 'apellido invalido*'
+                        })
+                    } // INVALID LAST NAM
+                    if (code === 611) {
                         errCode = Object.assign({}, errCode, {
-                            phone: "celular invalido*",
-                        }); //INVALID PHONE NUMBE
+                            phone: 'celular invalido*'
+                        })
+                    } // INVALID PHONE NUMBE
                     if (code === 612) {
                         Swal.fire({
-                            position: "center",
-                            icon: "warning",
-                            title: "Al realizar 3 transacciones con la misma tarjeta y datos de procesamiento el sistema detecta que es posiblemente una transacción duplicada y solo permite hasta 3 intentos.\nPor favor vuelve a intentar en unos minutos.",
-                            showConfirmButton: true,
-                        });
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Al realizar 3 transacciones con la misma tarjeta y datos de procesamiento el sistema detecta que es posiblemente una transacción duplicada y solo permite hasta 3 intentos.\nPor favor vuelve a intentar en unos minutos.',
+                            showConfirmButton: true
+                        })
                     }
 
-                    setErr(errCode);
+                    setErr(errCode)
                 }
             } catch (error) {
-                console.log(error);
+                console.log(error)
             }
         } else {
-            let errFields = {};
+            let errFields = {}
 
-            if (cardType === "-")
+            if (cardType === '-') {
                 errFields = Object.assign({}, errFields, {
-                    type: "Campo vacio*",
-                });
-            if (!firstName)
+                    type: 'Campo vacio*'
+                })
+            }
+            if (!firstName) {
                 errFields = Object.assign({}, errFields, {
-                    firstName: "Campo vacio*",
-                });
-            if (!lastName)
+                    firstName: 'Campo vacio*'
+                })
+            }
+            if (!lastName) {
                 errFields = Object.assign({}, errFields, {
-                    lastName: "Campo vacio*",
-                });
+                    lastName: 'Campo vacio*'
+                })
+            }
             if (!phone) {
                 errFields = Object.assign({}, errFields, {
-                    phone: "Campo vacio*",
-                });
+                    phone: 'Campo vacio*'
+                })
             } else if (String(phone).length > 16) {
                 errFields = Object.assign({}, errFields, {
-                    phone: "Maximo 16 digitos*",
-                });
+                    phone: 'Maximo 16 digitos*'
+                })
             }
-            if (!address)
+            if (!address) {
                 errFields = Object.assign({}, errFields, {
-                    address: "Campo vacio*",
-                });
-            if (!email)
+                    address: 'Campo vacio*'
+                })
+            }
+            if (!email) {
                 errFields = Object.assign({}, errFields, {
-                    email: "Campo vacio*",
-                });
-            if (!cardNumber)
+                    email: 'Campo vacio*'
+                })
+            }
+            if (!cardNumber) {
                 errFields = Object.assign({}, errFields, {
-                    numberCard: "Campo vacio*",
-                });
+                    numberCard: 'Campo vacio*'
+                })
+            }
             if (!expMonth) {
                 errFields = Object.assign({}, errFields, {
-                    month: "Campo vacio*",
-                });
+                    month: 'Campo vacio*'
+                })
             } else if (expMonth <= 0 || expMonth >= 13) {
                 errFields = Object.assign({}, errFields, {
-                    month: "Mes invalido*",
-                });
+                    month: 'Mes invalido*'
+                })
             } else if (expMonth.length < 2) {
                 errFields = Object.assign({}, errFields, {
-                    month: "Mes invalido deben ser dos digitos*",
-                });
+                    month: 'Mes invalido deben ser dos digitos*'
+                })
             }
             if (!expYear) {
                 errFields = Object.assign({}, errFields, {
-                    year: "Campo vacio*",
-                });
+                    year: 'Campo vacio*'
+                })
             } else if (expYear.length < 2) {
                 errFields = Object.assign({}, errFields, {
-                    year: "Año invalido deben ser dos digitos*",
-                });
+                    year: 'Año invalido deben ser dos digitos*'
+                })
             }
-            if (!cvv)
+            if (!cvv) {
                 errFields = Object.assign({}, errFields, {
-                    securityCode: "Campo vacio*",
-                });
+                    securityCode: 'Campo vacio*'
+                })
+            }
 
-            setErr(errFields);
+            setErr(errFields)
         }
-        if (enable) setLoad(false);
-    };
+        if (enable) setLoad(false)
+    }
     /*  */
     return (
         <div className="content">
             <form onSubmit={onSubmit}>
                 <svg
                     onClick={() => {
-                        props.changeVirtual();
+                        props.changeVirtual()
                     }}
                     viewBox="0 0 512 512"
                 >
@@ -317,27 +333,27 @@ const PagoVirtual = (props) => {
                 <label>
                     Nombre: <br />
                     <input type="text" name="firstName" onChange={onChange} />
-                    {err.firstName ? <p>{err.firstName}</p> : ""}
+                    {err.firstName ? <p>{err.firstName}</p> : ''}
                 </label>
                 <label>
                     Apellido: <br />
                     <input type="text" name="lastName" onChange={onChange} />
-                    {err.lastName ? <p>{err.lastName}</p> : ""}
+                    {err.lastName ? <p>{err.lastName}</p> : ''}
                 </label>
                 <label>
                     Celular: <br />
                     <input type="number" name="phone" onChange={onChange} />
-                    {err.phone ? <p>{err.phone}</p> : ""}
+                    {err.phone ? <p>{err.phone}</p> : ''}
                 </label>
                 <label>
                     dirección: <br />
                     <input type="text" name="address" onChange={onChange} />
-                    {err.address ? <p>{err.address}</p> : ""}
+                    {err.address ? <p>{err.address}</p> : ''}
                 </label>
                 <label>
                     Email: <br />
                     <input type="text" name="email" onChange={onChange} />
-                    {err.email ? <p>{err.email}</p> : ""}
+                    {err.email ? <p>{err.email}</p> : ''}
                 </label>
                 <label>
                     Tipo de Tarjeta: <br />
@@ -346,7 +362,7 @@ const PagoVirtual = (props) => {
                         <option value="VISA">VISA</option>
                         <option value="MASTERCARD">MASTERCARD</option>
                     </select>
-                    {err.type ? <p>{err.type}</p> : ""}
+                    {err.type ? <p>{err.type}</p> : ''}
                 </label>
                 <label>
                     Numero de tarjeta: <br />
@@ -356,7 +372,7 @@ const PagoVirtual = (props) => {
                         onChange={onChange}
                         placeholder="ej. 4916000000000000"
                     />
-                    {err.numberCard ? <p>{err.numberCard}</p> : ""}
+                    {err.numberCard ? <p>{err.numberCard}</p> : ''}
                 </label>
                 <label>
                     Mes de expiración: <br />
@@ -365,9 +381,9 @@ const PagoVirtual = (props) => {
                         name="expMonth"
                         onChange={onChange}
                         placeholder="ej. 02"
-                        value={data.expMonth ? data.expMonth : ""}
+                        value={data.expMonth ? data.expMonth : ''}
                     />
-                    {err.month ? <p>{err.month}</p> : ""}
+                    {err.month ? <p>{err.month}</p> : ''}
                 </label>
                 <label>
                     Año de expiración: <br />
@@ -376,9 +392,9 @@ const PagoVirtual = (props) => {
                         name="expYear"
                         onChange={onChange}
                         placeholder="ej. 25"
-                        value={data.expYear ? data.expYear : ""}
+                        value={data.expYear ? data.expYear : ''}
                     />
-                    {err.year ? <p>{err.year}</p> : ""}
+                    {err.year ? <p>{err.year}</p> : ''}
                 </label>
                 <label>
                     CVV: <br />
@@ -387,13 +403,13 @@ const PagoVirtual = (props) => {
                         name="cvv"
                         onChange={onChange}
                         placeholder="ej. 003"
-                        value={data.cvv ? data.cvv : ""}
+                        value={data.cvv ? data.cvv : ''}
                     />
-                    {err.securityCode ? <p>{err.securityCode}</p> : ""}
+                    {err.securityCode ? <p>{err.securityCode}</p> : ''}
                 </label>
 
                 <button type="submit" disabled={load}>
-                    {load ? <Loading /> : "Pagar"}
+                    {load ? <Loading /> : 'Pagar'}
                 </button>
             </form>
 
@@ -484,16 +500,16 @@ const PagoVirtual = (props) => {
                     justify-self: center;
                     margin-top: 10px;
                     border: none;
-                    background: ${load ? "none" : "var(--mainColor)"};
+                    background: ${load ? 'none' : 'var(--mainColor)'};
                     width: 100px;
                     height: 30px;
                     color: white;
                     border-radius: 5px;
-                    cursor: ${load ? "auto" : "pointer"};
+                    cursor: ${load ? 'auto' : 'pointer'};
                 }
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default PagoVirtual;
+export default PagoVirtual

@@ -1,10 +1,8 @@
-import React from "react";
-import Layout from "../components/layout/Layout";
-import SobreNosotros from "../components/nosotros/SobreNosotros";
-import Respaldo from "../components/nosotros/Respaldo";
-import NuestrosClientes from "../components/nosotros/NuestrosClientes";
-import Footer from "../components/footer/Footer";
-import Social from "../components/social/Social";
+import Footer from '../components/footer/Footer'
+import Layout from '../components/layout/Layout'
+import NuestrosClientes from '../components/nosotros/NuestrosClientes'
+import SobreNosotros from '../components/nosotros/SobreNosotros'
+import Social from '../components/social/Social'
 
 const Nosotros = () => {
     return (
@@ -15,7 +13,7 @@ const Nosotros = () => {
             <NuestrosClientes />
             <Footer />
         </Layout>
-    );
-};
+    )
+}
 
-export default Nosotros;
+export default Nosotros

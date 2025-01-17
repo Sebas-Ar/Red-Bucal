@@ -1,17 +1,12 @@
-import React, { useState } from 'react'
+import axios from 'axios'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import Layout from '../components/layout/Layout'
 import Ingreso from '../components/registro-ingreso/Ingreso'
-import axios from "axios"
-
-
 
 const Ingresar = () => {
-
-
-    const [login, setLogin] = useState({});
-    const [errorsLogin, setErrorsLogin] = useState({});
-
+    const [login, setLogin] = useState({})
+    const [errorsLogin, setErrorsLogin] = useState({})
 
     const ChangeTextLogin = e => {
         setLogin(Object.assign({}, login, { [e.target.name]: e.target.value }))
@@ -23,7 +18,7 @@ const Ingresar = () => {
         e.preventDefault()
 
         let err = {}
-        let validate = true;
+        let validate = true
 
         if (!login.password) {
             err = Object.assign({}, err, { error: 'Falta la contraseña' })
@@ -42,8 +37,8 @@ const Ingresar = () => {
 
             try {
                 const response = await axios.post(url, login)
-                console.log(response);
-                if ( response.data.status === 'ok') {
+                console.log(response)
+                if (response.data.status === 'ok') {
                     if (response.data.type === 'ok_admin') {
                         sessionStorage.setItem('tokenAdmin', response.data.id)
                         router.push('/administrador')
@@ -54,20 +49,18 @@ const Ingresar = () => {
                         }
                     }
                 } else {
-
                     if (response.data.message === 'El usuario no existe') {
-                        console.log(response.data.message);
+                        console.log(response.data.message)
                         err = Object.assign({}, err, { error: response.data.message })
                     } else if (response.data.message === 'Contraseña invalida') {
-                        console.log(response.data.message);
+                        console.log(response.data.message)
                         err = Object.assign({}, err, { error: response.data.message })
                     } else {
-                        console.log(response.data.message);
+                        console.log(response.data.message)
                     }
 
                     setErrorsLogin(err)
                 }
-
             } catch (error) {
                 console.error(error)
             }

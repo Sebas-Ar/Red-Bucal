@@ -1,5 +1,3 @@
-import React from "react";
-
 const SobreNosotros = () => {
     return (
         <div className="content">
@@ -189,7 +187,7 @@ const SobreNosotros = () => {
                 }
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default SobreNosotros;
+export default SobreNosotros

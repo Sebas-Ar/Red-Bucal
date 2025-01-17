@@ -1,6 +1,4 @@
-import React from 'react'
 import PorcentajesPrevencion from './PorcentajesPrevencion'
-
 
 const PrevencionBoxResponsive = (props) => {
     return (
@@ -290,7 +288,7 @@ const PrevencionBoxResponsive = (props) => {
                 }
             
             `}</style>
-        
+
         </div>
     )
 }

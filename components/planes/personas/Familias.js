@@ -1,18 +1,15 @@
-import React from 'react'
 import { useRouter } from 'next/router'
 
 const Familias = () => {
-
     const router = useRouter()
 
     const contacto = () => {
-        router.push("/contacto")
+        router.push('/contacto')
     }
 
     const registro = () => {
-        router.push("/registro-ingreso")
+        router.push('/registro-ingreso')
     }
-
 
     return (
         <section className="content">
@@ -24,7 +21,7 @@ const Familias = () => {
                     <span className="familias">PREMIUM</span>
                 </h2>
                 <h3>CONFIANZA & AYUDA</h3>
-                <p>Con el objetivo de brindarle seguridad al mantener su salud bucal y la de su familia le ofrecemos nuestro {" "}<strong>Plan Premium</strong> {" "} para así apoyarle con tratamientos preventivos y/o gastos dentales inesperados.</p>
+                <p>Con el objetivo de brindarle seguridad al mantener su salud bucal y la de su familia le ofrecemos nuestro {' '}<strong>Plan Premium</strong> {' '} para así apoyarle con tratamientos preventivos y/o gastos dentales inesperados.</p>
                 <div className="botones">
                     <button onClick={contacto} className="contacto">Contacto</button>
                     <button onClick={registro} className="registro">Registro</button>

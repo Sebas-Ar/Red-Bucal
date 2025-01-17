@@ -1,80 +1,81 @@
-import withMiddleware from "../../middlewares/withMiddleware";
-import { ObjectId } from "mongodb";
+import { connectToDatabase } from '../../backend/db'
+import withMiddleware from '../../middlewares/withMiddleware'
 
 const handler = async (req, res) => {
-    if (req.method === "PUT") {
-        const { identification, state } = req.body;
-        let count = {};
+    if (req.method === 'PUT') {
+        const mongoClient = await connectToDatabase()
+        const { identification, state } = req.body
+        let count = {}
 
-        const startDate = new Date();
-        let endDate = new Date();
-        endDate.setFullYear(endDate.getFullYear() + 1);
-        endDate.setHours(23, 59, 59);
+        const startDate = new Date()
+        const endDate = new Date()
+        endDate.setFullYear(endDate.getFullYear() + 1)
+        endDate.setHours(23, 59, 59)
 
         if (state === false) {
-            count = await req.db.collection("users").findAndModify(
+            count = await mongoClient.db.collection('users').findAndModify(
                 { identification: identification },
-                [["_id", "asc"]],
+                [['_id', 'asc']],
                 {
                     $set: {
                         service: false,
                         state: true,
                         start: startDate,
-                        end: endDate,
-                    },
+                        end: endDate
+                    }
                 },
                 { new: true }
-            );
+            )
         }
 
         if (count.value.dependientes) {
             count.value.dependientes.forEach(async (dependiente) => {
                 if (dependiente.state === false) {
-                    await req.db
-                        .collection("users")
+                    await mongoClient.db
+                        .collection('users')
                         .findAndModify(
                             { identification: dependiente.id },
-                            [["_id", "asc"]],
+                            [['_id', 'asc']],
                             {
                                 $set: {
                                     service: false,
                                     state: true,
                                     start: startDate,
-                                    end: endDate,
-                                },
+                                    end: endDate
+                                }
                             }
-                        );
+                        )
                 }
-            });
+            })
         }
 
-        let dependientes = [];
+        let dependientes = []
 
         if (count.value.dependientes) {
             dependientes = count.value.dependientes.map((dep) => {
-                dep.state = true;
-                return dep;
-            });
+                dep.state = true
+                return dep
+            })
         }
 
-        count = await req.db.collection("users").findAndModify(
+        count = await mongoClient.db.collection('users').findAndModify(
             { identification },
-            [["_id", "asc"]],
+            [['_id', 'asc']],
             {
                 $set: {
-                    dependientes,
-                },
+                    dependientes
+                }
             },
             { new: true }
-        );
+        )
 
         res.send({
             data: count.value,
-            status: "ok",
-        });
+            status: 'ok'
+        })
     } else {
-        res.status(405).end();
+        res.status(405).end()
     }
-};
+}
 
-export default withMiddleware(handler);
+export default withMiddleware(handler)

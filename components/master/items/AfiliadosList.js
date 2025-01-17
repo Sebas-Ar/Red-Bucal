@@ -1,19 +1,17 @@
-import Axios from "axios"
-import { useEffect, useState } from "react"
+import Axios from 'axios'
+import { useEffect, useState } from 'react'
 
 const AfiliadosList = ({ name, setToggleAfiliados }) => {
-
     const [afiliados, setafiliados] = useState([])
     const [filter, setFilter] = useState({})
     const [activeFilter, setActiveFilter] = useState(true)
-    const [typeFilter, setTypeFilter] = useState('users');
+    const [typeFilter, setTypeFilter] = useState('users')
 
     useEffect(() => {
         getAfiliados('users')
     }, [])
 
     useEffect(() => {
-
         if (filter.start && filter.end) {
             const start = filter.start.split('-').map(num => Number(num))
             const end = filter.end.split('-').map(num => Number(num))
@@ -37,15 +35,11 @@ const AfiliadosList = ({ name, setToggleAfiliados }) => {
             }
 
             console.log(restDate)
-
         }
-
     }, [filter])
 
     const onChangeFliter = e => {
-
         setFilter(Object.assign({}, filter, { [e.target.name]: e.target.value }))
-
     }
 
     const getAfiliados = async (type = '') => {
@@ -63,7 +57,6 @@ const AfiliadosList = ({ name, setToggleAfiliados }) => {
     }
 
     const formarISODate = (ISOdate) => {
-
         const date = new Date(ISOdate)
 
         return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
@@ -118,8 +111,8 @@ const AfiliadosList = ({ name, setToggleAfiliados }) => {
                 <button disabled={activeFilter}>filtrar</button>
             </form>
             <div className="buttons-waraper">
-                <button onClick={() => getAfiliados('users')} disabled={typeFilter === 'users' ? true : false}>usuarios afiliados</button>
-                <button onClick={() => getAfiliados('bussines')} disabled={typeFilter === 'bussines' ? true : false}>empresas afiliadas</button>
+                <button onClick={() => getAfiliados('users')} disabled={typeFilter === 'users'}>usuarios afiliados</button>
+                <button onClick={() => getAfiliados('bussines')} disabled={typeFilter === 'bussines'}>empresas afiliadas</button>
             </div>
             <div className="info">
                 <span className="inscripciones">numero de afiliados: {afiliados.length}</span>
@@ -144,16 +137,14 @@ const AfiliadosList = ({ name, setToggleAfiliados }) => {
 
                     {
                         afiliados
-                            ?
-                            afiliados.map((item, index) => (
+                            ? afiliados.map((item, index) => (
                                 <li key={index}>
                                     <span>{item.name}</span>
                                     <span>{item.identification ? item.identification : item.RUC}</span>
                                     <span>{formarISODate(item.date)}</span>
                                 </li>
                             ))
-                            :
-                            <li>
+                            : <li>
                                 La clinica no cuenta con afiliados
                             </li>
                     }

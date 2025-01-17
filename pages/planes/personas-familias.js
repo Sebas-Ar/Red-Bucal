@@ -1,14 +1,11 @@
-import React from "react";
-import Layout from "../../components/layout/Layout";
-import Familias from "../../components/planes/personas/Familias";
-import Personal from "../../components/planes/Personal";
-import LayoutForm from "../../components/form/LayoutForm";
-import Banner from "../../components/planes/Banner";
-import Footer from "../../components/footer/Footer";
-import FamiliasResponsive from "../../components/planes/personas/FamiliasResponsive";
-import PersonalResponsive from "../../components/planes/PersonalResponsive";
-import Social from "../../components/social/Social";
-import Planes from "../../components/index/Planes";
+import Footer from '../../components/footer/Footer'
+import LayoutForm from '../../components/form/LayoutForm'
+import Planes from '../../components/index/Planes'
+import Layout from '../../components/layout/Layout'
+import Banner from '../../components/planes/Banner'
+import Familias from '../../components/planes/personas/Familias'
+import FamiliasResponsive from '../../components/planes/personas/FamiliasResponsive'
+import Social from '../../components/social/Social'
 
 const personas = () => {
     return (
@@ -57,7 +54,7 @@ const personas = () => {
                 }
             `}</style>
         </Layout>
-    );
-};
+    )
+}
 
-export default personas;
+export default personas

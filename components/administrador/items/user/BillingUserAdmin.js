@@ -1,31 +1,31 @@
-import React, { useState } from "react";
-import Swal from "sweetalert2";
-import axios from "axios";
+import axios from 'axios'
+import { useState } from 'react'
+import Swal from 'sweetalert2'
 
 const BillingAdmin = (props) => {
-    const [check, setCheck] = useState(false);
+    const [check, setCheck] = useState(false)
 
     const onClick = (e) => {
-        setCheck(e.target.checked);
-    };
+        setCheck(e.target.checked)
+    }
 
     const stateUpdate = async () => {
-        if (props.type === "admin") {
+        if (props.type === 'admin') {
             if (check === true) {
-                const url = "/api/editOneUser";
-                let result = await axios.put(url, {
+                const url = '/api/editOneUser'
+                const result = await axios.put(url, {
                     state: check,
-                    identification: props.data.identification,
-                });
+                    identification: props.data.identification
+                })
 
                 if (result.data.status) {
                     Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Estado actualizado",
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Estado actualizado',
                         showConfirmButton: false,
-                        timer: 1000,
-                    });
+                        timer: 1000
+                    })
                     // send pay email to user
 
                     if (props.data.email) {
@@ -34,36 +34,36 @@ const BillingAdmin = (props) => {
                         &identification=${result.data.data.identification}
                         &start=${result.data.data.start}
                         &end=${result.data.data.end}
-                        &plan=${result.data.data.plan}`;
+                        &plan=${result.data.data.plan}`
 
-                        await axios.get(apiEmail);
+                        await axios.get(apiEmail)
                     }
 
-                    props.changeData(result.data.data);
+                    props.changeData(result.data.data)
                 }
             } else {
                 Swal.fire({
-                    position: "center",
-                    icon: "warning",
-                    title: "No tienes los permiso para desactivar al usuario",
+                    position: 'center',
+                    icon: 'warning',
+                    title: 'No tienes los permiso para desactivar al usuario',
                     showConfirmButton: false,
-                    timer: 1000,
-                });
+                    timer: 1000
+                })
             }
-        } else if (props.type === "master") {
-            const url = "/api/editOneUser";
-            let result = await axios.put(url, {
+        } else if (props.type === 'master') {
+            const url = '/api/editOneUser'
+            const result = await axios.put(url, {
                 state: check,
-                identification: props.data.identification,
-            });
+                identification: props.data.identification
+            })
             if (result.data.status) {
                 Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Estado actualizado",
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Estado actualizado',
                     showConfirmButton: false,
-                    timer: 1000,
-                });
+                    timer: 1000
+                })
 
                 if (props.data.email && check === true) {
                     const apiEmail = `/api/emailpay?email=${result.data.data.email}
@@ -71,29 +71,29 @@ const BillingAdmin = (props) => {
                                     &identification=${result.data.data.identification}
                                     &start=${result.data.data.start}
                                     &end=${result.data.data.end}
-                                    &plan=${result.data.data.plan}`;
-                                    
-                    await axios.get(apiEmail);
+                                    &plan=${result.data.data.plan}`
+
+                    await axios.get(apiEmail)
                 }
 
-                props.changeData(result.data.data);
+                props.changeData(result.data.data)
             }
         }
-    };
+    }
 
-    const getDate = (typeDate = "") => {
-        let date = new Date(props.data.start);
+    const getDate = (typeDate = '') => {
+        const date = new Date(props.data.start)
 
-        if (typeDate === "day") {
-            return date.getDate();
-        } else if (typeDate === "month") {
-            return date.getMonth() + 1;
-        } else if (typeDate === "year") {
-            return date.getFullYear();
+        if (typeDate === 'day') {
+            return date.getDate()
+        } else if (typeDate === 'month') {
+            return date.getMonth() + 1
+        } else if (typeDate === 'year') {
+            return date.getFullYear()
         } else {
-            return date;
+            return date
         }
-    };
+    }
 
     return (
         <section>
@@ -104,10 +104,10 @@ const BillingAdmin = (props) => {
                     ESTADO:
                     <p>
                         {props.data.state
-                            ? `ACTIVO desde el ${getDate("day")}/${getDate(
-                                  "month"
-                              )}/${getDate("year")}`
-                            : "INACTIVO"}
+                            ? `ACTIVO desde el ${getDate('day')}/${getDate(
+                                'month'
+                            )}/${getDate('year')}`
+                            : 'INACTIVO'}
                     </p>
                 </label>
                 <br />
@@ -118,8 +118,8 @@ const BillingAdmin = (props) => {
                 <br />
                 <button onClick={stateUpdate}>Actualizar</button>
                 <span>
-                    {" "}
-                    - Cambiar a <strong>{check ? "Activo" : "Inactivo"}</strong>
+                    {' '}
+                    - Cambiar a <strong>{check ? 'Activo' : 'Inactivo'}</strong>
                 </span>
             </div>
 
@@ -224,7 +224,7 @@ const BillingAdmin = (props) => {
                 }
             `}</style>
         </section>
-    );
-};
+    )
+}
 
-export default BillingAdmin;
+export default BillingAdmin

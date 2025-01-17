@@ -1,5 +1,3 @@
-import React from "react";
-
 const FamiliasResponsive = () => {
     return (
         <section className="content">
@@ -13,8 +11,8 @@ const FamiliasResponsive = () => {
             <div className="img"></div>
             <h3>CONFIANZA & AYUDA</h3>
             <div className="info">
-                <p> Con el objetivo de brindarle seguridad al mantener su salud bucal 
-                    y la de su familia le ofrecemos nuestro {" "}<strong>Plan Premium</strong> {" "}
+                <p> Con el objetivo de brindarle seguridad al mantener su salud bucal
+                    y la de su familia le ofrecemos nuestro {' '}<strong>Plan Premium</strong> {' '}
                     para así apoyarle con tratamientos preventivos y/o gastos dentales inesperados.
                 </p>
             </div>
@@ -179,7 +177,7 @@ const FamiliasResponsive = () => {
                 }
             `}</style>
         </section>
-    );
-};
+    )
+}
 
-export default FamiliasResponsive;
+export default FamiliasResponsive

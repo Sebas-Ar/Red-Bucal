@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import Swal from "sweetalert2";
-import axios from "axios";
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import Swal from 'sweetalert2'
 
 const InfoAdmin = (props) => {
-
     const [info, setInfo] = useState({})
 
     useEffect(() => {
-        
-        let inf = {}
+        const inf = {}
 
         inf.RUCRUCChange = props.data.RUC
         inf.RUC = props.data.RUC
@@ -17,8 +15,7 @@ const InfoAdmin = (props) => {
         inf.businessMail = props.data.businessMail
 
         setInfo(inf)
-
-    }, []);
+    }, [])
 
     const onchange = (e) => {
         setInfo(Object.assign({}, info, { [e.target.name]: e.target.value }))
@@ -29,7 +26,6 @@ const InfoAdmin = (props) => {
 
         const url = '/api/editBusinessData'
         try {
-
             const result = await axios.put(url, info)
             if (result.data.status) {
                 Swal.fire({
@@ -39,20 +35,18 @@ const InfoAdmin = (props) => {
                     showConfirmButton: false,
                     timer: 1000
                 })
-                props.changeData(result.data.data);
+                props.changeData(result.data.data)
             }
-
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
-
     }
 
     return (
         <form onSubmit={onSubmit}>
             <label>
                 ESTADO: <br/>
-                <p>{props.data.state ? "ACTIVO" : "INACTIVO"}</p>
+                <p>{props.data.state ? 'ACTIVO' : 'INACTIVO'}</p>
             </label>
             <label>
                 EMPLEADOS: <br/>

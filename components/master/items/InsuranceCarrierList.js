@@ -1,29 +1,28 @@
-import { useState } from "react";
-import axios from "axios";
-import Swal from "sweetalert2";
+import axios from 'axios'
+import Swal from 'sweetalert2'
 
 const InsuranceCarrierList = ({ insuranceList, setInsuranceList }) => {
     const deleteInsuranse = (RUC) => {
         Swal.fire({
-            title: "Seguro que quieres eliminar la aseguradora?",
+            title: 'Seguro que quieres eliminar la aseguradora?',
             showCancelButton: true,
-            confirmButtonText: `Eliminar`,
+            confirmButtonText: 'Eliminar'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const url = `/api/insurrance?RUC=${RUC}`;
-                const result = await axios.delete(url);
-                console.log(result);
+                const url = `/api/insurrance?RUC=${RUC}`
+                const result = await axios.delete(url)
+                console.log(result)
                 setInsuranceList(
                     insuranceList.filter((ins) => ins.RUC !== RUC)
-                );
+                )
                 Swal.fire(
-                    "Aseguradora eliminada",
+                    'Aseguradora eliminada',
                     result.data.message,
-                    "success"
-                );
+                    'success'
+                )
             }
-        });
-    };
+        })
+    }
 
     return (
         <div className="container">
@@ -39,7 +38,7 @@ const InsuranceCarrierList = ({ insuranceList, setInsuranceList }) => {
                         <span>{item.businessMail}</span>
                         <button
                             onClick={() => {
-                                deleteInsuranse(item.RUC);
+                                deleteInsuranse(item.RUC)
                             }}
                         >
                             Eliminar
@@ -89,7 +88,7 @@ const InsuranceCarrierList = ({ insuranceList, setInsuranceList }) => {
                 }
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default InsuranceCarrierList;
+export default InsuranceCarrierList

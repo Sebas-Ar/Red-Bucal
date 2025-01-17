@@ -1,24 +1,22 @@
-import React, { useState } from "react";
-import Layout from "../components/layout/Layout";
-import Footer from "../components/footer/Footer";
-import PrevencionBox from "../components/prevencion/PrevencionBox";
-import PrevencionList from "../components/prevencion/PrevencionList";
-import PrevencionBoxResponsive from "../components/prevencion/PrevencionBoxResponsive";
-import TitlePrevencion from "../components/prevencion/TitlePrevencion";
-import PrevencionCard from "../components/prevencion/cards/PrevencionCard";
-import Social from "../components/social/Social";
+import { useState } from 'react'
+import Footer from '../components/footer/Footer'
+import Layout from '../components/layout/Layout'
+import PrevencionList from '../components/prevencion/PrevencionList'
+import TitlePrevencion from '../components/prevencion/TitlePrevencion'
+import PrevencionCard from '../components/prevencion/cards/PrevencionCard'
+import Social from '../components/social/Social'
 
-const prevencion = () => {
-    const [list, setList] = useState(0);
-    const [active, setActive] = useState(false);
+const Prevencion = () => {
+    const [list, setList] = useState(0)
+    const [active, setActive] = useState(false)
 
     const changeActive = () => {
-        setActive(!active);
-    };
+        setActive(!active)
+    }
 
     const changeList = (num) => {
-        setList(num);
-    };
+        setList(num)
+    }
 
     return (
         <Layout>
@@ -43,7 +41,7 @@ const prevencion = () => {
             /> */}
             <Footer />
         </Layout>
-    );
-};
+    )
+}
 
-export default prevencion;
+export default Prevencion

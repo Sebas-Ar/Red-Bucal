@@ -1,59 +1,59 @@
-import React, { useState, useEffect } from "react";
-import Swal from "sweetalert2";
-import axios from "axios";
+import axios from 'axios'
+import { useState } from 'react'
+import Swal from 'sweetalert2'
 
 const ServicesAdmin = (props) => {
-    const [check, setCheck] = useState(false);
+    const [check, setCheck] = useState(false)
 
     const onClick = (e) => {
-        setCheck(e.target.checked);
-    };
+        setCheck(e.target.checked)
+    }
 
     const stateUpdate = async () => {
-        if (props.type === "admin") {
+        if (props.type === 'admin') {
             if (check === true) {
-                const url = "/api/editUserService";
-                let result = await axios.put(url, {
+                const url = '/api/editUserService'
+                const result = await axios.put(url, {
                     state: check,
-                    identification: props.data.identification,
-                });
+                    identification: props.data.identification
+                })
                 if (result.data.status) {
                     Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Estado actualizado",
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Estado actualizado',
                         showConfirmButton: false,
-                        timer: 1000,
-                    });
-                    props.changeData(result.data.data);
+                        timer: 1000
+                    })
+                    props.changeData(result.data.data)
                 }
             } else {
                 Swal.fire({
-                    position: "center",
-                    icon: "warning",
-                    title: "No tienes los permiso para cambiar a No Realizado",
+                    position: 'center',
+                    icon: 'warning',
+                    title: 'No tienes los permiso para cambiar a No Realizado',
                     showConfirmButton: false,
-                    timer: 1000,
-                });
+                    timer: 1000
+                })
             }
-        } else if (props.type === "master") {
-            const url = "/api/editUserService";
-            let result = await axios.put(url, {
+        } else if (props.type === 'master') {
+            const url = '/api/editUserService'
+            const result = await axios.put(url, {
                 state: check,
-                identification: props.data.identification,
-            });
+                identification: props.data.identification
+            })
             if (result.data.status) {
                 Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Estado actualizado",
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Estado actualizado',
                     showConfirmButton: false,
-                    timer: 1000,
-                });
-                props.changeData(result.data.data);
+                    timer: 1000
+                })
+                props.changeData(result.data.data)
             }
         }
-    };
+    }
 
     return (
         <section>
@@ -62,7 +62,7 @@ const ServicesAdmin = (props) => {
                 <br />
                 <label className="label">
                     ESTADO:
-                    <p>{props.data.service ? "REALIZADO" : "NO REALIZADO"}</p>
+                    <p>{props.data.service ? 'REALIZADO' : 'NO REALIZADO'}</p>
                 </label>
                 <br />
                 <label className="checkbox">
@@ -72,9 +72,9 @@ const ServicesAdmin = (props) => {
                 <br />
                 <button onClick={stateUpdate}>Actualizar</button>
                 <span>
-                    {" "}
-                    - Cambiar a{" "}
-                    <strong>{check ? "Realizado" : "No Realizado"}</strong>
+                    {' '}
+                    - Cambiar a{' '}
+                    <strong>{check ? 'Realizado' : 'No Realizado'}</strong>
                 </span>
             </div>
 
@@ -179,7 +179,7 @@ const ServicesAdmin = (props) => {
                 }
             `}</style>
         </section>
-    );
-};
+    )
+}
 
-export default ServicesAdmin;
+export default ServicesAdmin

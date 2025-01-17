@@ -1,5 +1,3 @@
-import React from "react";
-
 const EmpresasResponsive = () => {
     return (
         <section className="content">
@@ -12,10 +10,10 @@ const EmpresasResponsive = () => {
 
             <div className="info">
                 <p>
-                Con el objetivo de brindarle apoyo en mantener su Salud General, 
-                le ofrecemos  nuestro {" "}<strong>Plan Empresas</strong> {" "}
-                a un bajo costo con Beneficios de Salud Dental y Beneficios en 
-                Medicina Preventiva y/o gastos inesperados, generando  vínculos 
+                Con el objetivo de brindarle apoyo en mantener su Salud General,
+                le ofrecemos  nuestro {' '}<strong>Plan Empresas</strong> {' '}
+                a un bajo costo con Beneficios de Salud Dental y Beneficios en
+                Medicina Preventiva y/o gastos inesperados, generando  vínculos
                 de lealtad en todos nuestros clientes.
                 </p>
             </div>
@@ -111,7 +109,7 @@ const EmpresasResponsive = () => {
                 }
             `}</style>
         </section>
-    );
-};
+    )
+}
 
-export default EmpresasResponsive;
+export default EmpresasResponsive

@@ -1,15 +1,13 @@
-import React, { useState } from 'react'
-import Layout from '../components/layout/Layout'
-import LayoutForm from '../components/form/LayoutForm'
-import PanamaMap from '../components/red/PanamaMap'
+import { useState } from 'react'
 import Footer from '../components/footer/Footer'
+import LayoutForm from '../components/form/LayoutForm'
+import Layout from '../components/layout/Layout'
 import location from '../components/red/locations/location'
+import PanamaMap from '../components/red/PanamaMap'
 import Social from '../components/social/Social'
 
-const contacto = () => {
-
-    const [clinic, setClinic] = useState(0);
-
+const Contacto = () => {
+    const [clinic, setClinic] = useState(0)
 
     const changeClinic = (num) => {
         setClinic(num)
@@ -29,9 +27,8 @@ const contacto = () => {
             <LayoutForm diente="/img/diente-form1.png" fondo="/img/doctora.png" />
             <br/> <br/>
             <Footer />
-        
         </Layout>
     )
 }
 
-export default contacto
+export default Contacto

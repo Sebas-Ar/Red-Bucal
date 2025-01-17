@@ -1,5 +1,3 @@
-import React from 'react'
-
 const InformationRight = () => {
     return (
         <section className="content">
@@ -13,7 +11,7 @@ const InformationRight = () => {
                         <span className="nuestra">NUESTRA</span>
                         <span className="red">RED</span>
                     </h3>
-                    <p>Te conectamos a una red única de clínicas odontológicas, que permite a sus afiliados acceder a una amplia cobertura dental a un precio muy accesible. Contamos con centros a nivel nacional, con especialistas idóneos que garantizan un servicio de calidad. 
+                    <p>Te conectamos a una red única de clínicas odontológicas, que permite a sus afiliados acceder a una amplia cobertura dental a un precio muy accesible. Contamos con centros a nivel nacional, con especialistas idóneos que garantizan un servicio de calidad.
                         <br/><br/>
                         En nuestras sucursales conseguirá un equipo integrado por distintas especialidades como ortodoncia, odontología general, diseño de sonrisa, odontopediatría, especialista en endodoncia, prótesis fija y removible, especialista en periodoncia y cirujanos maxilofaciales.
                     </p>

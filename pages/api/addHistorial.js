@@ -1,41 +1,43 @@
-import withMiddleware from "../../middlewares/withMiddleware";
+import { connectToDatabase } from '../../backend/db'
+import withMiddleware from '../../middlewares/withMiddleware'
 
 const handler = async (req, res) => {
-    if (req.method === "PUT") {
-        let { identification, historial, fecha, hora, tratamiento } = req.body;
-        console.log(historial);
+    if (req.method === 'PUT') {
+        const mongoClient = await connectToDatabase()
+        let { identification, historial, fecha, hora, tratamiento } = req.body
+        console.log(historial)
 
         if (!historial) {
-            historial = [];
+            historial = []
         }
 
-        let newHistorial = historial;
+        const newHistorial = historial
 
         newHistorial.unshift({
             fecha,
             hora,
-            tratamiento,
-        });
+            tratamiento
+        })
 
-        console.log(newHistorial);
+        console.log(newHistorial)
 
-        const count = await req.db
-            .collection("users")
+        const count = await mongoClient.db
+            .collection('users')
             .findAndModify(
                 { identification: identification },
-                [["_id", "asc"]],
+                [['_id', 'asc']],
                 { $set: { historial: newHistorial } },
                 { new: true }
-            );
-        console.log(count.value);
+            )
+        console.log(count.value)
 
         res.send({
             data: count.value,
-            status: "ok",
-        });
+            status: 'ok'
+        })
     } else {
-        res.status(405).end();
+        res.status(405).end()
     }
-};
+}
 
-export default withMiddleware(handler);
+export default withMiddleware(handler)

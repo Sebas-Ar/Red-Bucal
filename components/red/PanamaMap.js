@@ -1,37 +1,37 @@
-import React, { useState, useEffect } from "react";
-import ReactMapGl, { Marker } from "react-map-gl";
+import { useEffect, useState } from 'react'
+import ReactMapGl, { Marker } from 'react-map-gl'
 
 const PanamaMap = (props) => {
     const [viewPort, setViewPort] = useState({
         latitude: 8.708158,
         longitude: -79.757642,
-        width: "100%",
-        height: "75vh",
-        zoom: 8.7,
-    });
+        width: '100%',
+        height: '75vh',
+        zoom: 8.7
+    })
 
-    const [myPosition, setMyPosition] = useState({
-        /* 8.587050, -79.319817 */
-        latitude: 8.58705,
-        longitude: -79.319817,
-    });
+    // const [myPosition, setMyPosition] = useState({
+    //     /* 8.587050, -79.319817 */
+    //     latitude: 8.58705,
+    //     longitude: -79.319817
+    // })
 
-    const [dentro, setDentro] = useState(false);
+    const [dentro] = useState(false)
 
     useEffect(() => {
-        const width = screen.width;
+        const width = screen.width
 
         if (width < 460) {
             setViewPort(
                 Object.assign({}, viewPort, {
-                    width: undefined + "px",
-                    zoom: 8,
+                    width: undefined + 'px',
+                    zoom: 8
                 })
-            );
+            )
         } else {
             setViewPort(
-                Object.assign({}, viewPort, { width: undefined + "px" })
-            );
+                Object.assign({}, viewPort, { width: undefined + 'px' })
+            )
         }
 
         /* const succeed = (pos) => {
@@ -39,7 +39,6 @@ const PanamaMap = (props) => {
             let latitude = pos.coords.latitude
             let longitude = pos.coords.longitude
 
-            
             if (latitude > -83.034849 && latitude < -77.158126 && longitude < 9.638075 && longitude > 7.172350) {
                 setMyPosition({
                     latitude,
@@ -49,18 +48,18 @@ const PanamaMap = (props) => {
             }
             console.log('mi latitud' + pos.coords.latitude)
             console.log('mi longitud' + pos.coords.longitude)
-        } 
-        
+        }
+
         const failure = (err) => {
             console.log(err)
         }
-        
+
         const options = {
             enableHighAccuracy: true,
             timeout: 5000,
             maxinumAge: 0
         }
-        
+
         navigator.geolocation.getCurrentPosition(
             succeed, failure, options
         ) */
@@ -68,7 +67,7 @@ const PanamaMap = (props) => {
         /* derecha -> -77.158126 */
         /* arriba -> 9.638075 */
         /* abajo -> 7.172350 */
-    }, []);
+    }, [])
 
     return (
         <div className="content">
@@ -76,7 +75,7 @@ const PanamaMap = (props) => {
                 {...viewPort}
                 mapboxApiAccessToken={process.env.TOKEN_MAP}
                 onViewportChange={(viewPort) => {
-                    setViewPort(viewPort);
+                    setViewPort(viewPort)
                 }}
                 mapStyle="mapbox://styles/sebas-ar/ck82lxiwb1a581iqwvh1ab3m3"
             >
@@ -89,16 +88,16 @@ const PanamaMap = (props) => {
                         <button
                             style={{
                                 backgroundColor: loc.color,
-                                height: loc.id === props.clinic ? "50px" : "",
-                                width: loc.id === props.clinic ? "50px" : "",
+                                height: loc.id === props.clinic ? '50px' : '',
+                                width: loc.id === props.clinic ? '50px' : '',
                                 transform:
                                     loc.id === props.clinic
-                                        ? "translate(-40%, -40%)"
-                                        : "",
+                                        ? 'translate(-40%, -40%)'
+                                        : ''
                             }}
                             onClick={() => {
-                                props.changeClinic(loc.id);
-                                window.open(loc.url, "_blank");
+                                props.changeClinic(loc.id)
+                                window.open(loc.url, '_blank')
                             }}
                         >
                             <img src="/img/diente-form.png" alt="diente" />
@@ -151,8 +150,8 @@ const PanamaMap = (props) => {
 
                 .text {
                     position: absolute;
-                    top: ${dentro ? "-20px" : "-30px"};
-                    left: ${dentro ? "-110px" : "-220px"};
+                    top: ${dentro ? '-20px' : '-30px'};
+                    left: ${dentro ? '-110px' : '-220px'};
                     background: #777777;
                     padding: 6px 6px;
                     border-radius: 15px;
@@ -172,43 +171,43 @@ const PanamaMap = (props) => {
                 button {
                     z-index: 1;
                     ${
-                        viewPort.zoom > 7.5
-                            ? viewPort.zoom < 11.315332227113439
-                                ? "height:" +
+        viewPort.zoom > 7.5
+            ? viewPort.zoom < 11.315332227113439
+                ? 'height:' +
                                   viewPort.zoom * (viewPort.zoom - 7.5) +
-                                  "px;"
-                                : viewPort.zoom < 14.130664454226876
-                                ? "height:" +
+                                  'px;'
+                : viewPort.zoom < 14.130664454226876
+                    ? 'height:' +
                                   (viewPort.zoom * (viewPort.zoom - 7.5) -
                                       (viewPort.zoom * (viewPort.zoom - 7.5)) /
                                           2) +
-                                  "px;"
-                                : "height:" +
+                                  'px;'
+                    : 'height:' +
                                   (viewPort.zoom * (viewPort.zoom - 7.5) -
                                       (viewPort.zoom * (viewPort.zoom - 7.5)) /
                                           1.5) +
-                                  "px;"
-                            : "height: 10px;"
-                    }
+                                  'px;'
+            : 'height: 10px;'
+        }
                     ${
-                        viewPort.zoom > 7.5
-                            ? viewPort.zoom < 11.315332227113439
-                                ? "width:" +
+        viewPort.zoom > 7.5
+            ? viewPort.zoom < 11.315332227113439
+                ? 'width:' +
                                   viewPort.zoom * (viewPort.zoom - 7.5) +
-                                  "px;"
-                                : viewPort.zoom < 14.130664454226876
-                                ? "width:" +
+                                  'px;'
+                : viewPort.zoom < 14.130664454226876
+                    ? 'width:' +
                                   (viewPort.zoom * (viewPort.zoom - 7.5) -
                                       (viewPort.zoom * (viewPort.zoom - 7.5)) /
                                           2) +
-                                  "px;"
-                                : "width:" +
+                                  'px;'
+                    : 'width:' +
                                   (viewPort.zoom * (viewPort.zoom - 7.5) -
                                       (viewPort.zoom * (viewPort.zoom - 7.5)) /
                                           1.5) +
-                                  "px;"
-                            : "width: 10px;"
-                    }
+                                  'px;'
+            : 'width: 10px;'
+        }
                     border: none;
                     cursor: pointer;
                     color: white;
@@ -220,10 +219,10 @@ const PanamaMap = (props) => {
                 button:hover {
                     z-index: 10;
                     ${
-                        viewPort.zoom < 11.315332227113439
-                            ? "transform: translate(-40%,-40%);"
-                            : ""
-                    }
+        viewPort.zoom < 11.315332227113439
+            ? 'transform: translate(-40%,-40%);'
+            : ''
+        }
                     height: 50px;
                     width: 50px;
                 }
@@ -234,7 +233,7 @@ const PanamaMap = (props) => {
                 
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default PanamaMap;
+export default PanamaMap

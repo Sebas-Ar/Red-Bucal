@@ -1,26 +1,23 @@
-import React from 'react'
-
 const TerminosCondiciones = (props) => {
-
     return (
         <div className="content">
-            
+
             <section>
-                <svg onClick={() => { props.change()} } viewBox="0 0 512 512">
+                <svg onClick={() => { props.change() } } viewBox="0 0 512 512">
                     <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm101.8-262.2L295.6 256l62.2 62.2c4.7 4.7 4.7 12.3 0 17l-22.6 22.6c-4.7 4.7-12.3 4.7-17 0L256 295.6l-62.2 62.2c-4.7 4.7-12.3 4.7-17 0l-22.6-22.6c-4.7-4.7-4.7-12.3 0-17l62.2-62.2-62.2-62.2c-4.7-4.7-4.7-12.3 0-17l22.6-22.6c4.7-4.7 12.3-4.7 17 0l62.2 62.2 62.2-62.2c4.7-4.7 12.3-4.7 17 0l22.6 22.6c4.7 4.7 4.7 12.3 0 17z" />
                 </svg>
                 <h3>TERMINOS Y CONDICIONES</h3>
                 <br/>
                 <div className="scroll">
                     <p>
-                        <strong>RED BUCAL, S.A.</strong>, es una compañía legalmente constituida en la República de Panamá, bajo el folio real número 155682014 y DV 8 y mantiene vigente todos los permisos requeridos para operar en el país. <strong>RED BUCAL, S.A.</strong> (en adelante <strong>RED BUCAL</strong>) les asegura que protege y asegura la confidencialidad de sus datos. La siguiente Política de Confidencialidad describe el compromiso de <strong>RED BUCAL</strong> de procurar mantener seguros los datos personales que le proporcione, para recibir los servicios que prestamos. 
+                        <strong>RED BUCAL, S.A.</strong>, es una compañía legalmente constituida en la República de Panamá, bajo el folio real número 155682014 y DV 8 y mantiene vigente todos los permisos requeridos para operar en el país. <strong>RED BUCAL, S.A.</strong> (en adelante <strong>RED BUCAL</strong>) les asegura que protege y asegura la confidencialidad de sus datos. La siguiente Política de Confidencialidad describe el compromiso de <strong>RED BUCAL</strong> de procurar mantener seguros los datos personales que le proporcione, para recibir los servicios que prestamos.
                     </p>
                     <br/>
                     <p>
                         <strong>RED BUCAL</strong>, en el ejercicio de sus actividades, ha adoptado todas las medidas necesarias para garantizar la protección e integridad de los datos; procurando de esta forma evitar su alteración, pérdida, tratamiento o acceso no autorizado, soportado por el siguiente
                     </p>
                     <br/>
-                    <p className="center"><strong>AVISO DE PRIVACIDAD</strong></p> 
+                    <p className="center"><strong>AVISO DE PRIVACIDAD</strong></p>
                     <br/>
                     <p>
                         <strong>RED BUCAL</strong>, pone a su disposición el presente aviso de privacidad (el “Aviso de Privacidad”) que enmarca los lineamientos que soportarán el registro y trato de datos personales (“Datos Personales”) de las personas naturales o jurídicas (los “Titulares”) mencionadas a lo largo del presente Aviso de Privacidad.

@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const SliderImg = (props) => {
-
-    const [slider, setSlider] = useState(0);
-    const [img, setImg] = useState([]);
+    const [slider, setSlider] = useState(0)
+    const [img, setImg] = useState([])
 
     useEffect(() => {
         if (!slider) {
@@ -14,8 +13,8 @@ const SliderImg = (props) => {
         }, 14000)
         return () => {
             clearInterval(time)
-        };
-    });
+        }
+    })
 
     useEffect(() => {
         if (props.location === 0) {
@@ -29,7 +28,7 @@ const SliderImg = (props) => {
                 '/img/doctor-2.png',
                 '/img/doctor-2.png',
                 '/img/doctor-2.png',
-                '/img/doctor-2.png',
+                '/img/doctor-2.png'
             ])
         } else if (props.location === 0) {
             setImg([
@@ -42,7 +41,7 @@ const SliderImg = (props) => {
                 '/img/operacion.png',
                 '/img/operacion.png',
                 '/img/operacion.png',
-                '/img/operacion.png',
+                '/img/operacion.png'
             ])
         } else if (props.location === 0) {
             setImg([
@@ -55,9 +54,8 @@ const SliderImg = (props) => {
                 '/img/dentist-2.png',
                 '/img/dentist-2.png',
                 '/img/dentist-2.png',
-                '/img/dentist-2.png',
+                '/img/dentist-2.png'
             ])
-
         } else {
             setImg([
                 '/img/young-1.png',
@@ -69,12 +67,10 @@ const SliderImg = (props) => {
                 '/img/young-1.png',
                 '/img/young-1.png',
                 '/img/young-1.png',
-                '/img/young-1.png',
+                '/img/young-1.png'
             ])
-
         }
-    }, [props.location]);
-
+    }, [props.location])
 
     return (
         <div className="content">

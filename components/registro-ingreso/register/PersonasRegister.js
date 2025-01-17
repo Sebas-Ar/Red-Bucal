@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import TerminosCondicionesForm from "./TerminosCondicionesForm";
+import { useState } from 'react'
+import TerminosCondicionesForm from './TerminosCondicionesForm'
 
 const PersonasRegister = (props) => {
-    const [active, setActive] = useState(false);
+    const [active, setActive] = useState(false)
 
     const change = (e) => {
-        e.preventDefault();
-        setActive(!active);
-    };
+        e.preventDefault()
+        setActive(!active)
+    }
 
     return (
         <form
             onSubmit={(e) => {
-                props.onSubmitPersonalRegister(e);
+                props.onSubmitPersonalRegister(e)
             }}
         >
             <div className="nombre">
@@ -36,19 +36,23 @@ const PersonasRegister = (props) => {
                     onChange={props.ChangeText}
                 />
             </div>
-            {props.errors.errorName ? (
-                <p style={{ gridColumn: "1/2" }}>{props.errors.errorName}</p>
-            ) : (
-                ""
-            )}
-            {props.errors.errorName || props.errors.errorlastname ? <br /> : ""}
-            {props.errors.errorlastname ? (
-                <p style={{ gridColumn: "3/4" }}>
-                    {props.errors.errorlastname}
-                </p>
-            ) : (
-                ""
-            )}
+            {props.errors.errorName
+                ? (
+                    <p style={{ gridColumn: '1/2' }}>{props.errors.errorName}</p>
+                )
+                : (
+                    ''
+                )}
+            {props.errors.errorName || props.errors.errorlastname ? <br /> : ''}
+            {props.errors.errorlastname
+                ? (
+                    <p style={{ gridColumn: '3/4' }}>
+                        {props.errors.errorlastname}
+                    </p>
+                )
+                : (
+                    ''
+                )}
             <h4>DOCUMENTO</h4>
             <div>
                 <div className="colorRojo"></div>
@@ -72,18 +76,22 @@ const PersonasRegister = (props) => {
                     onChange={props.ChangeText}
                 />
             </div>
-            {props.errors.errorTypeDoc ? (
-                <p style={{ gridColumn: "1/2" }}>{props.errors.errorTypeDoc}</p>
-            ) : (
-                ""
-            )}
-            {props.errors.erroridentification ? (
-                <p style={{ gridColumn: "3/4" }}>
-                    {props.errors.erroridentification}
-                </p>
-            ) : (
-                ""
-            )}
+            {props.errors.errorTypeDoc
+                ? (
+                    <p style={{ gridColumn: '1/2' }}>{props.errors.errorTypeDoc}</p>
+                )
+                : (
+                    ''
+                )}
+            {props.errors.erroridentification
+                ? (
+                    <p style={{ gridColumn: '3/4' }}>
+                        {props.errors.erroridentification}
+                    </p>
+                )
+                : (
+                    ''
+                )}
             <div className="password">
                 <div className="colorRojo"></div>
                 <input
@@ -94,13 +102,15 @@ const PersonasRegister = (props) => {
                     onChange={props.ChangeText}
                 />
             </div>
-            {props.errors.errorpassword ? (
-                <p style={{ gridColumn: "1/4" }}>
-                    {props.errors.errorpassword}
-                </p>
-            ) : (
-                ""
-            )}
+            {props.errors.errorpassword
+                ? (
+                    <p style={{ gridColumn: '1/4' }}>
+                        {props.errors.errorpassword}
+                    </p>
+                )
+                : (
+                    ''
+                )}
             <div className="password">
                 <div className="colorRojo"></div>
                 <input
@@ -111,13 +121,15 @@ const PersonasRegister = (props) => {
                     onChange={props.ChangeText}
                 />
             </div>
-            {props.errors.errorpasswordRepeat ? (
-                <p style={{ gridColumn: "1/4" }}>
-                    {props.errors.errorpasswordRepeat}
-                </p>
-            ) : (
-                ""
-            )}
+            {props.errors.errorpasswordRepeat
+                ? (
+                    <p style={{ gridColumn: '1/4' }}>
+                        {props.errors.errorpasswordRepeat}
+                    </p>
+                )
+                : (
+                    ''
+                )}
             <h4>FECHA DE NACIMIENTO</h4>
             <div className="date">
                 <div>
@@ -303,39 +315,49 @@ const PersonasRegister = (props) => {
                         <option value="2040">2040</option>
                     </select>
                 </div>
-                {props.errors.errorday ? (
-                    <p style={{ gridColumn: "1/2" }}>{props.errors.errorday}</p>
-                ) : (
-                    ""
-                )}
+                {props.errors.errorday
+                    ? (
+                        <p style={{ gridColumn: '1/2' }}>{props.errors.errorday}</p>
+                    )
+                    : (
+                        ''
+                    )}
                 {props.errors.errorday ||
                 props.errors.errormonth ||
-                props.errors.erroryear ? (
-                    <br />
-                ) : (
-                    ""
-                )}
-                {props.errors.errormonth ? (
-                    <p style={{ gridColumn: "3/4" }}>
-                        {props.errors.errormonth}
-                    </p>
-                ) : (
-                    ""
-                )}
+                props.errors.erroryear
+                    ? (
+                        <br />
+                    )
+                    : (
+                        ''
+                    )}
+                {props.errors.errormonth
+                    ? (
+                        <p style={{ gridColumn: '3/4' }}>
+                            {props.errors.errormonth}
+                        </p>
+                    )
+                    : (
+                        ''
+                    )}
                 {props.errors.errorday ||
                 props.errors.errormonth ||
-                props.errors.erroryear ? (
-                    <br />
-                ) : (
-                    ""
-                )}
-                {props.errors.erroryear ? (
-                    <p style={{ gridColumn: "5/6" }}>
-                        {props.errors.erroryear}
-                    </p>
-                ) : (
-                    ""
-                )}
+                props.errors.erroryear
+                    ? (
+                        <br />
+                    )
+                    : (
+                        ''
+                    )}
+                {props.errors.erroryear
+                    ? (
+                        <p style={{ gridColumn: '5/6' }}>
+                            {props.errors.erroryear}
+                        </p>
+                    )
+                    : (
+                        ''
+                    )}
             </div>
             {/* <div className="fecha">
                 <div className="colorRojo"></div>
@@ -362,17 +384,21 @@ const PersonasRegister = (props) => {
                     onChange={props.ChangeText}
                 />
             </div>
-            {props.errors.erroradress ? (
-                <p style={{ gridColumn: "1/2" }}>{props.errors.erroradress}</p>
-            ) : (
-                ""
-            )}
-            {props.errors.erroradress || props.errors.errorphone ? <br /> : ""}
-            {props.errors.errorphone ? (
-                <p style={{ gridColumn: "3/4" }}>{props.errors.errorphone}</p>
-            ) : (
-                ""
-            )}
+            {props.errors.erroradress
+                ? (
+                    <p style={{ gridColumn: '1/2' }}>{props.errors.erroradress}</p>
+                )
+                : (
+                    ''
+                )}
+            {props.errors.erroradress || props.errors.errorphone ? <br /> : ''}
+            {props.errors.errorphone
+                ? (
+                    <p style={{ gridColumn: '3/4' }}>{props.errors.errorphone}</p>
+                )
+                : (
+                    ''
+                )}
             <div className="correo">
                 <div className="colorRojo"></div>
                 <input
@@ -383,11 +409,13 @@ const PersonasRegister = (props) => {
                     onChange={props.ChangeText}
                 />
             </div>
-            {props.errors.erroremail ? (
-                <p style={{ gridColumn: "1/4" }}>{props.errors.erroremail}</p>
-            ) : (
-                ""
-            )}
+            {props.errors.erroremail
+                ? (
+                    <p style={{ gridColumn: '1/4' }}>{props.errors.erroremail}</p>
+                )
+                : (
+                    ''
+                )}
             <label className="terminos">
                 <input
                     type="checkbox"
@@ -397,29 +425,33 @@ const PersonasRegister = (props) => {
                 />
                 Acepto terminos y condiciones
                 <br />
-                {props.errors.ckeckerror ? (
-                    <p>{props.errors.ckeckerror}</p>
-                ) : (
-                    ""
-                )}
+                {props.errors.ckeckerror
+                    ? (
+                        <p>{props.errors.ckeckerror}</p>
+                    )
+                    : (
+                        ''
+                    )}
             </label>
             <div className="terminos-box">
                 <button
                     className="condiciones"
                     onClick={(e) => {
-                        change(e);
+                        change(e)
                     }}
                 >
                     Leer Términos y condiciones
                 </button>
-                {active ? (
-                    <TerminosCondicionesForm
-                        change={change}
-                        ChangeText={props.ChangeText}
-                    />
-                ) : (
-                    ""
-                )}
+                {active
+                    ? (
+                        <TerminosCondicionesForm
+                            change={change}
+                            ChangeText={props.ChangeText}
+                        />
+                    )
+                    : (
+                        ''
+                    )}
             </div>
             <div className="select">
                 <div className="colorRojo"></div>
@@ -436,11 +468,13 @@ const PersonasRegister = (props) => {
                     <option value="5">Otro</option>
                 </select>
             </div>
-            {props.errors.errorknow ? (
-                <p style={{ gridColumn: "1/4" }}>{props.errors.errorknow}</p>
-            ) : (
-                ""
-            )}
+            {props.errors.errorknow
+                ? (
+                    <p style={{ gridColumn: '1/4' }}>{props.errors.errorknow}</p>
+                )
+                : (
+                    ''
+                )}
 
             <button className="entrar">
                 ENTRAR
@@ -601,7 +635,7 @@ const PersonasRegister = (props) => {
                 }
             `}</style>
         </form>
-    );
-};
+    )
+}
 
-export default PersonasRegister;
+export default PersonasRegister

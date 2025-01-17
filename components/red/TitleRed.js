@@ -1,5 +1,3 @@
-import React from "react";
-
 const TitleRed = () => {
     return (
         <div className="content">
@@ -54,7 +52,7 @@ const TitleRed = () => {
                 }
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default TitleRed;
+export default TitleRed

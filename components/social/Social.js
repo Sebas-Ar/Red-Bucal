@@ -1,27 +1,25 @@
-import { useEffect, useState } from "react";
-import { isMobileOrDesktop } from "../../utils/isMobileOrDesktop";
 
 const Social = () => {
-    const [urlWhatsapp, setUrlWhatsapp] = useState("");
+    // const [urlWhatsapp, setUrlWhatsapp] = useState('')
 
-    useEffect(() => {
-        getUrl();
-    }, []);
+    // useEffect(() => {
+    //     getUrl()
+    // }, [])
 
-    const getUrl = () => {
-        const movileOrDesktop = isMobileOrDesktop();
-        const numero = "570000000000";
-        const msg = "hola red-bucal";
-        if (movileOrDesktop === "Desktop") {
-            setUrlWhatsapp(
-                `https://web.whatsapp.com/send?phone=${numero}&text=${msg}`
-            );
-        } else {
-            setUrlWhatsapp(
-                `https://api.whatsapp.com/send?phone=${numero}&text=${msg}`
-            );
-        }
-    };
+    // const getUrl = () => {
+    //     const movileOrDesktop = isMobileOrDesktop()
+    //     const numero = '570000000000'
+    //     const msg = 'hola red-bucal'
+    //     if (movileOrDesktop === 'Desktop') {
+    //         setUrlWhatsapp(
+    //             `https://web.whatsapp.com/send?phone=${numero}&text=${msg}`
+    //         )
+    //     } else {
+    //         setUrlWhatsapp(
+    //             `https://api.whatsapp.com/send?phone=${numero}&text=${msg}`
+    //         )
+    //     }
+    // }
 
     return (
         <nav className="container">
@@ -141,7 +139,7 @@ const Social = () => {
                 }
             `}</style>
         </nav>
-    );
-};
+    )
+}
 
-export default Social;
+export default Social

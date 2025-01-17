@@ -1,85 +1,71 @@
-import validator from "email-validator";
-import withMiddleware from "../../middlewares/withMiddleware";
-import bcrypt from "bcryptjs";
-import sgMail from "@sendgrid/mail";
+import bcrypt from 'bcryptjs'
+import validator from 'email-validator'
+import { connectToDatabase } from '../../backend/db'
+import withMiddleware from '../../middlewares/withMiddleware'
 
 const handler = async (req, res) => {
-    if (req.method === "GET") {
-        res.status(200).json({
-            status: "ok",
-            message: insuranceList,
-        });
-    } else if (req.method === "POST") {
-        const { name, phone, password, email, data, RUC } = req.body;
+    if (req.method === 'POST') {
+        const mongoClient = await connectToDatabase()
+        const { name, phone, password, email, data, RUC } = req.body
 
         try {
             if (!validator.validate(email)) {
                 return res.json({
-                    status: "error",
-                    message: "el correo es invalido",
-                });
+                    status: 'error',
+                    message: 'el correo es invalido'
+                })
             }
-            const countEmail = await req.db
-                .collection("bussines")
-                .countDocuments({ businessMail: email });
+            const countEmail = await mongoClient.db
+                .collection('bussines')
+                .countDocuments({ businessMail: email })
 
             if (countEmail) {
                 return res.json({
-                    status: "error",
-                    message: "El correo ya ha sido registrado",
-                });
+                    status: 'error',
+                    message: 'El correo ya ha sido registrado'
+                })
             }
 
-            const countRUC = await req.db
-                .collection("bussines")
-                .countDocuments({ RUC });
+            const countRUC = await mongoClient.db
+                .collection('bussines')
+                .countDocuments({ RUC })
 
             if (countRUC) {
                 return res.json({
-                    status: "error",
-                    message: "El RUC ya ha sido registrado",
-                });
+                    status: 'error',
+                    message: 'El RUC ya ha sido registrado'
+                })
             }
 
-            let erroMessage = [];
-            let cuotaAsegurado;
+            const erroMessage = []
 
             for (let i = 9; i < data.length; i++) {
-                let numErrors = erroMessage.length;
+                const numErrors = erroMessage.length
 
-                let identification = data[i][1] + "";
+                const identification = data[i][1] + ''
 
-                erroMessage[numErrors] = { row: i + 6 };
+                erroMessage[numErrors] = { row: i + 6 }
 
                 if (!data[i][0]) {
-                    erroMessage[numErrors][
-                        "errorName"
-                    ] = `El campo del nombre del usuario se encuentra vacio`;
+                    erroMessage[numErrors].errorName = 'El campo del nombre del usuario se encuentra vacio'
                 }
 
                 if (!data[i][1]) {
-                    erroMessage[numErrors][
-                        "errorId"
-                    ] = `El campo de la identificaion del usuario se encuentra vacio`;
+                    erroMessage[numErrors].errorId = 'El campo de la identificaion del usuario se encuentra vacio'
                 }
 
-                const user = await req.db
-                    .collection("users")
-                    .findOne({ identification });
-
+                const user = await mongoClient.db
+                    .collection('users')
+                    .findOne({ identification })
 
                 if (user) {
-                    if (user.plan == true) {
+                    if (user.plan === true) {
                         if (user.RUC !== RUC) {
-                            erroMessage[numErrors][
-                                "errorId"
-                            ] = `El usuario registrado con la cedula ${identification} ya cuenta con una afiliacion a una entidad vigente`;
+                            erroMessage[numErrors].errorId = `El usuario registrado con la cedula ${identification} ya cuenta con una afiliacion a una entidad vigente`
                         }
                     } else {
                         if (user.state === true) {
-                            erroMessage[numErrors][
-                                "errorId"
-                            ] = `El usuario registrado con la cedula ${identification} ya cuenta con una cuenta personal activa`;
+                            erroMessage[numErrors].errorId = `El usuario registrado con la cedula ${identification} ya cuenta con una cuenta personal activa`
                         }
                     }
                 }
@@ -88,43 +74,43 @@ const handler = async (req, res) => {
                     JSON.stringify(erroMessage[numErrors]) ===
                     `{"row":${i + 6}}`
                 ) {
-                    erroMessage.pop();
+                    erroMessage.pop()
                 }
             }
 
             if (erroMessage.length) {
                 return res.json({
-                    status: "fileError",
-                    message: erroMessage,
-                });
+                    status: 'fileError',
+                    message: erroMessage
+                })
             }
 
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash(password, salt);
+            const salt = await bcrypt.genSalt(10)
+            const hashedPassword = await bcrypt.hash(password, salt)
 
-            let identifications = [];
+            const identifications = []
 
             for (let i = 9; i < data.length; i++) {
                 identifications.push({
-                    id: data[i][1] + "",
-                    name: data[i][0],
-                });
+                    id: data[i][1] + '',
+                    name: data[i][0]
+                })
             }
 
-            cuotaAsegurado = data[7][1];
+            const cuotaAsegurado = data[7][1]
 
             if (!cuotaAsegurado) {
                 return res.json({
-                    status: "error",
-                    message: "El excel no incluye la cuota por cada Empleado",
-                });
+                    status: 'error',
+                    message: 'El excel no incluye la cuota por cada Empleado'
+                })
             }
 
-            const date = new Date();
-            const end = new Date();
-            end.setMonth(end.getMonth() + 1);
+            const date = new Date()
+            const end = new Date()
+            end.setMonth(end.getMonth() + 1)
 
-            const business = await req.db.collection("bussines").insertOne({
+            const business = await mongoClient.db.collection('bussines').insertOne({
                 state: true,
                 name,
                 RUC,
@@ -136,10 +122,10 @@ const handler = async (req, res) => {
                 identifications,
                 plan: false,
                 terminos: true,
-                date,
-            });
+                date
+            })
 
-            req.session.businessId = await business.insertedId;
+            req.session.businessId = await business.insertedId
 
             for (let i = 9; i < data.length; i++) {
                 /* console.log("send email to " + data[i][4]);
@@ -182,46 +168,46 @@ const handler = async (req, res) => {
                 } catch (error) {
                     console.log(error);
                 } */
-                let identification = data[i][1] + "";
+                const identification = data[i][1] + ''
 
-                const user = await req.db
-                    .collection("users")
-                    .findOne({ identification });
+                const user = await mongoClient.db
+                    .collection('users')
+                    .findOne({ identification })
+
+                let userToDepend
 
                 if (!user) {
                     const hashedPasswordUser = await bcrypt.hash(
-                        data[i][1] + "",
+                        data[i][1] + '',
                         salt
-                    );
-
-                    let userToDepend;
+                    )
 
                     if (data[i][2]) {
-                        userToDepend = await req.db
-                            .collection("users")
+                        userToDepend = await mongoClient.db
+                            .collection('users')
                             .findOneAndUpdate(
-                                { identification: data[i][2] + "" },
+                                { identification: data[i][2] + '' },
                                 {
                                     $push: {
                                         dependientes: {
                                             name: data[i][0],
                                             id: data[i][1],
-                                            state: true,
-                                        },
-                                    },
+                                            state: true
+                                        }
+                                    }
                                 }
-                            );
+                            )
                     }
 
-                    await req.db.collection("users").insertOne({
+                    await mongoClient.db.collection('users').insertOne({
                         RUC,
                         state: true,
                         start: date,
                         end: end,
                         name: data[i][0],
-                        identification: data[i][1] + "",
+                        identification: data[i][1] + '',
                         birthdate: data[i][3],
-                        adress: "",
+                        adress: '',
                         phone: data[i][5],
                         email: data[i][4],
                         password: hashedPasswordUser,
@@ -233,20 +219,20 @@ const handler = async (req, res) => {
                         mustChangePass: true,
                         alerts: {
                             week: false,
-                            month: false,
+                            month: false
                         },
                         date,
                         dependeOf: data[i][2]
                             ? {
                                 name: userToDepend.value.name,
-                                id: data[i][2],
+                                id: data[i][2]
                             }
-                            : "",
-                        dependientes: [],
-                    });
+                            : '',
+                        dependientes: []
+                    })
                 } else {
-                    await req.db.collection("users").updateOne({
-                        identification,
+                    await mongoClient.db.collection('users').updateOne({
+                        identification
                     }, {
                         $set: {
 
@@ -260,44 +246,44 @@ const handler = async (req, res) => {
                             dependeOf: data[i][2]
                                 ? {
                                     name: userToDepend.value.name,
-                                    id: data[i][2],
+                                    id: data[i][2]
                                 }
-                                : "",
-                            dependientes: [],
+                                : '',
+                            dependientes: []
                         }
-                    });
+                    })
 
                     if (data[i][2]) {
-                        await req.db.collection("users").findOneAndUpdate(
-                            { identification: data[i][2] + "" },
+                        await mongoClient.db.collection('users').findOneAndUpdate(
+                            { identification: data[i][2] + '' },
                             {
                                 $addToSet: {
                                     dependientes: {
                                         name: data[i][0],
                                         id: data[i][1],
-                                        state: true,
+                                        state: true
                                     }
-                                },
+                                }
                             }
-                        );
+                        )
                     }
                 }
             }
 
             res.status(200).json({
-                status: "ok",
+                status: 'ok',
                 insurance: business.ops[0],
                 info: {
                     num: identifications.length,
-                    value: identifications.length * cuotaAsegurado,
-                },
-            });
+                    value: identifications.length * cuotaAsegurado
+                }
+            })
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
     } else {
-        res.status(405).end();
+        res.status(405).end()
     }
-};
+}
 
-export default withMiddleware(handler);
+export default withMiddleware(handler)

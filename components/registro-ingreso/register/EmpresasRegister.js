@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import TerminosCondicionesForm from "./TerminosCondicionesForm";
+import { useState } from 'react'
+import TerminosCondicionesForm from './TerminosCondicionesForm'
 
 const EmpresasRegister = (props) => {
-    const [active, setActive] = useState(false);
+    const [active, setActive] = useState(false)
 
     const change = (e) => {
-        e.preventDefault();
-        setActive(!active);
-    };
+        e.preventDefault()
+        setActive(!active)
+    }
 
     return (
         <form
             onSubmit={(e) => {
-                props.onSubmitBusinessRegister(e);
+                props.onSubmitBusinessRegister(e)
             }}
         >
             <div className="nombre">
@@ -25,13 +25,15 @@ const EmpresasRegister = (props) => {
                     placeholder="NOMBRE DE LA EMPRESA*"
                 />
             </div>
-            {props.errorsBusiness.errorName ? (
-                <p style={{ gridColumn: "1/4" }}>
-                    {props.errorsBusiness.errorName}
-                </p>
-            ) : (
-                ""
-            )}
+            {props.errorsBusiness.errorName
+                ? (
+                    <p style={{ gridColumn: '1/4' }}>
+                        {props.errorsBusiness.errorName}
+                    </p>
+                )
+                : (
+                    ''
+                )}
             <div className="id">
                 <div className="colorAzul"></div>
                 <input
@@ -42,13 +44,15 @@ const EmpresasRegister = (props) => {
                     placeholder="RUC*"
                 />
             </div>
-            {props.errorsBusiness.errorRUC ? (
-                <p style={{ gridColumn: "1/4" }}>
-                    {props.errorsBusiness.errorRUC}
-                </p>
-            ) : (
-                ""
-            )}
+            {props.errorsBusiness.errorRUC
+                ? (
+                    <p style={{ gridColumn: '1/4' }}>
+                        {props.errorsBusiness.errorRUC}
+                    </p>
+                )
+                : (
+                    ''
+                )}
             <div className="password">
                 <div className="colorAzul"></div>
                 <input
@@ -59,13 +63,15 @@ const EmpresasRegister = (props) => {
                     placeholder="CONTRASEÑA*"
                 />
             </div>
-            {props.errorsBusiness.errorPassword ? (
-                <p style={{ gridColumn: "1/4" }}>
-                    {props.errorsBusiness.errorPassword}
-                </p>
-            ) : (
-                ""
-            )}
+            {props.errorsBusiness.errorPassword
+                ? (
+                    <p style={{ gridColumn: '1/4' }}>
+                        {props.errorsBusiness.errorPassword}
+                    </p>
+                )
+                : (
+                    ''
+                )}
             <div className="password">
                 <div className="colorAzul"></div>
                 <input
@@ -76,13 +82,15 @@ const EmpresasRegister = (props) => {
                     placeholder="REPITA LA CONTRASEÑA*"
                 />
             </div>
-            {props.errorsBusiness.errorPasswordRepeat ? (
-                <p style={{ gridColumn: "1/4" }}>
-                    {props.errorsBusiness.errorPasswordRepeat}
-                </p>
-            ) : (
-                ""
-            )}
+            {props.errorsBusiness.errorPasswordRepeat
+                ? (
+                    <p style={{ gridColumn: '1/4' }}>
+                        {props.errorsBusiness.errorPasswordRepeat}
+                    </p>
+                )
+                : (
+                    ''
+                )}
             <div>
                 <div className="colorAzul"></div>
                 <input
@@ -104,26 +112,32 @@ const EmpresasRegister = (props) => {
                     placeholder="TELÉFONO DE EMPRESA"
                 />
             </div>
-            {props.errorsBusiness.errorAdress ? (
-                <p style={{ gridColumn: "1/2" }}>
-                    {props.errorsBusiness.errorAdress}
-                </p>
-            ) : (
-                ""
-            )}
+            {props.errorsBusiness.errorAdress
+                ? (
+                    <p style={{ gridColumn: '1/2' }}>
+                        {props.errorsBusiness.errorAdress}
+                    </p>
+                )
+                : (
+                    ''
+                )}
             {props.errorsBusiness.errorAdress ||
-            props.errorsBusiness.errorPhone ? (
-                <br />
-            ) : (
-                ""
-            )}
-            {props.errorsBusiness.errorPhone ? (
-                <p style={{ gridColumn: "3/4" }}>
-                    {props.errorsBusiness.errorPhone}
-                </p>
-            ) : (
-                ""
-            )}
+            props.errorsBusiness.errorPhone
+                ? (
+                    <br />
+                )
+                : (
+                    ''
+                )}
+            {props.errorsBusiness.errorPhone
+                ? (
+                    <p style={{ gridColumn: '3/4' }}>
+                        {props.errorsBusiness.errorPhone}
+                    </p>
+                )
+                : (
+                    ''
+                )}
             <div className="correo">
                 <div className="colorAzul"></div>
                 <input
@@ -134,13 +148,15 @@ const EmpresasRegister = (props) => {
                     placeholder="CORREO ELECTRÓNICO"
                 />
             </div>
-            {props.errorsBusiness.errorEmail ? (
-                <p style={{ gridColumn: "1/4" }}>
-                    {props.errorsBusiness.errorEmail}
-                </p>
-            ) : (
-                ""
-            )}
+            {props.errorsBusiness.errorEmail
+                ? (
+                    <p style={{ gridColumn: '1/4' }}>
+                        {props.errorsBusiness.errorEmail}
+                    </p>
+                )
+                : (
+                    ''
+                )}
             <a
                 href="/archives/PLANTILLA-DE-REGISTRO-PARA-EMPLEADOS.xlsx"
                 download="PLANTILLA-DE-REGISTRO-PARA-EMPLEADOS.xlsx"
@@ -155,26 +171,28 @@ const EmpresasRegister = (props) => {
                 <div className="colorAzul"></div>
                 <label className="label">
                     {props.business.data
-                        ? "PLANTILLA CARGADA"
-                        : "SUBIR PLANTILLA DE REGISTRO PARA EMPLEADOS"}
+                        ? 'PLANTILLA CARGADA'
+                        : 'SUBIR PLANTILLA DE REGISTRO PARA EMPLEADOS'}
                     <input
                         className="uploadInput"
                         type="file"
                         onChange={(e) => {
-                            props.readExcel(e);
+                            props.readExcel(e)
                         }}
                         onClick={(e) => props.cleanInputFile(e)}
                         accept=".xlsx"
                     />
                 </label>
             </div>
-            {props.errorsBusiness.errorData ? (
-                <p style={{ gridColumn: "3/4" }}>
-                    {props.errorsBusiness.errorData}
-                </p>
-            ) : (
-                ""
-            )}
+            {props.errorsBusiness.errorData
+                ? (
+                    <p style={{ gridColumn: '3/4' }}>
+                        {props.errorsBusiness.errorData}
+                    </p>
+                )
+                : (
+                    ''
+                )}
             <label className="terminos">
                 <input
                     type="checkbox"
@@ -184,29 +202,33 @@ const EmpresasRegister = (props) => {
                 />
                 Acepto terminos y condiciones
                 <br />
-                {props.errorsBusiness.errorCheckbox ? (
-                    <p>{props.errorsBusiness.errorCheckbox}</p>
-                ) : (
-                    ""
-                )}
+                {props.errorsBusiness.errorCheckbox
+                    ? (
+                        <p>{props.errorsBusiness.errorCheckbox}</p>
+                    )
+                    : (
+                        ''
+                    )}
             </label>
             <div className="terminos-box">
                 <button
                     className="condiciones"
                     onClick={(e) => {
-                        change(e);
+                        change(e)
                     }}
                 >
                     terminos y condiciones
                 </button>
-                {active ? (
-                    <TerminosCondicionesForm
-                        change={change}
-                        ChangeText={props.onChangeBusiness}
-                    />
-                ) : (
-                    ""
-                )}
+                {active
+                    ? (
+                        <TerminosCondicionesForm
+                            change={change}
+                            ChangeText={props.onChangeBusiness}
+                        />
+                    )
+                    : (
+                        ''
+                    )}
             </div>
             <div className="select">
                 <div className="colorAzul"></div>
@@ -219,13 +241,15 @@ const EmpresasRegister = (props) => {
                     <option value="5">Otro</option>
                 </select>
             </div>
-            {props.errorsBusiness.errorKnow ? (
-                <p style={{ gridColumn: "1/4" }}>
-                    {props.errorsBusiness.errorKnow}
-                </p>
-            ) : (
-                ""
-            )}
+            {props.errorsBusiness.errorKnow
+                ? (
+                    <p style={{ gridColumn: '1/4' }}>
+                        {props.errorsBusiness.errorKnow}
+                    </p>
+                )
+                : (
+                    ''
+                )}
 
             <button className="entrar">
                 ENTRAR
@@ -388,7 +412,7 @@ const EmpresasRegister = (props) => {
                 }
             `}</style>
         </form>
-    );
-};
+    )
+}
 
-export default EmpresasRegister;
+export default EmpresasRegister

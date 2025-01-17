@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Portada = () => {
     return (
         <div className="content">
@@ -190,7 +188,7 @@ const Portada = () => {
  
             `}</style>
         </div>
-    );
+    )
 }
 
 export default Portada

@@ -1,5 +1,3 @@
-import React from "react";
-
 const TitlePrevencion = () => {
     return (
         <div className="content">
@@ -62,7 +60,7 @@ const TitlePrevencion = () => {
                 }
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default TitlePrevencion;
+export default TitlePrevencion

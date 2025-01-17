@@ -1,10 +1,9 @@
-import React from 'react'
 import Form from './Form'
 
 const LayoutForm = (props) => {
     return (
         <div className="content">
-            
+
             <div className="amarillo"></div>
             <div className="text">
                 <h3>CONTÁCTENOS</h3>

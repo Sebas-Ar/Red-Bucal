@@ -1,5 +1,3 @@
-import React from "react";
-
 const InformationLeftResponsive = () => {
     return (
         <section className="content">
@@ -97,7 +95,7 @@ const InformationLeftResponsive = () => {
                 }
             `}</style>
         </section>
-    );
-};
+    )
+}
 
-export default InformationLeftResponsive;
+export default InformationLeftResponsive

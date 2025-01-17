@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import RememberPass from "./RememberPass";
+import { useEffect, useState } from 'react'
+import RememberPass from './RememberPass'
 
 const Ingreso = (props) => {
-    const [url, setUrl] = useState("");
-    const [remember, setRemember] = useState(false);
+    // const [url, setUrl] = useState('')
+    const [remember, setRemember] = useState(false)
 
     useEffect(() => {
-        const path = window.location.pathname;
-        setUrl(path);
-    });
+        // const path = window.location.pathname
+        // setUrl(path)
+    })
 
     return (
         <form
             onSubmit={(e) => {
-                e.preventDefault();
+                e.preventDefault()
             }}
         >
             <div>
@@ -32,14 +32,16 @@ const Ingreso = (props) => {
                     type="password"
                     placeholder="CONTRASEÑA"
                     name="password"
-                    value={props.login.password ? props.login.password : ""}
+                    value={props.login.password ? props.login.password : ''}
                     onChange={props.ChangeTextLogin}
                 />
-                {props.errorsLogin.error ? (
-                    <p>{props.errorsLogin.error}</p>
-                ) : (
-                    ""
-                )}
+                {props.errorsLogin.error
+                    ? (
+                        <p>{props.errorsLogin.error}</p>
+                    )
+                    : (
+                        ''
+                    )}
             </div>
 
             <button onClick={props.onSubmitLogin}>
@@ -49,11 +51,13 @@ const Ingreso = (props) => {
                 </svg>
             </button>
 
-            {props.type === "admin" ? null : (
-                <span className="register" onClick={() => props.ChangeRegLog()}>
+            {props.type === 'admin'
+                ? null
+                : (
+                    <span className="register" onClick={() => props.ChangeRegLog()}>
                     ¿No tienes cuenta? Registrate
-                </span>
-            )}
+                    </span>
+                )}
             <span className="remember" onClick={() => setRemember(true)}>
                 ¿Olvidaste tu contraseña?
             </span>
@@ -150,7 +154,7 @@ const Ingreso = (props) => {
                 }
             `}</style>
         </form>
-    );
-};
+    )
+}
 
-export default Ingreso;
+export default Ingreso

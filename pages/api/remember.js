@@ -1,46 +1,48 @@
-import withMiddleware from "../../middlewares/withMiddleware";
+import withMiddleware from '../../middlewares/withMiddleware'
 
-import sgMail from "@sendgrid/mail";
-import bcrypt from "bcryptjs";
+import sgMail from '@sendgrid/mail'
+import bcrypt from 'bcryptjs'
+import { connectToDatabase } from '../../backend/db'
 
 const handler = async (req, res) => {
-    if (req.method === "POST") {
-        console.log(req.body);
-        const { email } = req.body;
+    if (req.method === 'POST') {
+        const mongoClient = await connectToDatabase()
+        console.log(req.body)
+        const { email } = req.body
 
-        sgMail.setApiKey(process.env.TOKEN_SEND_GRID);
+        sgMail.setApiKey(process.env.TOKEN_SEND_GRID)
 
         try {
-            let user = await req.db.collection("users").findOne({ email });
+            let user = await mongoClient.db.collection('users').findOne({ email })
 
-            let type = "users";
+            let type = 'users'
 
             let mailFind = {
-                email,
-            };
-
-            if (!user) {
-                type = "bussines";
-                user = await req.db
-                    .collection(type)
-                    .findOne({ businessMail: email });
-                mailFind = {
-                    businessMail: email,
-                };
+                email
             }
 
             if (!user) {
-                type = "admin";
-                user = await req.db.collection(type).findOne({ email });
+                type = 'bussines'
+                user = await mongoClient.db
+                    .collection(type)
+                    .findOne({ businessMail: email })
                 mailFind = {
-                    email: email,
-                };
+                    businessMail: email
+                }
+            }
+
+            if (!user) {
+                type = 'admin'
+                user = await mongoClient.db.collection(type).findOne({ email })
+                mailFind = {
+                    email: email
+                }
             }
 
             if (user) {
-                const password = Math.round(Math.random() * 1000000000) + "";
-                const salt = await bcrypt.genSalt(10);
-                const hashedPassword = await bcrypt.hash(password, salt);
+                const password = Math.round(Math.random() * 1000000000) + ''
+                const salt = await bcrypt.genSalt(10)
+                const hashedPassword = await bcrypt.hash(password, salt)
 
                 const contentHTML = `
                     <!DOCTYPE html>
@@ -56,46 +58,46 @@ const handler = async (req, res) => {
                         <p>Al ingresar nuevamente a su cuenta deberá reemplarzarla por una nueva</p>
                     </body>
                     </html>
-                `;
+                `
 
-                await req.db.collection(type).findOneAndUpdate(mailFind, {
+                await mongoClient.db.collection(type).findOneAndUpdate(mailFind, {
                     $set: {
                         password: hashedPassword,
-                        mustChangePass: true,
-                    },
-                });
+                        mustChangePass: true
+                    }
+                })
 
                 const msg = {
                     to: email,
                     /* from: 'xevaz.ariasd@gmail.com', */
-                    from: "redbucal.info@gmail.com",
-                    subject: "Red Bucal - Recupera contraseña",
-                    text: "esete es el texto de inicio",
-                    html: contentHTML,
-                };
+                    from: 'redbucal.info@gmail.com',
+                    subject: 'Red Bucal - Recupera contraseña',
+                    text: 'esete es el texto de inicio',
+                    html: contentHTML
+                }
 
-                sgMail.send(msg);
+                sgMail.send(msg)
 
                 res.json({
-                    status: "ok",
+                    status: 'ok',
                     message:
-                        "Hemos enviado una contraseña provisional a su correo, si no lo visualiza revise su carpeta de spam",
-                });
+                        'Hemos enviado una contraseña provisional a su correo, si no lo visualiza revise su carpeta de spam'
+                })
             } else {
                 res.json({
-                    status: "error",
-                    message: "el correo no se encuentra registrado",
-                });
+                    status: 'error',
+                    message: 'el correo no se encuentra registrado'
+                })
             }
         } catch (error) {
             res.json({
-                status: "error",
-                message: error.toString(),
-            });
+                status: 'error',
+                message: error.toString()
+            })
         }
     } else {
-        res.status(405).end();
+        res.status(405).end()
     }
-};
+}
 
-export default withMiddleware(handler);
+export default withMiddleware(handler)

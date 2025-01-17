@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 const NavUsuario = (props) => {
-
-    const [activate, setactivate] = useState(false);
+    const [activate, setactivate] = useState(false)
     const router = useRouter()
 
     const selection = (selector) => {
@@ -15,7 +14,7 @@ const NavUsuario = (props) => {
 
     const logout = () => {
         sessionStorage.removeItem('tokenUser')
-        router.replace("/")
+        router.replace('/')
     }
 
     const changeActivate = () => {
@@ -32,8 +31,8 @@ const NavUsuario = (props) => {
                         <h2>{props.data.name}</h2>
                     </li>
                     <li>
-                        <button onClick={() => { 
-                            props.onClick(0) 
+                        <button onClick={() => {
+                            props.onClick(0)
                             changeActivate()
                         }} style={selection(0)}>INFORMACIÓN DEL USUARIO</button>
                     </li>
@@ -182,7 +181,7 @@ const NavUsuario = (props) => {
                     svg {
                         width: 20px;
                         transition: transform 2s;
-                        transform: ${props.activate ? 'rotate(180deg)' : 'rotate(0deg)' };  
+                        transform: ${props.activate ? 'rotate(180deg)' : 'rotate(0deg)'};  
                     }
 
                     .linea {
@@ -192,7 +191,7 @@ const NavUsuario = (props) => {
                 
                 
             `}</style>
-            
+
         </div>
     )
 }

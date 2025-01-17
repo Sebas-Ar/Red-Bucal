@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import Swal from "sweetalert2";
-import axios from "axios";
+import axios from 'axios'
+import { useState } from 'react'
+import Swal from 'sweetalert2'
 
 const AddUser = ({ changeAddUser, dependientes, identification, name }) => {
-    const [data, setData] = useState({});
-    const [errors, setErrors] = useState({});
+    const [data, setData] = useState({})
+    const [errors, setErrors] = useState({})
 
     const onChange = (e) => {
         setData(
@@ -12,43 +12,43 @@ const AddUser = ({ changeAddUser, dependientes, identification, name }) => {
                 [e.target.name]: e.target.value,
                 dependientes,
                 identification,
-                dependName: name,
+                dependName: name
             })
-        );
-    };
+        )
+    }
 
     const onSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        let errors = {};
-        let validate = true;
+        let errors = {}
+        let validate = true
 
         if (!data.name) {
             errors = Object.assign({}, errors, {
-                errorName: "Falta el nombre",
-            });
-            validate = false;
+                errorName: 'Falta el nombre'
+            })
+            validate = false
         }
 
         if (!data.lastname) {
             errors = Object.assign({}, errors, {
-                errorLastname: "Falta el apellido",
-            });
-            validate = false;
+                errorLastname: 'Falta el apellido'
+            })
+            validate = false
         }
 
         if (!data.typeDoc) {
             errors = Object.assign({}, errors, {
-                errortypeDoc: "Falta el tipo",
-            });
-            validate = false;
+                errortypeDoc: 'Falta el tipo'
+            })
+            validate = false
         }
 
         if (!data.identification) {
             errors = Object.assign({}, errors, {
-                erroridentification: "Falta la identifiación",
-            });
-            validate = false;
+                erroridentification: 'Falta la identifiación'
+            })
+            validate = false
         }
 
         /* if (!data.day) {
@@ -88,37 +88,37 @@ const AddUser = ({ changeAddUser, dependientes, identification, name }) => {
         } */
 
         if (validate) {
-            const url = "/api/addUserDepend";
-            const result = await axios.post(url, data);
-            console.log(result);
+            const url = '/api/addUserDepend'
+            const result = await axios.post(url, data)
+            console.log(result)
 
-            if (result.data.status == "ok") {
+            if (result.data.status === 'ok') {
                 Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Historial actualizado",
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Historial actualizado',
                     showConfirmButton: false,
-                    timer: 1000,
-                });
+                    timer: 1000
+                })
                 /* props.changeData(result.data.data.value);
                 changeAddUser(); */
             } else {
-                if (result.data.message === "el correo es invalido") {
+                if (result.data.message === 'el correo es invalido') {
                     errors = Object.assign({}, errors, {
-                        erroremail: result.data.message,
-                    });
+                        erroremail: result.data.message
+                    })
                 } else if (
-                    result.data.message === "El correo ya ha sido registrado"
+                    result.data.message === 'El correo ya ha sido registrado'
                 ) {
                     errors = Object.assign({}, errors, {
-                        erroremail: result.data.message,
-                    });
+                        erroremail: result.data.message
+                    })
                 }
             }
         }
 
-        setErrors(errors);
-    };
+        setErrors(errors)
+    }
 
     return (
         <div className="content">
@@ -149,18 +149,22 @@ const AddUser = ({ changeAddUser, dependientes, identification, name }) => {
                         placeholder=""
                     />
                 </label>
-                {errors.errorName ? (
-                    <p style={{ gridColumn: "1/2" }}>{errors.errorName}</p>
-                ) : (
-                    ""
-                )}
-                {errors.errorName && !errors.errorLastname ? <br /> : ""}
-                {errors.errorLastname && !errors.errorName ? <br /> : ""}
-                {errors.errorLastname ? (
-                    <p style={{ gridColumn: "2/3" }}>{errors.errorLastname}</p>
-                ) : (
-                    ""
-                )}
+                {errors.errorName
+                    ? (
+                        <p style={{ gridColumn: '1/2' }}>{errors.errorName}</p>
+                    )
+                    : (
+                        ''
+                    )}
+                {errors.errorName && !errors.errorLastname ? <br /> : ''}
+                {errors.errorLastname && !errors.errorName ? <br /> : ''}
+                {errors.errorLastname
+                    ? (
+                        <p style={{ gridColumn: '2/3' }}>{errors.errorLastname}</p>
+                    )
+                    : (
+                        ''
+                    )}
                 <label>
                     * DOCUMENTO: <br />
                     <select name="typeDoc" onChange={onChange}>
@@ -181,28 +185,36 @@ const AddUser = ({ changeAddUser, dependientes, identification, name }) => {
                         placeholder=""
                     />
                 </label>
-                {errors.errortypeDoc ? (
-                    <p style={{ gridColumn: "1/2" }}>{errors.errortypeDoc}</p>
-                ) : (
-                    ""
-                )}
-                {errors.errortypeDoc && !errors.erroridentification ? (
-                    <br />
-                ) : (
-                    ""
-                )}
-                {errors.erroridentification && !errors.errortypeDoc ? (
-                    <br />
-                ) : (
-                    ""
-                )}
-                {errors.erroridentification ? (
-                    <p style={{ gridColumn: "2/3" }}>
-                        {errors.erroridentification}
-                    </p>
-                ) : (
-                    ""
-                )}
+                {errors.errortypeDoc
+                    ? (
+                        <p style={{ gridColumn: '1/2' }}>{errors.errortypeDoc}</p>
+                    )
+                    : (
+                        ''
+                    )}
+                {errors.errortypeDoc && !errors.erroridentification
+                    ? (
+                        <br />
+                    )
+                    : (
+                        ''
+                    )}
+                {errors.erroridentification && !errors.errortypeDoc
+                    ? (
+                        <br />
+                    )
+                    : (
+                        ''
+                    )}
+                {errors.erroridentification
+                    ? (
+                        <p style={{ gridColumn: '2/3' }}>
+                            {errors.erroridentification}
+                        </p>
+                    )
+                    : (
+                        ''
+                    )}
                 <label className="date">
                     FECHA DE NACIMIENTO: <br />
                     <div className="date-grid">
@@ -378,27 +390,33 @@ const AddUser = ({ changeAddUser, dependientes, identification, name }) => {
                             <option value="2039">2039</option>
                             <option value="2040">2040</option>
                         </select>
-                        {errors.errorday ? (
-                            <p style={{ gridColumn: "1/2" }}>
-                                {errors.errorday}
-                            </p>
-                        ) : (
-                            ""
-                        )}
-                        {errors.errormonth ? (
-                            <p style={{ gridColumn: "2/3" }}>
-                                {errors.errormonth}
-                            </p>
-                        ) : (
-                            ""
-                        )}
-                        {errors.erroryear ? (
-                            <p style={{ gridColumn: "3/4" }}>
-                                {errors.erroryear}
-                            </p>
-                        ) : (
-                            ""
-                        )}
+                        {errors.errorday
+                            ? (
+                                <p style={{ gridColumn: '1/2' }}>
+                                    {errors.errorday}
+                                </p>
+                            )
+                            : (
+                                ''
+                            )}
+                        {errors.errormonth
+                            ? (
+                                <p style={{ gridColumn: '2/3' }}>
+                                    {errors.errormonth}
+                                </p>
+                            )
+                            : (
+                                ''
+                            )}
+                        {errors.erroryear
+                            ? (
+                                <p style={{ gridColumn: '3/4' }}>
+                                    {errors.erroryear}
+                                </p>
+                            )
+                            : (
+                                ''
+                            )}
                     </div>
                 </label>
                 <label>
@@ -419,18 +437,22 @@ const AddUser = ({ changeAddUser, dependientes, identification, name }) => {
                         placeholder=""
                     />
                 </label>
-                {errors.errorphone ? (
-                    <p style={{ gridColumn: "1/2" }}>{errors.errorphone}</p>
-                ) : (
-                    ""
-                )}
-                {errors.errorphone && !errors.erroraddres ? <br /> : ""}
-                {errors.erroraddres && !errors.errorphone ? <br /> : ""}
-                {errors.erroraddres ? (
-                    <p style={{ gridColumn: "2/3" }}>{errors.erroraddres}</p>
-                ) : (
-                    ""
-                )}
+                {errors.errorphone
+                    ? (
+                        <p style={{ gridColumn: '1/2' }}>{errors.errorphone}</p>
+                    )
+                    : (
+                        ''
+                    )}
+                {errors.errorphone && !errors.erroraddres ? <br /> : ''}
+                {errors.erroraddres && !errors.errorphone ? <br /> : ''}
+                {errors.erroraddres
+                    ? (
+                        <p style={{ gridColumn: '2/3' }}>{errors.erroraddres}</p>
+                    )
+                    : (
+                        ''
+                    )}
                 <label>
                     CORREO: <br />
                     <input
@@ -441,11 +463,13 @@ const AddUser = ({ changeAddUser, dependientes, identification, name }) => {
                     />
                 </label>
                 <br />
-                {errors.erroremail ? (
-                    <p style={{ gridColumn: "1/2" }}>{errors.erroremail}</p>
-                ) : (
-                    ""
-                )}
+                {errors.erroremail
+                    ? (
+                        <p style={{ gridColumn: '1/2' }}>{errors.erroremail}</p>
+                    )
+                    : (
+                        ''
+                    )}
                 <button>Agregar</button>
             </form>
 
@@ -555,7 +579,7 @@ const AddUser = ({ changeAddUser, dependientes, identification, name }) => {
                 }
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default AddUser;
+export default AddUser

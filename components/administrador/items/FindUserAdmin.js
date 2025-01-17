@@ -1,133 +1,132 @@
-import React, { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import axios from "axios";
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import Swal from 'sweetalert2'
 
 const FindUserAdmin = (props) => {
-    const [validateInfoUser, setValidateInfoUser] = useState(false);
+    const [validateInfoUser, setValidateInfoUser] = useState(false)
 
     useEffect(() => {
-        if (validateInfoUser) props.onClick(1);
-    }, [validateInfoUser]);
+        if (validateInfoUser) props.onClick(1)
+    }, [validateInfoUser])
 
     const onSubmitID = async (e) => {
-        e.preventDefault();
-        const url = "/api/getUser";
-        const result = await axios.post(url, props.id);
+        e.preventDefault()
+        const url = '/api/getUser'
+        const result = await axios.post(url, props.id)
         if (result.data.message.length !== 0) {
-            console.log(result.data.message);
-            props.changeListData(result.data.message);
-            props.ChangeType("persona");
+            console.log(result.data.message)
+            props.changeListData(result.data.message)
+            props.ChangeType('persona')
         } else {
             Swal.fire({
-                position: "center",
-                icon: "warning",
-                title: "No hay ninuga coincidencia!",
+                position: 'center',
+                icon: 'warning',
+                title: 'No hay ninuga coincidencia!',
                 showConfirmButton: false,
-                timer: 1500,
-            });
-            props.changeListData([]);
+                timer: 1500
+            })
+            props.changeListData([])
         }
-    };
+    }
 
     const onSubmitRUC = async (e) => {
-        e.preventDefault();
-        const url = "/api/getBusiness";
-        const result = await axios.post(url, props.RUC);
+        e.preventDefault()
+        const url = '/api/getBusiness'
+        const result = await axios.post(url, props.RUC)
         if (result.data.message.length !== 0) {
-            props.changeListData(result.data.message);
-            props.ChangeType("empresa");
+            props.changeListData(result.data.message)
+            props.ChangeType('empresa')
         } else {
             Swal.fire({
-                position: "center",
-                icon: "warning",
-                title: "La empresa no está registrada",
+                position: 'center',
+                icon: 'warning',
+                title: 'La empresa no está registrada',
                 showConfirmButton: false,
-                timer: 1500,
-            });
+                timer: 1500
+            })
         }
-    };
+    }
 
     const getDataUser = async (id) => {
-        const url = `/api/getUser?id=${id}`;
-        const result = await axios.get(url);
-        props.changeData(result.data.message);
-        console.log(result.data.message);
-        setValidateInfoUser(true);
-    };
+        const url = `/api/getUser?id=${id}`
+        const result = await axios.get(url)
+        props.changeData(result.data.message)
+        console.log(result.data.message)
+        setValidateInfoUser(true)
+    }
 
     const getDataBusiness = async (id) => {
-        const url = `/api/getBusiness?id=${id}`;
-        const result = await axios.get(url);
-        props.changeData(result.data.message);
-    };
+        const url = `/api/getBusiness?id=${id}`
+        const result = await axios.get(url)
+        props.changeData(result.data.message)
+    }
 
     const deleteBusiness = async (RUC) => {
         console.log(props.typeAdmin)
-        if (props.typeAdmin === "master") {
-            const url = `/api/deleteBusiness?RUC=${RUC}`;
-            const result = await axios.delete(url);
+        if (props.typeAdmin === 'master') {
+            const url = `/api/deleteBusiness?RUC=${RUC}`
+            const result = await axios.delete(url)
 
-            console.log(result);
-            if (result.data.status == "ok") {
+            console.log(result)
+            if (result.data.status === 'ok') {
                 Swal.fire({
-                    position: "center",
-                    icon: "info",
+                    position: 'center',
+                    icon: 'info',
                     title: result.data.message,
-                    showConfirmButton: true,
-                });
-                props.changeListData([]);
+                    showConfirmButton: true
+                })
+                props.changeListData([])
             } else {
                 Swal.fire({
-                    position: "center",
-                    icon: "info",
-                    title: "error al eliminar la entidad",
-                    showConfirmButton: true,
-                });
+                    position: 'center',
+                    icon: 'info',
+                    title: 'error al eliminar la entidad',
+                    showConfirmButton: true
+                })
             }
         } else {
             Swal.fire({
-                position: "center",
-                icon: "warning",
-                title: "no tienes permiso para realizar esta accion",
-                showConfirmButton: true,
-            });
+                position: 'center',
+                icon: 'warning',
+                title: 'no tienes permiso para realizar esta accion',
+                showConfirmButton: true
+            })
         }
-    };
+    }
 
     const deleteUser = async (identification) => {
+        if (props.typeAdmin === 'master') {
+            const url = `/api/deleOneUser?identification=${identification}`
 
-        if (props.typeAdmin === "master") {
-            const url = `/api/deleOneUser?identification=${identification}`;
+            const result = await axios.delete(url)
 
-            const result = await axios.delete(url);
+            console.log(result)
 
-            console.log(result);
-
-            if (result.data.status == "ok") {
+            if (result.data.status === 'ok') {
                 Swal.fire({
-                    position: "center",
-                    icon: "info",
+                    position: 'center',
+                    icon: 'info',
                     title: result.data.message,
-                    showConfirmButton: true,
-                });
-                props.changeListData([]);
+                    showConfirmButton: true
+                })
+                props.changeListData([])
             } else {
                 Swal.fire({
-                    position: "center",
-                    icon: "warning",
+                    position: 'center',
+                    icon: 'warning',
                     title: result.data.message,
-                    showConfirmButton: true,
-                });
+                    showConfirmButton: true
+                })
             }
         } else {
             Swal.fire({
-                position: "center",
-                icon: "warning",
-                title: "no tienes permiso para realizar esta accion",
-                showConfirmButton: true,
-            });
+                position: 'center',
+                icon: 'warning',
+                title: 'no tienes permiso para realizar esta accion',
+                showConfirmButton: true
+            })
         }
-    };
+    }
 
     return (
         <section>
@@ -137,7 +136,7 @@ const FindUserAdmin = (props) => {
                     name="identification"
                     placeholder="CEDULA DE IDENTIDAD"
                     onChange={(e) => {
-                        props.changeId(e);
+                        props.changeId(e)
                     }}
                 />
                 <button className="buscar" type="submit" onClick={onSubmitID}>
@@ -150,7 +149,7 @@ const FindUserAdmin = (props) => {
                     name="RUC"
                     placeholder="RUC EMPRESARIAL"
                     onChange={(e) => {
-                        props.changeRUC(e);
+                        props.changeRUC(e)
                     }}
                 />
                 <button className="buscar" type="submit" onClick={onSubmitRUC}>
@@ -160,81 +159,85 @@ const FindUserAdmin = (props) => {
 
             <div className="linea"></div>
 
-            {props.type === "persona" ? (
-                <div className="user">
-                    <div className="table">
-                        <div className="cabecera">
-                            <h5>USUARIO</h5>
-                            <h5>ID</h5>
-                            <h5>OPCIÓN</h5>
-                        </div>
-                        <div className="overflow">
-                            {props.listData.map((data) => (
-                                <div className="content">
-                                    <p>{data.name}</p>
-                                    <p>{data.identification}</p>
-                                    <div className="wrapper-butons">
-                                        <button
-                                            className="selection"
-                                            onClick={() => {
-                                                getDataUser(data["_id"]);
-                                                props.ChangeUser(1);
-                                                props.changeActivate();
-                                            }}
-                                        >
-                                            Selecctionar
-                                        </button>
-                                        <button
-                                            className="selection delete"
-                                            onClick={() =>
-                                                deleteUser(data.identification)
-                                            }
-                                        >
-                                            Eliminar
-                                        </button>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            ) : props.type === "empresa" ? (
-                <div className="user">
-                    <div className="table">
-                        <div className="cabecera">
-                            <h5>EMPRESA</h5>
-                            <h5>RUC</h5>
-                            <h5>OPCIÓN</h5>
-                        </div>
-                        {props.listData.map((data) => (
-                            <div className="content">
-                                <p>{data.name}</p>
-                                <p>{data.RUC}</p>
-                                <div className="wrapper-butons">
-                                    <button
-                                        className="selection"
-                                        onClick={() => {
-                                            getDataBusiness(data["_id"]);
-                                            props.ChangeUser(2);
-                                            props.changeActivate();
-                                        }}
-                                    >
-                                        Selecctionar
-                                    </button>
-                                    <button
-                                        className="selection delete"
-                                        onClick={() => deleteBusiness(data.RUC)}
-                                    >
-                                        Eliminar
-                                    </button>
-                                </div>
+            {props.type === 'persona'
+                ? (
+                    <div className="user">
+                        <div className="table">
+                            <div className="cabecera">
+                                <h5>USUARIO</h5>
+                                <h5>ID</h5>
+                                <h5>OPCIÓN</h5>
                             </div>
-                        ))}
+                            <div className="overflow">
+                                {props.listData.map((data) => (
+                                    <div className="content">
+                                        <p>{data.name}</p>
+                                        <p>{data.identification}</p>
+                                        <div className="wrapper-butons">
+                                            <button
+                                                className="selection"
+                                                onClick={() => {
+                                                    getDataUser(data._id)
+                                                    props.ChangeUser(1)
+                                                    props.changeActivate()
+                                                }}
+                                            >
+                                            Selecctionar
+                                            </button>
+                                            <button
+                                                className="selection delete"
+                                                onClick={() =>
+                                                    deleteUser(data.identification)
+                                                }
+                                            >
+                                            Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            ) : (
-                ""
-            )}
+                )
+                : props.type === 'empresa'
+                    ? (
+                        <div className="user">
+                            <div className="table">
+                                <div className="cabecera">
+                                    <h5>EMPRESA</h5>
+                                    <h5>RUC</h5>
+                                    <h5>OPCIÓN</h5>
+                                </div>
+                                {props.listData.map((data) => (
+                                    <div className="content">
+                                        <p>{data.name}</p>
+                                        <p>{data.RUC}</p>
+                                        <div className="wrapper-butons">
+                                            <button
+                                                className="selection"
+                                                onClick={() => {
+                                                    getDataBusiness(data._id)
+                                                    props.ChangeUser(2)
+                                                    props.changeActivate()
+                                                }}
+                                            >
+                                        Selecctionar
+                                            </button>
+                                            <button
+                                                className="selection delete"
+                                                onClick={() => deleteBusiness(data.RUC)}
+                                            >
+                                        Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )
+                    : (
+                        ''
+                    )}
 
             <style jsx>{`
                 section {
@@ -364,7 +367,7 @@ const FindUserAdmin = (props) => {
                 }
             `}</style>
         </section>
-    );
-};
+    )
+}
 
-export default FindUserAdmin;
+export default FindUserAdmin

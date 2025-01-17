@@ -1,5 +1,3 @@
-import React from 'react'
-
 const InfoUser = (props) => {
     return (
         <div className="content">
@@ -11,30 +9,30 @@ const InfoUser = (props) => {
                 <label className="title">{props.usuarios.name}</label>
                 <label>
                     ESTADO:
-                <p>{props.usuarios.state ? 'ACTIVO' : 'INACTIVO'}</p>
+                    <p>{props.usuarios.state ? 'ACTIVO' : 'INACTIVO'}</p>
                 </label>
                 <label>
                     CEDULA:
-                <p>{props.usuarios.identification}</p>
+                    <p>{props.usuarios.identification}</p>
                 </label>
                 <label>
                     FECHA DE NACIMIENTO:
-                <p>{props.usuarios.birthdate}</p>
+                    <p>{props.usuarios.birthdate}</p>
                 </label>
                 <label>
                     CELULAR:
-                <p>{props.usuarios.phone}</p>
+                    <p>{props.usuarios.phone}</p>
                 </label>
                 <label>
                     DIRECCIÓN:
-                <p>{props.usuarios.adress}</p>
+                    <p>{props.usuarios.adress}</p>
                 </label>
                 <label>
                     CORREO:
-                <p>{props.usuarios.email}</p>
+                    <p>{props.usuarios.email}</p>
                 </label>
             </section>
-            
+
             <style jsx>{`
                 
                 .content {

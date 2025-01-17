@@ -1,7 +1,6 @@
-import withDatabase from "./withDatabase"
-import withSession from "./withSession"
-import withAuthentication from "./withAuthentication";
+import withAuthentication from './withAuthentication'
+import withSession from './withSession'
 
-const middleware = handler => withDatabase(withSession(withAuthentication(handler)))
+const middleware = handler => withSession(withAuthentication(handler))
 
 export default middleware

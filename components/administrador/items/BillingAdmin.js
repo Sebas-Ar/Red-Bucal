@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import axios from 'axios'
+import { useState } from 'react'
 import Swal from 'sweetalert2'
-import axios from "axios";
 
 const BillingAdmin = (props) => {
-
-    const [check, setCheck] = useState(false);
+    const [check, setCheck] = useState(false)
 
     const onClick = e => {
         setCheck(e.target.checked)
@@ -14,7 +13,7 @@ const BillingAdmin = (props) => {
         if (props.type === 'admin') {
             if (check === true) {
                 const url = '/api/editBusiness'
-                let result = await axios.put(url, { state: check, identification: props.data.RUC, identifications: props.data.identifications })
+                const result = await axios.put(url, { state: check, identification: props.data.RUC, identifications: props.data.identifications })
                 if (result.data.status) {
                     Swal.fire({
                         position: 'center',
@@ -33,33 +32,31 @@ const BillingAdmin = (props) => {
                     showConfirmButton: false,
                     timer: 1000
                 })
-
-            } 
+            }
         } else if (props.type === 'master') {
             const url = '/api/editBusiness'
-                let result = await axios.put(url, { state: check, identification: props.data.RUC, identifications: props.data.identifications })
-                if (result.data.status) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Estado actualizado',
-                        showConfirmButton: false,
-                        timer: 1000
-                    })
-                    props.changeData(result.data.data)
-                }
+            const result = await axios.put(url, { state: check, identification: props.data.RUC, identifications: props.data.identifications })
+            if (result.data.status) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Estado actualizado',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+                props.changeData(result.data.data)
+            }
         }
     }
 
     const getDate = (typeDate = '') => {
-
-        let date = new Date(props.data.start)
+        const date = new Date(props.data.start)
 
         if (typeDate === 'day') {
             return date.getDate()
         } else if (typeDate === 'month') {
             return date.getMonth() + 1
-        } else if (typeDate === 'year'){            
+        } else if (typeDate === 'year') {
             return date.getFullYear()
         } else {
             return date

@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import PersonasRegister from "./register/PersonasRegister";
-import EmpresasRegister from "./register/EmpresasRegister";
+import { useState } from 'react'
+import EmpresasRegister from './register/EmpresasRegister'
+import PersonasRegister from './register/PersonasRegister'
 
 const RegisterAll = (props) => {
-    const [type, setType] = useState(false);
+    const [type, setType] = useState(false)
 
-    const changeType = () => {
-        setType(!type);
-    };
+    /* const changeType = () => {
+        setType(!type)
+    }
 
     const changeTrue = () => {
-        setType(true);
-    };
+        setType(true)
+    } */
 
     const changeFalse = () => {
-        setType(false);
-    };
+        setType(false)
+    }
 
     return (
         <div className="content">
@@ -38,29 +38,31 @@ const RegisterAll = (props) => {
                     </label>
                     <h3 onClick={changeTrue}>EMPRESAS</h3> */}
                 </div>
-                {type ? (
-                    <EmpresasRegister
-                        onChangeBusiness={props.onChangeBusiness}
-                        onSubmitBusinessRegister={
-                            props.onSubmitBusinessRegister
-                        }
-                        readExcel={props.readExcel}
-                        business={props.business}
-                        errorsBusiness={props.errorsBusiness}
-                        ChangeText={props.ChangeText}
-                        user={props.user}
-                        cleanInputFile={props.cleanInputFile}
-                    />
-                ) : (
-                    <PersonasRegister
-                        ChangeText={props.ChangeText}
-                        onSubmitPersonalRegister={
-                            props.onSubmitPersonalRegister
-                        }
-                        user={props.user}
-                        errors={props.errors}
-                    />
-                )}
+                {type
+                    ? (
+                        <EmpresasRegister
+                            onChangeBusiness={props.onChangeBusiness}
+                            onSubmitBusinessRegister={
+                                props.onSubmitBusinessRegister
+                            }
+                            readExcel={props.readExcel}
+                            business={props.business}
+                            errorsBusiness={props.errorsBusiness}
+                            ChangeText={props.ChangeText}
+                            user={props.user}
+                            cleanInputFile={props.cleanInputFile}
+                        />
+                    )
+                    : (
+                        <PersonasRegister
+                            ChangeText={props.ChangeText}
+                            onSubmitPersonalRegister={
+                                props.onSubmitPersonalRegister
+                            }
+                            user={props.user}
+                            errors={props.errors}
+                        />
+                    )}
             </div>
             <div className="diente2"></div>
 
@@ -118,15 +120,15 @@ const RegisterAll = (props) => {
                 h3:nth-child(1) {
                     display: block;
                     background-color: ${type
-                    ? "rgb(140, 184, 209, .5)"
-                    : "var(--puntoAzul)"};
+            ? 'rgb(140, 184, 209, .5)'
+            : 'var(--puntoAzul)'};
                     margin: auto;
                 }
 
                 h3:nth-child(3) {
                     background-color: ${type
-                    ? "var(--puntoRojo)"
-                    : "#D97C6E77"};
+            ? 'var(--puntoRojo)'
+            : '#D97C6E77'};
                 }
 
                 .form {
@@ -167,8 +169,8 @@ const RegisterAll = (props) => {
 
                 i {
                     background-color: ${type
-                    ? "var(--puntoRojo)"
-                    : "var(--puntoAzul)"};
+            ? 'var(--puntoRojo)'
+            : 'var(--puntoAzul)'};
                     border: none;
                     position: absolute;
                     left: 0;
@@ -191,12 +193,12 @@ const RegisterAll = (props) => {
                     left: 5px;
                     top: 50%;
                     transform: translateY(-50%)
-                        ${type ? "translateX(54px)" : "translateX(0px)"};
+                        ${type ? 'translateX(54px)' : 'translateX(0px)'};
                     transition: transform 0.5s;
                 }
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default RegisterAll;
+export default RegisterAll

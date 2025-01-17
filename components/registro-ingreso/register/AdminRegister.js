@@ -1,7 +1,4 @@
-import React from 'react'
-
 const AdminRegister = (props) => {
-
     return (
         <form onSubmit={(e) => { props.onSubmitPersonalRegister(e) }}>
             <div className="nombre">

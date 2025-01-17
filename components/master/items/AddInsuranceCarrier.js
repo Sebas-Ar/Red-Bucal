@@ -1,73 +1,73 @@
-import React, { useState } from "react";
-import Swal from "sweetalert2";
-import axios from "axios";
-import readXlsxFile from "read-excel-file";
-import ErrorsFileExcel from "./ErrorsFileExcel";
-import Loading from '../../loading/Loading'
+import axios from 'axios'
+import { useState } from 'react'
+import readXlsxFile from 'read-excel-file'
+import Swal from 'sweetalert2'
 import { validateAseguradora, validateEmpresa } from '../../../utils/validateExcelFormat'
+import Loading from '../../loading/Loading'
+import ErrorsFileExcel from './ErrorsFileExcel'
 
 const AddInsuranceCarrier = (props) => {
     const [data, setData] = useState({
-        type: "empresa",
-    });
-    const [load, setLoad] = useState(false);
-    const [errors, setErrors] = useState({});
-    const [errorsFile, setErrorsFile] = useState([]);
-    const [showFileError, setshowFileError] = useState(false);
+        type: 'empresa'
+    })
+    const [load, setLoad] = useState(false)
+    const [errors, setErrors] = useState({})
+    const [errorsFile, setErrorsFile] = useState([])
+    const [showFileError, setshowFileError] = useState(false)
 
     const onChange = (e) => {
         setData(
             Object.assign({}, data, {
-                [e.target.name]: e.target.value,
+                [e.target.name]: e.target.value
             })
-        );
-    };
+        )
+    }
 
     const readExcel = async (e) => {
         try {
-            console.log("cargando archivo");
-            const xmls = await readXlsxFile(e.target.files[0]);
-            setData(Object.assign({}, data, { data: xmls }));
+            console.log('cargando archivo')
+            const xmls = await readXlsxFile(e.target.files[0])
+            setData(Object.assign({}, data, { data: xmls }))
         } catch (error) {
-            const file = document.getElementById("file");
-            file.value = null;
-            setData(Object.assign({}, data, { data: undefined }));
+            const file = document.getElementById('file')
+            file.value = null
+            setData(Object.assign({}, data, { data: undefined }))
         }
-    };
+    }
 
     const onSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         setLoad(true)
 
-        let errors = {};
-        let validate = true;
+        let errors = {}
+        let validate = true
 
         if (!data.name) {
             errors = Object.assign({}, errors, {
-                errorName: "Falta el nombre",
-            });
-            validate = false;
+                errorName: 'Falta el nombre'
+            })
+            validate = false
         }
 
         if (!data.phone) {
             errors = Object.assign({}, errors, {
-                errorphone: "Falta el telefono",
-            });
-            validate = false;
+                errorphone: 'Falta el telefono'
+            })
+            validate = false
         }
 
         if (!data.password) {
             errors = Object.assign({}, errors, {
-                errorpassword: "Falta la contraseña",
-            });
-            validate = false;
+                errorpassword: 'Falta la contraseña'
+            })
+            validate = false
         }
 
         if (!data.passwordRepeat) {
             errors = Object.assign({}, errors, {
-                errorpasswordRepeat: "Falta la contraseña",
-            });
-            validate = false;
+                errorpasswordRepeat: 'Falta la contraseña'
+            })
+            validate = false
         }
 
         if (
@@ -76,215 +76,211 @@ const AddInsuranceCarrier = (props) => {
             data.password !== data.passwordRepeat
         ) {
             errors = Object.assign({}, errors, {
-                errorpasswordIgual: "las contraseñas no coinciden",
-            });
-            validate = false;
+                errorpasswordIgual: 'las contraseñas no coinciden'
+            })
+            validate = false
         }
 
         if (!data.email) {
             errors = Object.assign({}, errors, {
-                erroremail: "Falta el email",
-            });
-            validate = false;
+                erroremail: 'Falta el email'
+            })
+            validate = false
         }
 
         if (!data.data) {
             errors = Object.assign({}, errors, {
-                errorData: `Falta el archivo de ${data.type == "aseguradora" ? "ASEGURADOS" : "EMPLEADOS"
-                    }`,
-            });
-            validate = false;
+                errorData: `Falta el archivo de ${data.type === 'aseguradora' ? 'ASEGURADOS' : 'EMPLEADOS'
+                }`
+            })
+            validate = false
         }
 
         if (!data.RUC) {
             errors = Object.assign({}, errors, {
-                errorRUC: "Falta el RUC",
-            });
-            validate = false;
+                errorRUC: 'Falta el RUC'
+            })
+            validate = false
         }
 
         if (validate) {
-            if (data.type == "empresa") {
+            if (data.type === 'empresa') {
                 const isValidateExcel = validateEmpresa(data.data)
                 if (isValidateExcel) {
-                    const url = "/api/business";
-                    const result = await axios.post(url, data);
+                    const url = '/api/business'
+                    const result = await axios.post(url, data)
 
-                    if (result.data.status == "ok") {
-                        let date = new Date();
-                        date.setMonth(date.getMonth() + 1);
+                    if (result.data.status === 'ok') {
+                        const date = new Date()
+                        date.setMonth(date.getMonth() + 1)
                         Swal.fire({
-                            position: "center",
-                            icon: "success",
+                            position: 'center',
+                            icon: 'success',
                             html: `<p><strong>Numero de ususarios agregado: </strong>${result.data.info.num}</p><p><strong>Valor total a pagar: </strong>${result.data.info.value}$</p>`,
                             title: `Aseguradora agregada y activada hasta el ${date.getDate()}/${date.getMonth() + 1
-                                }/${date.getFullYear()}`,
-                            showConfirmButton: true,
-                        });
-                        let insuranceAdded = [...props.insuranceList];
-                        insuranceAdded.push(result.data.insurance);
-                        props.setInsuranceList(insuranceAdded);
-                        props.changeAddUser();
-                    } else if (result.data.status == "fileError") {
-                        const file = document.getElementsByClassName("file");
-                        file.value = "";
+                            }/${date.getFullYear()}`,
+                            showConfirmButton: true
+                        })
+                        const insuranceAdded = [...props.insuranceList]
+                        insuranceAdded.push(result.data.insurance)
+                        props.setInsuranceList(insuranceAdded)
+                        props.changeAddUser()
+                    } else if (result.data.status === 'fileError') {
+                        const file = document.getElementsByClassName('file')
+                        file.value = ''
 
-                        setData(Object.assign({}, data, { data: undefined }));
+                        setData(Object.assign({}, data, { data: undefined }))
 
                         errors = Object.assign({}, errors, {
 
                             errorData:
-                                "Error en los datos del archivo, corrijalos y vuelva a subirlo",
-                        });
+                                'Error en los datos del archivo, corrijalos y vuelva a subirlo'
+                        })
 
-                        setErrorsFile(result.data.message);
-                        setshowFileError(true);
+                        setErrorsFile(result.data.message)
+                        setshowFileError(true)
                     } else {
-                        console.log(result.data.message);
-                        if (result.data.message === "el correo es invalido") {
+                        console.log(result.data.message)
+                        if (result.data.message === 'el correo es invalido') {
                             errors = Object.assign({}, errors, {
-                                erroremail: result.data.message,
-                            });
+                                erroremail: result.data.message
+                            })
                         } else if (
                             result.data.message ===
-                            "El correo ya ha sido registrado"
+                            'El correo ya ha sido registrado'
                         ) {
                             errors = Object.assign({}, errors, {
-                                erroremail: result.data.message,
-                            });
+                                erroremail: result.data.message
+                            })
                         } else if (
-                            result.data.message === "El RUC ya ha sido registrado"
+                            result.data.message === 'El RUC ya ha sido registrado'
                         ) {
                             errors = Object.assign({}, errors, {
-                                errorRUC: result.data.message,
-                            });
-                        } else if (result.data.message === "El excel no incluye la cuota por cada Empleado") {
-                            const file = document.getElementsByClassName("file");
-                            file.value = "";
+                                errorRUC: result.data.message
+                            })
+                        } else if (result.data.message === 'El excel no incluye la cuota por cada Empleado') {
+                            const file = document.getElementsByClassName('file')
+                            file.value = ''
 
-                            setData(Object.assign({}, data, { data: undefined }));
+                            setData(Object.assign({}, data, { data: undefined }))
 
                             Swal.fire({
-                                position: "center",
-                                icon: "warning",
+                                position: 'center',
+                                icon: 'warning',
                                 title: result.data.message,
-                                showConfirmButton: true,
-                            });
+                                showConfirmButton: true
+                            })
                         }
                     }
                 } else {
+                    const file = document.getElementsByClassName('file')
+                    file.value = ''
 
-                    const file = document.getElementsByClassName("file");
-                    file.value = "";
-
-                    setData(Object.assign({}, data, { data: undefined }));
+                    setData(Object.assign({}, data, { data: undefined }))
 
                     Swal.fire({
-                        position: "center",
-                        icon: "warning",
-                        title: `Esta intentado registrar una Empresa. La estructura del excel ha sido modificado, descargue nuevamente el excel y pase los datos de los usuarios.`,
-                        showConfirmButton: true,
-                    });
+                        position: 'center',
+                        icon: 'warning',
+                        title: 'Esta intentado registrar una Empresa. La estructura del excel ha sido modificado, descargue nuevamente el excel y pase los datos de los usuarios.',
+                        showConfirmButton: true
+                    })
                 }
             } else {
-
                 const isValidateExcel = validateAseguradora(data.data)
                 if (isValidateExcel) {
+                    const url = '/api/insurrance'
+                    const result = await axios.post(url, data)
 
-
-
-                    const url = "/api/insurrance";
-                    const result = await axios.post(url, data);
-
-                    if (result.data.status == "ok") {
-                        let date = new Date();
-                        date.setMonth(date.getMonth() + 1);
+                    if (result.data.status === 'ok') {
+                        const date = new Date()
+                        date.setMonth(date.getMonth() + 1)
                         Swal.fire({
-                            position: "center",
-                            icon: "success",
+                            position: 'center',
+                            icon: 'success',
                             html: `<p><strong>Numero de ususarios agregado: </strong>${result.data.info.num}</p><p><strong>Valor total a pagar: </strong>${result.data.info.value}$</p>`,
                             title: `Aseguradora agregada y activada hasta el ${date.getDate()}/${date.getMonth() + 1
-                                }/${date.getFullYear()}`,
-                            showConfirmButton: true,
-                        });
-                        let insuranceAdded = [...props.insuranceList];
-                        insuranceAdded.push(result.data.insurance);
-                        props.setInsuranceList(insuranceAdded);
-                        props.changeAddUser();
-                    } else if (result.data.status == "fileError") {
-                        const file = document.getElementsByClassName("file");
-                        file.value = "";
+                            }/${date.getFullYear()}`,
+                            showConfirmButton: true
+                        })
+                        const insuranceAdded = [...props.insuranceList]
+                        insuranceAdded.push(result.data.insurance)
+                        props.setInsuranceList(insuranceAdded)
+                        props.changeAddUser()
+                    } else if (result.data.status === 'fileError') {
+                        const file = document.getElementsByClassName('file')
+                        file.value = ''
 
-                        setData(Object.assign({}, data, { data: undefined }));
+                        setData(Object.assign({}, data, { data: undefined }))
 
                         errors = Object.assign({}, errors, {
                             errorData:
-                                "Error en los datos del archivo, corrijalos y vuelva a subirlo",
-                        });
+                                'Error en los datos del archivo, corrijalos y vuelva a subirlo'
+                        })
 
-                        setErrorsFile(result.data.message);
-                        setshowFileError(true);
+                        setErrorsFile(result.data.message)
+                        setshowFileError(true)
                     } else {
-                        console.log(result.data.message);
-                        if (result.data.message === "el correo es invalido") {
+                        console.log(result.data.message)
+                        if (result.data.message === 'el correo es invalido') {
                             errors = Object.assign({}, errors, {
-                                erroremail: result.data.message,
-                            });
+                                erroremail: result.data.message
+                            })
                         } else if (
                             result.data.message ===
-                            "El correo ya ha sido registrado"
+                            'El correo ya ha sido registrado'
                         ) {
                             errors = Object.assign({}, errors, {
-                                erroremail: result.data.message,
-                            });
+                                erroremail: result.data.message
+                            })
                         } else if (
-                            result.data.message === "El RUC ya ha sido registrado"
+                            result.data.message === 'El RUC ya ha sido registrado'
                         ) {
                             errors = Object.assign({}, errors, {
-                                errorRUC: result.data.message,
-                            });
-                        } else if (result.data.message === "El excel no incluye la cuota por cada asegurado") {
-                            const file = document.getElementsByClassName("file");
-                            file.value = "";
+                                errorRUC: result.data.message
+                            })
+                        } else if (result.data.message === 'El excel no incluye la cuota por cada asegurado') {
+                            const file = document.getElementsByClassName('file')
+                            file.value = ''
 
-                            setData(Object.assign({}, data, { data: undefined }));
+                            setData(Object.assign({}, data, { data: undefined }))
 
                             Swal.fire({
-                                position: "center",
-                                icon: "warning",
+                                position: 'center',
+                                icon: 'warning',
                                 title: result.data.message,
-                                showConfirmButton: true,
-                            });
+                                showConfirmButton: true
+                            })
                         }
                     }
                 } else {
+                    const file = document.getElementsByClassName('file')
+                    file.value = ''
 
-                    const file = document.getElementsByClassName("file");
-                    file.value = "";
-
-                    setData(Object.assign({}, data, { data: undefined }));
+                    setData(Object.assign({}, data, { data: undefined }))
 
                     Swal.fire({
-                        position: "center",
-                        icon: "warning",
-                        title: `Esta intentado registrar una Aseguradora. La estructura del excel ha sido modificado, descargue nuevamente el excel y pase los datos de los usuarios.`,
-                        showConfirmButton: true,
-                    });
+                        position: 'center',
+                        icon: 'warning',
+                        title: 'Esta intentado registrar una Aseguradora. La estructura del excel ha sido modificado, descargue nuevamente el excel y pase los datos de los usuarios.',
+                        showConfirmButton: true
+                    })
                 }
             }
         }
         setLoad(false)
-        setErrors(errors);
-    };
+        setErrors(errors)
+    }
 
     return (
         <div className="content">
-            {showFileError ? (
-                <ErrorsFileExcel
-                    setshowFileError={setshowFileError}
-                    errorsFile={errorsFile}
-                />
-            ) : null}
+            {showFileError
+                ? (
+                    <ErrorsFileExcel
+                        setshowFileError={setshowFileError}
+                        errorsFile={errorsFile}
+                    />
+                )
+                : null}
             <form onSubmit={onSubmit}>
                 <svg onClick={props.changeAddUser} viewBox="0 0 512 512">
                     <path
@@ -349,9 +345,11 @@ const AddInsuranceCarrier = (props) => {
                         name="password"
                         placeholder=""
                     />
-                    {errors.errorpassword ? (
-                        <p>{errors.errorpassword}</p>
-                    ) : null}
+                    {errors.errorpassword
+                        ? (
+                            <p>{errors.errorpassword}</p>
+                        )
+                        : null}
                 </label>
                 <label>
                     REPITA LA CONTRASEÑA: <br />
@@ -361,58 +359,64 @@ const AddInsuranceCarrier = (props) => {
                         name="passwordRepeat"
                         placeholder=""
                     />
-                    {errors.errorpasswordRepeat ? (
-                        <p>{errors.errorpasswordRepeat}</p>
-                    ) : null}
-                    {errors.errorpasswordIgual ? (
-                        <p>{errors.errorpasswordIgual}</p>
-                    ) : null}
+                    {errors.errorpasswordRepeat
+                        ? (
+                            <p>{errors.errorpasswordRepeat}</p>
+                        )
+                        : null}
+                    {errors.errorpasswordIgual
+                        ? (
+                            <p>{errors.errorpasswordIgual}</p>
+                        )
+                        : null}
                 </label>
                 <a
-                    href={`/archives/PLANTILLA-DE-REGISTRO-PARA-${data.type == "aseguradora" ? "ASEGURADOS" : "EMPLEADOS"
-                        }.xlsx`}
-                    download={`PLANTILLA-DE-REGISTRO-PARA-${data.type == "aseguradora" ? "ASEGURADOS" : "EMPLEADOS"
-                        }.xlsx`}
+                    href={`/archives/PLANTILLA-DE-REGISTRO-PARA-${data.type === 'aseguradora' ? 'ASEGURADOS' : 'EMPLEADOS'
+                    }.xlsx`}
+                    download={`PLANTILLA-DE-REGISTRO-PARA-${data.type === 'aseguradora' ? 'ASEGURADOS' : 'EMPLEADOS'
+                    }.xlsx`}
                 >
                     <span>
-                        DESCARGAR PLANTILLA DE REGISTRO PARA{" "}
-                        {data.type == "aseguradora"
-                            ? "ASEGURADOS"
-                            : "EMPLEADOS"}
+                        DESCARGAR PLANTILLA DE REGISTRO PARA{' '}
+                        {data.type === 'aseguradora'
+                            ? 'ASEGURADOS'
+                            : 'EMPLEADOS'}
                     </span>
                 </a>
                 <div className="upload">
                     <label className="label">
                         {data.data
-                            ? "PLANTILLA CARGADA"
-                            : `SUBIR PLANTILLA DE REGISTRO PARA ${data.type == "aseguradora"
-                                ? "ASEGURADOS"
-                                : "EMPLEADOS"
+                            ? 'PLANTILLA CARGADA'
+                            : `SUBIR PLANTILLA DE REGISTRO PARA ${data.type === 'aseguradora'
+                                ? 'ASEGURADOS'
+                                : 'EMPLEADOS'
                             }`}
                         <input
                             id="file"
                             className="uploadInput"
                             type="file"
                             onChange={(e) => {
-                                readExcel(e);
+                                readExcel(e)
                             }}
                             onClick={(e) => {
-                                e.target.value = "";
+                                e.target.value = ''
                                 setData(
                                     Object.assign({}, data, { data: undefined })
-                                );
+                                )
                             }}
                             accept=".xlsx"
                         />
-                        {errors.errorData ? (
-                            <p style={{ bottom: "-40px" }}>
-                                {errors.errorData}
-                            </p>
-                        ) : null}
+                        {errors.errorData
+                            ? (
+                                <p style={{ bottom: '-40px' }}>
+                                    {errors.errorData}
+                                </p>
+                            )
+                            : null}
                     </label>
                 </div>
                 <button disabled={load}>
-                    {load ? <Loading color="white" /> : "Agregar"}
+                    {load ? <Loading color="white" /> : 'Agregar'}
                 </button>
             </form>
 
@@ -577,7 +581,7 @@ const AddInsuranceCarrier = (props) => {
                 }
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default AddInsuranceCarrier;
+export default AddInsuranceCarrier

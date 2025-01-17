@@ -1,12 +1,10 @@
-import React from "react";
-
 const TerminosCondicionesForm = (props) => {
     return (
         <div className="content">
             <section>
                 <svg
                     onClick={(e) => {
-                        props.change(e);
+                        props.change(e)
                     }}
                     viewBox="0 0 512 512"
                 >
@@ -22,11 +20,11 @@ const TerminosCondicionesForm = (props) => {
                         <strong>RED BUCAL, S.A.</strong>, es una compañía
                         legalmente constituida en la República de Panamá, bajo
                         el folio real número 155682014 y DV 8 y mantiene vigente
-                        todos los permisos requeridos para operar en el país.{" "}
-                        <strong>RED BUCAL, S.A.</strong> (en adelante{" "}
+                        todos los permisos requeridos para operar en el país.{' '}
+                        <strong>RED BUCAL, S.A.</strong> (en adelante{' '}
                         <strong>RED BUCAL</strong>) les asegura que protege y
                         asegura la confidencialidad de sus datos. La siguiente
-                        Política de Confidencialidad describe el compromiso de{" "}
+                        Política de Confidencialidad describe el compromiso de{' '}
                         <strong>RED BUCAL</strong> de procurar mantener seguros
                         los datos personales que le proporcione, para recibir
                         los servicios que prestamos.
@@ -63,7 +61,7 @@ const TerminosCondicionesForm = (props) => {
                                 en nuestra página web, aceptan irrevocablemente
                                 las políticas de utilización de datos, salvo que
                                 la cuenta registrada fuese eliminada, en cuyo
-                                caso, los datos serán eliminados del sistema.{" "}
+                                caso, los datos serán eliminados del sistema.{' '}
                             </p>
                         </li>
                         <br />
@@ -89,9 +87,9 @@ const TerminosCondicionesForm = (props) => {
                                 propósito de que estos puedan tomar decisiones
                                 informadas y mantengan control y disposición
                                 sobre sus Datos Personales. Buscamos que
-                                mediante estas políticas{" "}
+                                mediante estas políticas{' '}
                                 <strong>RED BUCAL</strong> fortalezca el nivel
-                                de confianza de sus Titulares.{" "}
+                                de confianza de sus Titulares.{' '}
                             </p>
                         </li>
                         <br />
@@ -101,7 +99,7 @@ const TerminosCondicionesForm = (props) => {
                             </p>
                             <br />
                             <p>
-                                Las oficinas principales de{" "}
+                                Las oficinas principales de{' '}
                                 <strong>RED BUCAL</strong>, están situadas en
                                 San Felipe, Casco Viejo, Calle 8va Este, PH
                                 Marques del Portago, Local # 1.
@@ -115,7 +113,7 @@ const TerminosCondicionesForm = (props) => {
                                 <strong>RED BUCAL</strong>, en cumplimiento de
                                 lo dispuesto por la Ley 81 de 29 de marzo de
                                 2019, podrá solicitar y almacenar sus Datos
-                                Personales mediante las siguientes formas:{" "}
+                                Personales mediante las siguientes formas:{' '}
                             </p>
                             <br />
                             <ol className="letter">
@@ -132,7 +130,7 @@ const TerminosCondicionesForm = (props) => {
                                         poder generar las activaciones en caso
                                         de que así lo amerite. Entre la
                                         información que estaremos registrando,
-                                        encontraremos:{" "}
+                                        encontraremos:{' '}
                                     </p>
                                     <br />
                                     <ul className="circle">
@@ -144,7 +142,7 @@ const TerminosCondicionesForm = (props) => {
                                                 verificación, lugar de
                                                 domicilio, dirección, teléfonos,
                                                 fax, correo electrónico, objeto
-                                                social.{" "}
+                                                social.{' '}
                                             </p>
                                         </li>
                                         <br />
@@ -153,7 +151,7 @@ const TerminosCondicionesForm = (props) => {
                                                 Nombre de la persona encargada
                                                 de enviar los datos de los
                                                 usuarios, teléfono corporativo y
-                                                correo electrónico corporativo.{" "}
+                                                correo electrónico corporativo.{' '}
                                             </p>
                                         </li>
                                         <br />
@@ -172,7 +170,7 @@ const TerminosCondicionesForm = (props) => {
                                         utilizada para comunicarnos con los
                                         Titulares en caso que los mismos hayan
                                         quedado inactivos y así poder reactivar
-                                        cualquier servicio contratado con{" "}
+                                        cualquier servicio contratado con{' '}
                                         <strong>RED BUCAL</strong>.
                                     </p>
                                 </li>
@@ -183,16 +181,16 @@ const TerminosCondicionesForm = (props) => {
                                     <p>
                                         Es importante aclarar que la información
                                         sensitiva de los asegurados es recabada
-                                        por las aseguradoras y estos informan a{" "}
+                                        por las aseguradoras y estos informan a{' '}
                                         <strong>RED BUCAL</strong> sobre los
                                         nuevos Titulares o aquellos que hayan
                                         dejado su cobertura y por ende su
-                                        afiliación con{" "}
+                                        afiliación con{' '}
                                         <strong>RED BUCAL</strong>. En caso de
                                         que algún asegurado requiera algún
-                                        servicio adicional por parte de{" "}
-                                        <strong>RED BUCAL</strong>,{" "}
-                                        <strong>RED BUCAL</strong>{" "}
+                                        servicio adicional por parte de{' '}
+                                        <strong>RED BUCAL</strong>,{' '}
+                                        <strong>RED BUCAL</strong>{' '}
                                         complementaría la información brindada
                                         por la aseguradora con información
                                         adicional según el servicio requerido.
@@ -205,13 +203,13 @@ const TerminosCondicionesForm = (props) => {
                                             <p>
                                                 Nombre y apellidos del titular
                                                 de la póliza y sus
-                                                beneficiarios.{" "}
+                                                beneficiarios.{' '}
                                             </p>
                                         </li>
                                         <br />
                                         <li>
                                             <p>
-                                                Tipo y número de identificación.{" "}
+                                                Tipo y número de identificación.{' '}
                                             </p>
                                         </li>
                                         <br />
@@ -226,34 +224,34 @@ const TerminosCondicionesForm = (props) => {
                                             <p>
                                                 Teléfonos fijos y/o celulares de
                                                 contacto, correos electrónicos,
-                                                dirección y lugar de residencia.{" "}
+                                                dirección y lugar de residencia.{' '}
                                             </p>
                                         </li>
                                         <br />
                                         <li>
                                             <p>
                                                 Compañía de la aseguradora a la
-                                                cual pertenece.{" "}
+                                                cual pertenece.{' '}
                                             </p>
                                         </li>
                                         <br />
                                         <li>
                                             <p>
-                                                Número de póliza o del contrato.{" "}
+                                                Número de póliza o del contrato.{' '}
                                             </p>
                                         </li>
                                         <br />
                                         <li>
                                             <p>
                                                 Condiciones del contrato de
-                                                seguro.{" "}
+                                                seguro.{' '}
                                             </p>
                                         </li>
                                         <br />
                                         <li>
                                             <p>
                                                 Plan del asegurado y/o número de
-                                                carnet.{" "}
+                                                carnet.{' '}
                                             </p>
                                         </li>
                                         <br />
@@ -268,14 +266,14 @@ const TerminosCondicionesForm = (props) => {
                                         <li>
                                             <p>
                                                 Historial de servicios
-                                                requeridos.{" "}
+                                                requeridos.{' '}
                                             </p>
                                         </li>
                                         <br />
                                         <li>
                                             <p>
                                                 Lugar donde se lleva a cabo el
-                                                servicio de salud dental.{" "}
+                                                servicio de salud dental.{' '}
                                             </p>
                                         </li>
                                     </ul>
@@ -296,7 +294,7 @@ const TerminosCondicionesForm = (props) => {
                                                 verificación, lugar de
                                                 domicilio, dirección, teléfono
                                                 fijo y celular, fax, correo
-                                                electrónico.{" "}
+                                                electrónico.{' '}
                                             </p>
                                         </li>
                                         <br />
@@ -305,7 +303,7 @@ const TerminosCondicionesForm = (props) => {
                                                 Nombre del gerente general o
                                                 representante legal y dirección,
                                                 ciudad, teléfono fijo y celular,
-                                                fax, correo electrónico.{" "}
+                                                fax, correo electrónico.{' '}
                                             </p>
                                         </li>
                                         <br />
@@ -313,7 +311,7 @@ const TerminosCondicionesForm = (props) => {
                                             <p>
                                                 Número de registro médico para
                                                 operar como profesional de la
-                                                salud.{" "}
+                                                salud.{' '}
                                             </p>
                                         </li>
                                         <br />
@@ -324,7 +322,7 @@ const TerminosCondicionesForm = (props) => {
                                         <li>
                                             <p>
                                                 Fotos digitales del consultorio
-                                                o clínica.{" "}
+                                                o clínica.{' '}
                                             </p>
                                         </li>
                                         <br />
@@ -338,7 +336,7 @@ const TerminosCondicionesForm = (props) => {
                                                 nombre del titular de la cuenta
                                                 bancaria, número de la cuenta
                                                 bancaria y nombre o código del
-                                                banco.{" "}
+                                                banco.{' '}
                                             </p>
                                         </li>
                                         <br />
@@ -368,7 +366,7 @@ const TerminosCondicionesForm = (props) => {
                                                 verificación, lugar de
                                                 domicilio, dirección, teléfono
                                                 fijo y celular, fax, correo
-                                                electrónico.{" "}
+                                                electrónico.{' '}
                                             </p>
                                         </li>
                                         <br />
@@ -377,7 +375,7 @@ const TerminosCondicionesForm = (props) => {
                                                 Nombre del gerente general o
                                                 representante legal y dirección,
                                                 ciudad, teléfono fijo y celular,
-                                                fax, correo electrónico.{" "}
+                                                fax, correo electrónico.{' '}
                                             </p>
                                         </li>
                                         <br />
@@ -386,7 +384,7 @@ const TerminosCondicionesForm = (props) => {
                                                 Número de licencia comercial
                                                 para operar un negocio de
                                                 aseguradora en la República de
-                                                Panamá.{" "}
+                                                Panamá.{' '}
                                             </p>
                                         </li>
                                         <br />
@@ -399,7 +397,7 @@ const TerminosCondicionesForm = (props) => {
                                                 Identificación de la persona
                                                 encargada de validar las listas
                                                 de los Titulares dentro de las
-                                                pólizas.{" "}
+                                                pólizas.{' '}
                                             </p>
                                         </li>
                                         <br />
@@ -432,7 +430,7 @@ const TerminosCondicionesForm = (props) => {
                                         contractuales. Entre estos involucrados
                                         tenemos principalmente: Titulares,
                                         asegurados, proveedores de servicios de
-                                        salud, aseguradoras.{" "}
+                                        salud, aseguradoras.{' '}
                                     </p>
                                 </li>
                                 <br />
@@ -441,7 +439,7 @@ const TerminosCondicionesForm = (props) => {
                                         Conectar efectivamente a los titulares
                                         con las clínicas que proveerán
                                         directamente los servicios médicos
-                                        requeridos por estos.{" "}
+                                        requeridos por estos.{' '}
                                     </p>
                                 </li>
                                 <br />
@@ -467,7 +465,7 @@ const TerminosCondicionesForm = (props) => {
                                         puedan verificar de forma rápida y
                                         sencilla si la membresía está activa,
                                         así como los beneficios que mantiene
-                                        vigentes.{" "}
+                                        vigentes.{' '}
                                     </p>
                                 </li>
                                 <br />
@@ -477,14 +475,14 @@ const TerminosCondicionesForm = (props) => {
                                         medir la calidad de servicio que se
                                         recibe a través de los proveedores de
                                         servicios de salud y la experiencia con
-                                        la plataforma de la web.{" "}
+                                        la plataforma de la web.{' '}
                                     </p>
                                 </li>
                                 <br />
                                 <li>
                                     <p>
                                         Comunicar nuevos productos, servicios
-                                        y/o cambios de sobre los existentes.{" "}
+                                        y/o cambios de sobre los existentes.{' '}
                                     </p>
                                 </li>
                                 <br />
@@ -492,7 +490,7 @@ const TerminosCondicionesForm = (props) => {
                                     <p>
                                         Ventilar cualesquiera disconformidades
                                         que puedan existir ante un servicio
-                                        prestado.{" "}
+                                        prestado.{' '}
                                     </p>
                                 </li>
                                 <br />
@@ -503,14 +501,14 @@ const TerminosCondicionesForm = (props) => {
                                         estadísticos, facturación y todos
                                         aquellos que permitan generar nuevas
                                         estrategias en todas las áreas del
-                                        modelo de negocio.{" "}
+                                        modelo de negocio.{' '}
                                     </p>
                                 </li>
                                 <br />
                                 <li>
                                     <p>
                                         Envío de mensajes para promover nuevos
-                                        productos, servicios y/o promociones.{" "}
+                                        productos, servicios y/o promociones.{' '}
                                     </p>
                                 </li>
                                 <br />
@@ -518,14 +516,14 @@ const TerminosCondicionesForm = (props) => {
                                     <p>
                                         Contactar a los involucrados por
                                         cualquier aspecto relativo a la relación
-                                        existente entre estos.{" "}
+                                        existente entre estos.{' '}
                                     </p>
                                 </li>
                                 <br />
                                 <li>
                                     <p>
                                         Llevar registro de clientes inactivos de
-                                        RED BUCAL.{" "}
+                                        RED BUCAL.{' '}
                                     </p>
                                 </li>
                                 <br />
@@ -533,7 +531,7 @@ const TerminosCondicionesForm = (props) => {
                                     <p>
                                         Colaboración con entidades estatales
                                         sobre información requerida por orden
-                                        judicial.{" "}
+                                        judicial.{' '}
                                     </p>
                                 </li>
                                 <br />
@@ -544,14 +542,14 @@ const TerminosCondicionesForm = (props) => {
                                         información y comunicación, generación
                                         de archivos y copias de seguridad de la
                                         información contenida en dichos
-                                        sistemas.{" "}
+                                        sistemas.{' '}
                                     </p>
                                 </li>
                                 <br />
                                 <li>
                                     <p>
                                         Control y prevención de fraudes y lavado
-                                        de activos.{" "}
+                                        de activos.{' '}
                                     </p>
                                 </li>
                                 <br />
@@ -559,7 +557,7 @@ const TerminosCondicionesForm = (props) => {
                                     <p>
                                         Implementación de protocolos de
                                         seguridad de la infraestructura e
-                                        instalaciones de RED BUCAL.{" "}
+                                        instalaciones de RED BUCAL.{' '}
                                     </p>
                                 </li>
                             </ol>
@@ -577,17 +575,17 @@ const TerminosCondicionesForm = (props) => {
                                 únicamente en los registros de cada clínica y
                                 estás solicitarán en caso de ser diferentes, la
                                 apertura de un expediente individual por
-                                clínica. Los datos que{" "}
+                                clínica. Los datos que{' '}
                                 <strong>RED BUCAL</strong> mantendrá serán
                                 genéricos y sobre las unidades de atención
                                 realizadas, sin especificar los detalles
-                                clínicos de cada consulta.{" "}
+                                clínicos de cada consulta.{' '}
                             </p>
                             <br />
                             <p>
                                 Absolutamente todos los datos serán utilizados
                                 con la máxima confidencialidad posible, como si
-                                fueran datos confidenciales propios de{" "}
+                                fueran datos confidenciales propios de{' '}
                                 <strong>RED BUCAL</strong>. Se garantiza
                                 especial cuidado y responsabilidad en el
                                 tratamiento de los datos y que se ha
@@ -607,7 +605,7 @@ const TerminosCondicionesForm = (props) => {
                                 Todo lo relativo a este proceso podrá ser
                                 ejercido según lo dispuesto en la Ley 81 de
                                 2019. Para hacerlo, deberá solicitarlo vía
-                                correo electrónico a la dirección{" "}
+                                correo electrónico a la dirección{' '}
                                 <a href="mailto:info@redbucal.com">
                                     info@redbucal.com
                                 </a>
@@ -619,13 +617,13 @@ const TerminosCondicionesForm = (props) => {
                                 con la firma de dos testigos. El Titular deberá
                                 detallar en su solicitud la información puntual
                                 sobre la cual desea ejercer los derechos
-                                respectivos. <strong>RED BUCAL</strong>{" "}
+                                respectivos. <strong>RED BUCAL</strong>{' '}
                                 procederá a realizar modificaciones o
                                 correcciones cuando los datos sean erróneos,
                                 inexactos, equívocos o incompletos dentro del
                                 término de diez (10) días hábiles siguientes a
                                 la presentación de la solicitud de corrección.
-                                Igualmente podrá <strong>RED BUCAL</strong>{" "}
+                                Igualmente podrá <strong>RED BUCAL</strong>{' '}
                                 eliminar, modificar o bloquear los datos
                                 personales sin necesidad de requerimiento cuando
                                 exista prueba de inexactitud de dichos datos.
@@ -648,14 +646,14 @@ const TerminosCondicionesForm = (props) => {
                             <br />
                             <p>
                                 Los Titulares al aceptar estos términos y
-                                condiciones aceptan que{" "}
+                                condiciones aceptan que{' '}
                                 <strong>RED BUCAL</strong> no es, ni será
                                 responsable por los servicios médicos prestados,
                                 toda vez que este no es en sí un establecimiento
                                 que presta directamente servicios médicos. Cada
                                 proveedor será responsable por los servicios
                                 médicos que reciban los Titulares y este acepta
-                                y exime completamente de responsabilidad a{" "}
+                                y exime completamente de responsabilidad a{' '}
                                 <strong>RED BUCAL</strong> por algún daño o
                                 perjuicio que haya sufrido en virtud.
                             </p>
@@ -674,7 +672,7 @@ const TerminosCondicionesForm = (props) => {
                                 forma de la prestación del servicio. Dichas
                                 reformas serán comunicadas a los Titulares
                                 mediante los medios digitales de comunicaciones
-                                existentes, así como en la web{" "}
+                                existentes, así como en la web{' '}
                                 <a
                                     href="http://www.redbucal.com"
                                     target="_blank"
@@ -701,7 +699,7 @@ const TerminosCondicionesForm = (props) => {
                             </p>
                             <br />
                             <p>
-                                Las cookies y las web beacons ayudan a{" "}
+                                Las cookies y las web beacons ayudan a{' '}
                                 <strong>RED BUCAL</strong> a brindarle al
                                 Titular una mejor experiencia cuando utiliza el
                                 Portal Electrónico y le permiten mejorar dicha
@@ -713,7 +711,7 @@ const TerminosCondicionesForm = (props) => {
                                 portal, recordar las preferencias de los
                                 Titulares y poner a su disposición los valores
                                 predeterminados de las funciones del Portal
-                                Electrónico configuradas por{" "}
+                                Electrónico configuradas por{' '}
                                 <strong>RED BUCAL</strong>, así como adaptar
                                 eventualmente las herramientas más relevantes
                                 para los Titulares.
@@ -846,7 +844,7 @@ const TerminosCondicionesForm = (props) => {
                 }
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default TerminosCondicionesForm;
+export default TerminosCondicionesForm

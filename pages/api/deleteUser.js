@@ -1,46 +1,48 @@
-import withMiddleware from "../../middlewares/withMiddleware";
+import { connectToDatabase } from '../../backend/db'
+import withMiddleware from '../../middlewares/withMiddleware'
 
 const handler = async (req, res) => {
-    if (req.method === "POST") {
+    if (req.method === 'POST') {
+        const mongoClient = await connectToDatabase()
         try {
-            const { identification, identifications, RUC, tamaño } = req.body;
-            await req.db
-                .collection("users")
-                .deleteOne({ identification: identification });
-            console.log(identification, identifications, RUC, tamaño);
+            const { identification, identifications, RUC, tamaño } = req.body
+            await mongoClient.db
+                .collection('users')
+                .deleteOne({ identification: identification })
+            console.log(identification, identifications, RUC, tamaño)
 
-            let pos = 0;
+            let pos = 0
 
             for (let i = 0; i < tamaño; i++) {
                 if (identifications[i].id === identification) {
-                    pos = i;
+                    pos = i
                 }
             }
 
-            identifications.splice(pos, 1);
+            identifications.splice(pos, 1)
 
-            const count = await req.db
-                .collection("bussines")
+            const count = await mongoClient.db
+                .collection('bussines')
                 .findAndModify(
                     { RUC: RUC },
-                    [["_id", "asc"]],
+                    [['_id', 'asc']],
                     { $set: { identifications: identifications } },
                     { new: true }
-                );
+                )
 
             res.send({
-                status: "ok",
-                message: count,
-            });
+                status: 'ok',
+                message: count
+            })
         } catch (error) {
             res.send({
-                status: "error",
-                message: error,
-            });
+                status: 'error',
+                message: error
+            })
         }
     } else {
-        res.status(405).end();
+        res.status(405).end()
     }
-};
+}
 
-export default withMiddleware(handler);
+export default withMiddleware(handler)

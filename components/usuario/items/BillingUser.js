@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
-import PagoFisico from "../../pagos/PagoFisico";
-import PagoVirtual from "../../pagos/PagoVirtual";
+import { useEffect, useState } from 'react'
+import PagoFisico from '../../pagos/PagoFisico'
+import PagoVirtual from '../../pagos/PagoVirtual'
 
 const BillingUser = (props) => {
-    const [activeFisico, setActiveFisico] = useState(false);
-    const [activeVirtual, setActiveVirtual] = useState(false);
-    const [dates, setDates] = useState({});
+    const [activeFisico, setActiveFisico] = useState(false)
+    const [activeVirtual, setActiveVirtual] = useState(false)
+    const [dates, setDates] = useState({})
 
     useEffect(() => {
         if (props.data.start && props.data.end) {
-            const { start, end } = props.data;
+            const { start, end } = props.data
 
-            const startDate = new Date(start);
-            const endDate = new Date(end);
-            console.log(startDate);
-            console.log(endDate);
+            const startDate = new Date(start)
+            const endDate = new Date(end)
+            console.log(startDate)
+            console.log(endDate)
 
             setDates({
                 start: `${startDate.getDate()}-${
@@ -22,77 +22,83 @@ const BillingUser = (props) => {
                 }-${startDate.getFullYear()}`,
                 end: `${endDate.getDate()}-${
                     endDate.getMonth() + 1
-                }-${endDate.getFullYear()}`,
-            });
+                }-${endDate.getFullYear()}`
+            })
         }
-    }, [props.data]);
+    }, [props.data])
 
     const changeFisico = () => {
-        setActiveFisico(!activeFisico);
-    };
+        setActiveFisico(!activeFisico)
+    }
 
     const changeVirtual = () => {
-        setActiveVirtual(!activeVirtual);
-    };
+        setActiveVirtual(!activeVirtual)
+    }
 
     return (
         <section>
-            {activeFisico ? <PagoFisico changeFisico={changeFisico} /> : ""}
-            {activeVirtual ? (
-                <PagoVirtual
-                    changeVirtual={changeVirtual}
-                    data={props.data}
-                    setData={props.setData}
-                    type={"user"}
-                    pago={
-                        props.data.dependientes
-                            ? Math.round(
-                                  (props.data.dependientes.filter(
-                                      (dep) => dep.state === false
-                                  ).length +
+            {activeFisico ? <PagoFisico changeFisico={changeFisico} /> : ''}
+            {activeVirtual
+                ? (
+                    <PagoVirtual
+                        changeVirtual={changeVirtual}
+                        data={props.data}
+                        setData={props.setData}
+                        type={'user'}
+                        pago={
+                            props.data.dependientes
+                                ? Math.round(
+                                    (props.data.dependientes.filter(
+                                        (dep) => dep.state === false
+                                    ).length +
                                       (props.data.state === true ? 0 : 1)) *
                                       100 *
                                       20.61
-                              ) / 100
-                            : 20.61
-                    }
-                />
-            ) : (
-                ""
-            )}
+                                ) / 100
+                                : 20.61
+                        }
+                    />
+                )
+                : (
+                    ''
+                )}
             <label className="type">
                 TIPO DE PLAN:
-                <p>{props.data.plan ? "AFILIACIÓN" : "PERSONAL"}</p>
+                <p>{props.data.plan ? 'AFILIACIÓN' : 'PERSONAL'}</p>
             </label>
-            {props.data.plan === true ? (
-                <label></label>
-            ) : (
-                <label className="type">
+            {props.data.plan === true
+                ? (
+                    <label></label>
+                )
+                : (
+                    <label className="type">
                     VALOR A PAGAR:
-                    {props.data.dependientes ? (
-                        <p>
-                            {Math.round(
-                                (props.data.dependientes.filter((dep) => {
-                                    return dep.state === false;
-                                }).length +
+                        {props.data.dependientes
+                            ? (
+                                <p>
+                                    {Math.round(
+                                        (props.data.dependientes.filter((dep) => {
+                                            return dep.state === false
+                                        }).length +
                                     (props.data.state === true ? 0 : 1)) *
                                     19.26 *
                                     100
-                            ) / 100}{" "}
+                                    ) / 100}{' '}
                             USD
-                        </p>
-                    ) : (
-                        <p>19.26 USD</p>
-                    )}
-                </label>
-            )}
+                                </p>
+                            )
+                            : (
+                                <p>19.26 USD</p>
+                            )}
+                    </label>
+                )}
             <label>
                 FECHA DE INICIO:
-                <p>{props.data.start ? dates.start : "------------"}</p>
+                <p>{props.data.start ? dates.start : '------------'}</p>
             </label>
             <label>
                 FECHA DE FINALIZACIÓN:
-                <p>{props.data.start ? dates.end : "------------"}</p>
+                <p>{props.data.start ? dates.end : '------------'}</p>
             </label>
             {/*  quitar cuando se pueda pagar por cada uno individualmente */}
             <div
@@ -100,11 +106,11 @@ const BillingUser = (props) => {
                     props.data.plan === true ||
                     (props.data.state === true &&
                         !props.data.dependientes.filter((dep) => {
-                            console.log(props.data.dependientes);
-                            return dep.state === false;
+                            console.log(props.data.dependientes)
+                            return dep.state === false
                         }).length)
-                        ? "hidden"
-                        : ""
+                        ? 'hidden'
+                        : ''
                 }
             >
                 {/* <div className="hidden"> */}
@@ -169,7 +175,7 @@ const BillingUser = (props) => {
                 }
             `}</style>
         </section>
-    );
-};
+    )
+}
 
-export default BillingUser;
+export default BillingUser

@@ -1,25 +1,25 @@
-import Axios from "axios";
-import { useEffect, useState } from "react";
-import AddInsuranceCarrier from "./AddInsuranceCarrier";
-import InsuranceCarrierList from "./InsuranceCarrierList";
+import Axios from 'axios'
+import { useEffect, useState } from 'react'
+import AddInsuranceCarrier from './AddInsuranceCarrier'
+import InsuranceCarrierList from './InsuranceCarrierList'
 
 const InsuranceCarrier = () => {
-    const [info, setInfo] = useState(false);
-    const [insuranceList, setInsuranceList] = useState([]);
+    const [info, setInfo] = useState(false)
+    const [insuranceList, setInsuranceList] = useState([])
 
     useEffect(() => {
-        getClinics();
-    }, []);
+        getClinics()
+    }, [])
 
     const getClinics = async () => {
-        const url = "/api/insurrance";
-        const response = await Axios.get(url);
-        setInsuranceList(response.data.message);
-    };
+        const url = '/api/insurrance'
+        const response = await Axios.get(url)
+        setInsuranceList(response.data.message)
+    }
 
     const changeAddUser = () => {
-        setInfo(!info);
-    };
+        setInfo(!info)
+    }
 
     return (
         <section className="container">
@@ -29,13 +29,15 @@ const InsuranceCarrier = () => {
                 setInsuranceList={setInsuranceList}
             />
             <button onClick={changeAddUser}>Agregar Entidad</button>
-            {info ? (
-                <AddInsuranceCarrier
-                    changeAddUser={changeAddUser}
-                    setInsuranceList={setInsuranceList}
-                    insuranceList={insuranceList}
-                />
-            ) : null}
+            {info
+                ? (
+                    <AddInsuranceCarrier
+                        changeAddUser={changeAddUser}
+                        setInsuranceList={setInsuranceList}
+                        insuranceList={insuranceList}
+                    />
+                )
+                : null}
 
             <style jsx>{`
                 section {
@@ -59,7 +61,7 @@ const InsuranceCarrier = () => {
                 }
             `}</style>
         </section>
-    );
-};
+    )
+}
 
-export default InsuranceCarrier;
+export default InsuranceCarrier

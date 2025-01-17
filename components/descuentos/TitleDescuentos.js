@@ -1,5 +1,3 @@
-import React from "react";
-
 const TitleDescuentos = () => {
     return (
         <div className="content">
@@ -49,7 +47,7 @@ const TitleDescuentos = () => {
                 }
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default TitleDescuentos;
+export default TitleDescuentos

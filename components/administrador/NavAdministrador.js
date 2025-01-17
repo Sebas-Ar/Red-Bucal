@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 const NavUsuario = (props) => {
-
     const [copy, setCopy] = useState(false)
 
     const router = useRouter()
@@ -16,24 +15,22 @@ const NavUsuario = (props) => {
 
     const logout = () => {
         sessionStorage.removeItem('tokenAdmin')
-        router.replace("/")
+        router.replace('/')
     }
 
     const copyText = () => {
+        const aux = document.createElement('input')
 
-        var aux = document.createElement("input");
+        aux.setAttribute('value', `https://redbucal.com/registro-ingreso?afiliacion=${props.adminData.name.replaceAll(' ', '-')}`)
 
-        aux.setAttribute("value", `https://redbucal.com/registro-ingreso?afiliacion=${props.adminData.name.replaceAll(' ', '-')}`);
+        document.body.appendChild(aux)
 
-        document.body.appendChild(aux);
+        aux.select()
 
-        aux.select();
+        document.execCommand('copy')
 
-        document.execCommand("copy");
-
-        document.body.removeChild(aux);
+        document.body.removeChild(aux)
         setCopy(true)
-
     }
 
     return (
@@ -43,63 +40,8 @@ const NavUsuario = (props) => {
             <nav>
                 <button onClick={copyText} className='copy'>{ copy ? 'link de registro afiliado copiado' : 'Copiar link de registro afiliado'}</button>
                 {
-                    props.user === 0 
-                    ?
-                        <ul>
-                            <li>
-                                <h2>{props.adminData.name}</h2>
-                            </li>
-                            <li>
-                                <button onClick={() => { 
-                                    props.onClick(0)
-                                    props.changeActivate()
-                                }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
-                            </li>
-                            <li>
-                                <button onClick={logout}>SALIR</button>
-                            </li>
-                        </ul>
-                        : props.user === 1 ?
-                        <ul>
-                            <li>
-                                <h2>{props.adminData.name}</h2>
-                            </li>
-                            <li>
-                                <button onClick={() => { 
-                                   props.onClick(0)
-                                   props.changeActivate()
-                                }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
-                            </li>
-                            <li>
-                                <button onClick={() => { 
-                                   props.onClick(1)
-                                   props.changeActivate()
-                                }} style={selection(1)}>INFORMACIÓN DEL USUARIO</button>
-                            </li>
-                            <li>
-                                <button onClick={() => { 
-                                   props.onClick(2)
-                                   props.changeActivate()
-                                }} style={selection(2)}>FACTURACIÓN</button>
-                            </li>
-                            <li>
-                                <button onClick={() => { 
-                                   props.onClick(3)
-                                   props.changeActivate()
-                                }} style={selection(3)}>SERVICIOS</button>
-                            </li>
-                            <li>
-                                <button onClick={() => { 
-                                   props.onClick(4)
-                                   props.changeActivate()
-                                }} style={selection(4)}>HISTORIAL</button>
-                            </li>
-                            <li>
-                                <button onClick={logout}>SALIR</button>
-                            </li>
-                        </ul>
-                        :
-                        <ul>
+                    props.user === 0
+                        ? <ul>
                             <li>
                                 <h2>{props.adminData.name}</h2>
                             </li>
@@ -110,36 +52,89 @@ const NavUsuario = (props) => {
                                 }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
                             </li>
                             <li>
-                                <button onClick={() => {
-                                    props.onClick(1)
-                                    props.changeActivate()
-                                }} style={selection(1)}>INFORMACIÓN EMPRESARIAL</button>
+                                <button onClick={logout}>SALIR</button>
                             </li>
-                            <li>
-                                <button onClick={() => {
-                                    props.onClick(2)
-                                    props.changeActivate()
-                                }} style={selection(2)}>FACTURACIÓN</button>
-                            </li>
-                            {/* 
+                        </ul>
+                        : props.user === 1
+                            ? <ul>
+                                <li>
+                                    <h2>{props.adminData.name}</h2>
+                                </li>
+                                <li>
+                                    <button onClick={() => {
+                                        props.onClick(0)
+                                        props.changeActivate()
+                                    }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
+                                </li>
+                                <li>
+                                    <button onClick={() => {
+                                        props.onClick(1)
+                                        props.changeActivate()
+                                    }} style={selection(1)}>INFORMACIÓN DEL USUARIO</button>
+                                </li>
+                                <li>
+                                    <button onClick={() => {
+                                        props.onClick(2)
+                                        props.changeActivate()
+                                    }} style={selection(2)}>FACTURACIÓN</button>
+                                </li>
+                                <li>
+                                    <button onClick={() => {
+                                        props.onClick(3)
+                                        props.changeActivate()
+                                    }} style={selection(3)}>SERVICIOS</button>
+                                </li>
+                                <li>
+                                    <button onClick={() => {
+                                        props.onClick(4)
+                                        props.changeActivate()
+                                    }} style={selection(4)}>HISTORIAL</button>
+                                </li>
+                                <li>
+                                    <button onClick={logout}>SALIR</button>
+                                </li>
+                            </ul>
+                            : <ul>
+                                <li>
+                                    <h2>{props.adminData.name}</h2>
+                                </li>
+                                <li>
+                                    <button onClick={() => {
+                                        props.onClick(0)
+                                        props.changeActivate()
+                                    }} style={selection(0)}>BUSCAR USUARIO / EMPRESA</button>
+                                </li>
+                                <li>
+                                    <button onClick={() => {
+                                        props.onClick(1)
+                                        props.changeActivate()
+                                    }} style={selection(1)}>INFORMACIÓN EMPRESARIAL</button>
+                                </li>
+                                <li>
+                                    <button onClick={() => {
+                                        props.onClick(2)
+                                        props.changeActivate()
+                                    }} style={selection(2)}>FACTURACIÓN</button>
+                                </li>
+                                {/*
                             <li>
                                 <button onClick={() => { props.onClick(3) }} style={selection(3)}>SERVICIOS</button>
                             </li>
                             <li>
                                 <button onClick={() => { props.onClick(4) }} style={selection(4)}>HISTORIAL</button>
                             </li> */}
-                            <li>
-                                <button onClick={logout}>SALIR</button>
-                            </li>
-                        </ul>
+                                <li>
+                                    <button onClick={logout}>SALIR</button>
+                                </li>
+                            </ul>
                 }
 
                 <div className="activate">
-                    <svg viewBox="0 0 512 512" onClick={() => {props.changeActivate()}}>
+                    <svg viewBox="0 0 512 512" onClick={() => { props.changeActivate() }}>
                         <path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248 248-111 248-248zm-448 0c0-110.5 89.5-200 200-200s200 89.5 200 200-89.5 200-200 200S56 366.5 56 256zm72 20v-40c0-6.6 5.4-12 12-12h116v-67c0-10.7 12.9-16 20.5-8.5l99 99c4.7 4.7 4.7 12.3 0 17l-99 99c-7.6 7.6-20.5 2.2-20.5-8.5v-67H140c-6.6 0-12-5.4-12-12z" />
                     </svg>
                 </div>
-                
+
             </nav>
 
             <div className="linea"></div>
@@ -288,7 +283,7 @@ const NavUsuario = (props) => {
                     svg {
                         width: 20px;
                         transition: transform 2s;
-                        transform: ${props.activate ? 'rotate(180deg)' : 'rotate(0deg)' };      
+                        transform: ${props.activate ? 'rotate(180deg)' : 'rotate(0deg)'};      
                     }
 
                     .linea {

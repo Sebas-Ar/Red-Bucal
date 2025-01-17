@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Respaldo = () => {
     return (
         <div className="content">
@@ -8,39 +6,39 @@ const Respaldo = () => {
             <p>En alianza con nuestros clientes hemos logrado generar el valor agregado que nos caracteriza en nuestra visión en donde queremos cuidarte conectando sonrisas con una salud bucal más responsable.</p>
 
             <div className="imagenes">
-                <img src="/img/logo16.png" alt=""/> 
-                <img src="/img/logo42.png" alt=""/>                 
+                <img src="/img/logo16.png" alt=""/>
+                <img src="/img/logo42.png" alt=""/>
                 <img src="/img/logo20.png" alt=""/>
                 <img src="/img/logo17.png" alt=""/>
                 <img src="/img/logo19.png" alt=""/>
                 <img src="/img/logo22.png" alt=""/>
-                <img src="/img/logo18.png" alt=""/>   
-                <img src="/img/logo30.png" alt=""/> 
-                <img src="/img/logo31.png" alt=""/> 
+                <img src="/img/logo18.png" alt=""/>
+                <img src="/img/logo30.png" alt=""/>
+                <img src="/img/logo31.png" alt=""/>
                 <img src="/img/logo32.png" alt=""/>
-                <img src="/img/logo33.png" alt=""/> 
-                <img src="/img/logo34.png" alt=""/> 
-                <img src="/img/logo35.png" alt=""/> 
-                <img src="/img/logo36.png" alt=""/> 
+                <img src="/img/logo33.png" alt=""/>
+                <img src="/img/logo34.png" alt=""/>
+                <img src="/img/logo35.png" alt=""/>
+                <img src="/img/logo36.png" alt=""/>
                 <img src="/img/logo37.png" alt=""/>
                 <img src="/img/logo39.png" alt=""/>
-{/* En espera para corregir el tamaño
-                <img src="/img/logo38.png" alt=""/> 
-                <img src="/img/logo40.png" alt=""/>  
-                <img src="/img/logo41.png" alt=""/> 
-                <img src="/img/logo43.png" alt=""/> 
-                <img src="/img/logo44.png" alt=""/> 
-                <img src="/img/logo45.png" alt=""/> 
-                <img src="/img/logo46.png" alt=""/> 
+                {/* En espera para corregir el tamaño
+                <img src="/img/logo38.png" alt=""/>
+                <img src="/img/logo40.png" alt=""/>
+                <img src="/img/logo41.png" alt=""/>
+                <img src="/img/logo43.png" alt=""/>
+                <img src="/img/logo44.png" alt=""/>
+                <img src="/img/logo45.png" alt=""/>
+                <img src="/img/logo46.png" alt=""/>
                 <img src="/img/logo47.png" alt=""/>
-                <img src="/img/logo48.png" alt=""/> 
-                <img src="/img/logo49.png" alt=""/> 
+                <img src="/img/logo48.png" alt=""/>
+                <img src="/img/logo49.png" alt=""/>
     */}
 
             </div>
 
             <div className="dientes"></div>
-            
+
             <style jsx>{`
 
                 .content {

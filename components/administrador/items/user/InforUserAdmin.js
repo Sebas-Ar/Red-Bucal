@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from "react";
-import Swal from "sweetalert2";
-import validateDate from "../../../../utils/validateDate";
-import axios from "axios";
-import CarnetLabel from '../../../carnet/carnetLabel';
-import BotonAgregar from "../../../carnet/carnet";
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import Swal from 'sweetalert2'
+import validateDate from '../../../../utils/validateDate'
+import BotonAgregar from '../../../carnet/carnet'
+import CarnetLabel from '../../../carnet/carnetLabel'
 
 const InfoAdmin = (props) => {
-    const [info, setInfo] = useState({});
+    const [info, setInfo] = useState({})
 
     useEffect(() => {
-        let inf = {};
-        inf.identificationChange = props.data.identification;
+        const inf = {}
+        inf.identificationChange = props.data.identification
         inf.birthdate = fromateDate(props.data.birthdate)
-        inf.phone = props.data.phone;
-        inf.adress = props.data.adress;
-        inf.email = props.data.email;
-        inf.identification = props.data.identification;
-        setInfo(inf);
-    }, []);
+        inf.phone = props.data.phone
+        inf.adress = props.data.adress
+        inf.email = props.data.email
+        inf.identification = props.data.identification
+        setInfo(inf)
+    }, [])
 
     const fromateDate = (date) => {
         console.log(date)
 
-        let format = new Date(date)
+        const format = new Date(date)
         // if (format == 'Invalid Date') format = new Date(date.replaceAll('-', '/'))
         // console.log(format)
         // console.log(date.replaceAll('-', '/'))
@@ -30,68 +30,73 @@ const InfoAdmin = (props) => {
     }
 
     const onchange = (e) => {
-        setInfo(Object.assign({}, info, { [e.target.name]: e.target.value }));
-    };
+        setInfo(Object.assign({}, info, { [e.target.name]: e.target.value }))
+    }
 
     const onSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         const [isValidate, message] = validateDate(info.birthdate)
 
         if (isValidate) {
-            const url = "/api/editUserData";
+            const url = '/api/editUserData'
             try {
-                const result = await axios.put(url, { ...info });
+                const result = await axios.put(url, { ...info })
                 if (result.data.status) {
                     Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Información actualizada",
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Información actualizada',
                         showConfirmButton: false,
-                        timer: 1000,
-                    });
-                    props.changeData(result.data.data);
+                        timer: 1000
+                    })
+                    props.changeData(result.data.data)
                 }
             } catch (error) {
-                console.log(error);
+                console.log(error)
             }
         } else {
             Swal.fire({
-                position: "center",
-                icon: "warning",
+                position: 'center',
+                icon: 'warning',
                 title: message,
                 showConfirmButton: false,
-                timer: 2000,
-            });
+                timer: 2000
+            })
         }
-
-    };
+    }
 
     return (
         <form onSubmit={onSubmit}>
             <label>
                 {props.data.dependeOf
-                    ? "DEPENDIENTE DE:"
-                    : "LISTA DE DEPENDIENTES:"}{" "}
+                    ? 'DEPENDIENTE DE:'
+                    : 'LISTA DE DEPENDIENTES:'}{' '}
                 <br />
-                {props.data.dependeOf ? (
-                    <p>{`${props.data.dependeOf.name} - ${props.data.dependeOf.id}`}</p>
-                ) : props.data.dependientes ? (
-                    props.data.dependientes.length !== 0 ? (
-                        props.data.dependientes.map((item, i) => (
-                            <p key={i} className="list">
-                                {`${item.name} - id: ${item.id} - stado: ${item.state ? "Activo" : "Inactivo"
-                                    }`}
-                            </p>
-                        ))
-                    ) : (
-                        <p>No existen dependientes</p>
+                {props.data.dependeOf
+                    ? (
+                        <p>{`${props.data.dependeOf.name} - ${props.data.dependeOf.id}`}</p>
                     )
-                ) : null}
+                    : props.data.dependientes
+                        ? (
+                            props.data.dependientes.length !== 0
+                                ? (
+                                    props.data.dependientes.map((item, i) => (
+                                        <p key={i} className="list">
+                                            {`${item.name} - id: ${item.id} - stado: ${item.state ? 'Activo' : 'Inactivo'
+                                            }`}
+                                        </p>
+                                    ))
+                                )
+                                : (
+                                    <p>No existen dependientes</p>
+                                )
+                        )
+                        : null}
             </label>
             <label>
                 ESTADO: <br />
-                <p>{props.data.state ? "ACTIVO" : "INACTIVO"}</p>
+                <p>{props.data.state ? 'ACTIVO' : 'INACTIVO'}</p>
             </label>
             <label>
                 CEDULA: <br />
@@ -141,15 +146,17 @@ const InfoAdmin = (props) => {
             </label>
             <label>
                 CARNET: <br></br>
-            {props.data.state === false ? (
-                "NO ES POSIBLE DESCARGARLO HASTA CANCELAR"
-            ) : (
-                <label>
-                <CarnetLabel data={props.data} />
-                <BotonAgregar data={props.data}/>
-                </label>
-            )}
-            
+                {props.data.state === false
+                    ? (
+                        'NO ES POSIBLE DESCARGARLO HASTA CANCELAR'
+                    )
+                    : (
+                        <label>
+                            <CarnetLabel data={props.data} />
+                            <BotonAgregar data={props.data}/>
+                        </label>
+                    )}
+
             </label>
             <button>Actualizar</button>
 
@@ -218,7 +225,7 @@ const InfoAdmin = (props) => {
                 }
             `}</style>
         </form>
-    );
-};
+    )
+}
 
-export default InfoAdmin;
+export default InfoAdmin

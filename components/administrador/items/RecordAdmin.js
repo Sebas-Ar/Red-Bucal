@@ -1,79 +1,79 @@
-import React, { useState, useEffect } from "react";
-import Swal from "sweetalert2";
-import moment from "moment";
-import axios from "axios";
+import axios from 'axios'
+import moment from 'moment'
+import { useEffect, useState } from 'react'
+import Swal from 'sweetalert2'
 
 const RecordAdmin = (props) => {
     const [data, setData] = useState({
         identification: props.data.identification,
-        historial: props.data.historial,
-    });
+        historial: props.data.historial
+    })
 
     const [date, setDate] = useState({
-        hora: moment().locale("es").format("LT"),
-        fecha: moment().locale("es").format("LL"),
-    });
+        hora: moment().locale('es').format('LT'),
+        fecha: moment().locale('es').format('LL')
+    })
 
-    const [tratamiento, setTratamiento] = useState("");
+    const [tratamiento, setTratamiento] = useState('')
 
     useEffect(() => {
         const timer = setInterval(() => {
-            let time = {};
-            time.hora = moment().locale("es").format("LT");
-            time.fecha = moment().locale("es").format("LL");
-            setDate(Object.assign({}, date, time));
-        }, 3000);
+            const time = {}
+            time.hora = moment().locale('es').format('LT')
+            time.fecha = moment().locale('es').format('LL')
+            setDate(Object.assign({}, date, time))
+        }, 3000)
 
         return () => {
-            clearInterval(timer);
-        };
-    }, []);
+            clearInterval(timer)
+        }
+    }, [])
 
     const onchange = (e) => {
-        setTratamiento(e.target.value);
-    };
+        setTratamiento(e.target.value)
+    }
 
     const onSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         if (!tratamiento) {
             return Swal.fire({
-                position: "center",
-                icon: "warning",
+                position: 'center',
+                icon: 'warning',
                 title: 'El campo "tratamiento" está vacío',
                 showConfirmButton: false,
-                timer: 1500,
-            });
+                timer: 1500
+            })
         }
 
-        const url = "/api/addHistorial";
+        const url = '/api/addHistorial'
         try {
-            console.log(data);
+            console.log(data)
             const result = await axios.put(url, {
                 ...data,
                 ...date,
-                tratamiento,
-            });
-            console.log(result.data);
+                tratamiento
+            })
+            console.log(result.data)
             if (result.data.status) {
                 Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Historial actualizado",
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Historial actualizado',
                     showConfirmButton: false,
-                    timer: 1000,
-                });
-                props.changeData(result.data.data);
+                    timer: 1000
+                })
+                props.changeData(result.data.data)
                 setData(
                     Object.assign({}, data, {
-                        historial: result.data.data.historial,
+                        historial: result.data.data.historial
                     })
-                );
+                )
             }
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
-    };
+    }
 
     return (
         <section>
@@ -85,12 +85,12 @@ const RecordAdmin = (props) => {
                 <div className="wrapper-form">
                     {props.data.historial
                         ? props.data.historial.map((historial) => (
-                              <div className="form">
-                                  <p>{historial.fecha}</p>
-                                  <p>{historial.hora}</p>
-                                  <p>{historial.tratamiento}</p>
-                              </div>
-                          ))
+                            <div className="form">
+                                <p>{historial.fecha}</p>
+                                <p>{historial.hora}</p>
+                                <p>{historial.tratamiento}</p>
+                            </div>
+                        ))
                         : null}
                 </div>
                 <form onSubmit={onSubmit}>
@@ -220,7 +220,7 @@ const RecordAdmin = (props) => {
                 }
             `}</style>
         </section>
-    );
-};
+    )
+}
 
-export default RecordAdmin;
+export default RecordAdmin

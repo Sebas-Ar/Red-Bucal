@@ -1,5 +1,3 @@
-import React from 'react'
-
 const InformationLeft = () => {
     return (
         <section className="content">
@@ -10,7 +8,7 @@ const InformationLeft = () => {
                         <span className="sonrisas">#CONECTANDO</span>
                         <span className="todos">SONRISAS</span>
                     </h3>
-                    
+
                 </div>
                 <div className="dientes"></div>
             </div>

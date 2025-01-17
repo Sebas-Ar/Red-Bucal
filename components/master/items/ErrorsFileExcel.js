@@ -1,5 +1,3 @@
-import React from "react";
-
 const ErrorsFileExcel = ({ errorsFile, setshowFileError }) => {
     return (
         <div className="content">
@@ -79,7 +77,7 @@ const ErrorsFileExcel = ({ errorsFile, setshowFileError }) => {
                 }
             `}</style>
         </div>
-    );
-};
+    )
+}
 
-export default ErrorsFileExcel;
+export default ErrorsFileExcel

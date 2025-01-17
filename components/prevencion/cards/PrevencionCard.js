@@ -1,16 +1,15 @@
-import React from 'react'
-import Card from './Card'
 import listPercentPrevencion from '../list/listPercentPrevencion'
+import Card from './Card'
 
-const PrevencionCard = ({changeActive, changeList}) => {
+const PrevencionCard = ({ changeActive, changeList }) => {
     return (
         <div className="container">
-           {
-               listPercentPrevencion.map((list, i) => (
-                   <Card list={list} index={i} changeActive={changeActive} changeList={changeList}/>
-               ))
-           }
-           <style jsx>{`
+            {
+                listPercentPrevencion.map((list, i) => (
+                    <Card list={list} index={i} changeActive={changeActive} changeList={changeList}/>
+                ))
+            }
+            <style jsx>{`
            
                .container {
                    display: grid;

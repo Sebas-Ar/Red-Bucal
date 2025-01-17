@@ -1,8 +1,6 @@
-import React from 'react'
 import { useRouter } from 'next/router'
 
 const NavUsuario = (props) => {
-
     const router = useRouter()
 
     const selection = (selector) => {
@@ -14,7 +12,7 @@ const NavUsuario = (props) => {
 
     const logout = () => {
         sessionStorage.removeItem('tokenBusiness')
-        router.replace("/")
+        router.replace('/')
     }
 
     return (

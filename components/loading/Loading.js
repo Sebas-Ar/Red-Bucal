@@ -1,8 +1,7 @@
-import react, { useState } from 'react'
+import { useState } from 'react'
 
-const loading = ({ color }) => {
-
-    const [i, setI] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+const Loading = ({ color }) => {
+    const [i] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
     const style = item => {
         return {
@@ -43,7 +42,7 @@ const loading = ({ color }) => {
                     left: 0;
                     width: 4px;
                     height: 4px;
-                    background: ${color ? color : 'var(--mainColor)'};
+                    background: ${color || 'var(--mainColor)'};
                     border-radius: 50%;
                 }
 
@@ -62,4 +61,4 @@ const loading = ({ color }) => {
     )
 }
 
-export default loading
+export default Loading

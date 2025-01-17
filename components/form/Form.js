@@ -1,15 +1,14 @@
-import React, { useState } from 'react'
-import Swal from 'sweetalert2'
 import axios from 'axios'
+import { useState } from 'react'
+import Swal from 'sweetalert2'
 
 const Form = () => {
-
-    const [data, setData] = useState({});
+    const [data, setData] = useState({})
 
     const onSubmit = async e => {
         e.preventDefault()
         const url = '/api/email/sendMail'
-        const result = await axios.post(url,data)
+        const result = await axios.post(url, data)
         Swal.fire({
             position: 'center',
             icon: 'success',

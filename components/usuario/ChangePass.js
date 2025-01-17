@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
 import Axios from 'axios'
+import { useState } from 'react'
 import Swal from 'sweetalert2'
 
 const ChangePass = (props) => {
-
     const [password, setPassword] = useState('')
     const [repeatPass, setRepeatPass] = useState('')
     const [err, setErr] = useState({})
@@ -15,7 +14,7 @@ const ChangePass = (props) => {
             const URL_USER_PASSWORD = '/api/users'
             await Axios.put(URL_USER_PASSWORD, {
                 _id: props._id,
-                password,
+                password
             })
             Swal.fire({
                 position: 'center',
@@ -26,13 +25,12 @@ const ChangePass = (props) => {
             })
             props.change()
         } else {
-            let err_list = {}
-            if (!password) err_list = Object.assign({}, err_list, {password: 'campo vacio*'})
-            if (!repeatPass) err_list = Object.assign({}, err_list, {repeatPass: 'campo vacio*'})
-            if (repeatPass && password && repeatPass !== password) err_list = Object.assign({}, err_list, {notMatch: 'No coinciden*'})
-            setErr(err_list)
+            let errList = {}
+            if (!password) errList = Object.assign({}, errList, { password: 'campo vacio*' })
+            if (!repeatPass) errList = Object.assign({}, errList, { repeatPass: 'campo vacio*' })
+            if (repeatPass && password && repeatPass !== password) errList = Object.assign({}, errList, { notMatch: 'No coinciden*' })
+            setErr(errList)
         }
-        
     }
 
     return (

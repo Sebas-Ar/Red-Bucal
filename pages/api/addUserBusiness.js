@@ -1,36 +1,34 @@
-import validator from "email-validator";
+import bcrypt from 'bcryptjs'
+import validator from 'email-validator'
+import { connectToDatabase } from '../../backend/db'
 import withMiddleware from '../../middlewares/withMiddleware'
-import bcrypt from "bcryptjs"
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {
-        const { name, lastname, addres, phone, email, typeDoc, identification, day, month, year, identifications, RUC} = req.body
+        const mongoClient = await connectToDatabase()
+        const { name, lastname, addres, phone, email, typeDoc, identification, day, month, year, identifications, RUC } = req.body
         console.log(req.body)
         if (!validator.validate(email)) {
             res.json({
                 status: 'error',
                 message: 'el correo es invalido'
             })
-
         } else {
-
             try {
-                const count = await req.db.collection('users').countDocuments({ email })
+                const count = await mongoClient.db.collection('users').countDocuments({ email })
 
                 if (count) {
                     console.log('ya existe')
 
                     res.send({
                         status: 'error',
-                        message: 'El correo ya ha sido registrado',
-                    });
-
+                        message: 'El correo ya ha sido registrado'
+                    })
                 } else {
-
                     const salt = await bcrypt.genSalt(10)
                     const hashedPassword = await bcrypt.hash(identification, salt)
-                    const date = new Date;
-                    const user = await req.db.collection('users').insertOne({
+                    const date = new Date()
+                    await mongoClient.db.collection('users').insertOne({
                         state: false,
                         RUC,
                         name: name + ' ' + lastname,
@@ -50,23 +48,20 @@ const handler = async (req, res) => {
                         name: name + ' ' + lastname,
                         id: identification
                     })
-                    
-                    const encontrar = await req.db.collection('bussines').findAndModify(
-                        { "RUC": RUC },
-                        [['_id', 'asc']],
-                        { "$set": { "identifications": identifications } },
-                        { "new": true }
-                    )
 
+                    const encontrar = await mongoClient.db.collection('bussines').findAndModify(
+                        { RUC: RUC },
+                        [['_id', 'asc']],
+                        { $set: { identifications: identifications } },
+                        { new: true }
+                    )
 
                     res.status(201).json({
                         status: 'ok',
                         message: 'Usuario agregado satisfactoriamente',
                         data: encontrar
                     })
-
                 }
-
             } catch (error) {
                 res.json({
                     status: 'error',
@@ -75,11 +70,8 @@ const handler = async (req, res) => {
             }
         }
     } else {
-
-        res.status(405).end();
-
+        res.status(405).end()
     }
-
 }
 
-export default withMiddleware(handler);
+export default withMiddleware(handler)
