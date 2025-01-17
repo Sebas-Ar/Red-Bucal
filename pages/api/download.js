@@ -1,7 +1,7 @@
-import withMiddleware from '../../middlewares/withMiddleware'
-import xlsx from 'xlsx'
-import fs from 'fs'
 import archiver from 'archiver'
+import fs from 'fs'
+import xlsx from 'xlsx'
+import withMiddleware from '../../middlewares/withMiddleware'
 
 const handler = async (req, res) => {
 
@@ -29,7 +29,6 @@ const handler = async (req, res) => {
         }    
     
         try {
-
             let userList
 
             if (afiliacion === '') {
