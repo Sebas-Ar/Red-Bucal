@@ -7,7 +7,6 @@ import withMiddleware from '../../middlewares/withMiddleware'
 const handler = async (req, res) => {
     if (req.method === 'POST') {
         const mongoClient = await connectToDatabase()
-
         const { afiliacion } = req.body
 
         const projection = {
@@ -45,6 +44,7 @@ const handler = async (req, res) => {
                         { projection }
                     ).toArray()
             }
+            console.log('termino la counsulta')
 
             const obj = userList.map(e => e)
 
@@ -85,6 +85,7 @@ const handler = async (req, res) => {
             archive.file(`public/excels/${fileName}.xlsx`, { name: `${fileName}.xlsx` })
             await archive.finalize()
             fs.unlinkSync(`public/excels/${fileName}.xlsx`)
+
             res.json({ status: 'ok' })
         } catch (error) {
             console.log(error)
